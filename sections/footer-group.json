@@ -1,1 +1,94 @@
-{"type":"footer","name":"Footer Group","sections":{"176794681438624558":{"type":"apps","custom_css":[],"settings":{"full_width":true,"show_space":true}},"cross-page-promos":{"type":"cross-page-promos","settings":{"cross_page_promo_bg":"#ffffff","cross_page_promo_color":"#171717","show_on_home_page":true}},"footer":{"type":"footer","blocks":{"text_NfDcHA":{"type":"text","settings":{"title":"","text":"<h1><strong>Lavivid<\/strong><\/h1><p>LaVivid Germany ist spezialisiert auf hochwertige Haarsysteme für Männer. Natürlich, diskret und alltagstauglich – mit persönlicher Beratung und ausgewählten Partnersalons.<br\/><\/p>","image_width":140,"show_social_icons":true,"soc_icons_large":true,"enable_follow_on_shop":false}},"1601308671932":{"type":"menu","settings":{"title":"Shop","menu":""}},"menu_gwTUyY":{"type":"menu","settings":{"title":"PROGRAMS","menu":""}},"menu_cDDFKV":{"type":"menu","settings":{"title":"HELP & ABOUT","menu":""}}},"block_order":["text_NfDcHA","1601308671932","menu_gwTUyY","menu_cDDFKV"],"custom_css":["\/* 页脚背景和文字颜色 *\/footer {background-color: #000000 !important; color: #ffffff !important;}","\/* 页脚内所有文字 *\/footer * {color: #ffffff !important;}","\/* 页脚链接颜色 *\/footer a {color: #ffffff !important;}","\/* 页脚链接悬停效果 *\/footer a:hover {color: #cccccc !important; opacity: 0.8;}","\/* 社交媒体图标 *\/footer svg,footer .icon {fill: #ffffff !important; color: #ffffff !important;}","\/* 版权信息文字 *\/footer p {color: #ffffff !important;}"],"settings":{"lower_menu":"","show_powered_by":false,"show_payment_icons":false,"enable_country_selector":false,"enable_language_selector":true}}},"order":["176794681438624558","cross-page-promos","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer Group",
+  "sections": {
+    "176794681438624558": {
+      "type": "apps",
+      "custom_css": [],
+      "settings": {
+        "full_width": true,
+        "show_space": true
+      }
+    },
+    "cross-page-promos": {
+      "type": "cross-page-promos",
+      "settings": {
+        "cross_page_promo_bg": "#ffffff",
+        "cross_page_promo_color": "#171717",
+        "show_on_home_page": true
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_NfDcHA": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "text": "<h1><strong>Lavivid</strong></h1><p>LaVivid Germany ist spezialisiert auf hochwertige Haarsysteme für Männer. Natürlich, diskret und alltagstauglich – mit persönlicher Beratung und ausgewählten Partnersalons.<br/></p>",
+            "image_width": 140,
+            "show_social_icons": true,
+            "soc_icons_large": true,
+            "enable_follow_on_shop": false
+          }
+        },
+        "1601308671932": {
+          "type": "menu",
+          "settings": {
+            "title": "Shop",
+            "menu": ""
+          }
+        },
+        "menu_gwTUyY": {
+          "type": "menu",
+          "settings": {
+            "title": "PROGRAMS",
+            "menu": ""
+          }
+        },
+        "menu_cDDFKV": {
+          "type": "menu",
+          "settings": {
+            "title": "HELP & ABOUT",
+            "menu": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_NfDcHA",
+        "1601308671932",
+        "menu_gwTUyY",
+        "menu_cDDFKV"
+      ],
+      "custom_css": [
+        "/* 页脚背景和文字颜色 */footer {background-color: #000000 !important; color: #ffffff !important;}",
+        " /* 页脚内所有文字 */footer * {color: #ffffff !important;}",
+        " /* 页脚链接颜色 */footer a {color: #ffffff !important;}",
+        " /* 页脚链接悬停效果 */footer a:hover {color: #cccccc !important; opacity: 0.8;}",
+        " /* 社交媒体图标 */footer svg,footer .icon {fill: #ffffff !important; color: #ffffff !important;}",
+        " /* 版权信息文字 */footer p {color: #ffffff !important;}"
+      ],
+      "settings": {
+        "lower_menu": "",
+        "show_powered_by": false,
+        "show_payment_icons": false,
+        "enable_country_selector": false,
+        "enable_language_selector": true
+      }
+    }
+  },
+  "order": [
+    "176794681438624558",
+    "cross-page-promos",
+    "footer"
+  ]
+}
