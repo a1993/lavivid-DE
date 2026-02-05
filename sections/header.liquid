@@ -35,140 +35,191 @@
   {%- endif -%}
 
   /* ========================================
-     自定义样式：横向单行导航布局 v4
-     强制单行布局：Logo(左) - Menu(中) - Icons(右)
+     单行导航布局：Logo(左) | Menu(logo右侧) | Icons(右)
+     并覆盖主题 main.css 中导致错乱的样式（768px 的 .logo-area__left__inner 等）
      ======================================== */
-  
-  @media (min-width: 990px) {
-    /* 强制主容器为单行 Flexbox */
-    .pageheader--layout-inline-center-logo .logo-area.container,
-    .logo-area.container.container--no-max {
+  /* 从 768px 起就覆盖主题的 inline 布局样式，避免 calc(100vw - 600px)、position:absolute 等生效 */
+  @media (min-width: 768px) {
+    /* 重置主题对 .logo-area__left__inner 的设定（width: calc(100vw - 600px); min-height: 100%; position: absolute 等） */
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left__inner,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left__inner {
+      position: static !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      height: auto !important;
       display: flex !important;
-      flex-direction: row !important;
-      flex-wrap: nowrap !important;
       align-items: center !important;
-      justify-content: space-between !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+    }
+    /* 重置 .logo-area__left 可能被主题设置的绝对定位 */
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left {
+      position: static !important;
+      left: auto !important;
+      transform: none !important;
+    }
+  }
+
+  @media (min-width: 990px) {
+    {%- assign logo_col_width = section.settings.logo_img_width_int | at_least: 100 | plus: 32 -%}
+    /* 提高优先级：用 #pageheader 确保覆盖主题默认布局 */
+    #pageheader.pageheader--layout-inline-menu-left .logo-area.container.container--no-max,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area.container.container--no-max {
+      display: grid !important;
+      grid-template-columns: {{ logo_col_width }}px 1fr auto !important;
+      grid-template-areas: "header-logo header-nav header-actions" !important;
+      align-items: center !important;
       padding: 15px 40px !important;
       width: 100% !important;
       max-width: 100% !important;
-      height: auto !important;
       min-height: 70px !important;
+      gap: 24px !important;
+      box-sizing: border-box !important;
     }
 
-    /* 左侧区域 - Logo */
-    .logo-area__left {
-      order: 1 !important;
-      flex: 0 0 200px !important;
-      width: 200px !important;
+    /* 第 1 列：Logo 固定在左侧 */
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__middle,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__middle {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      justify-self: start !important;
+      min-width: 0 !important;
+      max-width: {{ section.settings.logo_img_width_int | at_least: 100 }}px !important;
       display: flex !important;
       align-items: center !important;
+      overflow: hidden !important;
+    }
+
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__middle__inner,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__middle__inner {
+      width: 100% !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__middle .logo,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__middle .logo,
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__middle .logo img,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__middle .logo img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+
+    /* 第 2 列：菜单在 logo 右侧，限制在列内、可换行不溢出 */
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       position: static !important;
     }
-    
-    .logo-area__left__inner {
+
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left__inner,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left__inner {
       display: flex !important;
       align-items: center !important;
+      justify-content: center !important;
       width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
     }
 
-    /* 隐藏左侧的搜索和菜单按钮 */
-    .logo-area__left .mobile-nav-toggle {
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left .mobile-nav-toggle,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left .mobile-nav-toggle,
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left .show-search-link,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left .show-search-link {
       display: none !important;
     }
-    
-    .logo-area__left .show-search-link {
-      display: none !important;
-    }
 
-    /* 关键：将导航菜单从 left 移到中间 */
-    .logo-area__left #proxy-nav.navigation--left {
-      position: absolute !important;
-      left: 50% !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      width: auto !important;
-      margin: 0 !important;
-      z-index: 10 !important;
-    }
-
-    /* 中间区域 - 原本是 Logo，现在改为左侧 */
-    .logo-area__middle {
-      order: 1 !important;
-      flex: 0 0 200px !important;
-      width: 200px !important;
-      margin: 0 !important;
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__left #proxy-nav.navigation--left,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__left #proxy-nav.navigation--left {
       position: static !important;
-      display: flex !important;
-      justify-content: flex-start !important;
-    }
-
-    .logo-area__middle__inner {
+      transform: none !important;
       width: 100% !important;
-    }
-
-    /* 导航菜单样式 */
-    .navigation--left,
-    #proxy-nav {
-      display: flex !important;
-      align-items: center !important;
+      max-width: 100% !important;
       margin: 0 !important;
     }
 
-    .navigation__tier-1-container {
+    #pageheader.pageheader--layout-inline-menu-left .navigation--left,
+    #pageheader.pageheader--layout-inline-menu-center .navigation--left,
+    #pageheader.pageheader--layout-inline-menu-left #proxy-nav,
+    #pageheader.pageheader--layout-inline-menu-center #proxy-nav {
       display: flex !important;
       align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      max-width: 100% !important;
     }
 
-    .navigation__tier-1 {
+    /* 覆盖主题 .navigation--left .navigation__tier-1-container 的 position:absolute; top:50%; margin-top:calc(...)，否则高度无法与 logo/右侧对齐 */
+    #pageheader.pageheader--layout-inline-menu-left .navigation__tier-1-container,
+    #pageheader.pageheader--layout-inline-menu-center .navigation__tier-1-container {
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      margin-top: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* 菜单项允许换行，避免超出屏幕 */
+    #pageheader.pageheader--layout-inline-menu-left .navigation__tier-1,
+    #pageheader.pageheader--layout-inline-menu-center .navigation__tier-1 {
       display: flex !important;
       flex-direction: row !important;
+      flex-wrap: wrap !important;
       align-items: center !important;
-      gap: 25px !important;
+      justify-content: center !important;
+      gap: 20px 25px !important;
       list-style: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      white-space: nowrap !important;
     }
 
-    .navigation__item {
+    #pageheader.pageheader--layout-inline-menu-left .navigation__item,
+    #pageheader.pageheader--layout-inline-menu-center .navigation__item {
       margin: 0 !important;
       padding: 0 !important;
       display: inline-flex !important;
     }
 
-    .navigation__link {
+    #pageheader.pageheader--layout-inline-menu-left .navigation__link,
+    #pageheader.pageheader--layout-inline-menu-center .navigation__link {
       padding: 8px 0 !important;
       display: inline-flex !important;
     }
 
-    /* 右侧图标区域 */
-    .logo-area__right {
-      order: 3 !important;
-      flex: 0 0 200px !important;
-      width: 200px !important;
+    /* 第 3 列：右侧图标 */
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__right,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__right {
+      grid-column: 3 !important;
+      grid-row: 1 !important;
+      justify-self: end !important;
       display: flex !important;
       justify-content: flex-end !important;
       align-items: center !important;
     }
 
-    .logo-area__right__inner {
+    #pageheader.pageheader--layout-inline-menu-left .logo-area__right__inner,
+    #pageheader.pageheader--layout-inline-menu-center .logo-area__right__inner {
       display: flex !important;
       align-items: center !important;
       gap: 20px !important;
-    }
-
-    /* 确保父容器有相对定位 */
-    .pageheader,
-    #pageheader,
-    .section-header {
-      position: relative !important;
-    }
-
-    /* 防止元素换行 */
-    .logo-area__left,
-    .logo-area__middle,
-    .logo-area__right {
-      flex-shrink: 0 !important;
     }
   }
 
