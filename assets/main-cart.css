@@ -1,0 +1,26 @@
+/* .lv-cart-item-price{
+    width:10rem !important;
+    text-align: center !important;
+   justify-content: center;
+}
+.lv-cart-item-quantity{
+    width:14rem !important;
+    padding-inline-end:0rem !important;
+}
+    */
+
+
+@media (min-width: 959px) {
+   .lv-cart-item-price{
+        width:10rem !important;
+        text-align: center !important;
+        justify-content: center;
+    }
+    .lv-cart-item-quantity{
+        width:14rem !important;
+        padding-inline-end:0rem !important;
+    }
+    .cart-item__not-image{
+        gap: 0 !important;
+    } 
+}

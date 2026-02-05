@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="{{ 'collapsible-tabs.css' | asset_url }}" {%- render 'lazy-stylesheet-attrs' %}>
+{% if product.metafields.custom.product_faq_items.value and product.metafields.custom.product_faq_items.value.size > 0 %}
+
+<div class="container" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
+  <div class="collapsible-tabs produt-collapsible-tabs">
+
+    {% if section.settings.title != blank %}
+      <h3 class="collapsible-tabs__heading collapsible-tabs__content" id="faq-{{ section.settings.title | handle }}">
+        {{ section.settings.title }}
+      </h3>
+    {% endif %}
+
+    {%- comment -%}
+      FIRST PRIORITY:
+      Render FAQs from product metafield list `custom.faq_list`
+    {%- endcomment -%}
+
+    {% if product.metafields.custom.faq_list.value %}
+      <div class="product-faq-metaobject">
+
+        {% for faq in product.metafields.custom.faq_list.value %}
+          <div class="collapsible-tabs__tab">
+            <details-disclosure>
+              <details class="disclosure">
+                <summary class="disclosure__title">
+                  {{ faq.question }}
+                </summary>
+                <div class="disclosure__panel has-motion">
+                  <div class="disclosure__content rte">
+                    {{ faq.answer }}
+                  </div>
+                </div>
+              </details>
+            </details-disclosure>
+          </div>
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+      {%- comment -%}
+        FALLBACK:
+        Render theme blocks if no metafield FAQs exist.
+      {%- endcomment -%}
+
+      {%- for block in section.blocks -%}
+        <div class="collapsible-tabs__block" {{ block.shopify_attributes }}>
+
+          {% if block.type == 'content' %}
+            <div class="collapsible-tabs__text collapsible-tabs__content rte">
+              {{ block.settings.content }}
+            </div>
+
+          {% elsif block.type == 'button' %}
+            <div class="collapsible-tabs__button collapsible-tabs__content">
+              <a class="btn btn--primary btn--link" href="{{ block.settings.link }}">
+                <span class="btn__text">{{ block.settings.title | escape }}</span>
+              </a>
+            </div>
+
+          {% elsif block.type == 'question' %}
+            <div class="collapsible-tabs__tab">
+              <details-disclosure>
+                <details class="disclosure">
+                  <summary class="disclosure__title">
+                    {{ block.settings.title | escape }}
+                  </summary>
+                  <div class="disclosure__panel has-motion">
+                    <div class="disclosure__content rte">
+                      {{ block.settings.answer }}
+                    </div>
+                  </div>
+                </details>
+              </details-disclosure>
+            </div>
+
+          {% endif %}
+        </div>
+      {%- endfor -%}
+
+    {% endif %}
+  </div>
+</div>
+
+{% endif %}
+{% schema %}
+{
+  "name": "Product Collapsible tabs",
+  "class": "section-collapsible-tabs",
+  "disabled_on": {
+    "groups": ["aside"]
+  },
+  "settings": [
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collapsible tabs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Answer</p>"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label",
+          "default": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Collapsible tabs",
+      "blocks": [
+        { "type": "question" },
+        { "type": "question" }
+      ]
+    }
+  ]
+}
+{% endschema %}

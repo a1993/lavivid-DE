@@ -1,0 +1,1357 @@
+
+
+.customize-input {
+  width: calc(100% - 16px);
+  float: left;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 120%;
+}
+
+.customize-input.-clean {
+  background: #eeeeee;
+  border: 1px solid #969696;
+}
+
+.customize-input.-clean:hover {
+  background-color: white;
+}
+
+.customize-input.-dark {
+  background: #666;
+  color: #eee;
+  border: 1px solid #999;
+  font: inherit;
+}
+
+.customize-arrow {
+  position: absolute;
+  cursor: pointer;
+  right: -2px;
+  bottom: 10px;
+  text-align: center;
+  width: 30px !important;
+}
+
+.customize-arrow.-clean {
+  color: #2f2f2f;
+}
+
+.customize-arrow.-dark {
+  background: #666;
+  color: #eee;
+}
+
+.customize-input.-dark:hover + .customize-arrow,
+.customize-arrow.-dark:hover {
+  background: #000;
+  color: #ccc;
+}
+
+.customize-arrow:before {
+  transform: rotate(90deg);
+  font-size: 25px;
+  position: relative;
+  content: "›";
+  margin: 0 0 0 13px;
+  float: left;
+}
+
+.customize-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #666;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1110;
+  transition: opacity 0.3s;
+}
+
+.customize-overlay.-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.customize-modal {
+  transform: translateX(-50%) scale(0.8, 0.8);
+  left: 50%;
+  top: 5%;
+  border-radius: 3px;
+  position: fixed;
+  max-height: 90%;
+  overflow-y: auto;
+  z-index: 1111;
+  transition: all 0.3s;
+  visibility: hidden;
+  background: #f2f2f2;
+  opacity: 0;
+}
+
+.customize-modal::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.customize-modal::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #dddddd;
+}
+
+.customize-modal::-webkit-scrollbar-thumb:hover {
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #a1a1a1;
+}
+
+.customize-modal::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: #f6f6f6;
+}
+
+.customize-modal > .head {
+  display: none;
+}
+
+.customize-modal.-clean {
+  background: #fff;
+}
+
+.customize-modal.-dark {
+  color: #f2f2f2;
+  background: #444;
+  border-bottom: 10px solid #333;
+}
+
+.customize-modal.-show {
+  transform: translateX(-50%) scale(1, 1);
+  visibility: visible;
+  opacity: 1;
+  box-shadow: 1px 1px 20px 2px #888;
+}
+
+.customize-search {
+  display: none;
+}
+
+.customize-search.-show {
+  display: block;
+}
+
+.customize-search > input {
+  width: calc(100% - 22px);
+  padding: 8px 4px;
+  margin: 6px;
+  border: 1px solid #ddd;
+}
+
+.customize-no_result_search {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.customize-modal > .close {
+  display: none;
+}
+
+.customize-option {
+  cursor: pointer;
+  border-bottom: 1px solid #efefef;
+  text-align: center;
+}
+
+.customize-option.-clean {
+  border-bottom: 1px solid #969696;
+}
+
+.customize-option.-dark {
+  border-bottom: 1px solid #333;
+  color: #f2f2f2;
+}
+
+.customize-option.-clean:hover,
+.customize-option.-clean.-selected {
+  background: #cbe7ec;
+}
+
+.customize-option.-dark:hover,
+.customize-option.-dark.-selected {
+  background: #333;
+}
+
+.customize-option > .icon:not(:empty) {
+  width: 16px;
+  margin-right: 10px;
+  color: #ccc;
+  font-size: 20px;
+  float: left;
+  margin-top: -3px;
+  text-align: center;
+}
+
+.customize-option > .txt {
+  color: inherit;
+  display: block;
+}
+
+.customize-modal > .main {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.customize-option > small {
+  display: block;
+  line-height: 1.4em;
+}
+
+.customize-option > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 10px auto;
+}
+
+/* Base Design 2 */
+.base-design2 .customize-option {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Hair Color */
+.hair-color .customize-option {
+  width: 20%;
+  padding: 15px 10px;
+  box-sizing: border-box;
+}
+
+/* Base Size 2 */
+.customize-modal.base-size2 .main li:nth-child(5) {
+  width: 50%;
+}
+
+/* Gray Hair */
+.customize-modal.gray-hair > .main {
+  padding-right: 530px;
+  background: url(https://www.lavividhair.com/themes/pc/tag/test/images/option/img02.jpg)
+    no-repeat right center;
+  background-size: 400px auto;
+}
+
+.gray-hair .customize-option .txt {
+  padding: 6px 15px;
+  text-align: left;
+}
+
+.gray-hair .customize-option img {
+  display: none;
+}
+
+/* Base Size 3 */
+.customize-modal.base-size3 > .main {
+  padding-right: 530px;
+  background: url(https://www.lavividhair.com/themes/pc/tag/test/images/option/img01.jpg)
+    no-repeat 97% center;
+  background-size: 500px auto;
+}
+
+.base-size3 .customize-option .txt {
+  padding: 6px 15px;
+  text-align: left;
+}
+
+.base-size3 .customize-option img {
+  display: none;
+}
+
+/* Wave or Curl */
+#wave-or-curl dl {
+  width: 50%;
+}
+
+/* Form images list */
+.customize-modal.base-size3,
+.customize-modal.base-size2,
+.customize-modal.base-size,
+.customize-modal.add-clips,
+.customize-modal.hair-color,
+.customize-modal.gray-hair,
+.customize-modal.hair-density,
+.customize-modal.wave-or-curl,
+.customize-modal.hair-direction,
+.customize-modal.front-contour-shape,
+.customize-modal.base-design,
+.customize-modal.base-design2 {
+  width: 900px;
+}
+
+.customize-modal.base-size.main {
+  display: flex;
+  /* flex-wrap: wrap; */
+
+  align-items: center;
+  line-height: 10;
+}
+
+.customize-modal.base-size.main img {
+  margin-left: 28px;
+}
+
+.base-size .customize-option {
+  width: 450px;
+  text-align: center;
+}
+
+.customize-modal.base-size2 .main,
+.customize-modal.add-clips .main,
+.customize-modal.hair-color .main,
+.customize-modal.hair-density .main,
+.customize-modal.wave-or-curl .main,
+.customize-modal.hair-direction .main,
+.customize-modal.front-contour-shape .main,
+.customize-modal.base-design .main,
+.customize-modal.base-design2 .main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.base-size2 .customize-option,
+.add-clips .customize-option,
+.hair-density .customize-option,
+.hair-direction .customize-option,
+.front-contour-shape .customize-option,
+.base-design .customize-option {
+  width: 25%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Form list */
+.customize-modal.hair-density2,
+.customize-modal.need-hair-cut,
+.customize-modal.rush-service,
+.customize-modal.extra-lace,
+.customize-modal.bleach-knots,
+.customize-modal.base-size,
+.customize-modal.hair-type,
+.customize-modal.hair-length {
+  width: 450px;
+}
+
+.hair-density2 .customize-option .txt,
+.need-hair-cut .customize-option .txt,
+.rush-service .customize-option .txt,
+.extra-lace .customize-option .txt,
+.bleach-knots .customize-option .txt,
+.base-size .customize-option .txt,
+.hair-type .customize-option .txt,
+.hair-length .customize-option .txt {
+  padding: 10px 15px;
+}
+
+.hair-density2 .customize-option img,
+.rush-service .customize-option img,
+.need-hair-cut .customize-option img,
+.extra-lace .customize-option img,
+.bleach-knots .customize-option img,
+.base-size .customize-option img,
+.hair-type .customize-option img,
+.hair-length .customize-option img {
+  display: none;
+}
+
+@media all and (max-width: 768px) {
+  .base-size2 .customize-option,
+  .hair-color .customize-option,
+  .add-clips .customize-option,
+  .hair-density .customize-option,
+  .hair-direction .customize-option,
+  .front-contour-shape .customize-option,
+  .base-design .customize-option {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .customize-modal.gray-hair > .main {
+    padding-right: 0;
+    padding-bottom: 350px;
+    background: url(https://www.lavividhair.com/themes/pc/tag/test/images/option/img02.jpg)
+      no-repeat bottom center;
+    background-size: auto 340px;
+    margin-bottom: 10px;
+  }
+
+  .customize-modal.base-size3 > .main {
+    padding-right: 0;
+    padding-bottom: 41%;
+    background: url(https://www.lavividhair.com/themes/pc/tag/test/images/option/img01.jpg)
+      no-repeat bottom center;
+    background-size: 95% auto;
+    margin-bottom: 15px;
+  }
+
+  .customize-modal.base-size2 .main li:nth-child(7) {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 490px) {
+  .customize-modal.hair-density2,
+  .customize-modal.rush-service,
+  .customize-modal.need-hair-cut,
+  .customize-modal.extra-lace,
+  .customize-modal.bleach-knots,
+  .customize-modal.base-size,
+  .customize-modal.hair-type,
+  .customize-modal.hair-length {
+    width: calc(100% - 40px);
+  }
+
+  .customize-modal.gray-hair > .main {
+    padding-right: 0;
+    padding-bottom: 250px;
+    background: url(https://www.lavividhair.com/themes/pc/tag/test/images/option/img02.jpg)
+      no-repeat bottom center;
+    background-size: auto 240px;
+    margin-bottom: 10px;
+  }
+
+  .base-design2 .customize-option {
+    width: 100%;
+  }
+}
+
+.custom-list {
+  border: #2f2f2f solid 1px;
+  padding-bottom: 30px;
+}
+
+.custom-list h3 {
+  text-transform: uppercase;
+  color: white;
+  background-color: #2f2f2f;
+  padding: 10px 15px;
+  font-size: 150%;
+  font-weight: 300;
+  text-align: right;
+  position: relative;
+}
+
+.custom-list h3 a {
+  display: block;
+  width: 75px;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  left: 15px;
+  background-color: #68699A;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+}
+
+.custom-list h3 a:hover {
+  background-color: white;
+  color: black;
+}
+
+.custom-list h4 {
+  border-bottom: #2f2f2f solid 1px;
+  padding-bottom: 5px;
+  font-size: 140%;
+  font-weight: 300;
+  padding-left: 15px;
+  position: relative;
+  margin-bottom: 13px;
+}
+
+.custom-list h4 small {
+  font-size: 70%;
+}
+
+.custom-list h4:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 30px;
+  width: 5px;
+  background-color: #68699A;
+}
+
+.custom-list-sub {
+  padding: 0 30px;
+}
+
+.custom-list-sub .uk-grid-margin {
+  margin-top: 25px;
+}
+
+.custom-list .email-address {
+  background: #eeeeee;
+  border: 1px solid #969696;
+  font-size: 120%;
+  padding: 8px;
+  width: calc(100% - 16px);
+}
+
+.custom-list-submit {
+  width: 450px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #68699A;
+  color: white;
+  text-align: center;
+  border: none;
+  display: block;
+  font-size: 130%;
+}
+
+.custom-list-submit:hover {
+  background-color: #333333;
+  color: white;
+}
+
+.contactBut {
+  position: relative;
+  top: -5px;
+  border-radius: 8px;
+  width: 163px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #eaeaea;
+  color: #333;
+  margin-left: 20px;
+  text-align: center;
+  display: none;
+}
+
+/* 新增 */
+.dz-ordering {
+  background-color: #68699A;
+  padding: 30px 0;
+}
+
+.contBox {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dz-ordering .tit {
+  color: #fff;
+}
+
+.dz-tab {
+  background-color: #eaeaea;
+  padding-top: 38px;
+}
+
+.tab-nav {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.tab-li {
+  margin-right: 25px;
+  color: #333333;
+  font-size: 20px;
+  padding: 0 28px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+.tab-li.active {
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.tabList-specifications {
+  padding-top: 40px;
+}
+
+.tabList-li {
+  display: none;
+  margin-top: 25px;
+}
+
+.color-radio {
+  margin-top: 25px;
+}
+
+.radioList {
+  display: flex;
+}
+
+.tabList-tit {
+  display: flex;
+  position: relative;
+}
+
+.tabList-tit:after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #333333;
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+}
+
+.tabList-tit div {
+  padding-right: 12px;
+  font-size: 20px;
+  color: #333333;
+  background-color: #fff;
+}
+
+.tabList-tit span {
+  text-transform: uppercase;
+}
+
+.tabList-tit small {
+  font-size: 16px;
+}
+
+.radioLi {
+  border: solid 1px #d7d7d7;
+  border-radius: 5px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-right: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.radioLi.active {
+  border-color: #68699A;
+  color: #68699A;
+  background-color: #e9f3f5;
+}
+
+.tabList-div:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.radioDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.radioDiv dl {
+  width: 33.333%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+
+.richradio2 {
+  display: flex;
+  align-items: flex-start;
+  line-height: 24px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.richradio2 input {
+  display: none !important;
+}
+
+.radioDiv dd {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  max-width: 300px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.richradio2:before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: solid 1px #555555;
+  border-radius: 100%;
+  display: block;
+  flex-shrink: 0;
+  margin-top: 3px;
+  margin-right: 6px;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: border-box;
+}
+
+.richradio2-otherBrowserChecked:before {
+  border: solid 7px #1c79c0;
+}
+
+.colorList {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.colorList .richradio2:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.colorRadioDiv {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.colorRadioDiv dl {
+  width: 20%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.colorRadioDiv dd {
+  margin-top: 10px;
+}
+
+.grayHairBox,
+.prev,
+.next {
+  display: flex;
+}
+
+.grayHairBox {
+  align-items: flex-start;
+}
+
+.prev,
+.next {
+  align-items: center;
+}
+
+.next {
+  flex-direction: row-reverse;
+}
+
+.prev img,
+.next img {
+  height: 10px;
+  width: 50px;
+  flex-shrink: 0;
+}
+
+.prev img {
+  margin-right: 8px;
+}
+
+.next img {
+  margin-left: 8px;
+}
+
+.grayHair-lt {
+  margin-right: 50px;
+  width: 690px;
+}
+
+.grayHair-lt .hd {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.bodyBox {
+  width: 100%;
+}
+
+.colorliList {
+  display: flex;
+  width: 100%;
+  padding-left: 0;
+  border: solid 1px #b4b4b4;
+  margin-bottom: 30px;
+}
+
+.colorliList li {
+  color: #000000;
+  width: 100%;
+  height: 120px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.xian {
+  padding: 0 32px;
+  width: 100%;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: border-box;
+}
+
+.xian:after {
+  content: "";
+  width: 100%;
+  background-color: #484848;
+  height: 4px;
+  border-radius: 3px;
+  display: block;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: border-box;
+}
+
+.grayHairInp {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 35px;
+}
+
+.grayHairInp .inp {
+  width: 75px;
+  height: 30px;
+  border: solid 1px #575757;
+  text-align: center;
+  font-size: 19px;
+  color: #2f2f2f;
+  margin-right: 10px;
+}
+
+.allChecked {
+  display: block !important;
+}
+
+/*  */
+.colorliList {
+  height: 60px;
+}
+
+.colorliList .richradio2 {
+  width: 100%;
+  height: 120px;
+  line-height: 60px;
+  text-align: center;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.colorliList .richradio2:before {
+  content: "";
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 0;
+  border: 0;
+  margin-top: 0;
+}
+
+.colorliList .richradio2:nth-child(2):before {
+  background-color: #f2f2f2;
+}
+
+.colorliList .richradio2:nth-child(3):before {
+  background-color: #e5e5e5;
+}
+
+.colorliList .richradio2:nth-child(4):before {
+  background-color: #cccccc;
+}
+
+.colorliList .richradio2:nth-child(5):before {
+  background-color: #b2b2b2;
+}
+
+.colorliList .richradio2:nth-child(6):before {
+  background-color: #999999;
+}
+
+.colorliList .richradio2:nth-child(7):before {
+  background-color: #7f7f7f;
+}
+
+.colorliList .richradio2:nth-child(8):before {
+  background-color: #666666;
+}
+
+.colorliList .richradio2:nth-child(9):before {
+  background-color: #333333;
+}
+
+.colorliList .richradio2:nth-child(9) {
+  color: #fff;
+}
+
+.colorliList .richradio2:nth-child(10):before {
+  background-color: #191919;
+}
+
+.colorliList .richradio2:nth-child(10) {
+  color: #fff;
+}
+
+.colorliList .richradio2:after {
+  content: "";
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  background: url(https://www.lavividhair.dehttps://d23tttlodvxe00.cloudfront.net/img/cms/customztion/dian.png)
+    no-repeat center center;
+  top: 50%;
+  left: 0;
+  visibility: hidden;
+}
+
+.colorliList .richradio2-otherBrowserChecked:after {
+  visibility: visible;
+}
+
+.bottomBox > div {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+  background-color: #222;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 22px;
+}
+
+.next {
+  width: 255px;
+  height: 35px;
+}
+
+#prevBtn,
+#nextBtn {
+  position: fixed;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #68699A;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  line-height: 65px;
+  z-index: 999;
+  color: #fff;
+  cursor: pointer;
+}
+
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
+
+.colorliList .richradio2 {
+  z-index: 1;
+}
+
+.page-content.page-cms ul {
+  padding-bottom: 0;
+}
+
+.customize-input {
+  width: 100%;
+}
+
+.customize-arrow {
+  right: 10px;
+}
+
+.bottomBox {
+  display: none;
+}
+
+.other {
+  display: flex;
+  justify-content: space-between;
+}
+
+.eml {
+  width: 560px;
+  height: 34px;
+}
+
+.notes {
+  width: 560px;
+  height: 34px;
+}
+
+/*--- 2024.04.17 --*/
+.sp-customttl {
+  display: none;
+}
+
+/* 2024.07.10 */
+.colorFlex {
+  display: flex;
+  align-items: center;
+}
+
+.colorFlex-lt {
+  width: 600px;
+  flex-shrink: 0;
+}
+
+.colorFlex-rigth p {
+  padding-left: 20px;
+  color: #f00;
+}
+
+.pc-banner {
+  display: block;
+  width: 100%;
+}
+
+.m-banner {
+  display: none;
+  width: 100%;
+}
+
+@media all and (max-width: 767px) {
+  .pc-banner {
+    display: none;
+  }
+
+  .m-banner {
+    display: block;
+  }
+
+  .colorFlex {
+    flex-wrap: wrap;
+  }
+
+  .colorFlex-lt {
+    width: 100%;
+  }
+
+  .dz-ordering .contBox,
+  .dz-tab .contBox,
+  .dz-tab .tab-li {
+    font-size: initial;
+  }
+
+  .tabList-tit div {
+    font-size: 18px;
+  }
+
+  .tab-nav {
+    display: block;
+  }
+
+  .tab-nav li {
+    margin-right: 0;
+  }
+
+  .dz-tab {
+    padding-top: 0;
+    display: none;
+  }
+
+  .radioList {
+    display: block;
+  }
+
+  .radioDiv,
+  .color-radio,
+  .grayHairBox {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .radioDiv dl {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+  }
+
+  .richradio2 {
+    line-height: normal;
+    font-size: 0.875rem;
+  }
+
+  .label,
+  label {
+    text-align: start;
+  }
+
+  .richradio2:before {
+    width: 12px;
+    height: 12px;
+  }
+
+  .next {
+    font-size: 12px;
+  }
+
+  #prevBtn,
+  #nextBtn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #68699A;
+    top: 50%;
+    text-align: center;
+    line-height: 60px;
+    z-index: 999;
+    color: #fff;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    margin-top: 360px;
+  }
+
+  .grayHairBox,
+  .prev,
+  .next {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .bottomBox {
+    font-size: 12px;
+  }
+
+  .bottomBox {
+    display: none;
+  }
+
+  .bottomBox > div {
+    height: 40px;
+  }
+
+  .Weeks {
+    font-size: 12px;
+    display: block;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    line-height: 50px;
+  }
+
+  .amount {
+    display: block;
+    width: 100px;
+    font-size: 12px;
+  }
+
+  .custom-list-submit {
+    display: block;
+    width: 160px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  .grayHair-lt {
+    padding-left: 0px;
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .contactBut {
+    margin-right: 20px;
+  }
+
+  .hd p {
+    padding-bottom: 0;
+    font-size: 12px;
+    width: 130px;
+  }
+
+  .hd .next {
+    width: 130px;
+    margin-bottom: 0px;
+  }
+
+  .grayHair-rt {
+    margin-bottom: 20px;
+  }
+
+  .grayHair-rt img {
+    max-width: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+  }
+
+  .contBox {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .dz-ordering .contBox,
+  .dz-tab .contBox,
+  .dz-tab .tab-li {
+    font-size: initial;
+    padding: 5px 15px;
+  }
+
+  .colorRadioDiv dl {
+    width: 20%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .xian {
+    padding: 0;
+  }
+
+  .other {
+    display: block;
+  }
+
+  .beiZhuBox input {
+    margin: 3px 3px;
+    height: 30px;
+    width: 233px;
+  }
+
+  .customize-modal.base-size3,
+  .customize-modal.base-size2,
+  .customize-modal.base-size,
+  .customize-modal.add-clips,
+  .customize-modal.hair-color,
+  .customize-modal.gray-hair,
+  .customize-modal.hair-density,
+  .customize-modal.wave-or-curl,
+  .customize-modal.hair-direction,
+  .customize-modal.front-contour-shape,
+  .customize-modal.base-design,
+  .customize-modal.base-design2 {
+    width: auto;
+  }
+
+  .contBox {
+    text-align: start;
+  }
+
+  .newimgg {
+    width: auto;
+    height: auto;
+  }
+
+  .eml {
+    width: 328px;
+  }
+
+  .notes {
+    width: 328px;
+  }
+
+  /*--- 2024.04.17 --*/
+  #prevBtn,
+  #nextBtn,
+  .base-screen {
+    display: none;
+  }
+
+  .contBox .tabList-li {
+    display: block !important;
+  }
+
+  .sp-customttl {
+    display: block;
+    text-transform: uppercase;
+    color: #222;
+    background-color: #eee;
+    padding: 6px 15px;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: right;
+  }
+
+  .edit-btn {
+    width: 30%;
+    height: 35px;
+    line-height: 35px;
+    background-color: #68699A;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 35% 20px 35%;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .base-radio dl {
+    width: 50%;
+  }
+
+  .color-radio dl {
+    width: 33.333%;
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+
+  #wave-or-curl dl {
+    width: 50%;
+  }
+
+  /*-- 2024.04.19 --*/
+  .dz-ordering {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .dz-ordering .tit {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .dz-ordering .txt {
+    font-size: 14px;
+  }
+
+  .custom-list-sub.fomSelist {
+    margin-left: 0;
+    padding: 0 15px;
+  }
+
+  .fomSelist > div {
+    padding-left: 0;
+  }
+
+  .tabList-li > p {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

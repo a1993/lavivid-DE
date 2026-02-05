@@ -1,0 +1,548 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_banner_7iGwti": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/banner0523.webp",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/banner0523_m.webp",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "standard",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "custom_rich_text_PEqX6J": {
+      "type": "custom-rich-text",
+      "name": "[gy] Custom Rich Text",
+      "settings": {
+        "richtext": "<p>Looking for the perfect mix of natural look, durability, and comfort? LaVivid’s Mirage Hair System has been a </p><p>fan favorite for its ultra-thin skin base and seamless finish—and now, it’s even better!</p>",
+        "text_alignment": "center",
+        "background_color": "",
+        "text_color": "",
+        "padding_top": "medium",
+        "padding_bottom": "none"
+      }
+    },
+    "custom_content_RfUNnt": {
+      "type": "custom-content",
+      "blocks": {
+        "image_Mgypp8": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/f2e98998515e454696fd64b3e90c70c0.png",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_HpUdKL": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Upgrade Mirage",
+            "title_size": 28,
+            "title_size_mobile": 24,
+            "text": "<p>A major craftsmanship upgrade—from a fully V-looped construction to a blend of V-looping at the hairline and single split knots across the base. Effectively reduces hair shedding and extends</p>",
+            "button_label": "SHOP NOW",
+            "button_link": "https://www.lavividhair.com/skin-hair-systems/mirage-toupee-for-men-full-super-thin-skin-base-celebrities-choice_p44-4571.html#/371-base_size-8_x_10_/401-color-1b_off_black/446-pre_style_service-no_pre_cut",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_Mgypp8",
+        "text_HpUdKL"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_4MyTFW": {
+      "type": "custom-content",
+      "blocks": {
+        "image_H3kG6e": {
+          "type": "image",
+          "settings": {
+            "width": "three-quarters",
+            "image": "shopify://shop_images/fd99ac9262da402ca8f5b3a220dc5ae2.png",
+            "height": "adapt",
+            "height_desktop": 800,
+            "height_mobile": 600,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "image_H3kG6e"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "common_heading_hxx9Af": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "Improved Construction",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "custom_content_WB3qnh": {
+      "type": "custom-content",
+      "blocks": {
+        "image_mWhMjB": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/realistic_hairline.gif",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_r74cNN": {
+          "type": "text",
+          "settings": {
+            "width": "two-thirds",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "<strong>Realistic Hairline</strong>",
+            "title_size": 28,
+            "title_size_mobile": 24,
+            "text": "<p><strong>V-looping at the front hairline</strong>creates an ultra-realistic look, allowing you to confidently expose your hairline or style it in a slicked-back fashion.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_mWhMjB",
+        "text_r74cNN"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_biGPVb": {
+      "type": "custom-content",
+      "blocks": {
+        "text_iVTxjQ": {
+          "type": "text",
+          "settings": {
+            "width": "two-thirds",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "<strong>Less Shedding</strong>",
+            "title_size": 28,
+            "title_size_mobile": 24,
+            "text": "<p><strong>Single split knots throughout the rest of the base</strong>secure the hair more firmly, significantly reducing shedding and extending the system’s lifespan.</p><p></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "image_hNVezi": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/less_shedding.webp",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "text_iVTxjQ",
+        "image_hNVezi"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_9z8Jm3": {
+      "type": "custom-content",
+      "blocks": {
+        "image_XBegeg": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/increase.gif",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_nkka4y": {
+          "type": "text",
+          "settings": {
+            "width": "two-thirds",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "<strong>Increase Durability by 1 Month</strong>",
+            "title_size": 28,
+            "title_size_mobile": 24,
+            "text": "<p>This combination makes the<strong>Upgrade Mirage last longer than a fully V-looped skin hair system</strong>, while still maintaining a completely natural finish.<br/><br/></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_XBegeg",
+        "text_nkka4y"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "common_heading_jYDtbt": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "What is the Difference Between the TP1804 Upgrade Mirage and TU2213 Single-Knotted Mirage?",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "product_inline_ndH9eT": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_8f8QyM": {
+          "type": "product_group",
+          "settings": {
+            "group_title": ""
+          }
+        },
+        "product_item_LwLDtR": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "custom_image": "shopify://shop_images/good1_5e3a85e7-7fc4-4d84-be0c-7a6d0877377a.webp",
+            "custom_title": "TP1804 Upgrade Mirage",
+            "custom_description": "95% Density<br>\n0.04-0.06mm Skin Base",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 203,
+            "image_height": 150,
+            "image_padding_top": 50,
+            "image_padding_right": 5,
+            "image_padding_bottom": 50,
+            "image_padding_left": 50
+          }
+        },
+        "product_item_d3MBn9": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "lavivid-single-knotted-mirage-toupee-for-men-0-06-0-08mm-full-super-thin-skin-base-color-1720",
+            "custom_image": "shopify://shop_images/good2_f232d436-545e-4294-8cab-260c11008545.webp",
+            "custom_title": "TU2213 Single-Knotted Mirage",
+            "custom_description": "105% Density<br>\n0.06-0.08mm Skin Base",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 203,
+            "image_height": 150,
+            "image_padding_top": 50,
+            "image_padding_right": 5,
+            "image_padding_bottom": 50,
+            "image_padding_left": 50
+          }
+        }
+      },
+      "block_order": [
+        "product_group_8f8QyM",
+        "product_item_LwLDtR",
+        "product_item_d3MBn9"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#ffffff",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "common_heading_HzGfmB": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "As realistic as our Upgrade Mirage, the Single-Knotted Mirage features slightly thicker hair and a more durable base, offering a longer lifespan.",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "common_heading_EQW9qg": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "What’s More? The Mirage Collection now Comes in an Antimicrobial Version!",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "product_inline_NWUTQG": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_3xNDng": {
+          "type": "product_group",
+          "settings": {
+            "group_title": ""
+          }
+        },
+        "product_item_Q6VRDP": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "zeo-mirage-antimicrobial-hair-replacement-system-for-men",
+            "custom_image": "shopify://shop_images/good3_36d07124-daec-459c-ab7b-69523d34ef1e.webp",
+            "custom_title": "V-looped Mirage",
+            "custom_description": "V-looped Mirage",
+            "custom_url": "",
+            "title_image": "shopify://shop_images/goods_logo.webp",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 203,
+            "image_height": 150,
+            "image_padding_top": 50,
+            "image_padding_right": 5,
+            "image_padding_bottom": 50,
+            "image_padding_left": 50
+          }
+        },
+        "product_item_beb99i": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "zeo-single-knot-mirage-antibacterial-hair-system",
+            "custom_image": "shopify://shop_images/good4_75e166d9-8a0b-4e75-8fda-3842f2d822ce.webp",
+            "custom_title": "Single-knotted Mirage",
+            "custom_description": "Single-knotted Mirage",
+            "custom_url": "",
+            "title_image": "shopify://shop_images/goods_logo.webp",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 203,
+            "image_height": 150,
+            "image_padding_top": 50,
+            "image_padding_right": 5,
+            "image_padding_bottom": 50,
+            "image_padding_left": 50
+          }
+        }
+      },
+      "block_order": [
+        "product_group_3xNDng",
+        "product_item_Q6VRDP",
+        "product_item_beb99i"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#ffffff",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "common_banner_CW64PN": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/antimicrobial_0caead93-b719-4614-b7a2-45598f17dcb4.webp",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/antimicrobial_m.webp",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "https://www.lavividhair.com/campaign/lavivid-hair-zeo-guard-antimicrobial-hair-systems",
+        "width_mode": "standard",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_7iGwti",
+    "custom_rich_text_PEqX6J",
+    "custom_content_RfUNnt",
+    "custom_content_4MyTFW",
+    "common_heading_hxx9Af",
+    "custom_content_WB3qnh",
+    "custom_content_biGPVb",
+    "custom_content_9z8Jm3",
+    "common_heading_jYDtbt",
+    "product_inline_ndH9eT",
+    "common_heading_HzGfmB",
+    "common_heading_EQW9qg",
+    "product_inline_NWUTQG",
+    "common_banner_CW64PN"
+  ]
+}

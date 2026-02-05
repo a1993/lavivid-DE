@@ -1,0 +1,600 @@
+
+{% style %}
+  #section-id-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  @media (max-width: 768px) {
+    #section-id-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+{%- liquid
+  comment
+    Tabbed Featured Collections section
+    - Each block is a tab that selects a collection
+    - Preserves original carousel/grid logic and product aspect ratio code
+  endcomment
+-%}
+
+{%- assign default_product_limit = 20 -%}
+{%- comment -%}
+  product_limit logic: if carousel enabled show 20 else rows * grid
+{%- endcomment -%}
+{%- if section.settings.enable_carousel -%}
+  {%- assign product_limit = default_product_limit -%}
+{%- else -%}
+  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+{%- endif -%}
+
+<div id="section-id-{{ section.id }}" class="{{ section.settings.class-name }} section-id-{{ section.id }} collection-slider-row {% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }}{% endif %}">
+  <div class="container{% if section.settings.enable_carousel %} container--not-mobile{% endif %}{% if section.settings.full_width %} container--no-max{% endif %}">
+
+    <!-- Section Title -->
+    {% if section.settings.title != blank%}
+    <div class="hometitle align-center has-paging" {%- render 'animation-attrs', attrs: 'data-cc-animate data-cc-animate-delay="0.3s"' -%}>
+      <h2 class="has-paging__title h4 m-0">
+        {{ section.settings.title | escape }}
+      </h2>
+    </div>
+  {% endif %}
+
+  {% if section.settings.heading_text_1 != blank or section.settings.heading_text_2 != blank %}
+    <h2 class="custom-heading">
+      <span class="custom-heading__primary" style="color: {{ section.settings.heading_color_1 }}">
+        {{ section.settings.heading_text_1 }}
+      </span>
+      <span class="custom-heading__secondary" style="color: {{ section.settings.heading_color_2 }}">
+        {{ section.settings.heading_text_2 }}
+      </span>
+    </h2>
+  {% endif %}
+
+
+    <!-- Tabs -->
+    {% if section.blocks.size > 0 %}
+      <div class="tabs-wrapper" {%- render 'animation-attrs', attrs: 'data-cc-animate data-cc-animate-delay="0.35s"' -%}>
+        <ul class="tabs-list" role="tablist" aria-label="{{ section.settings.title | escape }}">
+          {% for block in section.blocks %}
+            {% assign tab_collection = collections[block.settings.collection_pick] %}
+            <li class="tab-button {% if forloop.first %}active{% endif %}"
+                role="tab"
+                aria-controls="tab-{{ block.id }}-{{ section.id }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                data-tab="tab-{{ block.id }}-{{ section.id }}">
+              {{ block.settings.tab_title | default: tab_collection.title | escape }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+   
+
+    <!-- Tabs Content -->
+    <div class="tabs-contents">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection_pick] %}
+        <div id="tab-{{ block.id }}-{{ section.id }}" data-collection-url="{{ collection.url }}" class="tab-content {% if forloop.first %}active{% endif %}" role="tabpanel" aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
+          
+          {% if section.settings.enable_carousel %}
+            <carousel-slider class="tabs-carousel" data-dispatch-events="true" data-dynamic-height="true">
+          {% endif %}
+
+        
+          <!-- Collection listing / product grid -->
+          <div class="collection-listing fade-in-up{% if section.settings.enable_carousel %} slider {% if section.settings.full_width %}slider--edge-peek{% endif %} slider--mobile-container-pad slider--no-scrollbar{% endif %}" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
+            <div class="product-grid product-grid--per-row-{{ section.settings.grid }} product-grid--per-row-mob-{{ settings.prod_thumb_mob_per_row }}{% if section.settings.enable_carousel %} slider__grid product-grid--carousel{% endif %}">
+
+              {%- if collection == blank or collection == nil -%}
+                {% comment %} Show placeholder onboarding blocks if no collection selected {% endcomment %}
+                {%- for i in (1..product_limit) -%}
+                  {% if section.settings.enable_carousel %}
+                    <div class="slider__item">
+                  {% endif %}
+                  {% render 'onboarding-product-block', forloop: forloop %}
+                  {% if section.settings.enable_carousel %}
+                    </div>
+                  {% endif %}
+                {%- endfor -%}
+              {%- else -%}
+
+                {%- comment -%}
+                  Determine chosen_aspect_ratio based on theme setting (copied from original)
+                {%- endcomment -%}
+                {%- if settings.prod_thumb_shape == 'portrait-23' -%}
+                  {%- assign chosen_aspect_ratio = 0.67 -%}
+                {%- elsif settings.prod_thumb_shape == 'portrait-45' -%}
+                  {%- assign chosen_aspect_ratio = 0.8 -%}
+                {%- elsif settings.prod_thumb_shape == 'square' -%}
+                  {%- assign chosen_aspect_ratio = 1.0 -%}
+                {%- elsif settings.prod_thumb_shape == 'landscape-54' -%}
+                  {%- assign chosen_aspect_ratio = 1.25 -%}
+                {%- elsif settings.prod_thumb_shape == 'landscape-32' -%}
+                  {%- assign chosen_aspect_ratio = 1.50 -%}
+                {%- elsif settings.prod_thumb_shape == 'tallest' -%}
+                  {%- assign chosen_aspect_ratio = 99 -%}
+                  {%- for product in collection.products limit: product_limit -%}
+                    {%- if product.featured_media.preview_image.aspect_ratio < chosen_aspect_ratio -%}
+                      {%- assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- assign chosen_aspect_ratio = 0 -%}
+                  {%- for product in collection.products limit: product_limit -%}
+                    {%- if product.featured_media.preview_image.aspect_ratio > chosen_aspect_ratio -%}
+                      {%- assign chosen_aspect_ratio = product.featured_media.preview_image.aspect_ratio -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+
+                {%- for product in collection.products limit: product_limit -%}
+                  {% if section.settings.enable_carousel %}
+                    <div class="slider__item">
+                  {% endif %}
+
+                  {%- render 'product-block', product: product, collection: collection, custom_aspect_ratio: chosen_aspect_ratio, no_swiping: section.settings.enable_carousel, no_quick_buy_markup: section.settings.enable_carousel -%}
+
+                  {% if section.settings.enable_carousel %}
+                    </div>
+                  {% endif %}
+                {%- endfor -%}
+
+              {%- endif -%}
+
+            </div>
+          </div>
+                    {% if section.settings.enable_carousel %}
+  <!-- Tab title / nav (visible above each tab if you want) -->
+          {% comment %} Only show nav if this tab's collection exists and has more than 4 products {% endcomment %}
+          {% if collection != blank and collection.products.size > 4 %}
+          <div class="tab-section-slider-nav align-center has-paging{% if section.settings.enable_carousel %} slider-nav{% endif %}">
+              <button name="prev" class="slider-nav__btn has-ltr-icon">
+                <span class="visually-hidden">{{ 'general.slider.previous' | t }}</span>
+                {% render 'chevron-left' %}
+              </button>
+
+                    <a class="small-feature-link view-all-link" href="{{ collection.url }}">{{ 'sections.featured_collection.view_all' | t }}</a>
+
+              <button name="next" class="slider-nav__btn has-ltr-icon">
+                <span class="visually-hidden">{{ 'general.slider.next' | t }}</span>
+                {% render 'chevron-right' %}
+              </button>
+          </div>
+          {% endif %}
+        {% endif %}
+          {% if section.settings.enable_carousel %}
+            </carousel-slider>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if settings.quickbuy_style != 'off' and section.settings.enable_carousel %}
+    <div class="quickbuy-container use-color-scheme use-color-scheme--{{ settings.quickbuy_color_scheme }}">
+      <a href="#" class="close-detail" aria-label="{{ 'accessibility.close' | t }}" tabindex="-1" aria-hidden="true">{% render 'icon-close', stroke_width: 1 %}</a>
+      <div class="inner"></div>
+    </div>
+  {% endif %}
+</div>
+
+{%- comment -%}
+  Minimal styles for tabs (you can move to your main stylesheet)
+{%- endcomment -%}
+<style>
+/* Tabs */
+.section-id-{{ section.id }} .tabs-wrapper { margin: 0; text-align: center; }
+.section-id-{{ section.id }} .tabs-list { display: inline-flex;  padding: 0; margin: 0; list-style: none; align-items: center; flex-wrap: nowrap; }
+{% comment %} .section-id-{{ section.id }} .tabs-list .tab-button { cursor: pointer; padding: 8px 18px; border-radius: 20px; border: 1px solid #e6e6e6; font-size: 13px; line-height: 1; background: transparent; color: inherit; } {% endcomment %}
+{% comment %} .section-id-{{ section.id }} .tabs-list .tab-button.active { background: #2b2b2b; color: #fff; border-color: transparent; box-shadow: 0 2px 8px rgba(0,0,0,0.06); } {% endcomment %}
+.section-id-{{ section.id }} .tab-content { display: none; }
+.section-id-{{ section.id }} .tab-content.active { display: block; }
+
+/* Ensure slider nav sits nicely */
+.section-id-{{ section.id }} .hometitle .slider-nav__btn { background: transparent; border: none; padding: 8px; cursor: pointer; }
+{% comment %} .section-id-{{ section.id }} .view-all { margin-top: 10px; } {% endcomment %}
+/* Tabs Wrapper */
+.custom-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 20px 0 10px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 6px;
+}
+.view-all{
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.view-all .chevron-left{
+  margin-right: 27px;
+}
+.view-all .chevron-right{
+  margin-left: 27px;
+}
+/* Tab Button */
+.tab-button {
+    background: none;
+    border: none;
+    padding: 0 0 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    color: #B2B2B2;
+    text-transform: uppercase;
+    position: relative;
+    line-height: 150%;
+    letter-spacing: 0;
+    padding: 12px 16px;
+    
+}
+a.small-feature-link.view-all-link {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+ .custom-heading{
+  font-size: 40px;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+/* Active Tab */
+.tab-button.active {
+  color: #68699A; /* same purple as screenshot */
+}
+
+/* Active underline */
+.tab-button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #68699A; /* purple underline */
+  border-radius: 1px;
+}
+.tab-button::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #B2B2B2; /* purple underline */
+  border-radius: 1px;
+}
+@media (max-width: 767px) {
+  .tab-button{
+      padding: 12px 4px;
+      max-width: 132px;
+    height: 72px;
+    font-size: 14px;
+    }
+    .kik-featured-collection-one .custom-heading{
+      font-size: 32px;
+      margin-bottom: 28px;
+    }
+  
+.tab-button.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: #68699A;
+    border-radius: 1px;
+    display: block;
+    border-bottom: 2px solid #68699A;
+}
+.tab-button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: #B2B2B2;
+    border-radius: 1px;
+    border-bottom: 1px solid #B2B2B2;
+}
+}
+</style>
+
+{%- comment -%}
+  JS: Tab switching and optional slider-reinit hook
+  - Switches active tab
+  - Updates the "View all" link href to active collection
+  - If your theme fires a custom event to (re)initialize carousel, we try to trigger it:
+      - dispatchEvent(new CustomEvent('carousel:refresh', { detail: { container: el } }))
+    Otherwise we provide a hook named: 'theme:tab:changed' with detail {tabId, collectionHandle}
+{%- endcomment -%}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var sectionEl = document.querySelector('.section-id-{{ section.id }}');
+  if (!sectionEl) return;
+
+  var tabs = sectionEl.querySelectorAll('.tab-button');
+  var contents = sectionEl.querySelectorAll('.tab-content');
+  var viewAllLinks = sectionEl.querySelectorAll('.view-all-link');
+
+  function setActiveTab(tabBtn) {
+    if (!tabBtn) return;
+    var targetId = tabBtn.getAttribute('data-tab');
+
+    // Toggle buttons
+    tabs.forEach(function (t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    tabBtn.classList.add('active');
+    tabBtn.setAttribute('aria-selected', 'true');
+
+    // Toggle contents
+    contents.forEach(function (c) {
+      if (c.id === targetId) {
+        c.classList.add('active');
+        c.setAttribute('aria-hidden', 'false');
+      } else {
+        c.classList.remove('active');
+        c.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Update view all link(s) using the per-tab data attribute (robust and explicit)
+    var activeContentEl = sectionEl.querySelector('#' + targetId);
+    var collectionUrl = activeContentEl ? activeContentEl.dataset.collectionUrl : null;
+    if (viewAllLinks && viewAllLinks.length) {
+      viewAllLinks.forEach(function (link) {
+        if (collectionUrl) {
+          link.setAttribute('href', collectionUrl);
+        } else {
+          link.removeAttribute('href');
+        }
+      });
+    }
+
+    // Fire hook so themes can re-init carousels (if needed)
+    // include a direct reference to the active content container to avoid ambiguity
+    var detail = { tabId: targetId, container: activeContentEl };
+    // try to extract collection handle from the collection URL, if present
+    try {
+      if (collectionUrl) {
+        var match = collectionUrl.match(/\/collections\/([^\/?#]+)/);
+        if (match && match[1]) detail.collectionHandle = match[1];
+      }
+    } catch (e) { /* ignore */ }
+
+    // Custom events: carousel:refresh and theme:tab:changed (themes may listen for these)
+    try {
+      window.dispatchEvent(new CustomEvent('carousel:refresh', { detail: detail }));
+    } catch (e) {}
+    try {
+      window.dispatchEvent(new CustomEvent('theme:tab:changed', { detail: detail }));
+    } catch (e) {}
+  }
+
+  // Attach click handlers
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function (e) {
+      e.preventDefault();
+      setActiveTab(tab);
+    });
+  });
+
+  // make first tab active on load (already by liquid, but needed when JS rehydrates)
+  var firstTab = sectionEl.querySelector('.tab-button.active') || tabs[0];
+  if (firstTab) setActiveTab(firstTab);
+});
+</script>
+{% schema %}
+{
+  "name": "Featured collection Tabs",
+  "class": "section-featured-collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "class-name",
+      "label": "Class name"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Custom Heading Settings"
+      },
+      {
+        "type": "text",
+        "id": "heading_text_1",
+        "label": "Heading First Part",
+        "default": "Crafted For"
+      },
+      {
+        "type": "text",
+        "id": "heading_text_2",
+        "label": "Heading Second Part",
+        "default": "Your Lifestyle"
+      },
+      {
+        "type": "color",
+        "id": "heading_color_1",
+        "label": "Color for First Part",
+        "default": "#5B5BE5"
+      },
+      {
+        "type": "color",
+        "id": "heading_color_2",
+        "label": "Color for Second Part",
+        "default": "#000000"
+      },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+       {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View all' link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_carousel",
+      "label": "Enable carousel",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": "Products per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Rows (non-carousel only)",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "default",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    },
+    {
+      "id": "full_width",
+      "type": "checkbox",
+      "label": "Full page width",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Collection Tab"
+        },
+        {
+          "type": "collection",
+          "id": "collection_pick",
+          "label": "Select collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection Tabs",
+      "category": "Collections",
+      "blocks": [
+        {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Tab 1"
+          }
+        },
+        {
+          "type": "collection_tab",
+          "settings": {
+            "tab_title": "Tab 2"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

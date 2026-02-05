@@ -1,0 +1,605 @@
+{% comment %}
+  自定义 HTML 内容模块 - 支持 CSS 作用域隔离
+  
+  功能：
+  - 支持自定义 HTML、CSS、JavaScript
+  - CSS 作用域隔离：类似 Vue/CSS Modules 的作用域隔离
+  - 自动处理内联和外部样式，完全隔离，互不影响
+  
+  Portal 组件支持（通用解决方案）：
+  - 使用 MutationObserver 监听 body 下新创建的元素
+  - 自动给 Portal 元素（任何库动态创建到 body 的元素）添加作用域属性
+  - 无需预定义任何选择器模式，兼容所有 JS 库
+  
+  全局样式语法：
+  - :global(.selector) { } - 单个选择器保持全局
+  - :global { .a { } .b { } } - 批量定义全局样式
+{% endcomment %}
+
+{%- liquid
+  assign section_id = 'custom-html-' | append: section.id
+  assign container_type = section.settings.container_type
+  assign custom_css = section.settings.custom_css
+  assign custom_js = section.settings.custom_js
+-%}
+
+{%- style -%}
+  #{{ section_id }} {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.75);
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    {% endif %}
+  }
+
+  @media screen and (min-width: 750px) {
+    #{{ section_id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  {% if container_type == 'container' %}
+    #{{ section_id }} .html-content-wrapper {
+      max-width: {{ section.settings.container_width }}px;
+      margin: 0 auto;
+      padding: 0 {{ section.settings.container_padding }}px;
+    }
+  {% elsif container_type == 'container-fluid' %}
+    #{{ section_id }} .html-content-wrapper {
+      padding: 0 {{ section.settings.container_padding }}px;
+    }
+  {% endif %}
+
+  /* 自定义 CSS - 自动隔离作用域 */
+  {% if custom_css != blank %}
+    #{{ section_id }} {
+      {{ custom_css }}
+    }
+  {% endif %}
+{%- endstyle -%}
+
+<div id="{{ section_id }}" class="custom-html-section" {{ section.shopify_attributes }}>
+  <div class="html-content-wrapper">
+    {% if section.settings.section_title != blank %}
+      <div class="section-title" style="text-align: {{ section.settings.title_alignment }}; margin-bottom: {{ section.settings.title_margin }}px;">
+        <h2 style="font-size: {{ section.settings.title_size }}px; color: {{ section.settings.title_color }};">
+          {{ section.settings.section_title }}
+        </h2>
+      </div>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      <div class="html-content-block" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'html' %}
+            {{ block.settings.html_content }}
+          {% when 'liquid' %}
+            {{ block.settings.liquid_content }}
+          {% when 'richtext' %}
+            <div class="richtext-content">
+              {{ block.settings.richtext_content }}
+            </div>
+          {% when 'code' %}
+            <div class="code-block">
+              {{ block.settings.code_content }}
+            </div>
+          {% when 'spacer' %}
+            <div style="height: {{ block.settings.spacer_height }}px;"></div>
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+{%- liquid
+  assign use_scoped = section.settings.use_shadow_dom | default: false
+-%}
+(function() {
+  const sectionId = '{{ section_id }}';
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  const useScopedCSS = {{ use_scoped | json }};
+  const scopeAttr = 'data-scope';
+  const scopeValue = sectionId;
+
+  /**
+   * ============================================
+   * 通用 Portal 组件解决方案
+   * ============================================
+   * 
+   * 问题：JS 库会将 DOM 动态插入到 <body>（Portal 模式），
+   *       作用域 CSS 无法应用到 section 外部的元素
+   * 
+   * 解决方案：
+   * 1. 使用属性选择器 [data-scope="xxx"] 作为作用域
+   * 2. MutationObserver 监听 body 下新创建的元素
+   * 3. 自动给 Portal 元素添加 scope 属性
+   * 4. 支持 :global 语法强制全局样式
+   * 
+   * 这样无论什么库创建的 Portal，样式都能自动生效
+   */
+
+  // 给 section 添加 scope 属性
+  section.setAttribute(scopeAttr, scopeValue);
+
+  /**
+   * 处理 :global 语法
+   */
+  function processGlobalSyntax(selector) {
+    const trimmed = selector.trim();
+    // :global(.selector) 形式
+    const parenMatch = trimmed.match(/^:global\((.+)\)$/);
+    if (parenMatch) return { global: true, selector: parenMatch[1] };
+    // :global .selector 形式
+    const spaceMatch = trimmed.match(/^:global\s+(.+)$/);
+    if (spaceMatch) return { global: true, selector: spaceMatch[1] };
+    // :global 开头
+    if (/^:global\b/.test(trimmed)) return { global: true, selector: trimmed.replace(/^:global\s*/, '') };
+    return { global: false, selector: trimmed };
+  }
+
+  /**
+   * 检查选择器是否为根级元素（不应添加作用域）
+   */
+  function isRootSelector(selector) {
+    return /^(html|body|:root)\b/.test(selector.trim());
+  }
+
+  /**
+   * CSS 作用域处理函数
+   * @param {string} css - 原始 CSS
+   * @param {string} scopePrefix - 作用域前缀，如 [data-scope="xxx"]
+   */
+  function addScopeToCSS(css, scopePrefix) {
+    let result = '';
+    let i = 0;
+    
+    // 预处理：处理 :global { ... } 块语法
+    css = css.replace(/:global\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/g, function(match, content) {
+      return content.replace(/([^{}]+)\{([^{}]+)\}/g, function(rule, sel, decl) {
+        return sel.split(',').map(function(s) {
+          return '/*@global*/' + s.trim();
+        }).join(',') + '{' + decl + '}';
+      });
+    });
+    
+    function skipWhitespace() {
+      while (i < css.length && /\s/.test(css[i])) {
+        result += css[i];
+        i++;
+      }
+    }
+    
+    function readUntil(chars) {
+      let str = '';
+      while (i < css.length && chars.indexOf(css[i]) === -1) {
+        str += css[i];
+        i++;
+      }
+      return str;
+    }
+    
+    function readBlock() {
+      let content = '';
+      let depth = 1;
+      i++;
+      while (i < css.length && depth > 0) {
+        if (css[i] === '{') depth++;
+        else if (css[i] === '}') depth--;
+        if (depth > 0) content += css[i];
+        i++;
+      }
+      return content;
+    }
+    
+    function scopeSelectors(selectorStr) {
+      return selectorStr.split(',').map(function(sel) {
+        const trimmed = sel.trim();
+        if (!trimmed) return sel;
+        if (trimmed.includes(scopePrefix)) return sel;
+        
+        const leadingSpace = sel.match(/^\s*/)[0];
+        
+        // /*@global*/ 标记
+        if (trimmed.startsWith('/*@global*/')) {
+          return leadingSpace + trimmed.replace('/*@global*/', '');
+        }
+        
+        // :global 语法
+        const globalResult = processGlobalSyntax(trimmed);
+        if (globalResult.global) {
+          return leadingSpace + globalResult.selector;
+        }
+        
+        // 根级元素
+        if (isRootSelector(trimmed)) {
+          return sel;
+        }
+        
+        // 普通选择器：添加作用域
+        return leadingSpace + scopePrefix + ' ' + trimmed;
+      }).join(',');
+    }
+    
+    while (i < css.length) {
+      skipWhitespace();
+      if (i >= css.length) break;
+      
+      if (css[i] === '@') {
+        let atRule = '@';
+        i++;
+        
+        while (i < css.length && css[i] !== '{' && css[i] !== ';') {
+          atRule += css[i];
+          i++;
+        }
+        
+        if (css[i] === ';') {
+          result += atRule + ';';
+          i++;
+        } else if (css[i] === '{') {
+          const innerContent = readBlock();
+          
+          if (/^@(-webkit-|-moz-|-o-)?keyframes\s/.test(atRule)) {
+            result += atRule + '{' + innerContent + '}';
+          } else {
+            result += atRule + '{' + addScopeToCSS(innerContent, scopePrefix) + '}';
+          }
+        }
+      } else {
+        const selector = readUntil('{');
+        
+        if (css[i] === '{') {
+          const declarations = readBlock();
+          result += scopeSelectors(selector) + '{' + declarations + '}';
+        }
+      }
+    }
+    
+    return result;
+  }
+
+  /**
+   * ============================================
+   * Portal 元素自动标记系统
+   * ============================================
+   * 
+   * 监听 body 下新创建的直接子元素（通常是 Portal）
+   * 自动给它们添加 scope 属性，使作用域样式能够生效
+   */
+  function setupPortalObserver() {
+    // 记录现有的 body 直接子元素
+    const existingChildren = new Set(Array.from(document.body.children));
+    
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          // 只处理元素节点且是 body 的直接子元素
+          if (node.nodeType === 1 && node.parentNode === document.body && !existingChildren.has(node)) {
+            // 给新的 Portal 元素添加 scope 属性
+            node.setAttribute(scopeAttr, scopeValue);
+            // 同时给所有子元素也添加（确保深层嵌套也能匹配）
+            node.querySelectorAll('*').forEach(function(child) {
+              if (!child.hasAttribute(scopeAttr)) {
+                child.setAttribute(scopeAttr, scopeValue);
+              }
+            });
+          }
+        });
+      });
+    });
+    
+    observer.observe(document.body, { childList: true });
+    
+    // 当 section 被移除时，清理 observer
+    const cleanupObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.removedNodes.forEach(function(node) {
+          if (node === section || (node.contains && node.contains(section))) {
+            observer.disconnect();
+            cleanupObserver.disconnect();
+          }
+        });
+      });
+    });
+    cleanupObserver.observe(document.body, { childList: true, subtree: true });
+  }
+  
+  // 作用域前缀：使用属性选择器
+  const scopePrefix = '[' + scopeAttr + '="' + scopeValue + '"]';
+
+  if (useScopedCSS) {
+    // 启动 Portal 监听器
+    setupPortalObserver();
+    
+    section.querySelectorAll('.html-content-block').forEach(function(block) {
+      if (block.hasAttribute('data-scoped-applied')) return;
+      
+      try {
+        // 给 block 内所有元素添加 scope 属性
+        block.setAttribute(scopeAttr, scopeValue);
+        block.querySelectorAll('*').forEach(function(el) {
+          el.setAttribute(scopeAttr, scopeValue);
+        });
+        
+        // 处理内联样式
+        block.querySelectorAll('style').forEach(function(styleTag) {
+          if (styleTag.textContent.includes('/* auto-scoped */')) return;
+          styleTag.textContent = '/* auto-scoped */\n' + addScopeToCSS(styleTag.textContent, scopePrefix);
+        });
+        
+        // 处理外部样式
+        block.querySelectorAll('link[rel="stylesheet"]').forEach(function(linkTag) {
+          const href = linkTag.href;
+          fetch(href)
+            .then(function(response) { return response.text(); })
+            .then(function(css) {
+              const newStyle = document.createElement('style');
+              newStyle.textContent = '/* auto-scoped */\n' + addScopeToCSS(css, scopePrefix);
+              linkTag.parentNode.replaceChild(newStyle, linkTag);
+            })
+            .catch(function(err) {
+              console.warn('无法加载外部样式:', href, err);
+            });
+        });
+        
+        block.setAttribute('data-scoped-applied', 'true');
+        
+      } catch (e) {
+        console.error('CSS Scoped 处理失败:', e);
+      }
+    });
+    
+    return;
+  }
+
+  // 标准模式（未启用作用域隔离）：不做任何处理
+})();
+</script>
+
+{% if custom_js != blank %}
+  <script>
+    (function() {
+      {{ custom_js }}
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "自定义 HTML 内容",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "分区标题（可选）"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "标题对齐",
+      "options": [
+        { "value": "left", "label": "左对齐" },
+        { "value": "center", "label": "居中" },
+        { "value": "right", "label": "右对齐" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_margin",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "标题下边距",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "容器设置"
+    },
+    {
+      "type": "select",
+      "id": "container_type",
+      "label": "容器类型",
+      "options": [
+        { "value": "full-width", "label": "全宽（无容器）" },
+        { "value": "container", "label": "固定宽度容器" },
+        { "value": "container-fluid", "label": "流式容器" }
+      ],
+      "default": "container"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1920,
+      "step": 20,
+      "unit": "px",
+      "label": "容器最大宽度",
+      "default": 1180,
+      "info": "仅在选择固定宽度容器时生效"
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "容器左右内边距",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "背景设置"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "背景图片"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色"
+    },
+    {
+      "type": "header",
+      "content": "内边距"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "上内边距",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "下内边距",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "样式隔离设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_shadow_dom",
+      "label": "启用 CSS 作用域隔离",
+      "default": false,
+      "info": "样式自动隔离。Portal 组件（Modal/Lightbox 等动态创建的元素）自动获得作用域属性"
+    },
+    {
+      "type": "header",
+      "content": "自定义样式和脚本"
+    },
+    {
+      "type": "html",
+      "id": "custom_css",
+      "label": "自定义 CSS",
+      "info": "✅ 样式自动隔离 | :global(.class) 或 :global { } 强制全局样式"
+    },
+    {
+      "type": "html",
+      "id": "custom_js",
+      "label": "自定义 JavaScript"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "html",
+      "name": "HTML 代码块",
+      "settings": [
+        {
+          "type": "html",
+          "id": "html_content",
+          "label": "HTML 内容",
+          "info": "💡 支持任意外部库。启用作用域隔离后，Portal 元素（动态创建到 body 的元素）会自动标记"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Liquid 代码块",
+      "settings": [
+        {
+          "type": "html",
+          "id": "liquid_content",
+          "label": "Liquid 内容"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "富文本",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext_content",
+          "label": "富文本内容"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "name": "原始代码",
+      "settings": [
+        {
+          "type": "html",
+          "id": "code_content",
+          "label": "代码内容"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "name": "间距",
+      "settings": [
+        {
+          "type": "range",
+          "id": "spacer_height",
+          "min": 0,
+          "max": 200,
+          "step": 4,
+          "unit": "px",
+          "label": "间距高度",
+          "default": 40
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Custom HTML Content",
+      "blocks": [
+        {
+          "type": "html"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

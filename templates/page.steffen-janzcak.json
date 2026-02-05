@@ -1,0 +1,573 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "full_width": false
+      }
+    },
+    "common_banner_73kkz7": {
+      "type": "common-banner",
+      "name": "横幅 Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/steffen.png",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/steffen_m.png",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "standard",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "custom_content_RwTE7t": {
+      "type": "custom-content",
+      "blocks": {
+        "text_H4CpQV": {
+          "type": "text",
+          "settings": {
+            "width": "two-thirds",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "From A Customer to LaVivid Ambassador",
+            "title_size": 32,
+            "title_size_mobile": 28,
+            "text": "<p>\"I discovered LaVivid in 2019 while searching for a high-quality hair replacement solution to enhance my appearance and boost my confidence. After trying my first LaVivid hair system, I was immediately impressed by its quality, natural look, and comfort. Over the years, I’ve remained excited by the brand’s variety and innovation, while the excellent customer service strengthened my trust in the company. Two years ago, I became a collaborator with LaVivid, motivated by my passion for their products and their ability to enhance confidence and self-expression.</p><p></p><p></p><p>Today, as LaVivid’s Ambassador, I actively inspire others and share my journey. I prove that the right hair system does more than alter a look—it has the power to transform confidence and self-expression.\"</p><p></p><p></p><p>Steffen Janczak</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "image_WC3GRT": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/steffenjanczak__1727159061_3463983733366454475_426204717.jpg",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "Follow Steffen's Instagram",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "Instagram",
+            "button_style": "secondary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "text_H4CpQV",
+        "image_WC3GRT"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "image_with_text_nnCFNW": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_Y4k6XP": {
+          "type": "heading",
+          "settings": {
+            "heading_text_1": "Crafted For",
+            "title": "Steffen’s Favorite: Tyler",
+            "use_h1": false
+          }
+        },
+        "text_pKYeH7": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Base Material:</strong> Lace front with silk in the middle and PU on the sides and back. </p><p><strong>Unmatched Natural Scalp Appearance.</strong><br/><strong>Hair Type:</strong> Indian Remy Human Hair<br/><strong>Hair Texture:</strong> 28mm Body Wave pattern<br/><strong>Life Span:</strong> 8–12 months<br/><strong>Base Size:</strong> 8” x 10” (can be trimmed down to a minimum of 6” x 8.75”)</p>",
+            "enlarge_text": false
+          }
+        },
+        "button_rBmPQA": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html",
+            "button_style": "primary"
+          }
+        },
+        "button_cc9NUq": {
+          "type": "button",
+          "settings": {
+            "button_label": "Use Discount \"Steffen15\" to save 15%",
+            "button_link": "https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Y4k6XP",
+        "text_pKYeH7",
+        "button_rBmPQA",
+        "button_cc9NUq"
+      ],
+      "custom_css": [
+        ".button-row__btn {display: block; width: 100%;}"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "class-name": "",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "image": "shopify://shop_images/steffen_2.jpg",
+        "image_2": "shopify://shop_images/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_3__1.jpg",
+        "image_width": 700,
+        "image_link": "",
+        "image_position": "left",
+        "text_alignment": "left",
+        "color_scheme": "default"
+      }
+    },
+    "common_heading_AFnDGR": {
+      "type": "common-heading",
+      "name": "标题 Heading",
+      "settings": {
+        "title": "Video Show from Steffen",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "medium",
+        "background_color": ""
+      }
+    },
+    "story_block_RKTXRX": {
+      "type": "story-block",
+      "name": "StoryBlock",
+      "settings": {
+        "playlist": "gldy68",
+        "channel": "lavivid_hair",
+        "mode": "floating",
+        "player_placement": "bottom-left",
+        "autoplay": true
+      }
+    },
+    "common_heading_eRUNkh": {
+      "type": "common-heading",
+      "name": "标题 Heading",
+      "settings": {
+        "title": "Top Recommendation From Steffen",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "medium",
+        "background_color": ""
+      }
+    },
+    "halloween_with_swiper_NMYjhF": {
+      "type": "halloween-with-swiper",
+      "blocks": {
+        "product_item_c6pRmX": {
+          "type": "product_item",
+          "settings": {
+            "product": "mirage-toupee-for-men-full-super-thin-skin-base-celebrities-choice",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_k8pyny": {
+          "type": "product_item",
+          "settings": {
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_iMcYmJ": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-single-knotted-mirage-toupee-for-men-004-006mm-full-super-thin-skin-base-thicker-hair-and-more-durable",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_rTCMqx": {
+          "type": "product_item",
+          "settings": {
+            "product": "eros-men-s-hair-system-full-ultra-thin-skin-base-businessmen-s-choice",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_igdEBw": {
+          "type": "product_item",
+          "settings": {
+            "product": "simois-hair-system-for-men-full-lace-in-center-with-1-thin-skin-around-and-12-lace-in-the-front-hollywood-style",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_g7VP3j": {
+          "type": "product_item",
+          "settings": {
+            "product": "coeus-mens-hair-replacement-unit-full-thin-skin-base-men-s-hairstyle-for-curly-hair",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_rJWyC3": {
+          "type": "product_item",
+          "settings": {
+            "product": "tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_DjTW9H": {
+          "type": "product_item",
+          "settings": {
+            "product": "zeo-mirage-antimicrobial-hair-replacement-system-for-men",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_fdtXyr": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-louis-c-through-bio-skin-hair-system-for-men-004-006-mm",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_A8ejHW": {
+          "type": "product_item",
+          "settings": {
+            "product": "ares-mens-non-surgical-hair-replacement-french-lace-with-skin-around-best-for-daily-wear",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_3FfENk": {
+          "type": "product_item",
+          "settings": {
+            "product": "adam-men-curly-hair-toupee-20mm-rod-size-curl-high-end-hair-look",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_FfaCdR": {
+          "type": "product_item",
+          "settings": {
+            "product": "thor-men-s-lace-toupee-full-french-lace-base-suitable-for-humid-climate",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        }
+      },
+      "block_order": [
+        "product_item_c6pRmX",
+        "product_item_k8pyny",
+        "product_item_iMcYmJ",
+        "product_item_rTCMqx",
+        "product_item_igdEBw",
+        "product_item_g7VP3j",
+        "product_item_rJWyC3",
+        "product_item_DjTW9H",
+        "product_item_fdtXyr",
+        "product_item_A8ejHW",
+        "product_item_3FfENk",
+        "product_item_FfaCdR"
+      ],
+      "name": "Product Swiper",
+      "settings": {
+        "max_width": 1400,
+        "background_color": "",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "padding_left": "medium",
+        "padding_right": "medium",
+        "show_reviews": false
+      }
+    },
+    "custom_content_DLMcPz": {
+      "type": "custom-content",
+      "blocks": {
+        "image_EFwkBD": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/steffen_2.jpg",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "Shop Now",
+            "button_style": "secondary",
+            "image_link": "https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_CWNFpp": {
+          "type": "text",
+          "settings": {
+            "width": "two-thirds",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "<a href=\"https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html#/371-base_size-8_x_10_/401-color-1b_off_black/446-pre_style_service-no_pre_cut\">Steffen’s Favorite: Tyler</a>",
+            "title_size": 32,
+            "title_size_mobile": 28,
+            "text": "<p><strong>Base Material:</strong> Lace front with silk in the middle and PU on the sides and back. </p><p><strong>Unmatched Natural Scalp Appearance.</strong><br/><strong>Hair Type:</strong> Indian Remy Human Hair<br/><strong>Hair Texture:</strong> 28mm Body Wave pattern<br/><strong>Life Span:</strong> 8–12 months<br/><strong>Base Size:</strong> 8” x 10” (can be trimmed down to a minimum of 6” x 8.75”)</p>",
+            "button_label": "Use Discount \"Steffen15\" to save 15%",
+            "button_link": "https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_EFwkBD",
+        "text_CWNFpp"
+      ],
+      "disabled": true,
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "common_heading_MQBazP": {
+      "type": "common-heading",
+      "name": "标题 Heading",
+      "settings": {
+        "title": "A BIT ABOUT STEFFEN JANCZAK",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "custom_content_YmGj4E": {
+      "type": "custom-content",
+      "blocks": {
+        "text_bCyDKb": {
+          "type": "text",
+          "settings": {
+            "width": "two-thirds",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Who Am I?",
+            "title_size": 32,
+            "title_size_mobile": 28,
+            "text": "<p>I’m Steffen, a 40-year-old store manager from Germany with a passion for sports, architecture, travel, and food. Although I don’t have any pets, I dream of a world where everyone feels comfortable and free to be their true selves. I believe in the importance of embracing our personalities, being brave, and staying strong. Something I’d like to share with people is simple: always be yourself, value what makes you unique, and never be afraid to stand tall in who you are.</p>",
+            "button_label": "",
+            "button_link": "https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html",
+            "button_style": "primary"
+          }
+        },
+        "image_PGFJeg": {
+          "type": "image",
+          "settings": {
+            "width": "third",
+            "image": "shopify://shop_images/steffenjanczak__1653496668_2846058790643913195_426204717.jpg",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "https://d23tttlodvxe00.cloudfront.net/men-hair-system/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year_p2879-12108.html",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "text_bCyDKb",
+        "image_PGFJeg"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "faq_kABGaw": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_nJNFKX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "1. What motivated you to try a hair system for the first time?",
+            "answer": "I was thrilled with the result and thought it was a real alternative to a hair transplant.",
+            "is_html": false
+          }
+        },
+        "faq_item_r374jg": {
+          "type": "faq_item",
+          "settings": {
+            "question": " 2. When did you first start using LaVivid’s hair systems, and which product did you choose?",
+            "answer": "I tried Lavivid products for the first time in 2019, over 5 years ago.",
+            "is_html": false
+          }
+        },
+        "faq_item_PLD93j": {
+          "type": "faq_item",
+          "settings": {
+            "question": "3. What has inspired your long-term partnership with LaVivid over the past two years, and why did you decide to become their Exclusive Ambassador?",
+            "answer": "I decided to do it because the products and the variety of systems are simply brilliant and I can always discover new things. I also appreciate the customer service and communication.",
+            "is_html": false
+          }
+        },
+        "faq_item_by44bA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "4. Could you share your top maintenance tips for customers to keep their hair system looking its best daily?",
+            "answer": "It is important to brush your hair properly in the evening before going to bed and in the morning too. I always say less is more, so please don't use so many styling products, but rather an instant conditioner, which simply keeps the hair moist.",
+            "is_html": false
+          }
+        },
+        "faq_item_K88XVy": {
+          "type": "faq_item",
+          "settings": {
+            "question": "5. What would you say to new customers who are considering a hair system but feel unsure about taking the first step?",
+            "answer": "I would say to customers, if it is your wish to have full hair. Try it out, you always have the option of taking it off, but once you have the pleasure, you will fall in love with your full hair.",
+            "is_html": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_nJNFKX",
+        "faq_item_r374jg",
+        "faq_item_PLD93j",
+        "faq_item_by44bA",
+        "faq_item_K88XVy"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "faq_title": "Q & A for Steffen",
+        "faq_subtitle": "",
+        "enable_schema": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_73kkz7",
+    "custom_content_RwTE7t",
+    "image_with_text_nnCFNW",
+    "common_heading_AFnDGR",
+    "story_block_RKTXRX",
+    "common_heading_eRUNkh",
+    "halloween_with_swiper_NMYjhF",
+    "custom_content_DLMcPz",
+    "common_heading_MQBazP",
+    "custom_content_YmGj4E",
+    "faq_kABGaw"
+  ]
+}

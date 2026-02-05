@@ -1,0 +1,90 @@
+<script>
+  var wk_type_url = "?";
+</script>
+
+<div class="rte">
+  <div class="mp_sp_page" data-cust="{{ customer.id }}"></div>
+  <div class="wk_cstm_email" data-cust="{{ customer.email }}"></div>
+  <div class="wk_cstm_name" data-cust="{{ customer.name }}"></div>
+</div>
+
+<div class="mp-loader">
+  <div class="mp-spinner"></div>
+  <div class="title-text">Please Wait...</div>
+</div>
+
+<script type="text/javascript" src="https://sp-seller.webkul.com/js/vc_seller_profile.min.js" defer></script>
+
+<style>
+  /* 加载器样式 - 仅此处保留 */
+  .mp-loader {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .mp-loader .mp-spinner {
+    width: 52px;
+    height: 52px;
+    border: 4px solid #ccc;
+    border-radius: 50%;
+    animation: mp-spin 460ms infinite linear;
+    border-color: #555 #ccc;
+  }
+  .mp-loader .title-text {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  @keyframes mp-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .mp-loader.hidden {
+    display: none !important;
+  }
+</style>
+
+<script>
+(function() {
+  // 动态加载 CSS 文件
+  function loadCSS() {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '{{ "webkul-multivendor.css" | asset_url }}';
+    link.id = 'webkul-custom-css';
+    document.head.appendChild(link);
+  }
+
+  function hideLoader() {
+    var loader = document.querySelector('.mp-loader');
+    if (loader) loader.classList.add('hidden');
+  }
+
+  // 监听 DOM 变化，Webkul 内容加载后应用样式
+  var observer = new MutationObserver(function() {
+    var mpSpPage = document.querySelector('.mp_sp_page');
+    if (mpSpPage && mpSpPage.children.length > 0) {
+      loadCSS();
+      setTimeout(hideLoader, 300);
+    }
+  });
+
+  var mpSpPage = document.querySelector('.mp_sp_page');
+  if (mpSpPage) {
+    observer.observe(mpSpPage, { childList: true, subtree: true });
+  }
+
+  // 备用：页面完全加载后
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      loadCSS();
+      hideLoader();
+    }, 500);
+  });
+})();
+</script>

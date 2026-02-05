@@ -1,0 +1,405 @@
+{% comment %}
+  Product Inline Demo Section
+  展示如何使用 Product Inline 组件的示例
+  预配置的活动生活方式产品展示
+{% endcomment %}
+
+{{ 'product-inline.css' | asset_url | stylesheet_tag }}
+
+<div class="product-inline-wrapper" 
+     style="background-color: {{ section.settings.background_color | default: '#F5F5F5' }};">
+  <div class="product-inline-section lv-container product-inline-section--width-{{ section.settings.width_mode | default: 'standard' }}" 
+       style="padding-bottom: 2rem; border-radius: 15px;"
+       data-mobile-cols="{{ section.settings.mobile_columns | default: 1 }}"
+       data-desktop-cols="{{ section.settings.desktop_columns | default: 2 }}">
+    
+    <!-- Product Groups -->
+  {% assign group_index = 0 %}
+  {% for block in section.blocks %}
+    {% if block.type == 'product_group' %}
+      {% assign group_index = group_index | plus: 1 %}
+      
+      <div class="product-inline-group" {{ block.shopify_attributes }}>
+        {% if block.settings.group_title != blank %}
+          <h2 class="product-inline-group__title lv-title">{{ block.settings.group_title }}</h2>
+        {% endif %}
+        
+        <div class="product-inline-group__grid" 
+             style="--mobile-cols: {{ section.settings.mobile_columns | default: 1 }}; --desktop-cols: {{ section.settings.desktop_columns | default: 2 }};">
+          {% for product_block in section.blocks %}
+            {% if product_block.type == 'product_item' %}
+              {% assign parent_group = product_block.settings.parent_group_number | plus: 0 %}
+              
+              {% if parent_group == group_index %}
+                {% render 'product-card-inline',
+                  product: product_block.settings.product,
+                  custom_image: product_block.settings.custom_image,
+                  custom_title: product_block.settings.custom_title,
+                  custom_description: product_block.settings.custom_description,
+                  custom_url: product_block.settings.custom_url,
+                  custom_price: product_block.settings.custom_price,
+                  custom_compare_price: product_block.settings.custom_compare_price,
+                  title_image: product_block.settings.title_image,
+                  title_image_width: product_block.settings.title_image_width,
+                  title_image_height: product_block.settings.title_image_height,
+                  btn_text: section.settings.btn_text,
+                  currency_symbol: section.settings.currency_symbol,
+                  image_width: product_block.settings.image_width,
+                  image_height: product_block.settings.image_height,
+                  image_padding_top: product_block.settings.image_padding_top,
+                  image_padding_right: product_block.settings.image_padding_right,
+                  image_padding_bottom: product_block.settings.image_padding_bottom,
+                  image_padding_left: product_block.settings.image_padding_left,
+                  sku: product_block.settings.sku,
+                  show_sku: section.settings.show_sku,
+                  shopify_attributes: product_block.shopify_attributes
+                %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+    
+  </div>
+</div>
+
+<style>
+  /* Wrapper for full-width background */
+  .product-inline-wrapper {
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  /* Width Modes */
+  /* Width Modes */
+  .product-inline-section--width-full {
+    max-width: 100%;
+  }
+
+  .product-inline-section--width-standard {
+    max-width: 100%;
+  }
+
+  .product-inline-section--width-wide {
+    max-width: 100%;
+  }
+
+  .product-inline-section--width-narrow {
+    max-width: 100%;
+  }
+
+  /* Desktop: Apply Width Constraints */
+  @media screen and (min-width: 1280px) {
+    .product-inline-section--width-standard {
+      max-width: 1400px; /* 1400px */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product-inline-section--width-wide {
+      max-width: 1600px; /* 1600px */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product-inline-section--width-narrow {
+      max-width: 1024px; /* 1024px */
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 1279px) and (min-width: 992px) {
+    .product-inline-section--width-standard {
+      max-width: 1400px; /* 1400px */
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  /* Mobile adjustments */
+  @media screen and (max-width: 767px) {
+    .product-inline-wrapper {
+      padding-top: 1.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Inline Demo",
+  "tag": "section",
+  "class": "product-inline-demo-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "width_mode",
+      "label": "PC端宽度模式",
+      "options": [
+        { "value": "full", "label": "全屏" },
+        { "value": "standard", "label": "标准 (1400px 居中)" },
+        { "value": "wide", "label": "宽屏 (1600px 居中)" },
+        { "value": "narrow", "label": "窄屏 (1024px 居中)" }
+      ],
+      "default": "standard",
+      "info": "移动端始终全宽显示"
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Mobile Columns",
+      "default": 1,
+      "info": "Number of columns on mobile devices"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Desktop Columns",
+      "default": 2,
+      "info": "Number of columns on desktop devices"
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Shop Now >"
+    },
+    {
+      "type": "text",
+      "id": "currency_symbol",
+      "label": "Currency Symbol",
+      "default": "$"
+    },
+    {
+      "type": "header",
+      "content": "Display Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "label": "Show Product SKU",
+      "default": false,
+      "info": "Display product SKU below description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_group",
+      "name": "Product Group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "group_title",
+          "label": "Group Title",
+          "default": "Product Group"
+        }
+      ]
+    },
+    {
+      "type": "product_item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "number",
+          "id": "parent_group_number",
+          "label": "Belongs to Group Number",
+          "default": 1,
+          "info": "Enter 1 for first group, 2 for second group, etc."
+        },
+        {
+          "type": "header",
+          "content": "Product Source"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product",
+          "info": "Optional: Leave blank to use fully custom content"
+        },
+        {
+          "type": "header",
+          "content": "Custom Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Product Image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_description",
+          "label": "Custom Description",
+          "info": "Short description (e.g., 'Swiss Lace 90% Density')"
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom Link URL"
+        },
+        {
+          "type": "header",
+          "content": "Title Logo/Badge"
+        },
+        {
+          "type": "image_picker",
+          "id": "title_image",
+          "label": "Title Logo Image",
+          "info": "Optional logo displayed above the title"
+        },
+        {
+          "type": "number",
+          "id": "title_image_width",
+          "label": "Title Image Width",
+          "default": 124
+        },
+        {
+          "type": "number",
+          "id": "title_image_height",
+          "label": "Title Image Height",
+          "default": 47
+        },
+        {
+          "type": "header",
+          "content": "Price Settings"
+        },
+        {
+          "type": "text",
+          "id": "custom_price",
+          "label": "Sale Price",
+          "info": "Example: 279.65"
+        },
+        {
+          "type": "text",
+          "id": "custom_compare_price",
+          "label": "Original Price",
+          "info": "Example: 329.00 (strikethrough)"
+        },
+        {
+          "type": "header",
+          "content": "Additional"
+        },
+        {
+          "type": "text",
+          "id": "sku",
+          "label": "Product SKU"
+        },
+        {
+          "type": "number",
+          "id": "image_width",
+          "label": "Image Width",
+          "default": 356
+        },
+        {
+          "type": "number",
+          "id": "image_height",
+          "label": "Image Height",
+          "default": 291
+        },
+        {
+          "type": "header",
+          "content": "Image Padding Settings"
+        },
+        {
+          "type": "number",
+          "id": "image_padding_top",
+          "label": "Image Padding Top (px)",
+          "default": 0,
+          "info": "Top padding for product image area"
+        },
+        {
+          "type": "number",
+          "id": "image_padding_right",
+          "label": "Image Padding Right (px)",
+          "default": 0,
+          "info": "Right padding for product image area"
+        },
+        {
+          "type": "number",
+          "id": "image_padding_bottom",
+          "label": "Image Padding Bottom (px)",
+          "default": 0,
+          "info": "Bottom padding for product image area"
+        },
+        {
+          "type": "number",
+          "id": "image_padding_left",
+          "label": "Image Padding Left (px)",
+          "default": 0,
+          "info": "Left padding for product image area"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2
+      },
+      "blocks": [
+        {
+          "type": "product_group",
+          "settings": {
+            "group_title": "Full Lace Design: Soft & Breathable"
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_price": "279.65",
+            "custom_compare_price": "329.00",
+            "sku": "TP1805"
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "custom_title": "Thor-TP1803",
+            "custom_description": "French Lace 105% Density",
+            "custom_price": "271.15",
+            "custom_compare_price": "319.00",
+            "sku": "TP1803"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

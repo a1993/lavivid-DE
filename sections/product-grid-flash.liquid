@@ -1,0 +1,268 @@
+{% comment %}
+  Product Grid Flash Section
+  使用与 flash-sale 相同的样式，确保卡片样式一致
+{% endcomment %}
+
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+{{ 'flash-sale.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  # 支持作为 section 使用（从 section.settings 获取）或作为 snippet 使用（从参数获取）
+  assign show_reviews = show_reviews | default: section.settings.show_reviews | default: false
+  assign section_blocks = section_blocks | default: section.blocks
+  assign filter_category = filter_category | default: section.settings.filter_category | default: 0
+  assign grid_class = grid_class | default: ''
+  assign products_per_row = products_per_row | default: section.settings.products_per_row | default: 4
+  assign products_per_row_mobile = products_per_row_mobile | default: section.settings.products_per_row_mobile | default: settings.prod_thumb_mob_per_row | default: 2
+-%}
+
+<div class='product-grid product-grid--flash product-grid--per-row-{{ products_per_row }} product-grid--per-row-mob-{{ products_per_row_mobile }}{% if grid_class %} {{ grid_class }}{% endif %}'>
+  {%- liquid
+    assign has_products = false
+    assign product_count = 0
+    
+    if section_blocks
+      for block in section_blocks
+        if block.type == 'product_item'
+          if filter_category and filter_category > 0
+            assign parent_num = block.settings.parent_tab_number | plus: 0
+            if parent_num == filter_category and block.settings.product != blank
+              assign has_products = true
+              assign product_count = product_count | plus: 1
+            endif
+          else
+            if block.settings.product != blank
+              assign has_products = true
+              assign product_count = product_count | plus: 1
+            endif
+          endif
+        endif
+      endfor
+    endif
+  -%}
+  
+  {% if has_products %}
+    {% comment %} 有产品时，渲染真实产品卡片 {% endcomment %}
+    {% for block in section_blocks %}
+      {% if block.type == 'product_item' %}
+        {% if filter_category and filter_category > 0 %}
+          {% comment %} 如果有分类过滤，检查是否属于当前分类 {% endcomment %}
+          {% assign parent_num = block.settings.parent_tab_number | plus: 0 %}
+          {% if parent_num == filter_category %}
+            {% assign product = block.settings.product %}
+            {% if product %}
+              {% render 'product-card-flash',
+                product: product,
+                show_reviews: show_reviews,
+                custom_image: block.settings.custom_image,
+                custom_title: block.settings.custom_title,
+                custom_description: block.settings.custom_description,
+                shopify_attributes: block.shopify_attributes
+              %}
+            {% endif %}
+          {% endif %}
+        {% else %}
+          {% comment %} 没有分类过滤，直接渲染所有产品 {% endcomment %}
+          {% assign product = block.settings.product %}
+          {% if product %}
+            {% render 'product-card-flash',
+              product: product,
+              show_reviews: show_reviews,
+              custom_image: block.settings.custom_image,
+              custom_title: block.settings.custom_title,
+              custom_description: block.settings.custom_description,
+              shopify_attributes: block.shopify_attributes
+            %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% comment %} 预览模式：显示占位产品卡片（仅系统折扣） {% endcomment %}
+    {%- assign placeholder_compare = 299 -%}
+    {% for i in (1..4) %}
+      <div class="product-card product-card--flash product-card--placeholder">
+        <div class="product-card__image-wrapper">
+          <div class="product-card__image product-card__image--placeholder">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        </div>
+        <div class="product-card__info">
+          <h3 class="product-card__title">示例产品 {{ i }}</h3>
+          <p class="product-card__description">请选择一个产品以显示实际内容</p>
+          <div class="product-card__price">
+            <span class="product-card__price-sale">${{ placeholder_compare }}.00</span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Grid Flash",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "label": "Products per row (Desktop)",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "info": "Number of products to display per row on desktop"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_mobile",
+      "label": "Products per row (Mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "info": "Number of products to display per row on mobile"
+    },
+    {
+      "type": "header",
+      "content": "Display Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "filter_category",
+      "label": "Filter Category",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "number",
+          "id": "parent_tab_number",
+          "label": "Parent Tab Number",
+          "default": 1
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Image",
+          "info": "Leave blank to use product's featured image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title",
+          "info": "Leave blank to use product's title"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_description",
+          "label": "Custom Description",
+          "info": "Leave blank to use product's description"
+        },
+        {
+          "type": "text",
+          "id": "custom_class",
+          "label": "Custom Class",
+          "info": "Leave blank to use product's custom class"
+        },
+        {
+          "type": "text",
+          "id": "shopify_attributes",
+          "label": "Shopify Attributes",
+          "info": "Leave blank to use product's shopify attributes"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Product Grid Flash",
+      "blocks": [
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_tab_number": 1
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_tab_number": 1
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_tab_number": 1
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_tab_number": 1
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_tab_number": 1
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "parent_tab_number": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  /* Placeholder Product Cards */
+  .product-card--placeholder {
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .product-card--placeholder .product-card__image--placeholder {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .product-card--placeholder .product-card__title {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .product-card--placeholder .product-card__description {
+    font-size: 0.875rem;
+    color: #999;
+    margin: 0.5rem 0;
+  }
+{% endstyle %}

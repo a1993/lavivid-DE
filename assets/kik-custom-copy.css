@@ -1,0 +1,520 @@
+/* Desktop Typography CSS */
+/* Headings */
+.heading-1 {
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 84px */
+}
+
+.heading-2 {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 57.6px */
+}
+
+.heading-3 {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 60px */
+}
+
+.heading-4 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 48px */
+}
+
+.heading-5 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 36px */
+}
+
+.heading-6 {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 33px */
+}
+
+/* Body text styles */
+.body-1 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 30px */
+}
+
+.body-1--medium {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 30px */
+}
+
+.body-2 {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+}
+
+.body-2--medium {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 27px */
+}
+
+.body-2--cap {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+  text-transform: uppercase;
+}
+
+.body-3 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+
+.body-3--medium {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
+
+.body-3--cap {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  text-transform: uppercase;
+}
+
+.body-3--strikethrough {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+  text-decoration: line-through;
+  text-transform: uppercase;
+}
+
+.body-4 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+}
+
+.body-4--medium {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+}
+
+.body-4--cap {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+  text-transform: uppercase;
+}
+
+/* USP Section CSS */
+.usp-icon-section .flexible-layout .column{
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.usp-icon-section .text-column__text.rte p{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.usp-icon-section .text-column__title{
+    margin-bottom: 8px;
+}
+
+/* Life Style Section CSS */
+.kik-custom-shop-lifestyle-section .flexible-layout .column,
+.kik-custom-shop-lifestyle-section .flexible-layout{
+    margin-bottom: 0;
+}
+
+.kik-custom-shop-lifestyle-section .custom-heading {
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.kik-custom-shop-lifestyle-section .text-overlay__title{
+    font-size: 24px;
+    letter-spacing: 0;
+    font-weight: 500;
+    line-height: 150%;
+    margin-bottom: 0;
+}
+.kik-custom-shop-lifestyle-section .text-overlay__rte p{
+    font-size: 16px;
+    letter-spacing: 0;
+    font-weight: 400;
+    line-height: 150%;
+}
+.kik-custom-shop-lifestyle-section .text-overlay__button-row{
+    margin-top: 12px;
+}
+.kik-custom-shop-lifestyle-section .text-overlay__button{
+    font-size: 16px;
+    letter-spacing: 0;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+/* Firework Feed Section CSS */
+.firework-feed-section h2.custom-heading {
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+/* Image with text section css */
+.kik-custom-image-with-text h2.custom-heading {
+    font-size: 40px;
+    text-align: left;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.kik-custom-image-with-text .flexible-layout,
+.kik-custom-image-with-text .flexible-layout .column{
+    padding-left: 0;
+}
+/* .kik-custom-image-with-text .image-overlap{
+    margin-left: 0;
+} */
+.kik-custom-image-with-text .feature-text-paired {
+    margin-right: 0;
+    margin-left: 0;
+}
+.kik-custom-image-with-text .rte p{
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 150%;
+    color: #5D5E5F;
+    font-weight: 400;
+}
+.kik-custom-image-with-text .btn {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 400;
+    margin-top: 0;
+    padding: 16px 32px;
+}
+
+/* shop the look section css */
+.kik-shop-the-look-section .custom-heading{
+   font-size: 40px;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+.kik-shop-the-look-section .text-overlay__rte p{
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 150%;
+  font-weight: 400;
+}
+.kik-shop-the-look-section .text-overlay__rte{
+  max-width: 100%;
+}
+
+/* testimonial section css */
+.kik-testimonials-section .subheading{
+  font-size: 11.2px;
+  line-height: 14.56px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.12px;
+  color: #0A0A0A;
+}
+.kik-testimonials-section .testimonial__text {
+    margin-bottom: 19px;
+}
+.kik-testimonials-section .testimonial__image-with-caption__caption{
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-weight: 400;
+  margin-top: 14px;
+}
+
+/* About us section */
+.kik-custom-about-section .custom-heading{
+  font-size: 40px;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+.kik-custom-about-section .rte .p{
+  font-size: 16px;
+  line-height: 150%;
+  color: #5D5E5F;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.kik-custom-about-section .lightish-spaced-row-above{
+  margin-top: 16px;
+}
+.kik-custom-about-section .btn{
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 150%;
+  font-weight: 400;
+  /* color: #0A0A0A; */
+  padding: 16px 32px;
+}
+/*educational section css */
+.kik-educational-channel-section .custom-heading{
+  font-size: 40px;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 32px;
+    text-align: center;
+}
+.kik-educational-channel-section .text-overlay__text {
+    text-align: left;
+}
+.kik-educational-channel-section .text-overlay__rte.rte {
+    margin: 0;
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 16px;
+}
+.kik-educational-channel-section .text-overlay__title{
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 150%;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.kik-educational-channel-section .text-overlay__button-row {
+    margin: 0;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+.kik-educational-channel-section .text-overlay__button-row .text-overlay__button{
+  margin: 0;
+}
+
+.kik-text-grid-section .custom-heading{
+  font-size: 40px;
+    letter-spacing: 0;
+    line-height: 150%;
+    font-weight: 500;
+    margin-bottom: 32px;
+    text-align: center;
+}
+/* ============================
+   MOBILE TYPOGRAPHY STYLES
+   ============================ */
+@media (max-width: 768px) {
+
+  /* ===== Headings ===== */
+  .mobile-heading-1 {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 72px */
+  }
+
+  .mobile-heading-2 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 60px */
+  }
+
+  .mobile-heading-3 {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 48px */
+  }
+
+  .mobile-heading-4 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 36px */
+  }
+
+  .mobile-heading-5 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 30px */
+  }
+
+  .mobile-heading-6 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 27px */
+  }
+
+  /* ===== Body text ===== */
+
+  /* Body 1 */
+  .mobile-body-1 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+  }
+
+  .mobile-body-1--medium {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 27px */
+  }
+
+  /* Body 2 */
+  .mobile-body-2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+  }
+
+  .mobile-body-2--medium {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 24px */
+  }
+
+  .mobile-body-2--cap {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    text-transform: uppercase;
+  }
+
+  /* Body 3 */
+  .mobile-body-3 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+  }
+
+  .mobile-body-3--medium {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+  }
+
+  .mobile-body-3--cap {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+    text-transform: uppercase;
+  }
+
+  .mobile-body-3--strikethrough {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+    text-decoration: line-through;
+    text-transform: uppercase;
+  }
+
+  /* Body 4 */
+  .mobile-body-4 {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+  }
+
+  .mobile-body-4--medium {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 18px */
+  }
+
+  .mobile-body-4--cap {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+    text-transform: uppercase;
+  }
+
+  /* Column Selection */
+  .flexible-layout.columns-2{
+    flex-direction: unset;
+  }
+  .flexible-layout.columns-2 .column.text-column{
+    width: 50% !important;
+    flex: 50%;
+  }
+  
+  .usp-icon-section .text-column__text.rte p{
+    font-size: 14px;
+  }
+   .usp-icon-section .flexible-layout,
+   .kik-custom-shop-lifestyle-section .flexible-layout{
+    row-gap: 16px;
+  }
+  .kik-custom-shop-lifestyle-section .custom-heading{
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .kik-custom-shop-lifestyle-section .text-overlay__title{
+    font-size: 20px;
+  }
+  .kik-custom-shop-lifestyle-section .text-overlay__rte p{
+    font-size: 14px;
+  }
+  .firework-feed-section h2.custom-heading{
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+}

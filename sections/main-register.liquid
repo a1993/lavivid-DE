@@ -1,0 +1,98 @@
+<style>
+  #create-customer .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  #create-customer .checkbox-label input[type="checkbox"] {
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+</style>
+
+<div class="container fully-spaced-row">
+  <div class="small-form account-form" {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}>
+    <div id="customer">
+      <!-- Create Customer -->
+      <div id="create-customer">
+        <div class="page-header">
+          <h2 class="title">{{ 'customer.register.title' | t }}</h2>
+        </div>
+
+        {% form 'create_customer', id: 'create-customer-form' %}
+          {%- render 'form-errors', form: form -%}
+
+          <div class="input-row">
+            <label for="first_name" class="login">{{ 'customer.register.first_name' | t }}*</label>
+            <input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" required />
+          </div>
+
+          <div class="input-row">
+            <label for="last_name" class="login">{{ 'customer.register.last_name' | t }}*</label>
+            <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" required />
+          </div>
+
+          <div class="input-row">
+            <label for="email" class="login">{{ 'customer.register.email' | t }}*</label>
+            <input type="email" value="" name="customer[email]" id="email" class="large" size="30" required />
+          </div>
+
+          <div class="input-row">
+            <label for="password" class="login">{{ 'customer.register.password' | t }}*</label>
+            <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" required />
+          </div>
+
+          <div class="input-row">
+            <checkbox-input class="checkbox-input">
+              <label class="checkbox-label">
+                <input type="checkbox" name="customer[accept_terms]" id="accept_terms" checked required />
+                <span class="checkbox-label-text"> 
+                  I agree to the <a href="{{ routes.root_url }}pages/terms-and-conditions" target="_blank" class="underline">terms and conditions</a> and the <a href="{{ routes.root_url }}pages/privacy-policy" target="_blank" class="underline">privacy policy</a> 
+                  </span>
+              </label>
+            </checkbox-input>
+          </div>
+
+          <div class="input-row">
+            <checkbox-input class="checkbox-input">
+              <label class="checkbox-label">
+                <input type="checkbox" name="customer[subscribe]" id="subscribe" checked required />
+                <span class="checkbox-label-text"> 
+                  Subscribe & save $40 on your first order.(No spam, just hair deals, new drops, and expert care tips.) 
+                  </span>
+              </label>
+            </checkbox-input>
+          </div>
+
+          <div class="lightly-spaced-row-above">
+            <button class="btn" type="submit">{{ 'customer.register.submit' | t }}</button>
+            <span class="note">
+              {{ 'customer.register.have_account' | t }}
+              <a href="{{ routes.account_login_url }}" class="underline">{{ 'customer.register.log_in' | t }}</a>
+            </span>
+          </div>
+        {% endform %}
+      </div><!-- /#create-customer -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // 表单提交时设置标记（不拦截提交，让 Shopify 正常处理 CAPTCHA）
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('create-customer-form');
+    if (form) {
+      form.addEventListener('submit', function() {
+        // 设置注册标记，用于在跳转后显示成功提示
+        sessionStorage.setItem('customer_just_registered', 'true');
+        // 表单正常提交，不阻止默认行为
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Customer register"
+}
+{% endschema %}

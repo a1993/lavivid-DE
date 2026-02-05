@@ -1,0 +1,41 @@
+{% comment %}
+  注册成功提示 Toast
+  Register Success Toast Notification
+  
+  在用户成功注册后显示欢迎提示，包含优惠码信息
+{% endcomment %}
+
+{% if customer %}
+  <div id="register-success-toast" 
+       class="register-success-toast" 
+       style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; padding: 16px 24px; background-color: #000000; color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 16px; text-align: center;">
+    🎉 Registration successful. Welcome, {{ customer.first_name }}！ <br>
+    Use code WELCOME40 to enjoy $40 off your first order. <br>
+    Valid for 7 days.
+  </div>
+  <script>
+    (function() {
+      var justRegistered = sessionStorage.getItem('customer_just_registered');
+      if (justRegistered === 'true') {
+        sessionStorage.removeItem('customer_just_registered');
+        var toast = document.getElementById('register-success-toast');
+        if (toast) {
+          toast.style.display = 'block';
+          setTimeout(function() {
+            toast.style.transition = 'opacity 0.5s ease';
+            toast.style.opacity = '0';
+            setTimeout(function() { 
+              toast.style.display = 'none'; 
+            }, 500);
+          }, 5000);
+        }
+      }
+    })();
+  </script>
+{% else %}
+  <script>
+    // 用户未登录，清除可能存在的注册标记（注册失败的情况）
+    sessionStorage.removeItem('customer_just_registered');
+  </script>
+{% endif %}
+

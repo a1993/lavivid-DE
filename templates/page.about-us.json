@@ -1,0 +1,88 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_banner_A7wUg8": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/about-us-banner.jpg",
+        "show_desktop": true,
+        "show_mobile": false,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "full",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "custom_rich_text_PRtJxJ": {
+      "type": "custom-rich-text",
+      "custom_css": [
+        "h1 {color: white; font-size: 2.2rem;}"
+      ],
+      "name": "[gy] Custom Rich Text",
+      "settings": {
+        "richtext": "<h1>About Lavividhair</h1><p>LaVivid is committed to delivering the best non-surgical solutions to men who are experiencing hair loss. We provide premium quality men’s hair replacement systems for competitive prices. Each hair piece is individually handcrafted and designed with your needs in mind. Here at LaVivid the customer comes first, and we strive to make every customer’s hair loss journey a little bit easier.</p>",
+        "text_alignment": "left",
+        "background_color": "#53b0bf",
+        "text_color": "#ffffff",
+        "padding_top": "medium",
+        "padding_bottom": "medium"
+      }
+    },
+    "custom_html_content_F4Vpre": {
+      "type": "custom-html-content",
+      "blocks": {
+        "html_XGHgNy": {
+          "type": "html",
+          "settings": {
+            "html_content": "<meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n  <!-- UIkit CSS -->\n  <link rel=\"stylesheet\" href=\"https://cdn.shopify.com/s/files/1/0736/6213/6477/files/uikit.min.css?v=1762823657\">\n\n  <!-- UIkit JS -->\n  <script src=\"https://cdn.shopify.com/s/files/1/0736/6213/6477/files/uikit.min.js?v=1762823665\"></script>\n  <script src=\"https://cdn.shopify.com/s/files/1/0736/6213/6477/files/uikit-icons.min.js?v=1762823500\"></script>\n  <script type=\"text/javascript\" src=\"https://d23tttlodvxe00.cloudfront.net/modules/blogs/views/js/jquery-1.10.2.js\"></script>\n  <style>\n      .block-category{\n          background-color: #53b0bf;\n          color: #fff;\n          padding: 20px 0!important;\n      }\n      .block-category h1{\n          font-size: 2.2rem;\n          margin-bottom: 10px;\n          color: white;\n      }\n      .block-category .text-muted p{\n          margin-bottom: 0;\n      }\n      .l-wrapper{\n          max-width: 1140px;\n          box-sizing: content-box;\n          margin: 0 auto;\n          padding-left: 15px;\n          padding-right: 15px;\n      }\n      .l-wrapper .left{\n          float: left;\n      }\n      .l-wrapper .right{\n          float: right;\n      }\n      .l-wrapper .col-7{\n          max-width: 58.33333%;\n      }\n      .l-wrapper .col-5{\n          max-width: 41.66667%;\n      }\n      .l-wrapper .clearfix{\n          margin-bottom: 30px;\n      }\n      .section2 {\n          padding: 20px 0;\n          background: #ededed;\n          margin-bottom: 30px;\n      }\n      #content-wrapper h2 {\n          font-size: 22px;\n          font-weight: 400;\n          margin-bottom: 20px;\n          text-transform: uppercase;\n      }\n      #content-wrapper h3 {\n          line-height: 40px;\n          font-size: 16px;\n          font-weight: 700;\n      }\n      .about-us{\n          margin-top: 30px;\n      }\n      .about-us.section1 dl dt h3{\n          position: relative;\n          padding-left: 52px!important;\n          margin-bottom: 10px;\n          font-weight: 700;\n      }\n      .about-us.section1 dl dt h3:before {\n          content: \"\";\n          width: 40px;\n          height: 40px;\n          display: block;\n          position: absolute;\n          left: 0;\n          top: 50%;\n          margin-top: -20px;\n          background: url(https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-icons.png);\n      }\n      .about-us.section1 .top dl dt:nth-child(3) h3:before {\n          background-position-y: -40px\n      }\n      .about-us.section1 .top dl dt:nth-child(5) h3:before {\n          background-position-y: -80px\n      }\n      .about-us.section1 .bottom dl dt:first-child h3:before {\n          background-position-y: -120px\n      }\n      .about-us.section1 .bottom dl dt:nth-child(3) h3:before {\n          background-position-y: -160px\n      }\n      .about-us.section1 .bottom dl dt:nth-child(5) h3:before {\n          background-position-y: -200px\n      }\n  \n      .about-us.section1 dl dd{\n          padding-bottom: 25px;\n      }\n  \n      h1.uk-text-center{\n          display: none;\n      }\n  \n      h1.about-us{\n          display: block!important;\n      }\n  \n  \n      .clearfix{display:inline-block;}\n      .clearfix:after{content: \".\";display: block;height: 0;clear: both;visibility: hidden;overflow: hidden;}\n      *html .clearfix{height: 1%;}\n      .clearfix{display: block;}\n  \n  \n  \n      @media screen and (max-width: 768px) {\n          .l-wrapper .col-7,\n          .l-wrapper .col-5{\n              width: 100%;\n              max-width: none;\n              flex: auto;\n          }\n          .l-wrapper .left,\n          .l-wrapper .right{\n              float: none;\n          }\n      }\n  </style>\n\n\n\n<div id=\"TagWrap\">\n<!-- <div class=\"cms-cover rc--lazyload\">\n    <img src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-banner.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-banner.jpg\" class=\"img-fluid ls-is-cached\" loading=\"lazy\" alt=\"About US\" width=\"1920\" height=\"340\">\n</div>\n\n<div class=\"block-category card-block visible--desktop\">\n    <div class=\"l-wrapper\">\n        <h1 style=\"color: white;\">About Lavividhair</h1>\n        <div class=\"text-muted\">\n            <p><span style=\"color: white;font-size:10pt;font-style:normal;\">\n                LaVivid is committed to delivering the best non-surgical solutions to men who are experiencing hair loss. We provide premium quality men’s hair replacement systems for competitive prices. Each hair piece is individually handcrafted and designed with your needs in mind. Here at LaVivid the customer comes first, and we strive to make every customer’s hair loss journey a little bit easier.\n            </span></p>\n        </div>\n    </div>\n</div> -->\n\n<div class=\"uk-container uk-container-large\">\n<section class=\"section1 about-us\">\n    <div class=\"l-wrapper\">\n        <div class=\"top row clearfix\">\n            <div class=\"left col-7\">\n                <h2>Why choose LaVivid?</h2>\n                <dl>\n                    <dt>\n                        <h3>Premium Quality</h3>\n                    </dt>\n                    <dd>Offering the BEST men’s hair systems in the world is our businesses vision. We want to impress you with our premium quality product and we will never stop improving to exceed your expectations.\n                    </dd>\n                    <dt>\n                        <h3>Competitive Price</h3>\n                    </dt>\n                    <dd>We offer a wide range of hair systems with different prices and we are confident that you will find one that meets your budget.\n                    </dd>\n                    <dt>\n                        <h3>Immediate Shipment</h3>\n                    </dt>\n                    <dd>From the moment you place your order, you most likely want it to arrive as soon as possible. We are totally with you. Our Shipping team makes every effort to ship out each order as soon as they can.\n                    </dd>\n                </dl>\n            </div>\n            <div class=\"right col-5\"> <img src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section01-top.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section01-top.jpg\" loading=\"lazy\" alt=\"About US\" width=\"428\" height=\"483\">\n</div>\n            <br style=\"clear: both\">\n        </div>\n        <div class=\"bottom row clearfix\">\n            <div class=\"left col-5\"> <img src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section01-bottom.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section01-bottom.jpg\" loading=\"lazy\" alt=\"About US\" width=\"428\" height=\"483\">\n</div>\n            <div class=\"right col-7\">\n                <dl>\n                    <dt>\n                        <h3>Hassel-free Return Policy</h3>\n                    </dt>\n                    <dd>You receive it and find it’s not for you? No problem at all. If you didn’t cut the material, return it back to us and we can exchange it or provide a refund for you.\n                    </dd>\n                    <dt>\n                        <h3>Customer Service</h3>\n                    </dt>\n                    <dd>Our customers are the core value of our business. Each member of our customer service team is well-trained with product knowledge and has years’ experience. We will always provide you with honest advice and help you find the best solution for your specific needs and budget.\n                    </dd>\n                    <dt>\n                        <h3>Continuous Improvement</h3>\n                    </dt>\n                    <dd>Your feedback to our products and service is crucially important to us. Whether it is positive or negative, we take them very seriously. We want to know where we didn’t do well enough and this is the driving force for us to improve.\n                    </dd>\n                </dl>\n            </div>\n            <br style=\"clear: both\">\n        </div>\n    </div>\n</section>\n</div>\n<section class=\"section2 bg-gray clearfix\">\n\n    <div class=\"uk-container uk-container-large\">\n    <div class=\"l-wrapper\">\n        <div class=\"row\">\n            <div class=\"left col-7\">\n                <h2>Salon Services</h2>\n                <p>A professional and experienced hairstylist can make a hair system look natural and just like your own hair. However, it might not be easy for you to find a local salon to get the hair system applied and styled properly. So, at LaVivid, we are colloabrating with salons and hairstylists and we provide hair system trainings to help more salons to efficiently get trained on how to implement the hair system including consultation, measurement, ordering, fitting/installation, and cutting. We hope this can make it easier for you to find an experienced hairstylist to get your hair fitted.\n                </p>\n                <p>Hair loss can make you feel hopeless and frustrated. LaVivid totally understands. We stand beside you and fight with you to help you feel confident again. With our prime quality hair systems, professional expert assistance, hassle-free after sale service, we are committed to make your hair restoration journey as easy as possible.\n                </p>\n            </div>\n            <div class=\"right col-5\"> <img src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section02-img.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section02-img.jpg\" loading=\"lazy\" alt=\"About US\" width=\"428\" height=\"512\">\n</div>\n        </div>\n    </div>\n    </div>\n</section>\n<section class=\"section3\">\n    <div class=\"cms-cover rc--lazyload\">\n        <img src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section3-img.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/hair/about-us-section3-img.jpg\" class=\"img-fluid ls-is-cached\" alt=\"About US\" width=\"1920\" height=\"446\">\n    </div>\n</section>\n\n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "html_XGHgNy"
+      ],
+      "name": "[gy] Custom HTML Content",
+      "settings": {
+        "section_title": "",
+        "title_size": 32,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_margin": 40,
+        "container_type": "full-width",
+        "container_width": 1180,
+        "container_padding": 15,
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "use_shadow_dom": true,
+        "custom_css": "",
+        "custom_js": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_A7wUg8",
+    "custom_rich_text_PRtJxJ",
+    "custom_html_content_F4Vpre"
+  ]
+}

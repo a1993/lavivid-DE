@@ -1,0 +1,537 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_banner_ADmbiN": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/banner_4.webp",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/banner_m_2.webp",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "full",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "custom_content_hGMEnY": {
+      "type": "custom-content",
+      "blocks": {
+        "video_Di67m4": {
+          "type": "video",
+          "settings": {
+            "width": "half",
+            "video_external": "https://www.youtube.com/watch?v=i2t86dCMCyw",
+            "video_description": "",
+            "autoplay": false,
+            "placeholder_image": "shopify://shop_images/top_1.webp"
+          }
+        },
+        "html_XDGYME": {
+          "type": "html",
+          "settings": {
+            "width": "half",
+            "code": "<style>\n  * {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n  }\n\n  /* 主标题样式 */\n  .life-style-title {\n    font-size: 1.875rem;\n    text-align: center;\n    line-height: 1.5;\n    max-width: 85.5rem;\n    margin: 3.75rem auto 3.125rem;\n  }\n\n  /* 顶部右侧区域 */\n  .lifestyle-top-right {\n    flex: 1;\n    margin-left: 3.125rem;\n  }\n\n  .lifestyle-top-right h2 {\n    margin-top: 0.5rem;\n    margin-bottom: 2.5rem;\n  }\n\n  /* 顶部主区域 - flex 布局 */\n  .lifestyle-top-main {\n    display: flex;\n  }\n\n  /* 每个顶部项目 */\n  .life-top-item {\n    flex: 1;\n    text-align: center;\n    margin-right: 1rem;\n  }\n\n  .life-top-item:last-child {\n    margin-right: 0;\n  }\n\n  .life-top-item img {\n    width: 7rem;\n    height: auto;\n  }\n\n  .life-top-item h2 {\n    font-size: 1.125rem;\n    margin-top: 1.5rem;\n    margin-bottom: 0.625rem;\n  }\n\n  .life-top-item p {\n    line-height: 1.5;\n  }\n\n  /* 移动端响应式样式 */\n  @media screen and (max-width: 767px) {\n    .lifestyle-top-right {\n      margin-left: 0;\n    }\n\n    .lifestyle-top-right .life-style-title {\n      margin-top: 1.5rem;\n      margin-bottom: 1rem;\n    }\n\n    .life-top-item {\n      margin-right: 0.3rem;\n    }\n\n    .life-top-item img {\n      width: 6rem;\n    }\n\n    .life-top-item h2 {\n      margin-top: 1rem;\n    }\n\n    .life-style-title {\n      padding: 0 1.25rem;\n      font-size: 1.25rem;\n      margin: 2.35rem auto 2rem;\n    }\n  }\n</style>\n\n{% comment %}\n  定义数据 - 使用字符串数组存储图片名称，然后循环渲染\n{% endcomment %}\n{% assign item_images = 'icon1.webp,icon2.webp,icon3.webp' | split: ',' %}\n{% assign item_titles = 'Superior Breathability,Sweat & Water Friendly,Natural Look & Comfort' | split: ',' %}\n{% assign item_descs = 'Lace allows maximum airflow, keeping your scalp cool.,Ideal for workouts and showering without discomfort.,Lightweight and blends seamlessly with your scalp.' | split: ',' %}\n\n<div class=\"lifestyle-top-right\">\n  <h2 class=\"life-style-title\">Why Should People with an Active Lifestyle Choose a Lace Hair System?</h2>\n  <div class=\"lifestyle-top-main\">\n    {% for image in item_images %}\n      {% assign index = forloop.index0 %}\n      <div class=\"life-top-item\">\n        <img src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/active-lifestyles/{{ image }}\" alt=\"{{ item_titles[index] | escape }}\" width=\"110\" height=\"75\" loading=\"lazy\" />\n        <h2>{{ item_titles[index] }}</h2>\n        <p>{{ item_descs[index] }}</p>\n      </div>\n    {% endfor %}\n  </div>\n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "video_Di67m4",
+        "html_XDGYME"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "product_inline_xXCrcJ": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_yhkmHP": {
+          "type": "product_group",
+          "settings": {
+            "group_title": "Full Lace Design: Soft & Breathable"
+          }
+        },
+        "product_item_mpYFwN": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        },
+        "product_item_qUtzbY": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        }
+      },
+      "block_order": [
+        "product_group_yhkmHP",
+        "product_item_mpYFwN",
+        "product_item_qUtzbY"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#f5f5f5",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "product_inline_MHDc49": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_cH6XUc": {
+          "type": "product_group",
+          "settings": {
+            "group_title": "Full Lace Design: Soft & Breathable"
+          }
+        },
+        "product_item_mCMmRP": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        },
+        "product_item_tfF4EU": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        }
+      },
+      "block_order": [
+        "product_group_cH6XUc",
+        "product_item_mCMmRP",
+        "product_item_tfF4EU"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#f5f5f5",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "product_inline_7hwgJX": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_zjTFyJ": {
+          "type": "product_group",
+          "settings": {
+            "group_title": "Full Lace Design: Soft & Breathable"
+          }
+        },
+        "product_item_cA4kgJ": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        },
+        "product_item_68hw93": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        }
+      },
+      "block_order": [
+        "product_group_zjTFyJ",
+        "product_item_cA4kgJ",
+        "product_item_68hw93"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#f5f5f5",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "product_inline_gM6AhH": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_8PMgxm": {
+          "type": "product_group",
+          "settings": {
+            "group_title": "Full Lace Design: Soft & Breathable"
+          }
+        },
+        "product_item_TVddiC": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        },
+        "product_item_tb4HFk": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        }
+      },
+      "block_order": [
+        "product_group_8PMgxm",
+        "product_item_TVddiC",
+        "product_item_tb4HFk"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#f5f5f5",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "product_inline_DAaRYT": {
+      "type": "product-inline",
+      "blocks": {
+        "product_group_RAad83": {
+          "type": "product_group",
+          "settings": {
+            "group_title": "Full Lace Design: Soft & Breathable"
+          }
+        },
+        "product_item_k99AqW": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        },
+        "product_item_9DdWJA": {
+          "type": "product_item",
+          "settings": {
+            "parent_group_number": 1,
+            "product": "helios-hair-system-for-bald-men-full-swiss-lace-base-best-for-active-lifestyle",
+            "custom_image": "shopify://shop_images/goods1_fda7823b-b23f-42ac-9788-61008cbeef39.webp",
+            "custom_title": "Helios-TP1805",
+            "custom_description": "Swiss Lace 90% Density",
+            "custom_url": "",
+            "title_image_width": 124,
+            "title_image_height": 47,
+            "custom_price": "",
+            "custom_compare_price": "",
+            "sku": "",
+            "image_width": 356,
+            "image_height": 291
+          }
+        }
+      },
+      "block_order": [
+        "product_group_RAad83",
+        "product_item_k99AqW",
+        "product_item_9DdWJA"
+      ],
+      "name": "Product Inline",
+      "settings": {
+        "mobile_columns": 1,
+        "desktop_columns": 2,
+        "background_color": "#f5f5f5",
+        "btn_text": "Shop Now >",
+        "currency_symbol": "$",
+        "show_sku": false
+      }
+    },
+    "common_heading_yAcALn": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "Can You Work Out or Shower with a Hair System?",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "medium",
+        "background_color": ""
+      }
+    },
+    "custom_content_9hHJBd": {
+      "type": "custom-content",
+      "blocks": {
+        "video_7GbgTw": {
+          "type": "video",
+          "settings": {
+            "width": "half",
+            "video_external": "https://www.youtube.com/watch?v=xjZaZREI0Vg",
+            "video_description": "",
+            "autoplay": false,
+            "placeholder_image": "shopify://shop_images/workouts.webp"
+          }
+        },
+        "text_Mj3FGn": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "For Sports & Workouts:",
+            "title_size": 32,
+            "title_size_mobile": 24,
+            "text": "<p>Use a strong adhesive or waterproof tape for extra security. A lace base is ideal for sweat absorption.<br/><br/></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "video_7GbgTw",
+        "text_Mj3FGn"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_yXkiVj": {
+      "type": "custom-content",
+      "blocks": {
+        "text_PMcK9x": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "For Showering:",
+            "title_size": 32,
+            "title_size_mobile": 24,
+            "text": "<p>Avoid soaking in hot water for too long. Use mild, sulfate-free shampoo and let it air dry naturally.</p><p></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "video_pNT7x3": {
+          "type": "video",
+          "settings": {
+            "width": "half",
+            "video_external": "https://www.youtube.com/watch?v=XSE0JeEtve0&t=5s",
+            "video_description": "",
+            "autoplay": false,
+            "placeholder_image": "shopify://shop_images/shower.webp"
+          }
+        }
+      },
+      "block_order": [
+        "text_PMcK9x",
+        "video_pNT7x3"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_yUfDGb": {
+      "type": "custom-content",
+      "blocks": {
+        "video_Q4KRpq": {
+          "type": "video",
+          "settings": {
+            "width": "half",
+            "video_external": "https://www.youtube.com/watch?v=GL88P-B5o5c",
+            "video_description": "",
+            "autoplay": false,
+            "placeholder_image": "shopify://shop_images/bottom.webp"
+          }
+        },
+        "text_bdThV3": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Useful Tips: How to Remove Glue& Tape From Hair System",
+            "title_size": 32,
+            "title_size_mobile": 24,
+            "text": "<p>Stabilize with a Mannequin Head</p><p>Use Cotton Balls for Tape Removal</p><p>Clean Thoroughly<br/><br/></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "video_Q4KRpq",
+        "text_bdThV3"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_ADmbiN",
+    "custom_content_hGMEnY",
+    "product_inline_xXCrcJ",
+    "product_inline_MHDc49",
+    "product_inline_7hwgJX",
+    "product_inline_gM6AhH",
+    "product_inline_DAaRYT",
+    "common_heading_yAcALn",
+    "custom_content_9hHJBd",
+    "custom_content_yXkiVj",
+    "custom_content_yUfDGb"
+  ]
+}

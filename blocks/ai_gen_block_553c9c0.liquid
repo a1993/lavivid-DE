@@ -1,0 +1,317 @@
+{% doc %}
+  @prompt
+    Coming soon / system migration landing page for Lavivid Hair - a premium men's hair system brand with "The Technical Gentleman" aesthetic. Needs to reassure both new and existing customers during platform migration, with email signup and customer support contact.
+    
+    ### Brand Context
+    
+    - **Brand tone:** Calm, practical, confident, trustworthy
+    - **Style:** No marketing fluff, understated elegance
+    - **Target audience:** Men looking for premium hair replacement systems
+    - **Current state:** Basic Shopify template - needs significant upgrade while maintaining professional aesthetic
+    
+    
+    ### Color Palette (5 colors)
+    
+    | Token | Description | Value
+    |-----|-----|-----
+    | `--background` | Warm cream | `oklch(0.96 0.01 75)`
+    | `--foreground` | Deep brown | `oklch(0.2 0.02 60)`
+    | `--card` | Soft ivory | `oklch(0.98 0.005 75)`
+    | `--muted-foreground` | Medium brown | `oklch(0.45 0.02 60)`
+    | `--accent` | Warm bronze | `oklch(0.55 0.08 55)`
+    
+    
+    ### Typography
+    
+    - **Font:** Geist Sans (system default)
+    - **Headline:** `text-4xl md:text-5xl font-light tracking-tight`
+    - **Body:** `text-base md:text-lg leading-relaxed`
+    - **Subtext:** `text-sm text-muted-foreground`
+    
+    
+    ### Layout Structure
+    
+    1. **Header** - Logo centered, password entry link right
+    2. **Hero Section** - Animated gear icon + headline + body copy
+    3. **Reassurance Cards** - 3-column grid (orders, data, support)
+    4. **Email Signup** - Input + button with loading/success states
+    5. **Contact Section** - Direct support email highlight
+    6. **Social Links** - Facebook, YouTube, Instagram, TikTok
+    7. **Footer** - Copyright + Shopify badge
+    
+    
+    ### Key UI Elements
+    
+    - Animated spinning gear icon (CSS animation)
+    - Card components with subtle borders
+    - Form with loading spinner and success checkmark
+    - Social icons with hover transitions
+    - Fully responsive (mobile-first approach)
+    
+    
+    ### Copy Direction
+    
+    - Direct, factual messaging
+    - Reassurance without over-promising
+    - Clear call-to-action for email signup
+    - Prominent support contact for urgent inquiries, 移除power by shopify一行, 删掉Email signup， Need immediate assistance两个板块, 只保留Hero section，Reassurance cards，其他板块删掉
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .lavivid-migration-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.foreground_color }};
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .lavivid-migration-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .lavivid-migration-hero-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 120px 0 60px;
+  }
+
+  .lavivid-migration-gear-{{ ai_gen_id }} {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 40px;
+    color: {{ block.settings.accent_color }};
+    animation: lavivid-spin-{{ ai_gen_id }} 8s linear infinite;
+  }
+
+  @keyframes lavivid-spin-{{ ai_gen_id }} {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .lavivid-migration-headline-{{ ai_gen_id }} {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    color: {{ block.settings.foreground_color }};
+  }
+
+  .lavivid-migration-body-{{ ai_gen_id }} {
+    font-size: 18px;
+    line-height: 1.6;
+    color: {{ block.settings.muted_foreground }};
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .lavivid-migration-cards-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 60px 0 120px;
+  }
+
+  .lavivid-migration-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_color }};
+    border: 1px solid {{ block.settings.foreground_color | color_modify: 'alpha', 0.1 }};
+    padding: 32px;
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+  }
+
+  .lavivid-migration-card-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.accent_color | color_modify: 'alpha', 0.3 }};
+  }
+
+  .lavivid-migration-card-icon-{{ ai_gen_id }} {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 16px;
+    color: {{ block.settings.accent_color }};
+  }
+
+  .lavivid-migration-card-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: {{ block.settings.foreground_color }};
+  }
+
+  .lavivid-migration-card-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    line-height: 1.6;
+    color: {{ block.settings.muted_foreground }};
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .lavivid-migration-hero-{{ ai_gen_id }} {
+      padding: 80px 0 40px;
+    }
+
+    .lavivid-migration-headline-{{ ai_gen_id }} {
+      font-size: 36px;
+    }
+
+    .lavivid-migration-body-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .lavivid-migration-cards-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      padding: 40px 0 80px;
+    }
+  }
+{% endstyle %}
+
+<div class="lavivid-migration-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="lavivid-migration-container-{{ ai_gen_id }}">
+    <section class="lavivid-migration-hero-{{ ai_gen_id }}">
+      {% comment %} <svg class="lavivid-migration-gear-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+      </svg> {% endcomment %}
+      <h1 class="lavivid-migration-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h1>
+      <div class="lavivid-migration-body-{{ ai_gen_id }}">{{ block.settings.body_text }}</div>
+    </section>
+
+    <div class="lavivid-migration-cards-{{ ai_gen_id }}">
+      <div class="lavivid-migration-card-{{ ai_gen_id }}">
+        <svg class="lavivid-migration-card-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <h3 class="lavivid-migration-card-title-{{ ai_gen_id }}">{{ block.settings.card_1_title }}</h3>
+        <p class="lavivid-migration-card-text-{{ ai_gen_id }}">{{ block.settings.card_1_text }}</p>
+      </div>
+
+      <div class="lavivid-migration-card-{{ ai_gen_id }}">
+        <svg class="lavivid-migration-card-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <h3 class="lavivid-migration-card-title-{{ ai_gen_id }}">{{ block.settings.card_2_title }}</h3>
+        <p class="lavivid-migration-card-text-{{ ai_gen_id }}">{{ block.settings.card_2_text }}</p>
+      </div>
+
+      <div class="lavivid-migration-card-{{ ai_gen_id }}">
+        <svg class="lavivid-migration-card-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+        <h3 class="lavivid-migration-card-title-{{ ai_gen_id }}">{{ block.settings.card_3_title }}</h3>
+        <p class="lavivid-migration-card-text-{{ ai_gen_id }}">{{ block.settings.card_3_text }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Migration landing page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero section"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "We're upgrading our systems"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "Our store is temporarily unavailable as we migrate to a new platform. Your account data and order history are being securely transferred. We'll be back shortly with an improved experience."
+    },
+    {
+      "type": "header",
+      "content": "Reassurance cards"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Card 1 title",
+      "default": "Existing orders"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_text",
+      "label": "Card 1 text",
+      "default": "All orders placed before the migration will be fulfilled as scheduled. You'll receive tracking updates via email."
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Card 2 title",
+      "default": "Your data is secure"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_text",
+      "label": "Card 2 text",
+      "default": "Account information, order history, and saved preferences are being transferred securely to our new platform."
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Card 3 title",
+      "default": "Questions?"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_text",
+      "label": "Card 3 text",
+      "default": "Our support team is available to assist with any concerns during this transition. Contact us directly below."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f5f3f0"
+    },
+    {
+      "type": "color",
+      "id": "foreground_color",
+      "label": "Text",
+      "default": "#332f29"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card background",
+      "default": "#faf9f8"
+    },
+    {
+      "type": "color",
+      "id": "muted_foreground",
+      "label": "Muted text",
+      "default": "#736e66"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#9d7f5f"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Migration landing page"
+    }
+  ]
+}
+{% endschema %}

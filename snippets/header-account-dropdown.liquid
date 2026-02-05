@@ -1,0 +1,207 @@
+{% comment %}
+  移动端账户下拉菜单
+  用法: {% render 'header-account-dropdown', icon_strategy: section.settings.icon_strategy %}
+{% endcomment %}
+
+{% style %}
+  /* 账户下拉菜单样式 */
+  .header-account-dropdown {
+    position: relative;
+  }
+  
+  .header-account-dropdown__menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  
+  .header-account-dropdown.active .header-account-dropdown__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .header-account-dropdown__item {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: none;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .header-account-dropdown__item:hover,
+  .header-account-dropdown__item:focus {
+    background-color: #f5f5f5;
+    color: #333;
+    outline: none;
+  }
+  
+  .header-account-dropdown__item:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+  
+  .header-account-dropdown__item:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  
+  .header-account-dropdown__item:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .header-account-link--dropdown {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .header-account-link--dropdown:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-only {
+      display: none !important;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .desktop-only {
+      display: none !important;
+    }
+  }
+{% endstyle %}
+
+<div class="header-account-dropdown mobile-only" data-dropdown-ready="false">
+  <button
+    class="header-account-link header-account-link--dropdown"
+    type="button"
+    aria-label="{{ 'sections.header.account' | t | escape }}"
+    aria-haspopup="true"
+    aria-expanded="false"
+    data-dropdown-toggle
+  >
+    <span class="header-account-link__text visually-hidden-mobile">
+      {{- 'sections.header.account' | t -}}
+    </span>
+    <span class="header-account-link__icon{% if icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">
+      {%- render 'icon-user' -%}
+    </span>
+  </button>
+  <div class="header-account-dropdown__menu" role="menu" data-dropdown-menu>
+   
+    <a
+      class="header-account-dropdown__item"
+      href="{{ routes.account_login_url }}"
+      role="menuitem"
+    >
+      Customer Login
+    </a>
+    <a
+      class="header-account-dropdown__item"
+      href="/pages/wholesale-login"
+      role="menuitem"
+    >
+      Wholesale Login
+    </a>
+  </div>
+</div>
+
+<a
+  class="header-account-link desktop-only"
+  href="{{ routes.account_login_url }}"
+  aria-label="{{ 'sections.header.account' | t | escape }}"
+>
+  <span class="header-account-link__text {% if icon_strategy == 'icons_only' %}visually-hidden{% endif %}">
+    {{- 'sections.header.account' | t -}}
+  </span>
+  <span class="header-account-link__icon{% if icon_strategy == 'icons_cart_search' %} mobile-only{% endif %}">
+    {%- render 'icon-user' -%}
+  </span>
+</a>
+
+<script>
+  (function() {
+    'use strict';
+    
+    let dropdownsInitialized = false;
+    
+    function initDropdowns() {
+      if (dropdownsInitialized) return;
+      dropdownsInitialized = true;
+      
+      const dropdowns = document.querySelectorAll('.header-account-dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('[data-dropdown-toggle]');
+        const menu = dropdown.querySelector('[data-dropdown-menu]');
+        
+        if (!toggle || !menu) return;
+        
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const isActive = dropdown.classList.contains('active');
+          
+          // 关闭所有其他下拉菜单
+          document.querySelectorAll('.header-account-dropdown.active')
+            .forEach(d => {
+              if (d !== dropdown) {
+                d.classList.remove('active');
+                d.querySelector('[data-dropdown-toggle]')?.setAttribute('aria-expanded', 'false');
+              }
+            });
+          
+          if (!isActive) {
+            dropdown.classList.add('active');
+            toggle.setAttribute('aria-expanded', 'true');
+          } else {
+            dropdown.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+      
+      // 点击外部关闭
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.header-account-dropdown')) {
+          document.querySelectorAll('.header-account-dropdown.active').forEach(dropdown => {
+            dropdown.classList.remove('active');
+            dropdown.querySelector('[data-dropdown-toggle]')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
+    }
+    
+    // 使用DOMContentLoaded确保DOM完全加载
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDropdowns);
+    } else {
+      initDropdowns();
+    }
+  })();
+</script>
+

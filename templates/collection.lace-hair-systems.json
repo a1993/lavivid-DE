@@ -1,0 +1,445 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_9tGaUn": {
+      "type": "slideshow",
+      "blocks": {
+        "image_6TdMNK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/lace.jpg",
+            "mobile_image": "shopify://shop_images/lace_48e92490-cc59-4c7e-8746-f3b0a9a7bd03.jpg",
+            "slide_link": "",
+            "enable_rating": false,
+            "review_text": "",
+            "rating_value": 5,
+            "subheading": "",
+            "heading_text_1": "",
+            "heading_text_2": "Lace Hair Systems",
+            "heading_color_1": "#5b5be5",
+            "heading_color_2": "#ffffff",
+            "title": "Lace Hair Systems",
+            "heading_max_width": 40,
+            "title_size": 56,
+            "title_size_mobile": 48,
+            "use_h1": false,
+            "text": "<ul><li>Light</li><li>Breathable</li><li>Airy Fell</li></ul>",
+            "enlarge_text": false,
+            "button_label_1": "",
+            "button_url_1": "",
+            "button_label_2": "",
+            "button_url_2": "",
+            "button_1_type": "secondary",
+            "button_2_type": "secondary",
+            "primary_button_bg_color": "",
+            "primary_button_text_color": "",
+            "secondary_button_bg_color": "",
+            "secondary_button_text_color": "",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "image_6TdMNK"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "height": "adapt",
+        "height_desktop": 600,
+        "height_mobile": 460,
+        "full_width": true,
+        "mobile_overlay_under": false,
+        "overlay_style": "shadow",
+        "transition": "fade",
+        "navigation": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "accessibility_info": ""
+      }
+    },
+    "gallery_cKrqW8": {
+      "type": "gallery",
+      "blocks": {
+        "media_4qmPER": {
+          "type": "media",
+          "settings": {
+            "image": "shopify://shop_images/Professional.jpg",
+            "enlarge_media": true,
+            "subheading": "",
+            "title": "Professional",
+            "button_label": "",
+            "link": "shopify://collections/business",
+            "text_alignment": "bottom left"
+          }
+        },
+        "media_zaWUpi": {
+          "type": "media",
+          "settings": {
+            "image": "shopify://shop_images/img7_620e1f2d-a109-4683-b3e1-85dbf3f0a589.jpg",
+            "enlarge_media": false,
+            "subheading": "",
+            "title": "Travel",
+            "button_label": "",
+            "link": "shopify://pages/travel-guide-hair-system-wearers-essentials",
+            "text_alignment": "bottom left"
+          }
+        },
+        "media_JRJ4Hc": {
+          "type": "media",
+          "settings": {
+            "image": "shopify://shop_images/swimming.jpg",
+            "enlarge_media": false,
+            "subheading": "",
+            "title": "Swimming",
+            "button_label": "",
+            "link": "shopify://pages/waterproof-men-hair-system-for-swimming",
+            "text_alignment": "bottom left"
+          }
+        },
+        "media_dXfgja": {
+          "type": "media",
+          "settings": {
+            "image": "shopify://shop_images/Fitness.jpg",
+            "enlarge_media": true,
+            "subheading": "",
+            "title": "Fitness",
+            "button_label": "",
+            "link": "shopify://collections/workout",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "media_4qmPER",
+        "media_zaWUpi",
+        "media_JRJ4Hc",
+        "media_dXfgja"
+      ],
+      "disabled": true,
+      "name": "Gallery",
+      "settings": {
+        "grid_desktop": 4,
+        "grid_mobile": "1",
+        "height": "fixed",
+        "desktop_image_height": 250,
+        "mobile_image_height": 220,
+        "title_size": 30,
+        "title_size_mobile": 22,
+        "enable_margin": true,
+        "enable_row_spacing": false,
+        "full_width": false,
+        "color_scheme": "default",
+        "enable_carousel": true,
+        "overlay_style": "full",
+        "overlay_padding": "standard",
+        "button_style": "primary"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_title": false,
+        "show_image_behind_heading": false,
+        "heading_image_height": "huge",
+        "overlay_style": "full",
+        "coll_desc_pos": "above",
+        "show_description": false,
+        "coll_num_per_page_int": 24,
+        "grid": 4,
+        "show_vendor": false,
+        "show_total": true,
+        "show_custom_banner": false,
+        "custom_banner_heading": "🎃 Halloween Treat 20% OFF!",
+        "custom_banner_image": "shopify://shop_images/a-person-with-halloween-pumpkin-on-hand.png",
+        "custom_banner_code": "CODE: TREAT20",
+        "custom_banner_meta": "UNTIL OCT 31, 2025",
+        "custom_banner_description": "",
+        "custom_banner_link_label": "Shop Now",
+        "custom_banner_link": "",
+        "enable_filtering": false,
+        "collapse_tag_sidebar_by_default": false,
+        "collapse_filters_method": "over-6",
+        "show_filter_counts": true,
+        "filter_two_columns": true,
+        "button_grid_filter_name": "Size,Taille,Größe",
+        "auto_apply_hide_unavailable": false,
+        "enable_sticky_filter": true,
+        "show_sort": true,
+        "sort_show_featured": true,
+        "sort_show_best": true,
+        "sort_show_alpha": true,
+        "sort_show_price": true,
+        "sort_show_date": true,
+        "related_collections": [
+          "lace-hair-systems"
+        ],
+        "related_collections_style": "buttons",
+        "rel_coll_gall_aspect_ratio": "1",
+        "image_position": "center center",
+        "rel_coll_gall_enable_margin": true,
+        "rel_coll_gall_full_width": false,
+        "rel_coll_gall_overlay_style": "shadow",
+        "rel_coll_gall_text_alignment": "center center",
+        "rel_coll_grid_mobile": "2"
+      }
+    },
+    "image_with_text_zMzTfh": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NECjjN": {
+          "type": "heading",
+          "settings": {
+            "heading_text_1": "Crafted For",
+            "title": "<span>Not Sure</span> Where To Begin?",
+            "use_h1": false
+          }
+        },
+        "text_3bpiPC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Starting your hair system journey can feel overwhelming but we’re here to make it simple. Get the basics or personalized guidance from our expert.</p>",
+            "enlarge_text": false
+          }
+        },
+        "button_N7C8qd": {
+          "type": "button",
+          "settings": {
+            "button_label": "HELP ME CHOOSE",
+            "button_link": "/pages/hair-systems-for-beginners",
+            "button_style": "primary"
+          }
+        },
+        "button_eXQpnD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Book Free Consultation",
+            "button_link": "/pages/hair-system-consultation",
+            "button_style": "secondary"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NECjjN",
+        "text_3bpiPC",
+        "button_N7C8qd",
+        "button_eXQpnD"
+      ],
+      "settings": {
+        "class-name": "",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "image": "shopify://shop_images/Not_Sure_Where_To_Begin__-_image_1.png",
+        "image_2": "shopify://shop_images/Not_Sure_Where_To_Begin__-_image_2.png",
+        "image_width": 670,
+        "image_link": "",
+        "image_position": "right",
+        "text_alignment": "left",
+        "color_scheme": "2"
+      }
+    },
+    "multi_column_rk3kbJ": {
+      "type": "multi-column",
+      "blocks": {
+        "text_block_yNbHL3": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-free-shipping.svg",
+            "title": "Free Shipping",
+            "text": "<p>Free Worldwide Shipping on Orders Over $249</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_7MWzFy": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-secure-payment.svg",
+            "title": "Secure Payment",
+            "text": "<p>Shop confidently with encrypted checkout.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_w4AfVm": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-quality-guaranteed.svg",
+            "title": "Quality Guaranteed",
+            "text": "<p>Expertly crafted for natural look and lasting wear.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_gCjaci": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-45-day-money-back.svg",
+            "title": "45-Day Return Guarantee",
+            "text": "<p>Try risk-free with our hassle-free return policy.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_yNbHL3",
+        "text_block_7MWzFy",
+        "text_block_w4AfVm",
+        "text_block_gCjaci"
+      ],
+      "settings": {
+        "class-name": "usp-icon-section",
+        "user_type": "all",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "columns": "2",
+        "title": "",
+        "media_aspect_ratio": "1",
+        "media_width": 60,
+        "text_alignment": "center",
+        "button_style": "primary",
+        "color_scheme": "1"
+      }
+    },
+    "collapsible_tabs_amtjNH": {
+      "type": "collapsible-tabs",
+      "blocks": {
+        "question_Afk6FR": {
+          "type": "question",
+          "settings": {
+            "title": "What is a hair system?",
+            "answer": "<p>A hair system is a non-surgical hair replacement solution that blends with your natural hair. It’s bonded to the scalp with tape or adhesive for a natural, undetectable look you can style, cut, and wear daily. </p>"
+          }
+        },
+        "question_9bQCeB": {
+          "type": "question",
+          "settings": {
+            "title": "What’s the difference between a wig and a hair system?",
+            "answer": "<p>A wig covers your whole head and is usually worn temporarily. A hair system only replaces thinning or bald areas, attaches securely to your scalp, and looks more natural for everyday, active wear.</p>"
+          }
+        },
+        "question_dd89Fc": {
+          "type": "question",
+          "settings": {
+            "title": "How long will my hair system last?",
+            "answer": "<p>It depends on the base design of the hair system and how well the wearer looks after their hair system.  Thin skin base can usually last 2-4 months, depending on skin thickness. The thicker the skin, the longer the lifespan. Lace base and mono base can last 3-6 months, while silk base can last up to 9 months. </p>"
+          }
+        },
+        "question_iWcVmN": {
+          "type": "question",
+          "settings": {
+            "title": "Can I swim, shower, or exercise while wearing a hair system?",
+            "answer": "<p>es. A properly bonded hair system stays secure during swimming, showering, and workouts. Just use waterproof adhesive and follow aftercare tips to keep it lasting longer.</p>"
+          }
+        },
+        "question_bgtzcK": {
+          "type": "question",
+          "settings": {
+            "title": "How often do I need to remove and reapply a hair system?",
+            "answer": "<p>Most men reapply every 2–4 weeks, depending on the adhesive, scalp condition, and lifestyle. Some prefer weekly maintenance for maximum comfort, while others can go longer with strong waterproof adhesive. </p>"
+          }
+        },
+        "question_FLq7F7": {
+          "type": "question",
+          "settings": {
+            "title": "Will the hair system look natural and undetectable?",
+            "answer": "<p>Yes. Our quality hair system is designed to blend seamlessly with your natural hair. With the right base, color match, and hair density, even the front hairline can look completely natural and undetectable.</p>"
+          }
+        },
+        "question_NWjiEB": {
+          "type": "question",
+          "settings": {
+            "title": "Which is the most natural and durable hair system?",
+            "answer": "<p>For the front hairline area, a thin skin base and lace base can both offer you a super natural look, while a silk base can guarantee you a scalp-like top. You can go for a combo base with a lace front. </p>"
+          }
+        },
+        "question_LCcJrB": {
+          "type": "question",
+          "settings": {
+            "title": "What type of hair system would you recommend for a first-time hair system wearer?",
+            "answer": "<p>A skin hair system is a great choice as it doesn't have any holes compared to a lace/mono/silk base. If you plan to use glue, which adheres more effectively than tape, skin bases are easier to remove, clean, and maintain. </p>"
+          }
+        },
+        "question_4M7NaF": {
+          "type": "question",
+          "settings": {
+            "title": "I am looking for the most secure attachment. Which base shall I choose?",
+            "answer": "<p>If bonded correctly, all of our hair systems can provide you with a secure attachment. If you care for your hair system properly (by removing, cleaning, and re-bonding every 1-2 weeks), it will stay securely. Nevertheless, if you are looking for the strongest attachment, many of our clients have the best experience with the full skin base. You need to apply liquid adhesive all over the scalp, which guarantees the most secure fit.</p>"
+          }
+        },
+        "question_BPUV6D": {
+          "type": "question",
+          "settings": {
+            "title": "Will wearing a hair system cause any damage to my scalp? I haven't completely ruled out the possibility of a hair transplant in the future.",
+            "answer": "<p>It will not damage your scalp or existing hair, provided the hair system is kept clean and maintained correctly. The hair system may actually provide protection to a certain extent against the sun and will protect sensitive scalps from the elements. It is also necessary to pay attention to whether your skin is allergic to glue/tapes. Do a small test on your skin before applying it to your scalp.</p>"
+          }
+        },
+        "question_iUbiz7": {
+          "type": "question",
+          "settings": {
+            "title": "I work out a lot and spend most of my time sweating. Which system is the most breathable and suitable for a very active lifestyle?",
+            "answer": "<p>Full lace hair systems are the most breathable and light-weight styles. We also have combined bases of lace which are also breathable and easy to apply and remove. We recommend you remove the hair system and do a thorough clean once a week if you sweat a lot. </p>"
+          }
+        },
+        "question_MH4MMm": {
+          "type": "question",
+          "settings": {
+            "title": "Can you provide information on hybrid hair systems and how their durability compares to full poly systems?",
+            "answer": "<p> Hybrid hair systems combine lace and skin to bring out the best of both materials. For instance, our Simois hair system features a central lace base for a soft, breathable feel, paired with thin PU skin along the perimeter for easy attachment and removal, plus a front lace section for a natural, seamless hairline. Full skin systems, on the other hand, often use a V-loop technique at the front to achieve a realistic hairline. With thicker skin, they offer strong support for denser hair and excellent durability, typically lasting longer than hybrids, depending on the skin's thickness. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_Afk6FR",
+        "question_9bQCeB",
+        "question_dd89Fc",
+        "question_iWcVmN",
+        "question_bgtzcK",
+        "question_FLq7F7",
+        "question_NWjiEB",
+        "question_LCcJrB",
+        "question_4M7NaF",
+        "question_BPUV6D",
+        "question_iUbiz7",
+        "question_MH4MMm"
+      ],
+      "disabled": true,
+      "name": "Collapsible tabs",
+      "settings": {
+        "title": "<span>Frequently</span> Asked Questions"
+      }
+    }
+  },
+  "order": [
+    "slideshow_9tGaUn",
+    "gallery_cKrqW8",
+    "main",
+    "image_with_text_zMzTfh",
+    "multi_column_rk3kbJ",
+    "collapsible_tabs_amtjNH"
+  ]
+}

@@ -1,0 +1,89 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_banner_efmgn8": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/ordering-guide-banner-p.jpg",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/ordering-guide-banner-m.jpg",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "standard",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "custom_rich_text_M4z6GR": {
+      "type": "custom-rich-text",
+      "custom_css": [
+        "h1 {color: white; font-size: 30px;}"
+      ],
+      "name": "[gy] Custom Rich Text",
+      "settings": {
+        "richtext": "<h1>Ordering Guide for Mens Hair Replacement System</h1><p>Please find information and advice on Men’s Hair Replacement Systems here. We have several guides to help you decide on your first hair replacement system.</p><p>Alternatively, you can contact our experts directly, by emailing support@lavividhair.com to get guidance.</p>",
+        "text_alignment": "left",
+        "background_color": "#53b0bf",
+        "text_color": "#ffffff",
+        "padding_top": "medium",
+        "padding_bottom": "medium"
+      }
+    },
+    "custom_html_content_AgfyE3": {
+      "type": "custom-html-content",
+      "blocks": {
+        "html_hegz7L": {
+          "type": "html",
+          "settings": {
+            "html_content": "<meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n  <!-- UIkit CSS -->\n  <link rel=\"stylesheet\" href=\"https://cdn.shopify.com/s/files/1/0736/6213/6477/files/uikit.min.css?v=1762823657\">\n\n  <!-- UIkit JS -->\n  <script src=\"https://cdn.shopify.com/s/files/1/0736/6213/6477/files/uikit.min.js?v=1762823665\"></script>\n  <script src=\"https://cdn.shopify.com/s/files/1/0736/6213/6477/files/uikit-icons.min.js?v=1762823500\"></script>\n  <script type=\"text/javascript\" src=\"https://d23tttlodvxe00.cloudfront.net/modules/blogs/views/js/jquery-1.10.2.js\"></script>\n  <style>\n    li {\n      list-style: none;\n    }\n    .tag-container{\n        width:auto;\n        max-width:none;\n        padding-left: 0;\n        padding-right: 0;\n    }\n    .tag-container .page-header{\n        display: none;\n    }\n    .tag-container .row{\n        margin-left: 0;\n        margin-right: 0;\n    }\n    .tag-content{\n        padding: 0!important;\n        margin-bottom:0!important;\n        text-align: left!important;\n    }\n    .tag-content ul, .tag-content li{\n        list-style-type: none;\n    }\n    .wrapper-top{\n        max-width: 1200px;\n        margin: 0 auto;\n    }\n    .wrapper-top h1{\n        font-size: 18px;\n        margin-bottom: 5px;\n    }\n    #ordering-guide article{\n        background: #53b0bf;\n        padding: 15px 10px;\n        color: #fff;\n        font-size: 14px;\n        line-height: 20px;\n        text-align: left;\n        margin: 0 0 20px 0!important;\n    }\n    #wrapper .banner{\n        margin-bottom: 0!important;\n    }\n    #ordering-guide .banner span{\n        display: none;\n    }\n    #ordering-guide .banner img{\n        width: 100%;\n        height: auto;\n    }\n    .wrapper-top p{\n        margin: 0;\n        padding: 0;\n    }\n.order-guide-list{\n    margin-top: 30px;\n    width: auto;\n    display: grid;\n    row-gap: 30px;\n    column-gap: 4%;\n    grid-template-columns: repeat(2, auto);\n    padding-left: 0;\n}\n.order-guide-list li:last-child{\n    grid-column: 1 / span 2;\n    text-align: center;\n}\n.order-guide-list li a{\n    display: inline-block;\n}\n.order-guide-list li a:hover{\n    filter: alpha(opacity=60);-moz-opacity:0.6;opacity:0.6;\n}\n\n\n\n    @media all and (max-width:767px)\n    {\n        .wrapper-top{\n            width: auto;\n            min-width: auto;\n        }\n        #ordering-guide .banner img{\n            display: none;\n        }\n        #ordering-guide .banner span,\n        #ordering-guide .banner span img{\n            display: block!important;\n        }\n        .order-guide-list{\n            display: block;\n        }\n        .order-guide-list li{\n            margin-bottom: 15px;\n        }\n        .link-btn{\n            padding-left: 20px;\n            padding-right: 20px;\n        }\n        @media all and (max-width:460px)\n        {\n            .order-guide-list{\n                display: block;\n            }\n            .order-guide-list li{\n                margin-bottom: 20px;\n            }\n            .order-guide-list li:last-child{\n                margin-bottom: 0;\n            }\n            .order-guide-list li:last-child a{\n                width: auto;\n            }\n        }\n    }\n\n</style>\n\n\n\n<div id=\"TagWrap\">\n<div id=\"ordering-guide\">\n    <!-- <div class=\"banner\">\n        <img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/ordering-guide-banner-p.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/ordering-guide-banner-p.jpg\" alt=\"NEW TO HAIR REPLACEMENT SYSTEMS?\" width=\"1920\" height=\"340\">\n        <span><img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/ordering-guide-banner-m.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/ordering-guide-banner-m.jpg\" alt=\"NEW TO HAIR REPLACEMENT SYSTEMS?\" width=\"600\" height=\"506\"></span>\n    </div>\n    <article>\n        <div class=\"wrapper-top\">\n            <h1 style=\"color: white;\">Ordering Guide for Mens Hair Replacement System</h1>\n            <p style=\"color: white;\">\n            Please find information and advice on Men’s Hair Replacement Systems here. We have several guides to help you decide on your first hair replacement system.\n            </p>\n            <p style=\"color: white;\">\n            Alternatively, you can contact our experts directly, by emailing support@lavividhair.com to get guidance.\n            </p>\n        </div>\n    </article> -->\n        <div class=\"wrapper-top link-btn\">\n            <p>If you're new to the world of hair replacement, it can be overwhelming trying to navigate the different types of hair systems and ordering processes. Choosing a hair system is a personal decision, and what works for one person may not work for another. Do your research, ask questions, and take your time to ensure you choose the best hair system for your needs.</p>\n            <p>Here we are presenting you a pack of guidelines including base guide, color guide, wave/curl guide, density guide and contour guide which will help you make a decision on what base, color, wave pattern, density and contour shape. To access these guides, simply click on the corresponding banners provided below. These guides offer detailed and expert instructions to assist you with your order.</p>\n            <br>\n            <ul class=\"order-guide-list\">\n                <li><a href=\"/content/hair-system-base-guide-52\"><img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner05.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner05.jpg\" alt=\"Hair System Base Guide\" width=\"580\" height=\"109\"></a></li>\n                <li><a href=\"/content/hair-density-standards-53\"><img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner03.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner03.jpg\" alt=\"Hair Density Standards\" width=\"580\" height=\"109\"></a></li>\n                <li><a href=\"/content/hair-system-color-guide-50\"><img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner04.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner04.jpg\" alt=\"Hair System Color Chart\" width=\"580\" height=\"109\"></a></li>\n                <li><a href=\"/content/front-contour-shapes-guide-54\"><img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner02.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner02.jpg\" alt=\"Front Contour Shapes Guide\" width=\"580\" height=\"109\"></a></li>\n                <li><a href=\"/content/hair-system-wave-or-curl-guide-51\"><img loading=\"lazy\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner01.jpg\" data-src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/tag/order-guide/banner01.jpg\" alt=\"Hair System Curl Wave Guide\" width=\"580\" height=\"109\"></a></li>\n            </ul>\n        </div>\n</div>\n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "html_hegz7L"
+      ],
+      "name": "[gy] Custom HTML Content",
+      "settings": {
+        "section_title": "",
+        "title_size": 32,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_margin": 40,
+        "container_type": "full-width",
+        "container_width": 1180,
+        "container_padding": 15,
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "use_shadow_dom": true,
+        "custom_css": "",
+        "custom_js": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_efmgn8",
+    "custom_rich_text_M4z6GR",
+    "custom_html_content_AgfyE3"
+  ]
+}

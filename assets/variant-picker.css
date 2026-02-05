@@ -1,0 +1,13 @@
+.lv-detail-color-list{
+        overflow: hidden;
+        max-height: 300px;
+        overflow-y: auto;
+        padding-block: 10px;
+}
+.lv-detail-color .js-value{
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

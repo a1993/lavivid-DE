@@ -1,0 +1,43 @@
+{%- comment -%}
+  前端重定向页面组件
+  支持自定义URL，如果没有设置则根据用户身份跳转 toB 或者 toC
+{%- endcomment -%}
+
+{%- liquid
+  assign redirect_url = blank
+
+  if section.settings.custom_url != blank
+    assign redirect_url = section.settings.custom_url
+  elsif customer
+    if customer.b2b?
+      assign redirect_url = 'https://wholesales.lavividhair.com'
+    else
+      assign redirect_url = routes.account_url
+    endif
+  endif
+-%}
+
+{%- if redirect_url != blank -%}
+  <script>
+    window.location.href = '{{ redirect_url }}';
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Return Back Page",
+  "settings": [
+    {
+      "type": "url",
+      "id": "custom_url",
+      "label": "Custom URL",
+      "info": "If set, will redirect to this URL. Leave empty to use default logic (redirect based on login status)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Return Back Page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,48 @@
+{%- if form == blank or form.errors -%}
+  {%- liquid
+    if error_heading == blank
+      assign error_heading = 'contact.form.error_heading' | t
+    endif
+  -%}
+  <div class="alert errors{% if form == blank %} js-errors{% endif %}{% if class != blank %} {{ class }}{% endif %}"{% if id != blank %} id="{{ id }}"{% endif %}{% if form == blank %} hidden{% endif %}>
+    <div role="heading" aria-level="3">{{ error_heading }}</div>
+    <div class="errors-text{% if form == blank %} js-errors-text{% endif %}">
+      {%- if form.errors -%}
+        <ul class="styled-list"{% if form != blank %} autofocus{% endif %}>
+          {%- for field in form.errors -%}
+            <li class="form-error-item">
+              {% if field != 'form' %}
+                {{ form.errors.translated_fields[field] | replace: 'body', 'message' | capitalize }} 
+              {% endif %}
+              <span class="form-error-msg" data-html="{{ form.errors.messages[field] | escape }}">{{ form.errors.messages[field] }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+  <script>
+    (function() {
+      // 处理错误消息中的 HTML 链接渲染
+      document.querySelectorAll('.form-error-msg[data-html]').forEach(function(el) {
+        const escapedHtml = el.getAttribute('data-html');
+        // 如果包含转义的 HTML 标签，则解码并渲染
+        if (escapedHtml && escapedHtml.indexOf('&lt;') !== -1) {
+          // 解码 HTML 实体：按正确顺序替换（先替换 &amp;，再替换其他）
+          let decoded = escapedHtml;
+          // 先处理 &amp;（必须在其他实体之前，因为其他实体中包含 &）
+          decoded = decoded.replace(/&amp;/g, '&');
+          // 然后替换其他 HTML 实体
+          decoded = decoded.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+          // 将解码后的 HTML 设置为 innerHTML
+          el.innerHTML = decoded;
+        }
+      });
+    })();
+  </script>
+  <style>
+    a {
+      text-decoration: underline;
+    }
+  </style>
+{%- endif -%}

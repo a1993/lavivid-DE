@@ -1,0 +1,344 @@
+{{ 'section-hexagon-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="hexagon-grid-section section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {% endif %}
+
+    {% assign items_count = section.blocks.size %}
+    {% assign desktop_columns = section.settings.columns_desktop %}
+    {% assign needs_alignment = false %}
+    {% if items_count < desktop_columns %}
+      {% assign needs_alignment = true %}
+    {% endif %}
+    
+    <div class="hexagon-grid-wrapper hexagon-grid-wrapper--{{ section.settings.grid_alignment }}">
+      <div 
+        class="hexagon-grid {% if needs_alignment %}hexagon-grid--align-mode{% endif %}" 
+        style="--grid-columns-mobile: {{ section.settings.columns_mobile }}; --grid-columns-desktop: {{ section.settings.columns_desktop }}; --grid-gap: {{ section.settings.grid_gap }}px; --max-width: {{ section.settings.max_width }}px; --items-count: {{ items_count }};"
+      >
+        {% for block in section.blocks %}
+          <div class="hexagon-item" {{ block.shopify_attributes }}>
+            <div class="hexagon-wrapper">
+              <div 
+                class="hexagon-card"
+                style="
+                  --bg-color: {{ block.settings.background_color }};
+                  --text-color: {{ block.settings.text_color }};
+                  --hover-bg-color: {{ block.settings.hover_background_color }};
+                  --hover-text-color: {{ block.settings.hover_text_color }};
+                  --title-color: {{ block.settings.title_color }};
+                  background: {{ block.settings.background_color }};
+                  color: {{ block.settings.text_color }};
+                  padding-top: {{ block.settings.padding_top }}px;
+                  padding-bottom: {{ block.settings.padding_bottom }}px;
+                "
+              >
+                <h3 class="hexagon-title" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h3>
+                <p class="hexagon-description">{{ block.settings.description }}</p>
+              </div>
+              
+              {% if block.settings.icon != blank %}
+                <div 
+                  class="hexagon-icon-wrapper"
+                  style="background: {{ block.settings.icon_background }};"
+                >
+                  <img
+                    src="{{ block.settings.icon | image_url: width: 136 }}"
+                    alt="{{ block.settings.title }}"
+                    width="{{ block.settings.icon_width }}"
+                    height="{{ block.settings.icon_height }}"
+                    loading="lazy"
+                    class="hexagon-icon"
+                  >
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "[gy] Hexagon Grid",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "特色展示",
+      "label": "标题"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "小"
+        },
+        {
+          "value": "h1",
+          "label": "中"
+        },
+        {
+          "value": "h0",
+          "label": "大"
+        }
+      ],
+      "default": "h1",
+      "label": "标题大小"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "桌面端每行列数"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "移动端每行列数"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20,
+      "label": "网格间距"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1400,
+      "label": "网格最大宽度",
+      "info": "限制整个网格容器的最大宽度"
+    },
+    {
+      "type": "select",
+      "id": "grid_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "靠左对齐"
+        },
+        {
+          "value": "center",
+          "label": "居中对齐"
+        },
+        {
+          "value": "right",
+          "label": "靠右对齐"
+        }
+      ],
+      "default": "left",
+      "label": "网格对齐方式",
+      "info": "当项目数少于每行列数时的对齐方式"
+    },
+    {
+      "type": "header",
+      "content": "间距设置"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hexagon_item",
+      "name": "六边形项目",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "图标"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 20,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "default": 68,
+          "label": "图标宽度"
+        },
+        {
+          "type": "range",
+          "id": "icon_height",
+          "min": 20,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "default": 68,
+          "label": "图标高度"
+        },
+        {
+          "type": "color",
+          "id": "icon_background",
+          "label": "图标背景色",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "标题",
+          "label": "标题"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "default": "在这里输入描述内容",
+          "label": "描述"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "背景颜色",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "文字颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "标题颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "悬停效果"
+        },
+        {
+          "type": "color",
+          "id": "hover_background_color",
+          "label": "悬停背景颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "hover_text_color",
+          "label": "悬停文字颜色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "间距设置"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 20,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "default": 50,
+          "label": "卡片顶部内边距"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 20,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "default": 30,
+          "label": "卡片底部内边距"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Hexagon Grid",
+      "blocks": [
+        {
+          "type": "hexagon_item",
+          "settings": {
+            "title": "特色 1",
+            "description": "这是第一个特色的描述内容",
+            "background_color": "#f5f5f5",
+            "text_color": "#000000",
+            "title_color": "#000000",
+            "hover_background_color": "#000000",
+            "hover_text_color": "#ffffff"
+          }
+        },
+        {
+          "type": "hexagon_item",
+          "settings": {
+            "title": "特色 2",
+            "description": "这是第二个特色的描述内容",
+            "background_color": "#000000",
+            "text_color": "#ffffff",
+            "title_color": "#ffffff",
+            "hover_background_color": "#333333",
+            "hover_text_color": "#ffffff"
+          }
+        },
+        {
+          "type": "hexagon_item",
+          "settings": {
+            "title": "特色 3",
+            "description": "这是第三个特色的描述内容",
+            "background_color": "#f5f5f5",
+            "text_color": "#000000",
+            "title_color": "#000000",
+            "hover_background_color": "#000000",
+            "hover_text_color": "#ffffff"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+

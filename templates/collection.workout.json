@@ -1,0 +1,321 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_9tGaUn": {
+      "type": "slideshow",
+      "blocks": {
+        "image_6TdMNK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Fitness_383c8a52-5a15-4f98-a77c-a6f1946376e5.jpg",
+            "mobile_image": "shopify://shop_images/Fitness_72bafaa5-99cb-421d-9e65-4004397652c5.jpg",
+            "slide_link": "",
+            "enable_rating": false,
+            "review_text": "",
+            "rating_value": 5,
+            "subheading": "",
+            "heading_text_1": "Move Confidently. Stay Natural.",
+            "heading_text_2": "",
+            "heading_color_1": "#5b5be5",
+            "heading_color_2": "#000000",
+            "title": "Move Confidently. Stay Natural.",
+            "heading_max_width": 40,
+            "title_size": 56,
+            "title_size_mobile": 48,
+            "use_h1": false,
+            "text": "<p><br/><br/><br/></p>",
+            "enlarge_text": false,
+            "button_label_1": "Shop Fitness Picks",
+            "button_url_1": "",
+            "button_label_2": "",
+            "button_url_2": "",
+            "button_1_type": "primary",
+            "button_2_type": "secondary",
+            "primary_button_bg_color": "",
+            "primary_button_text_color": "",
+            "secondary_button_bg_color": "",
+            "secondary_button_text_color": "",
+            "text_alignment": "bottom left"
+          }
+        }
+      },
+      "block_order": [
+        "image_6TdMNK"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "height": "adapt",
+        "height_desktop": 600,
+        "height_mobile": 460,
+        "full_width": true,
+        "mobile_overlay_under": false,
+        "overlay_style": "shadow",
+        "transition": "fade",
+        "navigation": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "accessibility_info": ""
+      }
+    },
+    "collection_list_tHkX6G": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_xf9YNe": {
+          "type": "collection",
+          "settings": {
+            "collection": "business",
+            "image": "shopify://shop_images/Professional.jpg",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "collection_3KmHD9": {
+          "type": "collection",
+          "settings": {
+            "collection": "business",
+            "image": "shopify://shop_images/collection-traveling.webp",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "collection_3PAUdz": {
+          "type": "collection",
+          "settings": {
+            "collection": "business",
+            "image": "shopify://shop_images/collection-swimming.webp",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "collection_LzXtVM": {
+          "type": "collection",
+          "settings": {
+            "collection": "business",
+            "image": "shopify://shop_images/collection-fitness.webp",
+            "subheading": "",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_xf9YNe",
+        "collection_3KmHD9",
+        "collection_3PAUdz",
+        "collection_LzXtVM"
+      ],
+      "disabled": true,
+      "name": "Collection list",
+      "settings": {
+        "title": "",
+        "enable_carousel": true,
+        "grid": 4,
+        "color_scheme": "default",
+        "full_width": true,
+        "coll_grid_image_shape": "landscape-54",
+        "coll_grid_image_position": "bottom center",
+        "coll_thumb_mob_per_row": "2",
+        "coll_grid_show_count": false,
+        "coll_text_position": "over-shadow",
+        "coll_text_position_under_mobile": false,
+        "coll_thumb_text_align_x": "center",
+        "coll_thumb_text_align_y": "bottom",
+        "coll_button_style": "primary"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_title": false,
+        "show_image_behind_heading": false,
+        "heading_image_height": "huge",
+        "overlay_style": "full",
+        "coll_desc_pos": "above",
+        "show_description": false,
+        "coll_num_per_page_int": 24,
+        "grid": 4,
+        "show_vendor": false,
+        "show_total": true,
+        "show_custom_banner": false,
+        "custom_banner_heading": "🎃 Halloween Treat 20% OFF!",
+        "custom_banner_image": "shopify://shop_images/a-person-with-halloween-pumpkin-on-hand.png",
+        "custom_banner_code": "CODE: TREAT20",
+        "custom_banner_meta": "UNTIL OCT 31, 2025",
+        "custom_banner_description": "",
+        "custom_banner_link_label": "Shop Now",
+        "custom_banner_link": "",
+        "enable_filtering": false,
+        "collapse_tag_sidebar_by_default": false,
+        "collapse_filters_method": "over-6",
+        "show_filter_counts": true,
+        "filter_two_columns": true,
+        "button_grid_filter_name": "Size,Taille,Größe",
+        "auto_apply_hide_unavailable": false,
+        "enable_sticky_filter": true,
+        "show_sort": true,
+        "sort_show_featured": true,
+        "sort_show_best": true,
+        "sort_show_alpha": true,
+        "sort_show_price": true,
+        "sort_show_date": true,
+        "related_collections": [],
+        "related_collections_style": "buttons",
+        "rel_coll_gall_aspect_ratio": "1",
+        "image_position": "center center",
+        "rel_coll_gall_enable_margin": true,
+        "rel_coll_gall_full_width": false,
+        "rel_coll_gall_overlay_style": "shadow",
+        "rel_coll_gall_text_alignment": "center center",
+        "rel_coll_grid_mobile": "2"
+      }
+    },
+    "image_with_text_zMzTfh": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NECjjN": {
+          "type": "heading",
+          "settings": {
+            "heading_text_1": "Crafted For",
+            "title": "<span>Not Sure</span> Where To Begin?",
+            "use_h1": false
+          }
+        },
+        "text_3bpiPC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Starting your hair system journey can feel overwhelming but we’re here to make it simple. Get the basics or personalized guidance from our expert.</p>",
+            "enlarge_text": false
+          }
+        },
+        "button_N7C8qd": {
+          "type": "button",
+          "settings": {
+            "button_label": "HELP ME CHOOSE",
+            "button_link": "/pages/hair-systems-for-beginners",
+            "button_style": "primary"
+          }
+        },
+        "button_eXQpnD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Book Free Consultation",
+            "button_link": "/pages/hair-system-consultation",
+            "button_style": "secondary"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NECjjN",
+        "text_3bpiPC",
+        "button_N7C8qd",
+        "button_eXQpnD"
+      ],
+      "settings": {
+        "class-name": "",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "image": "shopify://shop_images/Not_Sure_Where_To_Begin__-_image_1.png",
+        "image_2": "shopify://shop_images/Not_Sure_Where_To_Begin__-_image_2.png",
+        "image_width": 670,
+        "image_link": "",
+        "image_position": "right",
+        "text_alignment": "left",
+        "color_scheme": "2"
+      }
+    },
+    "multi_column_rk3kbJ": {
+      "type": "multi-column",
+      "blocks": {
+        "text_block_yNbHL3": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-free-shipping.svg",
+            "title": "Free Shipping",
+            "text": "<p>Free Worldwide Shipping on Orders Over $249</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_7MWzFy": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-secure-payment.svg",
+            "title": "Secure Payment",
+            "text": "<p>Shop confidently with encrypted checkout.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_w4AfVm": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-quality-guaranteed.svg",
+            "title": "Quality Guaranteed",
+            "text": "<p>Expertly crafted for natural look and lasting wear.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_gCjaci": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-45-day-money-back.svg",
+            "title": "45-Day Return Guarantee",
+            "text": "<p>Try risk-free with our hassle-free return policy.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_yNbHL3",
+        "text_block_7MWzFy",
+        "text_block_w4AfVm",
+        "text_block_gCjaci"
+      ],
+      "settings": {
+        "class-name": "usp-icon-section",
+        "user_type": "all",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "columns": "2",
+        "title": "",
+        "media_aspect_ratio": "1",
+        "media_width": 60,
+        "text_alignment": "center",
+        "button_style": "primary",
+        "color_scheme": "1"
+      }
+    }
+  },
+  "order": [
+    "slideshow_9tGaUn",
+    "collection_list_tHkX6G",
+    "main",
+    "image_with_text_zMzTfh",
+    "multi_column_rk3kbJ"
+  ]
+}

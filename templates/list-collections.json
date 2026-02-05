@@ -1,0 +1,154 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "blocks": {
+        "image_GKYjXp": {
+          "type": "image",
+          "settings": {
+            "collection": "men-hair-system",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_Lny3y6": {
+          "type": "image",
+          "settings": {
+            "collection": "skin-hair-systems",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_XMxt8F": {
+          "type": "image",
+          "settings": {
+            "collection": "lace-hair-systems",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_MLgnNX": {
+          "type": "image",
+          "settings": {
+            "collection": "silk-hair-systems",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_M3z8wi": {
+          "type": "image",
+          "settings": {
+            "collection": "mono-hair-systems",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_KP4C8z": {
+          "type": "image",
+          "settings": {
+            "collection": "hybrid-systems",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_FPneQB": {
+          "type": "image",
+          "settings": {
+            "collection": "accessories",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_37RczK": {
+          "type": "image",
+          "settings": {
+            "collection": "bundle-sale",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_4RNWKi": {
+          "type": "image",
+          "settings": {
+            "collection": "clearance-hair-systems",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_dAwM7N": {
+          "type": "image",
+          "settings": {
+            "collection": "tapes-adhesives",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_bUBR8b": {
+          "type": "image",
+          "settings": {
+            "collection": "hair-removal-and-styling",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_zEbQ7r": {
+          "type": "image",
+          "settings": {
+            "collection": "scalp-cleaning-and-prep",
+            "subheading": "",
+            "button_label": ""
+          }
+        },
+        "image_Tg6AJd": {
+          "type": "image",
+          "settings": {
+            "collection": "salon-ordering-tools",
+            "subheading": "",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_GKYjXp",
+        "image_Lny3y6",
+        "image_XMxt8F",
+        "image_MLgnNX",
+        "image_M3z8wi",
+        "image_KP4C8z",
+        "image_FPneQB",
+        "image_37RczK",
+        "image_4RNWKi",
+        "image_dAwM7N",
+        "image_bUBR8b",
+        "image_zEbQ7r",
+        "image_Tg6AJd"
+      ],
+      "settings": {
+        "title": "Our collections",
+        "display_type": "selected",
+        "grid": 3,
+        "coll_grid_image_shape": "square",
+        "coll_grid_image_position": "center center",
+        "coll_thumb_mob_per_row": "2",
+        "coll_grid_show_count": true,
+        "coll_text_position": "below",
+        "coll_text_position_under_mobile": false,
+        "coll_thumb_text_align_x": "center",
+        "coll_thumb_text_align_y": "center",
+        "coll_button_style": "primary"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

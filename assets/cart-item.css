@@ -1,0 +1,8 @@
+.lv-cart-item-description{
+    max-width: 100rem !important;
+}
+@media (min-width: 959px) {
+    .cart-item__controls-and-remove{
+        padding-left: 3rem;
+    }
+}

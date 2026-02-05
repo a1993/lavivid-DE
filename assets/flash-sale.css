@@ -1,0 +1,374 @@
+/* Flash Sale Styles */
+
+.flash-sale-container {
+  max-width: 1368px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Tab Navigation */
+.flash-sale-tabs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2.5rem 0;
+  flex-wrap: wrap;
+}
+
+.flash-sale-tab-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--tab-padding-top, 0.625rem) var(--tab-padding-right, 2.5rem) var(--tab-padding-bottom, 0.625rem) var(--tab-padding-left, 2.5rem);
+  font-size: var(--tab-font-size-mobile, 1rem);
+  font-weight: 600;
+  color: var(--tab-text, #2a8e9e);
+  background-color: var(--tab-bg, #fff);
+  border: var(--tab-border-width, 2px) solid var(--tab-border, #2a8e9e);
+  border-radius: var(--tab-border-radius, 0.5rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Background Image Support */
+.flash-sale-tab-btn.has-bg-image {
+  background-image: var(--tab-bg-image);
+  background-repeat: var(--tab-bg-image-repeat, no-repeat);
+  background-position: var(--tab-bg-image-position, center);
+  background-size: var(--tab-bg-image-size, cover);
+}
+
+.flash-sale-tab-btn.has-bg-image:hover {
+  opacity: 0.95;
+}
+
+.flash-sale-tab-btn.active.has-bg-image {
+  background-color: transparent;
+  background-image: var(--tab-bg-image-active, var(--tab-bg-image));
+  background-repeat: var(--tab-bg-image-repeat-active, var(--tab-bg-image-repeat, no-repeat));
+  background-position: var(--tab-bg-image-position-active, var(--tab-bg-image-position, center));
+  background-size: var(--tab-bg-image-size-active, var(--tab-bg-image-size, cover));
+}
+
+.flash-sale-tab-btn:hover {
+  opacity: 0.9;
+}
+
+.flash-sale-tab-btn.active {
+  color: var(--tab-text-active, #fff);
+  background-color: var(--tab-bg-active, #2a8e9e);
+  border-color: var(--tab-border-active, #2a8e9e);
+}
+
+/* Tab Image */
+.flash-sale-tab-image {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.flash-sale-tab-image img {
+  display: block;
+  max-width: 24px;
+  max-height: 24px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.flash-sale-tab-btn.active .flash-sale-tab-image img {
+  filter: brightness(0) invert(1);
+}
+
+/* Tab Text */
+.flash-sale-tab-text {
+  display: inline-block;
+}
+
+/* Tab Badge */
+.flash-sale-tab-btn.has-badge {
+  overflow: visible;
+}
+
+.flash-sale-tab-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flash-sale-tab-badge img {
+  display: block;
+  max-width: var(--tab-badge-size-mobile, 40px);
+  max-height: var(--tab-badge-size-mobile, 40px);
+  width: var(--tab-badge-size-mobile, 40px);
+  height: var(--tab-badge-size-mobile, 40px);
+  object-fit: contain;
+}
+
+/* Badge Positions - 使用 CSS 变量根据角标大小动态调整位置 */
+.flash-sale-tab-btn.badge-top-right .flash-sale-tab-badge {
+  top: calc(var(--tab-badge-size-mobile, 40px) / -2);
+  right: calc(var(--tab-badge-size-mobile, 40px) / -2);
+}
+
+.flash-sale-tab-btn.badge-top-left .flash-sale-tab-badge {
+  top: calc(var(--tab-badge-size-mobile, 40px) / -2);
+  left: calc(var(--tab-badge-size-mobile, 40px) / -2);
+}
+
+.flash-sale-tab-btn.badge-bottom-right .flash-sale-tab-badge {
+  bottom: calc(var(--tab-badge-size-mobile, 40px) / -2);
+  right: calc(var(--tab-badge-size-mobile, 40px) / -2);
+}
+
+.flash-sale-tab-btn.badge-bottom-left .flash-sale-tab-badge {
+  bottom: calc(var(--tab-badge-size-mobile, 40px) / -2);
+  left: calc(var(--tab-badge-size-mobile, 40px) / -2);
+}
+
+/* Tab Content */
+.flash-sale-tabs-content {
+  position: relative;
+}
+
+.flash-sale-tab-pane {
+  display: none;
+}
+
+.flash-sale-tab-pane.active {
+  display: block;
+}
+
+/* Product Grid - uses product-grid component */
+.product-grid--flash {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 1368px;
+  margin: 2.5rem auto;
+  box-sizing: border-box;
+}
+
+/* 默认移动端：2列 */
+.product-grid--flash {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 如果指定了 per-row 类，使用 CSS 变量系统（优先级更高） */
+.product-grid--flash.product-grid--per-row-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.product-grid--flash.product-grid--per-row-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.product-grid--flash.product-grid--per-row-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.product-grid--flash.product-grid--per-row-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.product-grid--flash.product-grid--per-row-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* 移动端每行数量（在移动端媒体查询中定义） */
+
+/* Desktop Responsive */
+@media screen and (min-width: 768px) {
+  .flash-sale-tabs-nav {
+    margin: 3.75rem 0;
+  }
+
+  .flash-sale-tab-btn {
+    padding: var(--tab-padding-top, 0.625rem) var(--tab-padding-right, 2.5rem) var(--tab-padding-bottom, 0.625rem) var(--tab-padding-left, 2.5rem);
+    font-size: var(--tab-font-size, 1.5rem);
+  }
+
+  .flash-sale-tab-btn:nth-child(2) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .flash-sale-tab-image img {
+    max-width: 32px;
+    max-height: 32px;
+  }
+
+  .flash-sale-tab-badge img {
+    max-width: var(--tab-badge-size, 60px);
+    max-height: var(--tab-badge-size, 60px);
+    width: var(--tab-badge-size, 60px);
+    height: var(--tab-badge-size, 60px);
+  }
+
+  /* 桌面端角标位置使用桌面端角标大小 */
+  .flash-sale-tab-btn.badge-top-right .flash-sale-tab-badge {
+    top: calc(var(--tab-badge-size, 60px) / -2);
+    right: calc(var(--tab-badge-size, 60px) / -2);
+  }
+
+  .flash-sale-tab-btn.badge-top-left .flash-sale-tab-badge {
+    top: calc(var(--tab-badge-size, 60px) / -2);
+    left: calc(var(--tab-badge-size, 60px) / -2);
+  }
+
+  .flash-sale-tab-btn.badge-bottom-right .flash-sale-tab-badge {
+    bottom: calc(var(--tab-badge-size, 60px) / -2);
+    right: calc(var(--tab-badge-size, 60px) / -2);
+  }
+
+  .flash-sale-tab-btn.badge-bottom-left .flash-sale-tab-badge {
+    bottom: calc(var(--tab-badge-size, 60px) / -2);
+    left: calc(var(--tab-badge-size, 60px) / -2);
+  }
+
+  .product-grid--flash {
+    gap: 2rem;
+    margin: 5rem auto;
+  }
+
+  /* 桌面端：优先使用 per-row 类 */
+  .product-grid--flash.product-grid--per-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* 如果没有指定 per-row 类，默认4列 */
+  .product-grid--flash:not([class*='product-grid--per-row-']) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1280px) {
+  /* 大桌面端：优先使用 per-row 类 */
+  .product-grid--flash.product-grid--per-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .product-grid--flash:not([class*='product-grid--per-row-']) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* 平板端：优先使用 per-row 类 */
+  .product-grid--flash.product-grid--per-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .product-grid--flash:not([class*='product-grid--per-row-']) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 767px) {
+  .flash-sale-container {
+    padding: 0 1rem;
+  }
+
+  .flash-sale-tabs-nav {
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+
+  .flash-sale-tab-btn {
+    padding: var(--tab-padding-top, 0.5rem) var(--tab-padding-right, 1.25rem) var(--tab-padding-bottom, 0.5rem) var(--tab-padding-left, 1.25rem);
+    font-size: var(--tab-font-size-mobile, 1rem);
+  }
+
+  .flash-sale-tab-image img {
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  .flash-sale-tab-badge img {
+    max-width: var(--tab-badge-size-mobile, 40px);
+    max-height: var(--tab-badge-size-mobile, 40px);
+    width: var(--tab-badge-size-mobile, 40px);
+    height: var(--tab-badge-size-mobile, 40px);
+  }
+
+  .product-grid--flash {
+    gap: 0.5rem;
+    margin: 1.5rem auto;
+  }
+
+  /* 移动端：优先使用 per-row-mob 类 */
+  .product-grid--flash.product-grid--per-row-mob-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-mob-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid--flash.product-grid--per-row-mob-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 如果没有指定 per-row-mob 类，默认2列 */
+  .product-grid--flash:not([class*='product-grid--per-row-mob-']) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

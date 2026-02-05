@@ -1,0 +1,77 @@
+{% comment %}
+  Product Inline Section
+  横向产品展示组件 - 支持分组标题和自定义内容
+  
+  特点：
+  - 支持多个产品分组
+  - 每个产品卡片横向布局（图片左侧，内容右侧）
+  - 支持自定义图片、标题、描述、价格、链接等
+  - 支持标题 Logo 图片
+  - 完全响应式设计
+{% endcomment %}
+
+{{ 'product-inline.css' | asset_url | stylesheet_tag }}
+
+<div class="product-inline-section lv-container" style="{% if section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}{% if section.settings.padding_top > 0 %}padding-top: {{ section.settings.padding_top }}px;{% endif %}{% if section.settings.padding_bottom > 0 %}padding-bottom: {{ section.settings.padding_bottom }}px;{% endif %}">
+  
+  <!-- Section Title (Optional) -->
+  {% if section.settings.section_title != blank %}
+    <h2 class="product-inline-section__title">{{ section.settings.section_title }}</h2>
+  {% endif %}
+  
+  <!-- Section Description (Optional) -->
+  {% if section.settings.section_description != blank %}
+    <p class="product-inline-section__description">{{ section.settings.section_description }}</p>
+  {% endif %}
+  
+  <!-- Product Groups -->
+  {% assign group_index = 0 %}
+  {% for block in section.blocks %}
+    {% if block.type == 'product_group' %}
+      {% assign group_index = group_index | plus: 1 %}
+      
+      {% render 'product-inline-group',
+        group_title: block.settings.group_title,
+        section_blocks: section.blocks,
+        group_index: group_index,
+        show_sku: section.settings.show_sku,
+        btn_text: section.settings.btn_text,
+        currency_symbol: section.settings.currency_symbol,
+        mobile_columns: section.settings.mobile_columns,
+        desktop_columns: section.settings.desktop_columns
+      %}
+    {% endif %}
+  {% endfor %}
+  
+  <!-- Fallback: Single Group without Product Groups -->
+  {% if group_index == 0 %}
+    <div class="product-inline-group">
+      <div class="product-inline-group__grid" 
+           style="--mobile-cols: {{ section.settings.mobile_columns | default: 1 }}; --desktop-cols: {{ section.settings.desktop_columns | default: 2 }};">
+        {% for block in section.blocks %}
+          {% if block.type == 'product_item' %}
+            {% render 'product-card-inline',
+              product: block.settings.product,
+              custom_image: block.settings.custom_image,
+              custom_title: block.settings.custom_title,
+              custom_description: block.settings.custom_description,
+              custom_url: block.settings.custom_url,
+              custom_price: block.settings.custom_price,
+              custom_compare_price: block.settings.custom_compare_price,
+              title_image: block.settings.title_image,
+              title_image_width: block.settings.title_image_width,
+              title_image_height: block.settings.title_image_height,
+              btn_text: section.settings.btn_text,
+              currency_symbol: section.settings.currency_symbol,
+              image_width: block.settings.image_width,
+              image_height: block.settings.image_height,
+              sku: block.settings.sku,
+              shopify_attributes: block.shopify_attributes
+            %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  
+</div>

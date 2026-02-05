@@ -1,0 +1,400 @@
+   <style>
+    .looks-details-section-{{ section.id }}{
+    padding:64px 0;    
+    }
+       .looks-details-section-{{ section.id }} .look-details-heading-wrapper{
+       margin-bottom: 48px;
+       text-align: center;
+    }
+    
+    
+    
+    .looks-details-section-{{ section.id }} .look-details-heading{
+       font-weight: 500;
+       line-height: 150%;
+       letter-spacing: 0;
+       font-size: 40px;
+       color: #0a0a0a;
+       margin-bottom: 8px;
+    }
+    .looks-details-section-{{ section.id }} .look-details-text{
+       font-weight: 400;
+       line-height: 150%;
+       letter-spacing: 0;
+       font-size: 16px;
+       color: #353535;
+    }
+    
+    .looks-details-section-{{ section.id }} .swiper-slide.look-details-card-slide{
+       background-color: transparent;
+    }
+    
+    .looks-details-section-{{ section.id }} .look-details-card-img img{
+       width: 100%;
+    }
+    .looks-details-section-{{ section.id }} .look-details-card{
+       max-width: 473.33px;
+    }
+    .looks-details-section-{{ section.id }} .look-details-card-img{
+       max-width: 473px;
+       max-height: 473px;
+       width: 100%;
+       height: auto;
+       border-radius: 8px;
+       opacity: 1;
+       rotate: 0 deg;
+       overflow: hidden;
+    }
+    
+    .looks-details-section-{{ section.id }} .look-details-card-content{
+       width: 100%;
+    }
+    .looks-details-section-{{ section.id }} .looks-details-card-title h3{
+       font-size: 24px;
+       font-weight: 500;
+       line-height: 150%;
+       letter-spacing: 0;
+       margin: 0;
+       padding-top: 18px;
+       padding-bottom: 8px;
+    }
+    .looks-details-section-{{ section.id }} .looks-details-card-text{
+       font-weight: 400;
+       line-height: 150%;
+       letter-spacing: 0;
+       font-size: 15px;
+       color: #000
+      }
+    
+
+       .looks-details-section-{{ section.id }} .look-details-slider{
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+       }
+    
+       .looks-details-section-{{ section.id }} .look-details-slider .swiper-slide {
+         font-size: 18px;
+         display: flex;
+         justify-content: center;
+       }
+    
+       .looks-details-section-{{ section.id }} .look-details-slider .swiper-slide img {
+         display: block;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         aspect-ratio: 1/1;
+       }
+    
+       .looks-details-section-{{ section.id }} .swiper-wrapper.look-details-card-wrapper{
+           height: auto;
+           margin: 0 auto;
+       }
+
+
+
+       .looks-details-section-{{ section.id }} .looks-details.look-details-slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.looks-details-section-{{ section.id }} .looks-details-card-wrapper {
+    display: flex;
+    box-sizing: content-box;
+    transition-property: transform;
+}
+
+.looks-details-section-{{ section.id }} .looks-details-card-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.looks-details-button-next,
+.looks-details-button-prev{
+  position: absolute;
+  top: 229px;  
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  cursor: pointer;
+  background-color:#fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 20px;
+  user-select: none;
+}
+
+.looks-details-button-prev {
+  left: 10px;
+}
+
+.looks-details-button-next {
+  right: 10px;
+}
+
+.looks-details-button {
+    width: 32px;
+    height: 32px;
+}
+@media (max-width: 767px) {
+  .looks-details-button-next,
+.looks-details-button-prev{
+    top: 157px;
+  }
+  .looks-details-button-prev {
+  left: 14px;
+}
+
+.looks-details-button-next {
+  right: 14px;
+}
+
+    .looks-details-section-{{ section.id }} .looks-details-card-title h3 {
+       font-size: 20px
+    }
+    .looks-details-section-{{ section.id }} .look-details-text {
+       font-size: 14px; 
+      }
+    .looks-details-section-{{ section.id }} .look-details-heading {
+       font-size: 32px;
+      }
+      .looks-details-section-{{ section.id }} .looks-details-card-text {
+       font-size: 14px;
+      }
+      .looks-details-section-{{ section.id }}{
+       padding:40px 0;
+      }
+}
+.swiper-button-lock {
+    display: none;
+}
+
+.looks-details-section-{{ section.id }} .looks-details-static {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+@media (min-width: 992px) {
+   .looks-details-static .looks-details-card-img {
+    aspect-ratio: 1/1;
+}
+
+.looks-details-static .looks-details-card {
+    width: 33.33%;
+}
+
+}
+@media(min-width: 768px) and (max-width: 991px) {
+    .looks-details-static .looks-details-card {
+    width: 50%;
+}
+}
+@media (max-width: 767px) {
+    .looks-details-section-{{ section.id }} .looks-details-static {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+.looks-details-static .looks-details-card {
+    width: 100%;
+}
+.looks-details-section-{{ section.id }} .looks-details-static {
+    flex-wrap: wrap;
+}
+}
+
+
+    </style>
+
+{% assign overview = product.metafields.custom.product_overview %}
+
+  {% if overview != blank and overview.value != blank and section.blocks.size > 0 %}
+    <section class="looks-details-section-{{ section.id }}">
+        <div class="container">
+            <div class="row">
+                <div class="look-details-heading-wrapper text-center">
+                    {% if section.settings.heading_text_1 != blank or section.settings.heading_text_2 != blank %}
+      <h2 class="content-title look-details-heading">
+        <span class="look-details-heading-blue" style="color: {{ section.settings.heading_color_1 }}">
+          {{ section.settings.heading_text_1 }}
+        </span>
+        <span class="custom-heading__secondary" style="color: {{ section.settings.heading_color_2 }}">
+          {{ section.settings.heading_text_2 }}
+        </span>
+      </h2>
+    {% endif %}
+    {% if section.settings.paragraph !=blank %}
+                    <div class="look-details-text">
+            {{section.settings.paragraph}}
+            </div>
+          {% endif %}
+                </div>
+                {% if section.blocks.size < 4 %}
+                <div class="looks-details-static">
+                    {% for block in section.blocks %}
+                    <div class="looks-details-card">
+        <div class="looks-details-card-img">
+          {% if block.settings.look_detail_image != blank %}
+            <img src="{{ block.settings.look_detail_image | img_url: 'master' }}" alt="{{ block.settings.look_detail_title }}">
+          {% endif %}
+        </div>
+        <div class="looks-details-card-content">
+                    {% if block.settings.look_detail_title != blank %}
+          <div class="looks-details-card-title"><h3>{{ block.settings.look_detail_title }}</h3></div>
+                    {% endif %}
+                    {% if block.settings.look_detail_text != blank %}
+          <div class="looks-details-card-text">{{ block.settings.look_detail_text }}</div>
+                    {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+                </div>
+                {% else %}
+                <div class="looks-details look-details-slider">
+                    <div class="swiper-wrapper looks-details-card-wrapper">
+                         {% for block in section.blocks %}
+             <div class="swiper-slide looks-details-card-slide">
+                       <div class="looks-details-card">
+        <div class="looks-details-card-img">
+          {% if block.settings.look_detail_image != blank %}
+            <img src="{{ block.settings.look_detail_image | img_url: 'master' }}" alt="{{ block.settings.look_detail_title }}">
+          {% endif %}
+        </div>
+        <div class="looks-details-card-content">
+                    {% if block.settings.look_detail_title != blank %}
+          <div class="looks-details-card-title"><h3>{{ block.settings.look_detail_title }}</h3></div>
+                    {% endif %}
+                    {% if block.settings.look_detail_text != blank %}
+          <div class="looks-details-card-text">{{ block.settings.look_detail_text }}</div>
+                    {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+          <div class="looks-details-button-next">
+                        <div class="looks-details-button looks-details-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z" fill="currentColor" /></svg>
+                        </div>
+                    </div>
+                    <div class="looks-details-button-prev">
+                        <div class="looks-details-button looks-details-prev">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                             <path d="M201.4 297.4C188.9 309.9 188.9 330.2 201.4 342.7L361.4 502.7C373.9 515.2 394.2 515.2 406.7 502.7C419.2 490.2 419.2 469.9 406.7 457.4L269.3 320L406.6 182.6C419.1 170.1 419.1 149.8 406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3L201.3 297.3z" fill="currentColor" />
+                         </svg>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endif %}
+{% if section.blocks.size >= 4 %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+   var lookdetailsSwiper = new Swiper(".look-details-slider", {
+     spaceBetween: 30,
+       loop: true,
+
+       navigation: {
+       nextEl: ".looks-details-button-next",
+       prevEl: ".looks-details-button-prev",
+     },
+
+     breakpoints: {
+   320: {         // mobile
+     slidesPerView: 1,
+     spaceBetween: 20,
+   },
+   768: {         // tablet
+     slidesPerView: 2,
+     spaceBetween: 30,
+   },
+   1280: {        // large desktop
+     slidesPerView: 3,
+     spaceBetween: 30,
+   }
+ },
+
+   });
+
+
+</script>
+{% endif %}
+ 
+{% schema %}
+{
+  "name": "Look at the details",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Custom Heading Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading_text_1",
+      "label": "Heading First Part",
+      "default": "Look at"
+    },
+    {
+      "type": "text",
+      "id": "heading_text_2",
+      "label": "Heading Second Part",
+      "default": "The Details"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_1",
+      "label": "Color for First Part",
+      "default": "#68699A"
+    },
+    {
+      "type": "text",
+      "id": "paragraph",
+      "label": "Subheading Paragraph",
+      "default": "Each detail is thoughtfully refined to deliver a natural, effortless look that feels as good as it appears."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "look_detail_card",
+      "name": "Look Detail Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "look_detail_image",
+          "label": "Look Detail Image"
+        },
+        {
+          "type": "text",
+          "id": "look_detail_title",
+          "label": "Look Detail Title",
+          "default": "Natural-looking front hairline"
+        },
+        {
+          "type": "text",
+          "id": "look_detail_text",
+          "label": "Look Detail Text",
+          "default": "Helios has a base made entirely of transparent Swiss lace, The swiss lace is soft and will offer you the most natural-looking front hairline."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Look at the details",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

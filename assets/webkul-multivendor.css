@@ -1,0 +1,352 @@
+/* ============================================
+   Webkul Multivendor - 商家列表页样式
+   所有样式集中管理，覆盖 Webkul Bootstrap 布局
+   ============================================ */
+
+/* === 主容器 === */
+/* .mp_sp_page .container,
+.mp_sp_page .container-tmargin,
+.mp_sp_page .mp-full-width {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+} */
+
+/* === 取消 Bootstrap row 浮动 === */
+/* .mp_sp_page .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.mp_sp_page .row::before,
+.mp_sp_page .row::after {
+  display: none !important;
+  content: none !important;
+} */
+
+/* === 商家卡片容器 - CSS Grid === */
+/* .mp_sp_page .row > .filter-block ~ div,
+.mp_sp_page .row > .filter-block + div,
+.mp_sp_page .row > div:nth-child(2):not(.filter-block),
+.mp_sp_page .container .row > div:last-child:not(.filter-block) {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  margin: 0 !important;
+  padding: 20px 0 !important;
+  width: 100% !important;
+  float: none !important;
+} */
+
+/* === 隐藏 hidden input === */
+/* .mp_sp_page input[type="hidden"] {
+  display: none !important;
+  position: absolute !important;
+  visibility: hidden !important;
+} */
+
+/* === 商家卡片 === */
+/* .mp_sp_page .mp-seller-grid.sellers,
+.mp_sp_page [class*="col-lg-"][class*="col-md-"][class*="col-sm-"]:not([class*="col-md-12"]) {
+  float: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+.mp_sp_page .mp-seller-grid.sellers > a {
+  display: flex !important;
+  flex-direction: column !important;
+  background: #fff !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+  height: 100% !important;
+  text-decoration: none !important;
+}
+.mp_sp_page .mp-seller-grid.sellers > a:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+} */
+
+/* === 商家 Logo === */
+/* .mp_sp_page .mp-seller-logo-block {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+  background-color: #f5f5f5 !important;
+}
+.mp_sp_page .mp-seller-logo-block img,
+.mp_sp_page #store_logo_image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+} */
+
+/* === 商家名称 === */
+.mp_sp_page .mp-seller-grid h4.title,
+.mp_sp_page .mp-seller-grid .title {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  margin: 14px 12px 6px !important;
+  padding: 0 !important;
+  color: #333 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  word-wrap: break-word !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  /* 超出两行隐藏 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .mp_sp_page .mp-seller-grid h4.title,
+  .mp_sp_page .mp-seller-grid .title {
+    height: auto;
+  }
+}
+
+/* === 评分区域 === */
+/* .mp_sp_page .wk_rateit_div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 6px 0 14px !important;
+  padding: 0 8px !important;
+  gap: 4px !important;
+}
+.mp_sp_page .jq-ry-container,
+.mp_sp_page .rateit {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+} */
+
+/* === 分页 === */
+/* .mp_sp_page .col-md-12:has(.mp-pagination),
+.mp_sp_page [class*="col-md-12"]:last-child {
+  width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  padding: 20px 12px !important;
+}
+.mp_sp_page .mp-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.mp_sp_page .mp-pagination span,
+.mp_sp_page .mp-pagination a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 16px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  color: #333 !important;
+  transition: all 0.2s ease !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  font-size: 14px !important;
+  background: #fff !important;
+  cursor: pointer !important;
+}
+.mp_sp_page .mp-pagination span:hover,
+.mp_sp_page .mp-pagination a:hover {
+  background: #68699A !important;
+  color: #fff !important;
+  border-color: #68699A !important;
+}
+.mp_sp_page .mp-pagination li.active span {
+  background: #68699A !important;
+  color: #fff !important;
+  border-color: #68699A !important;
+} */
+
+/* === 通用重置 === */
+/* .mp_sp_page * {
+  box-sizing: border-box !important;
+}
+.mp_sp_page {
+  overflow-x: hidden !important;
+}
+.mp_sp_page .pull-left,
+.mp_sp_page .pull-right {
+  float: none !important;
+}
+#pagefooter {
+  float: left;
+  width: 100%;
+  clear: both;
+} */
+
+/* ============================================
+   响应式布局
+   ============================================ */
+
+/* 中等桌面 992px - 1199px - 4列 */
+/* @media (min-width: 992px) and (max-width: 1199px) {
+  .mp_sp_page .row > .filter-block ~ div,
+  .mp_sp_page .row > div:nth-child(2):not(.filter-block) {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 18px !important;
+  }
+} */
+
+/* 平板 768px - 991px - 3列 */
+/* @media (min-width: 768px) and (max-width: 991px) {
+  .mp_sp_page .row > .filter-block ~ div,
+  .mp_sp_page .row > div:nth-child(2):not(.filter-block) {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+  }
+  .mp_sp_page .filter-block > .row {
+    padding: 16px 20px !important;
+    gap: 14px !important;
+  }
+  .mp_sp_page .filter-block .col-md-4.pull-right {
+    flex: 1 1 250px !important;
+    max-width: none !important;
+  }
+} */
+
+/* 大手机 576px - 767px - 2列 */
+/* @media (max-width: 767px) {
+  .mp_sp_page .container,
+  .mp_sp_page .container-tmargin,
+  .mp_sp_page .mp-full-width {
+    padding: 16px !important;
+  }
+  .mp_sp_page .row > .filter-block ~ div,
+  .mp_sp_page .row > div:nth-child(2):not(.filter-block) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .mp_sp_page .filter-block > .row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+  .mp_sp_page .filter-block [class*="col-"] {
+    width: 100% !important;
+    flex: none !important;
+  }
+  .mp_sp_page .filters-row__select {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .mp_sp_page .sort-select,
+  .mp_sp_page .filter-block select {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+  .mp_sp_page .mp-seller-grid h4.title {
+    font-size: 14px !important;
+    margin: 12px 10px 5px !important;
+  }
+}
+
+/* 手机 < 576px - 2列 */
+/* @media (max-width: 575px) {
+  .mp_sp_page .container,
+  .mp_sp_page .container-tmargin,
+  .mp_sp_page .mp-full-width {
+    padding: 12px !important;
+  }
+  .mp_sp_page .row > .filter-block ~ div,
+  .mp_sp_page .row > div:nth-child(2):not(.filter-block) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .mp_sp_page .mp-seller-grid h4.title {
+    font-size: 12px !important;
+    margin: 10px 8px 4px !important;
+  }
+  .mp_sp_page .wk_rateit_div {
+    margin: 5px 0 10px !important;
+    transform: scale(0.85) !important;
+    transform-origin: center !important;
+  }
+  .mp_sp_page .mp-pagination span,
+  .mp_sp_page .mp-pagination a {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+} */
+
+/* 超小屏 < 400px - 2列更紧凑 */
+/* @media (max-width: 400px) {
+  .mp_sp_page .container,
+  .mp_sp_page .container-tmargin,
+  .mp_sp_page .mp-full-width {
+    padding: 8px !important;
+  }
+  .mp_sp_page .row > .filter-block ~ div,
+  .mp_sp_page .row > div:nth-child(2):not(.filter-block) {
+    gap: 8px !important;
+  }
+  .mp_sp_page .filter-block > .row {
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+  .mp_sp_page .sort-select,
+  .mp_sp_page .filter-block select {
+    padding: 10px 36px 10px 12px !important;
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+  .mp_sp_page .mp-search-bar input[type="text"] {
+    padding: 10px 12px !important;
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+  .mp_sp_page .mp-search-bar button {
+    padding: 10px 14px !important;
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+  .mp_sp_page .mp-seller-grid h4.title {
+    font-size: 11px !important;
+    margin: 8px 6px 3px !important;
+  }
+}  */
+
+
+/* 搜索 */
+/* .mp_sp_page .filter-block .row {
+  display: flex !important;
+}
+
+.mp_sp_page .filter-block .row .filters-row__select{
+  display: flex !important;
+  align-items: center !important;
+}
+
+.mp_sp_page .container  .filter-block .row > div:last-child {
+  display: inline-block !important;
+  padding: 0 !important;
+}
+
+.mp_sp_page .filter-block .row .pull-right .mp-search-bar{
+  display: inline-block;
+  padding: 0 !important;
+} */

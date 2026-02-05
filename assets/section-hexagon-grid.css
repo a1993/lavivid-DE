@@ -1,0 +1,202 @@
+.hexagon-grid-section {
+  margin-top: 5rem;
+}
+
+.hexagon-grid-section .title-wrapper-with-link {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.hexagon-grid-wrapper {
+  max-width: var(--max-width, 1400px);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+
+/* 网格对齐方式 - 控制整个 grid 的对齐 */
+.hexagon-grid-wrapper--left {
+  justify-content: flex-start;
+}
+
+.hexagon-grid-wrapper--center {
+  justify-content: center;
+}
+
+.hexagon-grid-wrapper--right {
+  justify-content: flex-end;
+}
+
+.hexagon-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  /* 移动端：使用 1fr 填满容器 */
+  width: 100%;
+  grid-template-columns: repeat(var(--grid-columns-mobile), 1fr);
+}
+
+@media screen and (min-width: 750px) {
+  .hexagon-grid {
+    /* 桌面端默认：使用 1fr 填满整个容器 */
+    grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* 对齐模式：当 items 少于列数时启用 */
+  /* 使用固定宽度并让 grid 收缩，这样 wrapper 的 justify-content 才能生效 */
+  .hexagon-grid--align-mode {
+    width: fit-content !important;
+    grid-template-columns: repeat(var(--items-count), 360px) !important;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .hexagon-grid--align-mode {
+    grid-template-columns: repeat(var(--items-count), 380px) !important;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hexagon-grid--align-mode {
+    grid-template-columns: repeat(var(--items-count), 400px) !important;
+  }
+}
+
+.hexagon-item {
+  position: relative;
+  margin-top: 3rem;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.hexagon-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.hexagon-card {
+  clip-path: polygon(50% 0%, 100% 20%, 100% 80%, 50% 100%, 0% 80%, 0% 20%);
+  height: 100%;
+  width: 100%;
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px 30px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 750px) {
+  .hexagon-card {
+    min-height: 22rem;
+    padding: 50px 30px 30px;
+  }
+  
+  .hexagon-item {
+    margin-top: 4rem;
+  }
+}
+
+.hexagon-card:hover {
+  background: var(--hover-bg-color) !important;
+  color: var(--hover-text-color) !important;
+  transform: scale(1.02);
+}
+
+.hexagon-card:hover .hexagon-title {
+  color: var(--hover-text-color) !important;
+}
+
+.hexagon-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 750px) {
+  .hexagon-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.hexagon-description {
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+@media screen and (min-width: 750px) {
+  .hexagon-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+.hexagon-icon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  padding: 1.25rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.hexagon-item:hover .hexagon-icon-wrapper {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.hexagon-icon {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media screen and (max-width: 749px) {
+  .hexagon-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* 间距设置 */
+.section-template--padding {
+  padding-top: var(--section-padding-top);
+  padding-bottom: var(--section-padding-bottom);
+}
+
+/* 响应式优化 */
+@media screen and (max-width: 749px) {
+  .hexagon-grid-section {
+    margin-top: 2rem;
+  }
+  
+  .hexagon-grid-section .title-wrapper-with-link {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hexagon-item {
+    margin-top: 2rem;
+  }
+}
+
+/* Grid 布局自动换行 - 已通过 grid-template-columns 实现 */
+/* 超过设定的列数会自动换行显示 */

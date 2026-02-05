@@ -1,0 +1,368 @@
+     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+   <style>
+    .gallery-look-section-{{ section.id }}{
+       padding-top: {{section.settings.padding_top_desktop}}px;
+       padding-bottom: {{section.settings.padding_bottom_desktop}}px;    
+    }
+       .gallery-look-section-{{ section.id }} .gallery-look-heading-wrapper{
+       margin-bottom: 30px;
+       text-align: center;
+    }
+    
+    
+    
+    .gallery-look-section-{{ section.id }} .gallery-look-heading{
+       font-weight: 500;
+       line-height: 150%;
+       letter-spacing: 0;
+       font-size: 40px;
+       color: #0a0a0a;
+       margin-bottom: 8px;
+    }
+    .gallery-look-section-{{ section.id }} .gallery-look-text{
+       font-weight: 400;
+       line-height: 150%;
+       letter-spacing: 0;
+       font-size: 16px;
+       color: #353535;
+    }
+    
+    .gallery-look-section-{{ section.id }} .swiper-slide.gallery-look-card-slide{
+       background-color: transparent;
+    }
+    
+    .gallery-look-section-{{ section.id }} .gallery-look-card-img img{
+       width: 100%;
+    }
+    .gallery-look-section-{{ section.id }} .gallery-look-card{
+       max-width: 473.33px;
+    }
+    .gallery-look-section-{{ section.id }} .gallery-look-card-img{
+       max-width: 473px;
+       max-height: 473px;
+       width: 100%;
+       height: auto;
+       border-radius: 8px;
+       opacity: 1;
+       rotate: 0 deg;
+       overflow: hidden;
+    }
+    
+    .gallery-look-section-{{ section.id }} .gallery-look-card-content{
+       width: 100%;
+    }
+    .gallery-look-section-{{ section.id }} .gallery-look-card-title h3{
+       font-size: 24px;
+       font-weight: 500;
+       line-height: 150%;
+       letter-spacing: 0;
+       margin: 0;
+       padding-top: 18px;
+       padding-bottom: 8px;
+    }
+    .gallery-look-section-{{ section.id }} .gallery-look-card-text{
+       font-weight: 400;
+       line-height: 150%;
+       letter-spacing: 0;
+       font-size: 15px;
+       color: #000
+      }
+    
+
+       .gallery-look-section-{{ section.id }} .gallery-look-slider{
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+       }
+    
+       .gallery-look-section-{{ section.id }} .gallery-look-slider .swiper-slide {
+         font-size: 18px;
+         display: flex;
+         justify-content: center;
+       }
+    
+       .gallery-look-section-{{ section.id }} .gallery-look-slider .swiper-slide img {
+         display: block;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         aspect-ratio: 1/1;
+       }
+    
+       .gallery-look-section-{{ section.id }} .swiper-wrapper.gallery-look-card-wrapper{
+           height: auto;
+           margin: 0 auto;
+       }
+
+
+
+       .gallery-look-section-{{ section.id }} .gallery-look.gallery-look-slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.gallery-look-section-{{ section.id }} .gallery-look-card-wrapper {
+    display: flex;
+    box-sizing: content-box;
+    transition-property: transform;
+}
+
+.gallery-look-section-{{ section.id }} .gallery-look-card-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.gallery-look-button-next,
+.gallery-look-button-prev{
+  position: absolute;
+  top: 50%;  
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  cursor: pointer;
+  background-color:#fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 20px;
+  user-select: none;
+}
+
+.gallery-look-button-prev {
+  left: 10px;
+}
+
+.gallery-look-button-next {
+  right: 10px;
+}
+
+.gallery-look-button {
+    width: 32px;
+    height: 32px;
+}
+@media (max-width: 767px) {
+  .gallery-look-button-next,
+.gallery-look-button-prev{
+    top: 50%;
+  }
+  .gallery-look-button-prev {
+  left: 14px;
+}
+
+.gallery-look-button-next {
+  right: 14px;
+}
+
+    .gallery-look-section-{{ section.id }} .gallery-look-card-title h3 {
+       font-size: 20px
+    }
+    .gallery-look-section-{{ section.id }} .gallery-look-text {
+       font-size: 14px; 
+      }
+    .gallery-look-section-{{ section.id }} .gallery-look-heading {
+       font-size: 32px;
+      }
+      .gallery-look-section-{{ section.id }} .gallery-look-card-text {
+       font-size: 14px;
+      }
+      .gallery-look-section-{{ section.id }}{
+      padding-top: {{section.settings.padding_top_mobile}}px;
+       padding-bottom: {{section.settings.padding_bottom_mobile}}px;    
+      }
+}
+    </style>
+
+{% assign look = product.metafields.custom.gallery_look %}
+
+
+{% if look != blank and look.value != blank and section.blocks.size > 0 %}
+    <section class="gallery-look-section-{{ section.id }}">
+        <div class="container">
+            <div class="row">
+                <div class="gallery-look-heading-wrapper text-center">
+                    {% if section.settings.heading_text_1 != blank or section.settings.heading_text_2 != blank %}
+      <h2 class="content-title gallery-look-heading">
+        <span class="gallery-look-heading-blue" style="color: {{ section.settings.heading_color_1 }}">
+          {{ section.settings.heading_text_1 }}
+        </span>
+        <span class="custom-heading__secondary" style="color: {{ section.settings.heading_color_2 }}">
+          {{ section.settings.heading_text_2 }}
+        </span>
+      </h2>
+    {% endif %}
+            {% if section.settings.paragraph !=blank %}
+                    <div class="gallery-look-text">
+            {{section.settings.paragraph}}
+            </div>
+          {% endif %}
+                </div>
+                <div class="gallery-look gallery-look-slider">
+                    <div class="swiper-wrapper gallery-look-card-wrapper">
+                         {% for block in section.blocks %}
+             <div class="swiper-slide gallery-look-card-slide">
+                       <div class="gallery-look-card">
+        <div class="gallery-look-card-img">
+          {% if block.settings.gallery_look_image != blank %}
+            <img src="{{ block.settings.gallery_look_image | img_url: 'master' }}" alt="{{ block.settings.gallery_look_title }}">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+                    {% comment %}
+          <div class="gallery-look-button-next">
+                        <div class="gallery-look-button gallery-look-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z" fill="currentColor" /></svg>
+                        </div>
+                    </div>
+                    <div class="gallery-look-button-prev">
+                        <div class="gallery-look-button gallery-look-prev">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                             <path d="M201.4 297.4C188.9 309.9 188.9 330.2 201.4 342.7L361.4 502.7C373.9 515.2 394.2 515.2 406.7 502.7C419.2 490.2 419.2 469.9 406.7 457.4L269.3 320L406.6 182.6C419.1 170.1 419.1 149.8 406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3L201.3 297.3z" fill="currentColor" />
+                         </svg>
+                        </div>
+                    </div>
+                    {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+<script>
+    var lookdetailsSwiper = new Swiper(".gallery-look-slider", {
+      spaceBetween: 30,                
+        loop: true,
+      /*
+        navigation: {
+        nextEl: ".gallery-look-button-next",
+        prevEl: ".gallery-look-button-prev",
+      },
+*/
+      breakpoints: {
+    320: {         // mobile
+      slidesPerView: 1.15,
+      spaceBetween: 16,
+    },
+    768: {         // tablet
+      slidesPerView: 2,
+      spaceBetween: 30,
+    },
+    1280: {        // large desktop
+      slidesPerView: 4,
+      spaceBetween: 30,
+    }
+  },
+
+    });
+
+
+</script>    
+{% schema %}
+{
+  "name": "Gallery Look",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Custom Heading Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading_text_1",
+      "label": "Heading First Part",
+      "default": "See How"
+    },
+    {
+      "type": "text",
+      "id": "heading_text_2",
+      "label": "Heading Second Part",
+      "default": "They Wear It"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_1",
+      "label": "Color for First Part",
+      "default": "#68699A"
+    },
+    {
+      "type": "text",
+      "id": "paragraph",
+      "label": "Subheading Paragraph"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Mobile section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_look_card",
+      "name": "Gallery Look Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "gallery_look_image",
+          "label": "Gallery Look Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Look",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

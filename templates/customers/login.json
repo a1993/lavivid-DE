@@ -1,0 +1,117 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_content_GRaWce": {
+      "type": "custom-content",
+      "blocks": {
+        "image_Ctrm7D": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/Gemini_Generated_Image_jc80rmjc80rmjc80.png",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_H3dVnx": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Wholesale Account",
+            "title_size": 56,
+            "title_size_mobile": 30,
+            "text": "<p>Exclusive Wholesale Pricin</p><p>Premium Quality Products</p><p>Dedicated Salon Support</p>",
+            "button_label": "Register Now!",
+            "button_link": "shopify://pages/wholesale-register",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "image_Ctrm7D",
+        "text_H3dVnx"
+      ],
+      "disabled": true,
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "main": {
+      "type": "main-login",
+      "settings": {
+        "enable_shop_login_button": false
+      }
+    },
+    "custom_html_content_K6gVia": {
+      "type": "custom-html-content",
+      "blocks": {
+        "html_YqgCFV": {
+          "type": "html",
+          "settings": {
+            "html_content": "<div style=\"text-align: center;\">\n  If you’d like to join our wholesale business, or if you’re already a wholesale customer, please  \n   <a href=\"/pages/wholesale-login\" class=\"font-bold\" style=\"\n    font-weight: bold;\n    text-decoration: underline;\n    font-size: 1.2rem;\n    color:#68699A;\n\">click here</a> \n to register or log in to your wholesale account.   \n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "html_YqgCFV"
+      ],
+      "name": "[gy] Custom HTML Content",
+      "settings": {
+        "section_title": "",
+        "title_size": 32,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_margin": 40,
+        "container_type": "container",
+        "container_width": 1180,
+        "container_padding": 15,
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "use_shadow_dom": false,
+        "custom_css": "",
+        "custom_js": ""
+      }
+    },
+    "return_back_page_ji9bpC": {
+      "type": "return-back-page",
+      "name": "[gy] Return Back Page",
+      "settings": {
+        "custom_url": ""
+      }
+    }
+  },
+  "order": [
+    "custom_content_GRaWce",
+    "main",
+    "custom_html_content_K6gVia",
+    "return_back_page_ji9bpC"
+  ]
+}

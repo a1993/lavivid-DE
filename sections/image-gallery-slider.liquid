@@ -1,0 +1,1202 @@
+{% comment %}
+  独立的图片轮播组件 - 基于 Swiper
+  
+  功能：
+  - 可配置每页展示的图片数量（桌面/平板/移动端）
+  - 支持多张图片上传
+  - 支持自定义内容块（文字、图片、按钮等自由组合）
+  - 响应式设计
+  - 可自定义样式和间距
+  - 自定义导航箭头图片/颜色/大小
+  - 多种切换动画效果
+  - 丰富的交互配置
+{% endcomment %}
+
+{%- liquid
+  assign slides_per_view_desktop = section.settings.slides_per_view_desktop
+  assign slides_per_view_tablet = section.settings.slides_per_view_tablet
+  assign slides_per_view_mobile = section.settings.slides_per_view_mobile
+  assign space_between = section.settings.space_between
+  assign enable_autoplay = section.settings.enable_autoplay
+  assign autoplay_delay = section.settings.autoplay_delay
+  assign enable_loop = section.settings.enable_loop
+  assign show_navigation = section.settings.show_navigation
+  assign show_pagination = section.settings.show_pagination
+  assign background_color = section.settings.background_color
+  assign section_id = 'image-gallery-slider-' | append: section.id
+  
+  assign transition_effect = section.settings.transition_effect
+  assign transition_speed = section.settings.transition_speed
+  assign enable_drag = section.settings.enable_drag
+  assign pause_on_hover = section.settings.pause_on_hover
+  
+  assign nav_size = section.settings.navigation_size
+  assign nav_bg_color = section.settings.navigation_bg_color
+  assign nav_bg_hover_color = section.settings.navigation_bg_hover_color
+  assign nav_hover_color = section.settings.navigation_hover_color
+  assign nav_border_radius = section.settings.navigation_border_radius
+  assign nav_position = section.settings.navigation_position
+  
+  assign pagination_size = section.settings.pagination_size
+  assign pagination_style = section.settings.pagination_style
+  assign pagination_gap = section.settings.pagination_gap
+-%}
+
+{% comment %} Swiper CSS {% endcomment %}
+{% if section.settings.use_cdn %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+{% else %}
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+{%- style -%}
+  #{{ section_id }} {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.75);
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      -moz-background-size: cover;
+      -webkit-background-size: cover;
+    {% elsif background_color != blank %}
+      background-color: {{ background_color }};
+    {% endif %}
+  }
+
+  @media screen and (min-width: 750px) {
+    #{{ section_id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #{{ section_id }} .gallery-slider-wrapper {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ section.settings.container_padding }}px;
+    position: relative;
+  }
+
+  #{{ section_id }} .swiper-slide {
+    position: relative;
+    height: auto;
+  }
+
+  #{{ section_id }} .swiper-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    {% if section.settings.image_border_width > 0 %}
+      border: {{ section.settings.image_border_width }}px solid {{ section.settings.image_border_color }};
+    {% endif %}
+    {% if section.settings.image_border_radius > 0 %}
+      border-radius: {{ section.settings.image_border_radius }}px;
+    {% endif %}
+  }
+
+  /* 自定义内容块样式 */
+  #{{ section_id }} .slide-custom-content {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    {% if section.settings.image_border_width > 0 %}
+      border: {{ section.settings.image_border_width }}px solid {{ section.settings.image_border_color }};
+    {% endif %}
+    {% if section.settings.image_border_radius > 0 %}
+      border-radius: {{ section.settings.image_border_radius }}px;
+    {% endif %}
+  }
+
+  #{{ section_id }} .slide-custom-content.has-background-image {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-inner.text-left {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-inner.text-center {
+    align-items: center;
+    text-align: center;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-inner.text-right {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-description p {
+    margin: 0 0 12px 0;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-button {
+    display: inline-block;
+    padding: 12px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  #{{ section_id }} .slide-custom-content .content-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section_id }} .slide-custom-content {
+      min-height: 300px;
+    }
+
+    #{{ section_id }} .slide-custom-content.has-background-image {
+      min-height: 350px;
+    }
+
+    #{{ section_id }} .slide-custom-content .content-inner {
+      padding: 30px 20px;
+    }
+    
+    #{{ section_id }} .slide-custom-content .content-title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    
+    #{{ section_id }} .slide-custom-content .content-description {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    #{{ section_id }} .slide-custom-content .content-button {
+      padding: 10px 24px;
+      font-size: 14px;
+    }
+  }
+
+  /* 导航按钮样式 */
+  #{{ section_id }} .swiper-button-prev,
+  #{{ section_id }} .swiper-button-next {
+    color: {{ section.settings.navigation_color }};
+    width: {{ nav_size }}px;
+    height: {{ nav_size }}px;
+    {% if nav_bg_color != blank and nav_bg_color != 'rgba(0,0,0,0)' %}
+      background-color: {{ nav_bg_color }};
+    {% endif %}
+    border-radius: {{ nav_border_radius }}px;
+    transition: all 0.3s ease;
+    {% if nav_position == 'outside' %}
+      position: absolute;
+    {% endif %}
+  }
+
+  #{{ section_id }} .swiper-button-prev:hover,
+  #{{ section_id }} .swiper-button-next:hover {
+    {% if nav_bg_hover_color != blank and nav_bg_hover_color != 'rgba(0,0,0,0)' %}
+      background-color: {{ nav_bg_hover_color }};
+    {% endif %}
+    {% if nav_hover_color != blank %}
+      color: {{ nav_hover_color }};
+    {% endif %}
+    transform: scale(1.1);
+  }
+
+  {% if section.settings.custom_prev_icon != blank or section.settings.custom_next_icon != blank %}
+    #{{ section_id }} .swiper-button-prev:after,
+    #{{ section_id }} .swiper-button-next:after {
+      display: none;
+    }
+    
+    #{{ section_id }} .swiper-button-prev,
+    #{{ section_id }} .swiper-button-next {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
+    {% if section.settings.custom_prev_icon != blank %}
+      #{{ section_id }} .swiper-button-prev {
+        background-image: url('{{ section.settings.custom_prev_icon | image_url: width: 100 }}');
+      }
+    {% endif %}
+    
+    {% if section.settings.custom_next_icon != blank %}
+      #{{ section_id }} .swiper-button-next {
+        background-image: url('{{ section.settings.custom_next_icon | image_url: width: 100 }}');
+      }
+    {% endif %}
+  {% else %}
+    #{{ section_id }} .swiper-button-prev:after,
+    #{{ section_id }} .swiper-button-next:after {
+      font-size: {{ nav_size | divided_by: 2 }}px;
+      font-weight: bold;
+    }
+  {% endif %}
+
+  /* 导航按钮位置 */
+  {% if nav_position == 'outside' %}
+    #{{ section_id }} .gallery-slider-wrapper {
+      padding-left: {{ nav_size | plus: 20 }}px;
+      padding-right: {{ nav_size | plus: 20 }}px;
+    }
+    #{{ section_id }} .swiper-button-prev {
+      left: 0;
+    }
+    #{{ section_id }} .swiper-button-next {
+      right: 0;
+    }
+  {% endif %}
+
+  /* 分页器样式 */
+  #{{ section_id }} .swiper-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ pagination_gap }}px;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  #{{ section_id }} .swiper-pagination-bullet {
+    background: {{ section.settings.pagination_color }};
+    opacity: 0.5;
+    width: {{ pagination_size }}px;
+    height: {{ pagination_size }}px;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+    {% if pagination_style == 'rounded' %}
+      border-radius: {{ pagination_size | divided_by: 4 }}px;
+    {% elsif pagination_style == 'square' %}
+      border-radius: 0;
+    {% elsif pagination_style == 'line' %}
+      border-radius: 2px;
+      width: {{ pagination_size | times: 2 }}px;
+      height: 4px;
+    {% else %}
+      border-radius: 50%;
+    {% endif %}
+  }
+
+  #{{ section_id }} .swiper-pagination-bullet:hover {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+
+  #{{ section_id }} .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: {{ section.settings.pagination_active_color }};
+    {% if pagination_style == 'line' %}
+      width: {{ pagination_size | times: 3 }}px;
+    {% else %}
+      transform: scale(1.2);
+    {% endif %}
+  }
+
+  /* 分数分页器样式 */
+  #{{ section_id }} .swiper-pagination-fraction {
+    color: {{ section.settings.pagination_active_color }};
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* 进度条分页器样式 */
+  #{{ section_id }} .swiper-pagination-progressbar {
+    background: {{ section.settings.pagination_color }};
+    opacity: 0.3;
+    height: 4px !important;
+    top: auto !important;
+    bottom: 0;
+  }
+
+  #{{ section_id }} .swiper-pagination-progressbar-fill {
+    background: {{ section.settings.pagination_active_color }};
+  }
+
+  /* 响应式导航按钮位置 */
+  @media screen and (max-width: 767px) {
+    #{{ section_id }} .swiper-button-prev {
+      left: 10px;
+    }
+    #{{ section_id }} .swiper-button-next {
+      right: 10px;
+    }
+    #{{ section_id }} .swiper-button-prev,
+    #{{ section_id }} .swiper-button-next {
+      width: {{ nav_size | times: 0.8 }}px;
+      height: {{ nav_size | times: 0.8 }}px;
+    }
+    {% if nav_position == 'outside' %}
+      #{{ section_id }} .gallery-slider-wrapper {
+        padding-left: {{ section.settings.container_padding }}px;
+        padding-right: {{ section.settings.container_padding }}px;
+      }
+    {% endif %}
+  }
+
+  /* 标题样式 */
+  #{{ section_id }} .gallery-title {
+    text-align: {{ section.settings.title_alignment }};
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+  }
+
+  #{{ section_id }} .gallery-title h2 {
+    font-size: {{ section.settings.title_size }}px;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<div id="{{ section_id }}" class="image-gallery-slider-section" {{ section.shopify_attributes }}>
+  <div class="gallery-slider-wrapper">
+    {% if section.settings.section_title != blank %}
+      <div class="gallery-title">
+        <h2>{{ section.settings.section_title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="swiper gallery-swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'image' %}
+            {% if block.settings.image != blank %}
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}">
+                {% endif %}
+                
+                <img 
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  srcset="{{ block.settings.image | image_url: width: 400 }} 400w,
+                          {{ block.settings.image | image_url: width: 600 }} 600w,
+                          {{ block.settings.image | image_url: width: 800 }} 800w"
+                  sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  alt="{{ block.settings.image.alt | default: section.settings.section_title | escape }}"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  loading="lazy">
+                
+                {% if block.settings.caption != blank %}
+                  <div class="slide-caption">{{ block.settings.caption }}</div>
+                {% endif %}
+
+                {% if block.settings.link != blank %}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% elsif block.type == 'custom_content' %}
+            <div class="swiper-slide slide-custom-content{% if block.settings.background_image != blank %} has-background-image{% endif %}" 
+                 {% if block.settings.background_image != blank %}
+                   style="background-image: url('{{ block.settings.background_image | image_url: width: 1200 }}');"
+                 {% elsif block.settings.background_color != blank %}
+                   style="background-color: {{ block.settings.background_color }};"
+                 {% endif %}
+                 {{ block.shopify_attributes }}>
+              
+              {% if block.settings.overlay_color != blank and block.settings.overlay_color != 'rgba(0,0,0,0)' %}
+                <div class="content-overlay" style="background-color: {{ block.settings.overlay_color }}; opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+              {% endif %}
+              
+              <div class="content-inner text-{{ block.settings.content_alignment | default: 'center' }}">
+                {% if block.settings.title != blank %}
+                  <h2 class="content-title" style="color: {{ block.settings.text_color | default: '#000000' }};">
+                    {{ block.settings.title }}
+                  </h2>
+                {% endif %}
+                
+                {% if block.settings.description != blank %}
+                  <div class="content-description" style="color: {{ block.settings.text_color | default: '#000000' }};">
+                    {{ block.settings.description }}
+                  </div>
+                {% endif %}
+                
+                {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                  <a href="{{ block.settings.button_link }}" 
+                     class="content-button"
+                     style="background-color: {{ block.settings.button_bg_color | default: '#000000' }};
+                            color: {{ block.settings.button_text_color | default: '#ffffff' }};
+                            border-color: {{ block.settings.button_border_color | default: block.settings.button_bg_color | default: '#000000' }};
+                            border-radius: {{ block.settings.button_border_radius }}px;">
+                    {{ block.settings.button_text }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      {% if show_pagination %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
+      
+      {% if show_navigation %}
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% comment %} Swiper JS - 加载并初始化 {% endcomment %}
+{% if section.settings.use_cdn %}
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% else %}
+  <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+{% endif %}
+
+<script>
+(function() {
+  function initSwiper{{ section.id | replace: '-', '_' }}() {
+    // 检查 Swiper 是否已加载
+    if (typeof Swiper === 'undefined') {
+      console.error('Swiper library is not loaded');
+      return;
+    }
+
+    const swiperElement = document.querySelector('.gallery-swiper-{{ section.id }}');
+    if (!swiperElement) {
+      console.error('Swiper element not found');
+      return;
+    }
+
+    try {
+      const swiperConfig = {
+        slidesPerView: {{ slides_per_view_mobile }},
+        spaceBetween: {{ space_between }},
+        speed: {{ transition_speed }},
+        {% if enable_loop %}
+        loop: true,
+        {% endif %}
+        {% unless enable_drag %}
+        allowTouchMove: false,
+        simulateTouch: false,
+        {% endunless %}
+        {% if transition_effect == 'fade' %}
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        {% elsif transition_effect == 'cube' %}
+        effect: 'cube',
+        cubeEffect: {
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        },
+        {% elsif transition_effect == 'coverflow' %}
+        effect: 'coverflow',
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        {% elsif transition_effect == 'flip' %}
+        effect: 'flip',
+        flipEffect: {
+          slideShadows: true,
+        },
+        {% elsif transition_effect == 'cards' %}
+        effect: 'cards',
+        cardsEffect: {
+          slideShadows: true,
+        },
+        {% elsif transition_effect == 'creative' %}
+        effect: 'creative',
+        creativeEffect: {
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
+          },
+          next: {
+            translate: ['100%', 0, 0],
+          },
+        },
+        {% endif %}
+        {% if enable_autoplay %}
+        autoplay: {
+          delay: {{ autoplay_delay }},
+          disableOnInteraction: false,
+          pauseOnMouseEnter: {{ pause_on_hover }},
+        },
+        {% endif %}
+        {% if show_navigation %}
+        navigation: {
+          nextEl: '#{{ section_id }} .swiper-button-next',
+          prevEl: '#{{ section_id }} .swiper-button-prev',
+        },
+        {% endif %}
+        {% if show_pagination %}
+        pagination: {
+          el: '#{{ section_id }} .swiper-pagination',
+          clickable: true,
+          {% if section.settings.pagination_type == 'fraction' %}
+          type: 'fraction',
+          {% elsif section.settings.pagination_type == 'progressbar' %}
+          type: 'progressbar',
+          {% elsif section.settings.pagination_type == 'dynamic' %}
+          dynamicBullets: true,
+          {% endif %}
+        },
+        {% endif %}
+        breakpoints: {
+          768: {
+            slidesPerView: {{ slides_per_view_tablet }},
+            spaceBetween: {{ space_between }}
+          },
+          1024: {
+            slidesPerView: {{ slides_per_view_desktop }},
+            spaceBetween: {{ space_between }}
+          }
+        },
+        on: {
+          init: function() {
+            console.log('Swiper initialized successfully');
+          }
+        }
+      };
+
+      const swiper = new Swiper('.gallery-swiper-{{ section.id }}', swiperConfig);
+      
+      {% if enable_autoplay and pause_on_hover %}
+      // 手动处理鼠标悬停暂停
+      const swiperContainer = document.querySelector('.gallery-swiper-{{ section.id }}');
+      swiperContainer.addEventListener('mouseenter', () => swiper.autoplay.stop());
+      swiperContainer.addEventListener('mouseleave', () => swiper.autoplay.start());
+      {% endif %}
+    } catch (error) {
+      console.error('Error initializing Swiper:', error);
+    }
+  }
+
+  // 等待 DOM 和 Swiper 都加载完成
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(initSwiper{{ section.id | replace: '-', '_' }}, 100);
+    });
+  } else {
+    setTimeout(initSwiper{{ section.id | replace: '-', '_' }}, 100);
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "图片轮播画廊",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Swiper 配置"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_cdn",
+      "label": "使用 CDN 加载 Swiper",
+      "default": true,
+      "info": "如果已将 Swiper 文件上传到 assets 文件夹，可关闭此选项"
+    },
+    {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "分区标题",
+      "default": "Gallery"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "标题对齐",
+      "options": [
+        { "value": "left", "label": "左对齐" },
+        { "value": "center", "label": "居中" },
+        { "value": "right", "label": "右对齐" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "标题下边距",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "轮播设置"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "桌面端每页显示数量",
+      "default": 2,
+      "info": "屏幕宽度 ≥ 1024px"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "平板端每页显示数量",
+      "default": 2,
+      "info": "屏幕宽度 768px - 1023px"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "移动端每页显示数量",
+      "default": 1,
+      "info": "屏幕宽度 < 768px"
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "图片间距",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_loop",
+      "label": "启用循环播放",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "启用自动播放",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "min": 1000,
+      "max": 9500,
+      "step": 500,
+      "unit": "ms",
+      "label": "自动播放延迟",
+      "default": 3000,
+      "info": "仅在启用自动播放时生效"
+    },
+    {
+      "type": "header",
+      "content": "过渡动画"
+    },
+    {
+      "type": "select",
+      "id": "transition_effect",
+      "label": "切换效果",
+      "options": [
+        { "value": "slide", "label": "滑动 (Slide)" },
+        { "value": "fade", "label": "淡入淡出 (Fade)" },
+        { "value": "cube", "label": "立方体 (Cube)" },
+        { "value": "coverflow", "label": "封面流 (Coverflow)" },
+        { "value": "flip", "label": "翻转 (Flip)" },
+        { "value": "cards", "label": "卡片 (Cards)" },
+        { "value": "creative", "label": "创意 (Creative)" }
+      ],
+      "default": "slide",
+      "info": "部分效果（如Fade、Flip）仅在每页显示1张时效果最佳"
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "min": 100,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "label": "切换动画速度",
+      "default": 300
+    },
+    {
+      "type": "header",
+      "content": "交互设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_drag",
+      "label": "启用拖拽/滑动",
+      "default": true,
+      "info": "允许用户通过鼠标拖拽或手指滑动来切换图片"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "鼠标悬停时暂停自动播放",
+      "default": true,
+      "info": "仅在启用自动播放时生效"
+    },
+    {
+      "type": "header",
+      "content": "导航箭头设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "显示左右箭头",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_prev_icon",
+      "label": "自定义左箭头图片",
+      "info": "留空则使用默认箭头，建议使用透明背景的PNG图片"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_next_icon",
+      "label": "自定义右箭头图片",
+      "info": "留空则使用默认箭头，建议使用透明背景的PNG图片"
+    },
+    {
+      "type": "range",
+      "id": "navigation_size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "箭头按钮大小",
+      "default": 44
+    },
+    {
+      "type": "color",
+      "id": "navigation_color",
+      "label": "箭头颜色",
+      "default": "#ffffff",
+      "info": "使用自定义图片时此设置无效"
+    },
+    {
+      "type": "color",
+      "id": "navigation_hover_color",
+      "label": "箭头悬停颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "navigation_bg_color",
+      "label": "箭头背景颜色",
+      "info": "留空则无背景"
+    },
+    {
+      "type": "color",
+      "id": "navigation_bg_hover_color",
+      "label": "箭头悬停背景颜色",
+      "info": "留空则无悬停背景变化"
+    },
+    {
+      "type": "range",
+      "id": "navigation_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "箭头圆角",
+      "default": 0,
+      "info": "设置50%可变为圆形"
+    },
+    {
+      "type": "select",
+      "id": "navigation_position",
+      "label": "箭头位置",
+      "options": [
+        { "value": "inside", "label": "图片内部" },
+        { "value": "outside", "label": "图片外部" }
+      ],
+      "default": "inside"
+    },
+    {
+      "type": "header",
+      "content": "分页器设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "显示分页器",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "pagination_type",
+      "label": "分页器类型",
+      "options": [
+        { "value": "bullets", "label": "圆点" },
+        { "value": "dynamic", "label": "动态圆点" },
+        { "value": "fraction", "label": "分数 (1/5)" },
+        { "value": "progressbar", "label": "进度条" }
+      ],
+      "default": "bullets"
+    },
+    {
+      "type": "select",
+      "id": "pagination_style",
+      "label": "圆点样式",
+      "options": [
+        { "value": "circle", "label": "圆形" },
+        { "value": "rounded", "label": "圆角方形" },
+        { "value": "square", "label": "方形" },
+        { "value": "line", "label": "线条" }
+      ],
+      "default": "circle",
+      "info": "仅在分页器类型为圆点时生效"
+    },
+    {
+      "type": "range",
+      "id": "pagination_size",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "分页器大小",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "pagination_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "分页器间距",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "pagination_color",
+      "label": "分页器颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_color",
+      "label": "分页器激活颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "图片样式"
+    },
+    {
+      "type": "range",
+      "id": "image_border_width",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "图片边框宽度",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "图片边框颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "图片圆角",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "容器设置"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1920,
+      "step": 20,
+      "unit": "px",
+      "label": "容器最大宽度",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "容器左右内边距",
+      "default": 40
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "背景图片",
+      "info": "如果设置了背景图片，将优先使用图片而非颜色"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "info": "仅在未设置背景图片时生效"
+    },
+    {
+      "type": "header",
+      "content": "内边距"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "上内边距",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "下内边距",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "图片",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "图片说明（可选）"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "点击链接（可选）"
+        }
+      ]
+    },
+    {
+      "type": "custom_content",
+      "name": "自定义内容",
+      "settings": [
+        {
+          "type": "header",
+          "content": "背景设置"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "背景图片",
+          "info": "如果设置了背景图片，将优先使用图片而非颜色"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "背景颜色",
+          "info": "仅在未设置背景图片时生效"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "遮罩层颜色",
+          "info": "覆盖在背景图片上的遮罩层，用于增强文字可读性"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "遮罩层透明度",
+          "default": 40,
+          "info": "仅在设置了遮罩层颜色时生效"
+        },
+        {
+          "type": "header",
+          "content": "内容设置"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "标题文字"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "描述文字",
+          "default": "<p>在这里输入描述文字，支持HTML格式</p>"
+        },
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "内容对齐方式",
+          "options": [
+            { "value": "left", "label": "左对齐" },
+            { "value": "center", "label": "居中" },
+            { "value": "right", "label": "右对齐" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "文字颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "按钮设置"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文字",
+          "default": "了解更多"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "按钮链接"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "按钮背景颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "按钮文字颜色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "按钮边框颜色",
+          "info": "留空则使用按钮背景颜色"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "按钮圆角",
+          "default": 4
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Image Gallery Slider",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "custom_content" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

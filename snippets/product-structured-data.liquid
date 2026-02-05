@@ -1,0 +1,181 @@
+{%- comment -%}
+  商品结构化数据 Snippet
+  生成符合 Schema.org Product 规范的 JSON-LD 结构化数据
+  支持自定义价格、折扣、标题、描述等
+  
+  参数:
+  - product {Object} - Shopify 产品对象 (必需)
+  - custom_title {String} - 自定义标题 (可选)
+  - custom_description {String} - 自定义描述 (可选)
+  - custom_image {Object} - 自定义图片 (可选)
+  - custom_compare_price {String} - 自定义原价，如 "299.00" (可选)
+  - custom_discount_percent {Number} - 自定义折扣百分比 (可选)
+  - category_discount_percent {Number} - 分类折扣百分比 (可选)
+  - discount_percent {Number} - Tab/Section 折扣百分比 (可选)
+  - show_aggregate_rating {Boolean} - 是否显示评分汇总 (可选，默认 true)
+  
+  使用方法:
+  {% render 'product-structured-data', product: product %}
+  
+  或带自定义参数:
+  {% render 'product-structured-data',
+    product: product,
+    custom_title: block.settings.custom_title,
+    custom_compare_price: block.settings.custom_compare_price,
+    custom_discount_percent: block.settings.custom_discount_percent
+  %}
+{%- endcomment -%}
+
+{%- if product -%}
+  {%- liquid
+    # 确定显示的标题和描述
+    assign display_title = custom_title | default: product.title
+    assign display_description = custom_description | default: product.description | strip_html | truncate: 500
+
+    # 确定显示的图片
+    assign display_image = custom_image | default: product.featured_image
+    
+    # 计算系统折扣百分比（基于产品的 compare_at_price）
+    assign system_discount_percent = 0
+    if product.compare_at_price > product.price
+      assign discount_amount_sys = product.compare_at_price | minus: product.price
+      assign system_discount_percent = discount_amount_sys | times: 100.0 | divided_by: product.compare_at_price | round
+    endif
+    
+    # 确定使用的折扣百分比
+    # 优先级：custom_discount_percent > category_discount_percent > discount_percent > system_discount_percent
+    assign final_discount_percent = 0
+    if custom_discount_percent and custom_discount_percent > 0
+      assign final_discount_percent = custom_discount_percent
+    elsif category_discount_percent and category_discount_percent > 0
+      assign final_discount_percent = category_discount_percent
+    elsif discount_percent and discount_percent > 0
+      assign final_discount_percent = discount_percent
+    elsif system_discount_percent > 0
+      assign final_discount_percent = system_discount_percent
+    endif
+    
+    # 计算最终价格
+    assign compare_price = 0
+    assign sale_price = product.price
+    assign has_discount = false
+    
+    # 如果有自定义原价
+    if custom_compare_price != blank
+      assign compare_price = custom_compare_price | times: 100
+      
+      if final_discount_percent > 0
+        assign discount_decimal = final_discount_percent | times: 1.0 | divided_by: 100.0
+        assign discount_amount = compare_price | times: discount_decimal
+        assign sale_price = compare_price | minus: discount_amount
+        assign has_discount = true
+      else
+        assign sale_price = product.price
+        if compare_price > product.price
+          assign has_discount = true
+        endif
+      endif
+    else
+      # 没有自定义原价
+      if product.compare_at_price > product.price
+        assign compare_price = product.compare_at_price
+        assign sale_price = product.price
+        assign has_discount = true
+      elsif final_discount_percent > 0
+        assign compare_price = product.price
+        assign discount_decimal = final_discount_percent | times: 1.0 | divided_by: 100.0
+        assign discount_amount = product.price | times: discount_decimal
+        assign sale_price = product.price | minus: discount_amount
+        assign has_discount = true
+      endif
+    endif
+    
+    # 价格格式化（转换为小数格式）
+    assign price_value = sale_price | divided_by: 100.0
+    
+    # 库存状态
+    assign availability = 'https://schema.org/InStock'
+    if product.available == false
+      assign availability = 'https://schema.org/OutOfStock'
+    endif
+    
+    # 货币代码
+    assign currency_code = shop.currency
+    
+    # 品牌
+    assign brand_name = product.vendor | default: shop.name
+    
+    # 评分数据
+    assign show_rating = show_aggregate_rating | default: true
+    assign has_rating = false
+    assign rating_value = 0
+    assign rating_count = 0
+    
+    if show_rating
+      if product.metafields.reviews.rating.value
+        assign has_rating = true
+        assign rating_value = product.metafields.reviews.rating.value | round: 1
+        assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+      endif
+    endif
+    
+    # SKU
+    assign product_sku = product.selected_or_first_available_variant.sku | default: product.id
+    
+    # GTIN (如果有条形码)
+    assign product_gtin = product.selected_or_first_available_variant.barcode
+  -%}
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ display_title | json }},
+    "description": {{ display_description | json }},
+    {%- if display_image -%}
+    "image": [
+      "{{ display_image | image_url: width: 1200 }}"
+      {%- if product.images.size > 1 -%}
+        {%- for image in product.images offset: 1 limit: 4 -%}
+        ,"{{ image | image_url: width: 1200 }}"
+        {%- endfor -%}
+      {%- endif -%}
+    ],
+    {%- endif -%}
+    "sku": {{ product_sku | json }},
+    {%- if product_gtin != blank -%}
+    "gtin": {{ product_gtin | json }},
+    {%- endif -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ brand_name | json }}
+    },
+    "url": "{{ shop.url }}{{ product.url }}",
+    "offers": {
+      "@type": "Offer",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "priceCurrency": {{ currency_code | json }},
+      "price": {{ price_value | json }},
+      {%- if has_discount and compare_price > 0 -%}
+      "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31",
+      {%- endif -%}
+      "availability": "{{ availability }}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@type": "Organization",
+        "name": {{ shop.name | json }}
+      }
+    }
+    {%- if has_rating and rating_count > 0 -%}
+    ,"aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": {{ rating_value | json }},
+      "reviewCount": {{ rating_count | json }},
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+    {%- endif -%}
+  }
+  </script>
+{%- endif -%}
+

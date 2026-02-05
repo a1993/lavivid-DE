@@ -1,0 +1,513 @@
+{% comment %}
+  Custom Rich Text Section
+  自定义富文本分区 - 支持自定义背景色和文本颜色，最大宽度1400px
+  
+  功能特性：
+  - 支持多个富文本块（Blocks），每个块可独立配置样式
+  - 每个块可设置：对齐方式、文本颜色、最大宽度、底部间距
+  - 向后兼容：如果没有 blocks，使用 section.settings.richtext
+  - 响应式设计，移动端自动适配
+{% endcomment %}
+
+{%- liquid
+  assign background_color = section.settings.background_color
+  assign text_color = section.settings.text_color
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign text_alignment = section.settings.text_alignment
+  assign has_blocks = false
+  if section.blocks.size > 0
+    assign has_blocks = true
+  endif
+-%}
+
+<div
+  class='custom-rich-text-section'
+  {% if background_color != blank %}
+    style='background-color: {{ background_color }};'
+  {% endif %}
+  {%- render 'animation-attrs', attrs: 'data-cc-animate' -%}
+>
+  <div class='custom-rich-text-container'>
+    {% if has_blocks %}
+      {% comment %} 使用 Blocks 模式 {% endcomment %}
+      {% for block in section.blocks %}
+        {% if block.type == 'richtext_block' %}
+          {%- liquid
+            assign block_text_color = block.settings.text_color | default: text_color
+            assign block_alignment = block.settings.text_alignment | default: text_alignment
+            assign block_max_width = block.settings.max_width | default: 1400
+            assign block_spacing = block.settings.spacing_bottom | default: 'medium'
+          -%}
+          <div
+            class='custom-rich-text-block custom-rich-text-block--align-{{ block_alignment }} custom-rich-text-block--spacing-{{ block_spacing }}'
+            {{ block.shopify_attributes }}
+            style='max-width: {{ block_max_width }}px;'
+          >
+            <div
+              class='custom-rich-text-content rte'
+              {% if block_text_color != blank %}
+                style='color: {{ block_text_color }};'
+              {% endif %}
+            >
+              {% if block.settings.richtext != blank %}
+                {{ block.settings.richtext }}
+              {% else %}
+                <p>Add your rich text content here.</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% comment %} 向后兼容：使用旧的 section.settings.richtext {% endcomment %}
+      <div
+        class='custom-rich-text-content rte'
+        {% if text_color != blank %}
+          style='color: {{ text_color }};'
+        {% endif %}
+      >
+        {% if section.settings.richtext != blank %}
+          {{ section.settings.richtext }}
+        {% else %}
+          <p>Add your rich text content here. You can format text, add links, and more.</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% style %}
+  .custom-rich-text-section {
+    width: 100%;
+  }
+
+  .custom-rich-text-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .custom-rich-text-content {
+    width: 100%;
+  }
+
+  /* Rich Text Blocks */
+  .custom-rich-text-block {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .custom-rich-text-block:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Block Alignment */
+  .custom-rich-text-block--align-left {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .custom-rich-text-block--align-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .custom-rich-text-block--align-right {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  /* Block Spacing */
+  .custom-rich-text-block--spacing-none {
+    margin-bottom: 0;
+  }
+
+  .custom-rich-text-block--spacing-small {
+    margin-bottom: 1rem;
+  }
+
+  .custom-rich-text-block--spacing-medium {
+    margin-bottom: 2rem;
+  }
+
+  .custom-rich-text-block--spacing-large {
+    margin-bottom: 3rem;
+  }
+
+  /* Padding Top */
+  {% if padding_top == 'none' %}
+    .custom-rich-text-section {
+      padding-top: 0;
+    }
+  {% elsif padding_top == 'small' %}
+    .custom-rich-text-section {
+      padding-top: 1rem;
+    }
+  {% elsif padding_top == 'medium' %}
+    .custom-rich-text-section {
+      padding-top: 2rem;
+    }
+  {% elsif padding_top == 'large' %}
+    .custom-rich-text-section {
+      padding-top: 4rem;
+    }
+  {% else %}
+    .custom-rich-text-section {
+      padding-top: 2rem;
+    }
+  {% endif %}
+
+  /* Padding Bottom */
+  {% if padding_bottom == 'none' %}
+    .custom-rich-text-section {
+      padding-bottom: 0;
+    }
+  {% elsif padding_bottom == 'small' %}
+    .custom-rich-text-section {
+      padding-bottom: 1rem;
+    }
+  {% elsif padding_bottom == 'medium' %}
+    .custom-rich-text-section {
+      padding-bottom: 2rem;
+    }
+  {% elsif padding_bottom == 'large' %}
+    .custom-rich-text-section {
+      padding-bottom: 4rem;
+    }
+  {% else %}
+    .custom-rich-text-section {
+      padding-bottom: 2rem;
+    }
+  {% endif %}
+
+  /* Text Alignment */
+  {% if text_alignment == 'left' %}
+    .custom-rich-text-content {
+      text-align: left;
+    }
+  {% elsif text_alignment == 'center' %}
+    .custom-rich-text-content {
+      text-align: center;
+    }
+  {% elsif text_alignment == 'right' %}
+    .custom-rich-text-content {
+      text-align: right;
+    }
+  {% else %}
+    .custom-rich-text-content {
+      text-align: center;
+    }
+  {% endif %}
+
+  /* Desktop Responsive (>=1280px) */
+  @media screen and (min-width: 1280px) {
+    .custom-rich-text-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    {% if padding_top == 'large' %}
+      .custom-rich-text-section {
+        padding-top: 6rem;
+      }
+    {% endif %}
+
+    {% if padding_bottom == 'large' %}
+      .custom-rich-text-section {
+        padding-bottom: 6rem;
+      }
+    {% endif %}
+  }
+
+  /* Mobile Responsive (<=767px) */
+  @media screen and (max-width: 767px) {
+    .custom-rich-text-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    {% if padding_top == 'medium' %}
+      .custom-rich-text-section {
+        padding-top: 1.5rem;
+      }
+    {% endif %}
+
+    {% if padding_top == 'large' %}
+      .custom-rich-text-section {
+        padding-top: 2.5rem;
+      }
+    {% endif %}
+
+    {% if padding_bottom == 'medium' %}
+      .custom-rich-text-section {
+        padding-bottom: 1.5rem;
+      }
+    {% endif %}
+
+    {% if padding_bottom == 'large' %}
+      .custom-rich-text-section {
+        padding-bottom: 2.5rem;
+      }
+    {% endif %}
+
+    /* Block spacing adjustments for mobile */
+    .custom-rich-text-block--spacing-medium {
+      margin-bottom: 1.5rem;
+    }
+
+    .custom-rich-text-block--spacing-large {
+      margin-bottom: 2rem;
+    }
+
+    /* Ensure blocks don't exceed container width on mobile */
+    .custom-rich-text-block {
+      max-width: 100% !important;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Custom Rich Text",
+  "tag": "section",
+  "class": "section-custom-rich-text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "richtext",
+      "label": "Rich Text Content",
+      "default": "<p>Add your rich text content here. You can format text, add links, and more.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "info": "Select a background color for the rich text section"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "info": "Select a text color for the rich text content"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "header",
+      "content": "Content Mode"
+    },
+    {
+      "type": "paragraph",
+      "content": "Use blocks below to add multiple rich text sections with individual styling. If no blocks are added, the 'Rich Text Content' setting above will be used."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "richtext_block",
+      "name": "Rich Text Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Rich Text Content",
+          "default": "<p>Add your rich text content here. You can format text, add links, and more.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Layout Settings"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center",
+          "info": "Override section default alignment for this block"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Maximum Width",
+          "min": 400,
+          "max": 1400,
+          "step": 50,
+          "unit": "px",
+          "default": 1400,
+          "info": "Maximum width of this text block"
+        },
+        {
+          "type": "select",
+          "id": "spacing_bottom",
+          "label": "Bottom Spacing",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "medium",
+          "info": "Spacing below this block"
+        },
+        {
+          "type": "header",
+          "content": "Color Settings"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "info": "Override section default text color for this block"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Custom Rich Text",
+      "blocks": [
+        {
+          "type": "richtext_block",
+          "settings": {
+            "richtext": "<h2>Welcome to Our Store</h2><p>This is a sample rich text block. You can format text, add links, and customize the styling for each block individually.</p>",
+            "text_alignment": "center",
+            "max_width": 1400,
+            "spacing_bottom": "medium"
+          }
+        },
+        {
+          "type": "richtext_block",
+          "settings": {
+            "richtext": "<p>Add multiple blocks to create rich, layered content sections. Each block can have its own alignment, width, and color settings.</p>",
+            "text_alignment": "left",
+            "max_width": 800,
+            "spacing_bottom": "medium"
+          }
+        },
+        {
+          "type": "richtext_block",
+          "settings": {
+            "richtext": "<p><strong>Need help?</strong> Contact us at <a href='mailto:support@example.com'>support@example.com</a> or visit our <a href='/pages/contact'>contact page</a>.</p>",
+            "text_alignment": "center",
+            "max_width": 1000,
+            "spacing_bottom": "none"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

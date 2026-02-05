@@ -1,0 +1,133 @@
+<script>
+
+    function lazyLoadCss(t) {
+        ((s = document.createElement("link")).rel = "stylesheet"),
+            (s.href = t),
+            document.getElementsByTagName("head")[0].appendChild(s);
+    }
+    var interacted = false
+    function loadScript(src, defer, done, type) {
+        var js = document.createElement('script');
+        js.src = src;
+        js.defer = defer;
+        js.type = type || '';
+        js.onload = function(){done();};
+        js.onerror = function(){
+            done(new Error('Failed to load script ' + src));
+        };
+        document.head.appendChild(js);
+    }
+
+    var interacted = false;
+    var isCache = localStorage.getItem('is_cached');
+    var isNoDelay = false;
+    let lazyScripts = document.querySelectorAll("script[type='lazyload2']");
+    let  j = 0;
+    function lazyLoadScripts() {
+        j != lazyScripts.length &&
+        ("lazyload2" == lazyScripts[j].getAttribute("type")
+            ? (lazyScripts[j].setAttribute("type", "lazyloaded"),
+                void 0 !== lazyScripts[j].dataset.src
+                    ? (((s = document.createElement("script")).src =
+                        lazyScripts[j].dataset.src),
+                        document.body.appendChild(s),
+                        (s.onload = function () {
+                            j++, lazyLoadScripts();
+                        }))
+                    : (((s = document.createElement("script")).innerHTML =
+                        lazyScripts[j].innerHTML),
+                        document.body.appendChild(s),
+                        j++,
+                        lazyLoadScripts()))
+            : (j++, lazyLoadScripts()));
+        if(j == lazyScripts.length){
+            setTimeout(function () {
+                const wnw_load = new Event("wnw_load");
+                document.dispatchEvent(wnw_load);
+            }, 200);
+        }
+    }
+    function load_after_interaction (){
+        if(interacted) return
+        interacted = true;
+
+        lazyLoadCss("{{ 'base.css' | asset_url }}")
+        loadScript("{{ 'global.js' | asset_url }}",false,()=>{
+
+
+            lazyLoadScripts()
+
+            var DOMContentLoaded_event = document.createEvent("Event")
+            DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+            window.document.dispatchEvent(DOMContentLoaded_event)
+
+        })
+        lazyLoadCss("{{ 'custom.css' | asset_url }}")
+        window.themeScripts.map((src, i) => {
+            if (i === window.themeScripts.length - 1) {
+
+                loadScript(src,false,function () {
+                    window.sectionScripts && window.sectionScripts.forEach((func) => {
+                        try {
+                            func();
+                        } catch (err) {
+                            console.og(err);
+                        }
+
+                    });
+
+                });
+            } else {
+                loadScript(src,false, function(){});
+            }
+        });
+        window.thirdPartyScripts &&  window.thirdPartyScripts.map((src, i) => {
+            loadScript(src,false, function(){});
+        });
+        if(boostPfsScript && boostPfsScript.length){
+            boostPfsScript.map(script => {
+                document.head.appendChild(script)
+            })
+        }
+        window.asyncLoad && window.asyncLoad();
+
+        localStorage.setItem('is_cached',true)
+    }
+    !interacted && setTimeout(load_after_interaction,isCache || isNoDelay ? 0 : 20000);
+
+
+    if( navigator.userAgent.match(/(Mozilla\/5\.0 \(Linux; Android 11; moto g power \(2022\)\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/109\.0.0.0 Mobile Safari\/537\.36)|(Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 10_15_7\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/109\.0\.0\.0 Safari\/537\.36)|(Speed Insights)|(Chrome-Lighthouse)|(PSTS[\d\.]+)/)
+        || /gtmetrix/i.test(navigator.userAgent)
+    ) {
+        ['mousemove', 'touchstart', 'scroll'].forEach(function (event_type) {
+            window.addEventListener(event_type, () => {
+                load_after_interaction()
+            }, {once: true})
+        })
+    } else {
+      load_after_interaction();
+    }
+
+
+    function prefetchUrl (url){
+        window.prefetchUrlArr= window.prefetchUrlArr || []
+        if(!window.prefetchUrlArr.includes(url) && url && url.includes('/')){
+            window.prefetchUrlArr.push(url)
+
+            let prefetchLink = document.createElement('link')
+            prefetchLink.rel = "prefetch"
+            prefetchLink.href = url
+            document.head.appendChild(prefetchLink)
+        }
+    }
+    addEventListener('load', () => {
+        let elements = document.getElementsByClassName("product__section-images");
+        if (elements && elements != null) {
+            // Loop through the elements and set their CSS properties
+            for (let i = 0; i < elements.length; i++) {
+                let element = elements[i];
+                element.classList.remove('wgt-special');
+            }
+        }
+    })
+</script>

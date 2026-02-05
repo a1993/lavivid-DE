@@ -1,0 +1,134 @@
+<style>
+     .timer-content-wrapper{
+        width: 100%;
+        border-radius: 8px;
+        background-color: #f0f4ff;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items:center;
+        margin:16px 0;
+        flex-direction:row;
+    }  
+
+    .timer-title{
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-size: 18px;
+    color: #0a0a0a;
+    margin-bottom: 6px;
+    }
+    .timer-text{
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0;
+    font-size: 14px;
+    color: #353535;
+    }
+    
+        .timer-widget{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        padding: 8px 16px;
+        background-color: #bbcbe6;
+        border-radius: 4px;
+        max-height:61px;
+    }
+
+        .timer-count-down{
+        font-size: 14px;
+        font-weight: 400;
+        color: #0a0a0a;
+        line-height: 150%;
+    }
+    .timer-counterup{
+        font-size: 16px;
+        font-weight: 500;
+        color: #0a0a0a;
+        line-height: 150%;
+
+    }
+
+
+
+       .timer-divider{
+        width: .5px;
+        height: 16px;
+        background-color: #0a0a0a;
+    }
+     @media screen and (max-width: 768px) {
+         .timer-content-wrapper{
+        flex-direction:column;
+        align-items:start;
+        gap:8px;
+    }  
+
+         .timer-title{
+            font-size: 16px;
+         }
+         
+
+         .timer-text{
+            font-size: 12px;
+         }
+         .timer-counterup{
+            font-size: 14px;
+         }
+         .timer-count-down{
+            font-size: 12px;
+         }
+     }
+    </style>
+    
+    <script>
+
+
+const counters = document.querySelectorAll(".timer-counterup");
+
+// Save original values
+const START_H = parseInt(counters[0].innerText);
+const START_M = parseInt(counters[1].innerText);
+const START_S = parseInt(counters[2].innerText);
+
+// Current values
+let hours = START_H;
+let minutes = START_M;
+let seconds = START_S;
+
+function updateHTML() {
+    counters[0].innerText = hours.toString().padStart(2, "0");
+    counters[1].innerText = minutes.toString().padStart(2, "0");
+    counters[2].innerText = seconds.toString().padStart(2, "0");
+}
+
+function runTimer() {
+    seconds--;
+
+    if (seconds < 0) {
+        seconds = 59;
+        minutes--;
+    }
+
+    if (minutes < 0) {
+        minutes = 59;
+        hours--;
+    }
+
+    // If timer reaches zero → reset
+    if (hours < 0) {
+        hours = START_H;
+        minutes = START_M;
+        seconds = START_S;
+    }
+
+    updateHTML();
+}
+
+setInterval(runTimer, 1000);
+
+</script>

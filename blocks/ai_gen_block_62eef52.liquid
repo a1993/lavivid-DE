@@ -1,0 +1,1525 @@
+{% doc %}
+  @prompt
+    创建一个板块，根据不同的life style推荐几款产品，针对life style有介绍，并且产品中有hair systems 同时还有adhesives, 我希望hair system 跟adhesive是不同推荐板块 不要混在一起，而且hair system 跟adhesive 需要简单写下推荐理由，mobile端的话，希望点击不同life style能直接展示到不同的产品推荐板块，而不是现在三个life styles并列，最下面才展示推荐产品, 产品推荐板块 都是多个产品推荐，hair systems每种推荐多款，我可以自定义个数，adhesives每种推荐的也是多款，每个lifestyle的示意图 不想用icon我想要用图片的示意，这是我准备的文案信息，供你参考：
+    The best hair system isn’t just about material — it’s about how you live and how you wear your hair. To make your choice simple, we’ve grouped hair systems into three lifestyle types and with adhesive recommendations for quick and confident selection. tap lifestyels to see the recommendations (polish for me)
+    不同的lifestyles请根据三个维度设计星级
+    natural 
+    security
+    comfort
+    
+    
+    Office & Appearance-Focused Lifestyle
+    Meetings, social events, visible hairline styles
+    
+    Product 1
+    Product 2
+    Product 3
+    
+    
+    Recommend adhesives
+    Invisible hairline    Light-hold / medium-hold
+    TA2202，TA2201 ，AC2011，
+    
+    Active & Sporty Lifestyle
+    Gym, sports, outdoor work, frequent sweating
+    Product 1
+    Product 2
+    Product 3 
+    
+    Recommend adhesives
+    Strong, secure hold   Sweat-resistant
+    AC1937, AC1934, TA2201
+    
+    sensitive skin 
+    comfort-first users  (more description)
+    
+    Product 1
+    Product 2
+    Product 3
+    
+    Recommend adhesives
+    Gentle  Easy to use
+    AC1935，AC1936，AC2011
+    
+    1. lifestyle的标题跟描述居中显示
+    2. PC端产品 一行展示4个，M端的 产品展示一行两个，标题的部分不要太窄
+    3. 推荐hair system的reason突出显示下（换个底色或者别的形式）
+    4. adhesive的部分也需要tags来体现特点, M端产品的标题太长了，我需要改成能我自己编辑的形式，产品的reason部分改为居中显示
+    , 星级的部分 展示在推荐产品上面吧，不同lifestyle的图 面积稍微大一点，M端选择了不同的lifestyle点击之后  跳转到对应的推荐板块, 星级的部分 展示在推荐产品上面吧，不同lifestyle的图 面积稍微大一点，M端选择了不同的lifestyle点击之后  跳转到对应的推荐板块, 产品展示的图片不全，不要裁剪图片，可以缩放, 不过 lifestyle的图片形式不用改，这部分的图片换回上一版吧, lifestyle的图片 不是这个样式，圆形的那个版本，图片上传之后可以自适应选取中心为主的部分, hair system产品每类lifestyle保留4个产品位置吧，同样我也可以自己再添加产品。，adhesives也是需要展示产品的，也需要添加产品展示，同时需要每个下面带着个标签类似的 “For skin base”, “For Lace base”这种我可以自己编辑的特征，, adhesives产品同样需要显示价格, 3个lifestyle的标题&图片板块宽度改为一样的，均分
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-lifestyle-recs-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-lifestyle-recs__intro-{{ ai_gen_id }} {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: {{ block.settings.text_color }};
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .ai-lifestyle-recs__tabs-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  .ai-lifestyle-recs__tab-{{ ai_gen_id }} {
+    background: none;
+    border: 2px solid {{ block.settings.tab_border_color }};
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: {{ block.settings.border_radius }}px;
+    text-align: center;
+  }
+
+  .ai-lifestyle-recs__tab-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.tab_active_color }};
+  }
+
+  .ai-lifestyle-recs__tab-{{ ai_gen_id }}.active {
+    border-color: {{ block.settings.tab_active_color }};
+    background-color: {{ block.settings.tab_active_bg }};
+  }
+
+  .ai-lifestyle-recs__tab-icon-{{ ai_gen_id }} {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+  }
+
+  .ai-lifestyle-recs__tab-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .ai-lifestyle-recs__tab-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-lifestyle-recs__tab-desc-{{ ai_gen_id }} {
+    font-size: 13px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+
+  .ai-lifestyle-recs__content-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-lifestyle-recs__content-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-lifestyle-recs__content-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-lifestyle-recs__content-title-{{ ai_gen_id }} {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-lifestyle-recs__content-desc-{{ ai_gen_id }} {
+    font-size: 16px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+    margin-bottom: 28px;
+  }
+
+  .ai-lifestyle-recs__ratings-{{ ai_gen_id }} {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  .ai-lifestyle-recs__rating-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-lifestyle-recs__rating-label-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-lifestyle-recs__stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 4px;
+  }
+
+  .ai-lifestyle-recs__star-{{ ai_gen_id }} {
+    width: 18px;
+    height: 18px;
+    color: {{ block.settings.star_color }};
+  }
+
+  .ai-lifestyle-recs__star-{{ ai_gen_id }}.empty {
+    opacity: 0.2;
+  }
+
+  .ai-lifestyle-recs__section-{{ ai_gen_id }} {
+    margin-bottom: 60px;
+  }
+
+  .ai-lifestyle-recs__section-title-{{ ai_gen_id }} {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: {{ block.settings.heading_color }};
+    text-align: center;
+  }
+
+  .ai-lifestyle-recs__products-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .ai-lifestyle-recs__product-{{ ai_gen_id }} {
+    text-align: left;
+  }
+
+  .ai-lifestyle-recs__product-image-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 12px;
+    border-radius: {{ block.settings.product_border_radius }}px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-lifestyle-recs__product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-lifestyle-recs__product-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    line-height: 1.2;
+  }
+
+  .ai-lifestyle-recs__product-price-wrap-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .ai-lifestyle-recs__product-price-compare-{{ ai_gen_id }} {
+    font-size: 13px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    text-decoration: line-through;
+  }
+
+  .ai-lifestyle-recs__product-price-sale-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-lifestyle-recs__product-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: {{ block.settings.text_color }};
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ai-lifestyle-recs__product-price-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 8px;
+  }
+
+  .ai-lifestyle-recs__product-reason-{{ ai_gen_id }} {
+    font-size: 12px;
+    padding: 8px 12px;
+    background-color: {{ block.settings.reason_bg_color }};
+    color: {{ block.settings.reason_text_color }};
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .ai-lifestyle-recs__product-feature-{{ ai_gen_id }} {
+    font-size: 11px;
+    padding: 4px 10px;
+    background-color: {{ block.settings.feature_bg_color }};
+    color: {{ block.settings.feature_text_color }};
+    border-radius: 12px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  .ai-lifestyle-recs__adhesives-{{ ai_gen_id }} {
+    background-color: {{ block.settings.adhesive_section_bg }};
+    padding: 24px;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-lifestyle-recs__adhesive-title-{{ ai_gen_id }} {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: {{ block.settings.heading_color }};
+    text-align: center;
+  }
+
+  .ai-lifestyle-recs__adhesive-tags-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .ai-lifestyle-recs__adhesive-tag-{{ ai_gen_id }} {
+    padding: 6px 12px;
+    background-color: {{ block.settings.tag_bg_color }};
+    color: {{ block.settings.tag_text_color }};
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .ai-lifestyle-recs__adhesive-products-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-image-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 10px;
+    border-radius: {{ block.settings.product_border_radius }}px;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 1;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    line-height: 1.2;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-price-wrap-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-price-compare-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    text-decoration: line-through;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-price-sale-{{ ai_gen_id }} {
+    font-size: 13px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-lifestyle-recs__adhesive-product-title-{{ ai_gen_id }} {
+    font-size: 13px;
+    font-weight: 500;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ai-lifestyle-recs__adhesive-product-price-{{ ai_gen_id }} {
+    font-size: 13px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 6px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-lifestyle-recs__tabs-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .ai-lifestyle-recs__tab-{{ ai_gen_id }} {
+      padding: 16px;
+    }
+
+    .ai-lifestyle-recs__tab-icon-{{ ai_gen_id }} {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 12px;
+    }
+
+    .ai-lifestyle-recs__tab-title-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+
+    .ai-lifestyle-recs__content-title-{{ ai_gen_id }} {
+      font-size: 24px;
+    }
+
+    .ai-lifestyle-recs__content-desc-{{ ai_gen_id }} {
+      font-size: 14px;
+    }
+
+    .ai-lifestyle-recs__ratings-{{ ai_gen_id }} {
+      gap: 20px;
+    }
+
+    .ai-lifestyle-recs__star-{{ ai_gen_id }} {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ai-lifestyle-recs__products-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .ai-lifestyle-recs__product-title-{{ ai_gen_id }} {
+      font-size: 13px;
+    }
+
+    .ai-lifestyle-recs__section-title-{{ ai_gen_id }} {
+      font-size: 20px;
+    }
+
+    .ai-lifestyle-recs__adhesive-title-{{ ai_gen_id }} {
+      font-size: 18px;
+    }
+
+    .ai-lifestyle-recs__adhesive-products-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+{% endstyle %}
+
+<lifestyle-recommendations-{{ ai_gen_id }}
+  class="ai-lifestyle-recs-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-lifestyle-recs__intro-{{ ai_gen_id }}">
+    {{ block.settings.intro_text }}
+  </div>
+
+  <div class="ai-lifestyle-recs__tabs-{{ ai_gen_id }}">
+    {% for i in (1..3) %}
+      {% liquid
+        assign enabled_key = 'lifestyle_' | append: i | append: '_enabled'
+        assign image_key = 'lifestyle_' | append: i | append: '_image'
+        assign title_key = 'lifestyle_' | append: i | append: '_title'
+        assign desc_key = 'lifestyle_' | append: i | append: '_desc'
+
+        assign enabled = block.settings[enabled_key]
+        assign image = block.settings[image_key]
+        assign title = block.settings[title_key]
+        assign desc = block.settings[desc_key]
+      %}
+
+      {% if enabled %}
+        <button
+          class="ai-lifestyle-recs__tab-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+          data-lifestyle="{{ i }}"
+          aria-label="View {{ title }} recommendations"
+        >
+          {% if image %}
+            <div class="ai-lifestyle-recs__tab-icon-{{ ai_gen_id }}">
+              <img
+                src="{{ image | image_url: width: 240 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="120"
+                height="120"
+              >
+            </div>
+          {% endif %}
+          <div class="ai-lifestyle-recs__tab-title-{{ ai_gen_id }}">{{ title }}</div>
+          <div class="ai-lifestyle-recs__tab-desc-{{ ai_gen_id }}">{{ desc }}</div>
+        </button>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% for i in (1..3) %}
+    {% liquid
+      assign enabled_key = 'lifestyle_' | append: i | append: '_enabled'
+      assign title_key = 'lifestyle_' | append: i | append: '_title'
+      assign desc_key = 'lifestyle_' | append: i | append: '_desc'
+      assign natural_key = 'lifestyle_' | append: i | append: '_natural'
+      assign security_key = 'lifestyle_' | append: i | append: '_security'
+      assign comfort_key = 'lifestyle_' | append: i | append: '_comfort'
+
+      assign enabled = block.settings[enabled_key]
+      assign title = block.settings[title_key]
+      assign desc = block.settings[desc_key]
+      assign natural = block.settings[natural_key]
+      assign security = block.settings[security_key]
+      assign comfort = block.settings[comfort_key]
+    %}
+
+    {% if enabled %}
+      <div
+        class="ai-lifestyle-recs__content-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+        data-content="{{ i }}"
+        id="lifestyle-content-{{ ai_gen_id }}-{{ i }}"
+      >
+        <div class="ai-lifestyle-recs__content-header-{{ ai_gen_id }}">
+          <h2 class="ai-lifestyle-recs__content-title-{{ ai_gen_id }}">{{ title }}</h2>
+          <div class="ai-lifestyle-recs__content-desc-{{ ai_gen_id }}">{{ desc }}</div>
+          <div class="ai-lifestyle-recs__ratings-{{ ai_gen_id }}">
+            <div class="ai-lifestyle-recs__rating-item-{{ ai_gen_id }}">
+              <span class="ai-lifestyle-recs__rating-label-{{ ai_gen_id }}">Natural</span>
+              <div class="ai-lifestyle-recs__stars-{{ ai_gen_id }}">
+                {% for star in (1..5) %}
+                  <svg class="ai-lifestyle-recs__star-{{ ai_gen_id }} {% if star > natural %}empty{% endif %}" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="ai-lifestyle-recs__rating-item-{{ ai_gen_id }}">
+              <span class="ai-lifestyle-recs__rating-label-{{ ai_gen_id }}">Security</span>
+              <div class="ai-lifestyle-recs__stars-{{ ai_gen_id }}">
+                {% for star in (1..5) %}
+                  <svg class="ai-lifestyle-recs__star-{{ ai_gen_id }} {% if star > security %}empty{% endif %}" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="ai-lifestyle-recs__rating-item-{{ ai_gen_id }}">
+              <span class="ai-lifestyle-recs__rating-label-{{ ai_gen_id }}">Comfort</span>
+              <div class="ai-lifestyle-recs__stars-{{ ai_gen_id }}">
+                {% for star in (1..5) %}
+                  <svg class="ai-lifestyle-recs__star-{{ ai_gen_id }} {% if star > comfort %}empty{% endif %}" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-lifestyle-recs__section-{{ ai_gen_id }}">
+          <h3 class="ai-lifestyle-recs__section-title-{{ ai_gen_id }}">{{ block.settings.hair_systems_title }}</h3>
+          <div class="ai-lifestyle-recs__products-{{ ai_gen_id }}">
+            {% for j in (1..4) %}
+              {% liquid
+                assign product_key = 'lifestyle_' | append: i | append: '_product_' | append: j
+                assign custom_title_key = 'lifestyle_' | append: i | append: '_product_' | append: j | append: '_title'
+                assign reason_key = 'lifestyle_' | append: i | append: '_product_' | append: j | append: '_reason'
+                assign product = block.settings[product_key]
+                assign custom_title = block.settings[custom_title_key]
+                assign reason = block.settings[reason_key]
+              %}
+
+              {% if product %}
+                {%- liquid
+                  assign cheapest_variant = product.variants | sort: 'price' | first
+                  assign compare_price = cheapest_variant.compare_at_price
+                  assign sale_price = cheapest_variant.price
+                  assign show_compare_price = false
+                  assign discount_percent = 0
+                  if compare_price != blank and compare_price > sale_price
+                    assign show_compare_price = true
+                    assign discount_amount = compare_price | minus: sale_price
+                    assign discount_percent = discount_amount | times: 100.0 | divided_by: compare_price | round
+                  endif
+                -%}
+                <div class="ai-lifestyle-recs__product-{{ ai_gen_id }}">
+                  <a href="{{ product.url }}" class="ai-lifestyle-recs__product-image-{{ ai_gen_id }}">
+                    {% if discount_percent > 0 %}
+                      <span class="ai-lifestyle-recs__product-badge-{{ ai_gen_id }}">{{ discount_percent }}% OFF</span>
+                    {% endif %}
+                    {% if product.featured_image %}
+                      <img
+                        src="{{ product.featured_image | image_url: width: 400 }}"
+                        alt="{{ product.featured_image.alt | escape }}"
+                        loading="lazy"
+                        width="400"
+                        height="400"
+                      >
+                    {% endif %}
+                  </a>
+                  <a href="{{ product.url }}" class="ai-lifestyle-recs__product-title-{{ ai_gen_id }}">
+                    {% if custom_title != blank %}
+                      {{ custom_title }}
+                    {% else %}
+                      {{ product.title }}
+                    {% endif %}
+                  </a>
+                  <div class="ai-lifestyle-recs__product-price-{{ ai_gen_id }}">
+                    {% if show_compare_price %}
+                      <div class="ai-lifestyle-recs__product-price-wrap-{{ ai_gen_id }}">
+                        <span class="ai-lifestyle-recs__product-price-compare-{{ ai_gen_id }}">{{ compare_price | money }}</span>
+                        <span class="ai-lifestyle-recs__product-price-sale-{{ ai_gen_id }}">{{ sale_price | money }}</span>
+                      </div>
+                    {% else %}
+                      <div class="ai-lifestyle-recs__product-price-wrap-{{ ai_gen_id }}">
+                        <span class="ai-lifestyle-recs__product-price-sale-{{ ai_gen_id }}">{{ sale_price | money }}</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                  {% if reason != blank %}
+                    <div class="ai-lifestyle-recs__product-reason-{{ ai_gen_id }}">{{ reason }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="ai-lifestyle-recs__adhesives-{{ ai_gen_id }}">
+          <h3 class="ai-lifestyle-recs__adhesive-title-{{ ai_gen_id }}">{{ block.settings.adhesives_title }}</h3>
+          {% liquid
+            assign tags_key = 'lifestyle_' | append: i | append: '_adhesive_tags'
+            assign tags = block.settings[tags_key]
+          %}
+          {% if tags != blank %}
+            <div class="ai-lifestyle-recs__adhesive-tags-{{ ai_gen_id }}">
+              {% assign tag_list = tags | split: ',' %}
+              {% for tag in tag_list %}
+                <span class="ai-lifestyle-recs__adhesive-tag-{{ ai_gen_id }}">{{ tag | strip }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+          
+          <div class="ai-lifestyle-recs__adhesive-products-{{ ai_gen_id }}">
+            {% for k in (1..4) %}
+              {% liquid
+                assign adhesive_product_key = 'lifestyle_' | append: i | append: '_adhesive_' | append: k
+                assign adhesive_title_key = 'lifestyle_' | append: i | append: '_adhesive_' | append: k | append: '_title'
+                assign adhesive_feature_key = 'lifestyle_' | append: i | append: '_adhesive_' | append: k | append: '_feature'
+                assign adhesive_product = block.settings[adhesive_product_key]
+                assign adhesive_title = block.settings[adhesive_title_key]
+                assign adhesive_feature = block.settings[adhesive_feature_key]
+              %}
+
+              {% if adhesive_product %}
+                {%- liquid
+                  assign adhesive_cheapest = adhesive_product.variants | sort: 'price' | first
+                  assign adhesive_compare = adhesive_cheapest.compare_at_price
+                  assign adhesive_sale = adhesive_cheapest.price
+                  assign adhesive_show_compare = false
+                  assign adhesive_discount_percent = 0
+                  if adhesive_compare != blank and adhesive_compare > adhesive_sale
+                    assign adhesive_show_compare = true
+                    assign adhesive_discount_amt = adhesive_compare | minus: adhesive_sale
+                    assign adhesive_discount_percent = adhesive_discount_amt | times: 100.0 | divided_by: adhesive_compare | round
+                  endif
+                -%}
+                <div class="ai-lifestyle-recs__adhesive-product-{{ ai_gen_id }}">
+                  <a href="{{ adhesive_product.url }}" class="ai-lifestyle-recs__adhesive-product-image-{{ ai_gen_id }}">
+                    {% if adhesive_discount_percent > 0 %}
+                      <span class="ai-lifestyle-recs__adhesive-product-badge-{{ ai_gen_id }}">{{ adhesive_discount_percent }}% OFF</span>
+                    {% endif %}
+                    {% if adhesive_product.featured_image %}
+                      <img
+                        src="{{ adhesive_product.featured_image | image_url: width: 300 }}"
+                        alt="{{ adhesive_product.featured_image.alt | escape }}"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                      >
+                    {% endif %}
+                  </a>
+                  <a href="{{ adhesive_product.url }}" class="ai-lifestyle-recs__adhesive-product-title-{{ ai_gen_id }}">
+                    {% if adhesive_title != blank %}
+                      {{ adhesive_title }}
+                    {% else %}
+                      {{ adhesive_product.title }}
+                    {% endif %}
+                  </a>
+                  <div class="ai-lifestyle-recs__adhesive-product-price-{{ ai_gen_id }}">
+                    {% if adhesive_show_compare %}
+                      <div class="ai-lifestyle-recs__adhesive-product-price-wrap-{{ ai_gen_id }}">
+                        <span class="ai-lifestyle-recs__adhesive-product-price-compare-{{ ai_gen_id }}">{{ adhesive_compare | money }}</span>
+                        <span class="ai-lifestyle-recs__adhesive-product-price-sale-{{ ai_gen_id }}">{{ adhesive_sale | money }}</span>
+                      </div>
+                    {% else %}
+                      <div class="ai-lifestyle-recs__adhesive-product-price-wrap-{{ ai_gen_id }}">
+                        <span class="ai-lifestyle-recs__adhesive-product-price-sale-{{ ai_gen_id }}">{{ adhesive_sale | money }}</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                  {% if adhesive_feature != blank %}
+                    <div class="ai-lifestyle-recs__product-feature-{{ ai_gen_id }}">{{ adhesive_feature }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</lifestyle-recommendations-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class LifestyleRecommendations{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.tabs = this.querySelectorAll('.ai-lifestyle-recs__tab-{{ ai_gen_id }}');
+        this.contents = this.querySelectorAll('.ai-lifestyle-recs__content-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const lifestyleId = tab.getAttribute('data-lifestyle');
+            this.switchLifestyle(lifestyleId);
+          });
+        });
+      }
+
+      switchLifestyle(lifestyleId) {
+        this.tabs.forEach((tab) => {
+          if (tab.getAttribute('data-lifestyle') === lifestyleId) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+
+        this.contents.forEach((content) => {
+          if (content.getAttribute('data-content') === lifestyleId) {
+            content.classList.add('active');
+            const targetElement = document.getElementById('lifestyle-content-{{ ai_gen_id }}-' + lifestyleId);
+            if (targetElement && window.innerWidth <= 749) {
+              setTimeout(() => {
+                const yOffset = -80;
+                const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }, 150);
+            }
+          } else {
+            content.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    customElements.define('lifestyle-recommendations-{{ ai_gen_id }}', LifestyleRecommendations{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lifestyle recommendations",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Introduction"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "<p>The best hair system isn't just about material — it's about how you live and how you wear your hair. To make your choice simple, we've grouped hair systems into three lifestyle types with adhesive recommendations for quick and confident selection. Tap lifestyles to see the recommendations.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section titles"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "hair_systems_title",
+      "label": "Hair systems title",
+      "default": "Recommended Hair Systems"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "adhesives_title",
+      "label": "Adhesives title",
+      "default": "Recommended Adhesives"
+    },
+    {
+      "type": "header",
+      "content": "Lifestyle 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "lifestyle_1_enabled",
+      "label": "Enable lifestyle 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "lifestyle_1_image",
+      "label": "Lifestyle image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "lifestyle_1_title",
+      "label": "Title",
+      "default": "Office & Appearance-Focused"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "lifestyle_1_desc",
+      "label": "Description",
+      "default": "Meetings, social events, visible hairline styles"
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_1_natural",
+      "label": "Natural rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_1_security",
+      "label": "Security rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_1_comfort",
+      "label": "Comfort rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "paragraph",
+      "content": "Hair systems"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_1_title",
+      "label": "Product 1 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_1_reason",
+      "label": "Product 1 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_2_title",
+      "label": "Product 2 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_2_reason",
+      "label": "Product 2 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_3_title",
+      "label": "Product 3 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_3_reason",
+      "label": "Product 3 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_product_4",
+      "label": "Product 4"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_4_title",
+      "label": "Product 4 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_product_4_reason",
+      "label": "Product 4 reason"
+    },
+    {
+      "type": "paragraph",
+      "content": "Adhesives"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_tags",
+      "label": "Adhesive tags",
+      "placeholder": "Invisible hairline, Light-hold, Medium-hold",
+      "info": "Separate tags with commas"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_adhesive_1",
+      "label": "Adhesive 1"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_1_title",
+      "label": "Adhesive 1 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_1_feature",
+      "label": "Adhesive 1 feature",
+      "placeholder": "For skin base"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_adhesive_2",
+      "label": "Adhesive 2"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_2_title",
+      "label": "Adhesive 2 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_2_feature",
+      "label": "Adhesive 2 feature",
+      "placeholder": "For lace base"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_adhesive_3",
+      "label": "Adhesive 3"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_3_title",
+      "label": "Adhesive 3 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_3_feature",
+      "label": "Adhesive 3 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_1_adhesive_4",
+      "label": "Adhesive 4"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_4_title",
+      "label": "Adhesive 4 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_1_adhesive_4_feature",
+      "label": "Adhesive 4 feature"
+    },
+    {
+      "type": "header",
+      "content": "Lifestyle 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "lifestyle_2_enabled",
+      "label": "Enable lifestyle 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "lifestyle_2_image",
+      "label": "Lifestyle image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "lifestyle_2_title",
+      "label": "Title",
+      "default": "Active & Sporty"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "lifestyle_2_desc",
+      "label": "Description",
+      "default": "Gym, sports, outdoor work, frequent sweating"
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_2_natural",
+      "label": "Natural rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_2_security",
+      "label": "Security rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_2_comfort",
+      "label": "Comfort rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "paragraph",
+      "content": "Hair systems"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_1_title",
+      "label": "Product 1 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_1_reason",
+      "label": "Product 1 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_2_title",
+      "label": "Product 2 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_2_reason",
+      "label": "Product 2 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_3_title",
+      "label": "Product 3 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_3_reason",
+      "label": "Product 3 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_product_4",
+      "label": "Product 4"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_4_title",
+      "label": "Product 4 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_product_4_reason",
+      "label": "Product 4 reason"
+    },
+    {
+      "type": "paragraph",
+      "content": "Adhesives"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_tags",
+      "label": "Adhesive tags",
+      "placeholder": "Strong hold, Sweat-resistant",
+      "info": "Separate tags with commas"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_adhesive_1",
+      "label": "Adhesive 1"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_1_title",
+      "label": "Adhesive 1 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_1_feature",
+      "label": "Adhesive 1 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_adhesive_2",
+      "label": "Adhesive 2"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_2_title",
+      "label": "Adhesive 2 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_2_feature",
+      "label": "Adhesive 2 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_adhesive_3",
+      "label": "Adhesive 3"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_3_title",
+      "label": "Adhesive 3 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_3_feature",
+      "label": "Adhesive 3 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_2_adhesive_4",
+      "label": "Adhesive 4"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_4_title",
+      "label": "Adhesive 4 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_2_adhesive_4_feature",
+      "label": "Adhesive 4 feature"
+    },
+    {
+      "type": "header",
+      "content": "Lifestyle 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "lifestyle_3_enabled",
+      "label": "Enable lifestyle 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "lifestyle_3_image",
+      "label": "Lifestyle image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "lifestyle_3_title",
+      "label": "Title",
+      "default": "Sensitive Skin"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "lifestyle_3_desc",
+      "label": "Description",
+      "default": "Comfort-first users"
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_3_natural",
+      "label": "Natural rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_3_security",
+      "label": "Security rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_3_comfort",
+      "label": "Comfort rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "paragraph",
+      "content": "Hair systems"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_1_title",
+      "label": "Product 1 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_1_reason",
+      "label": "Product 1 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_2_title",
+      "label": "Product 2 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_2_reason",
+      "label": "Product 2 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_3_title",
+      "label": "Product 3 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_3_reason",
+      "label": "Product 3 reason"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_product_4",
+      "label": "Product 4"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_4_title",
+      "label": "Product 4 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_product_4_reason",
+      "label": "Product 4 reason"
+    },
+    {
+      "type": "paragraph",
+      "content": "Adhesives"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_tags",
+      "label": "Adhesive tags",
+      "placeholder": "Gentle, Easy to use",
+      "info": "Separate tags with commas"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_adhesive_1",
+      "label": "Adhesive 1"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_1_title",
+      "label": "Adhesive 1 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_1_feature",
+      "label": "Adhesive 1 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_adhesive_2",
+      "label": "Adhesive 2"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_2_title",
+      "label": "Adhesive 2 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_2_feature",
+      "label": "Adhesive 2 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_adhesive_3",
+      "label": "Adhesive 3"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_3_title",
+      "label": "Adhesive 3 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_3_feature",
+      "label": "Adhesive 3 feature"
+    },
+    {
+      "type": "product",
+      "id": "lifestyle_3_adhesive_4",
+      "label": "Adhesive 4"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_4_title",
+      "label": "Adhesive 4 custom title"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_3_adhesive_4_feature",
+      "label": "Adhesive 4 feature"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab border",
+      "default": "#e4e4e4"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Tab active border",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg",
+      "label": "Tab active background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star rating",
+      "default": "#ffcc00"
+    },
+    {
+      "type": "color",
+      "id": "reason_bg_color",
+      "label": "Product reason background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "reason_text_color",
+      "label": "Product reason text",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Discount badge background",
+      "default": "#c00"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Discount badge text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "feature_bg_color",
+      "label": "Feature tag background",
+      "default": "#e8f4f8"
+    },
+    {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "Feature tag text",
+      "default": "#0066a1"
+    },
+    {
+      "type": "color",
+      "id": "adhesive_section_bg",
+      "label": "Adhesive section background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "Adhesive tag background",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Adhesive tag text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "product_border_radius",
+      "label": "Product image border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lifestyle recommendations"
+    }
+  ]
+}
+{% endschema %}

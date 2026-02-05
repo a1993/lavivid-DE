@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "custom_html_content_wbG9CR": {
+      "type": "custom-html-content",
+      "blocks": {
+        "html_NB6cJY": {
+          "type": "html",
+          "settings": {
+            "html_content": "<script>\n      (function () {\n        // Freshchat 预聊天表单配置\n        window.prechatTemplate = {\n          SubmitLabel: 'Start Chat',\n          fields: {\n            0: {\n              error: 'Please enter a valid name',\n              fieldId: 'name',\n              label: 'Name',\n              required: 'yes',\n              type: 'text',\n            },\n            1: {\n              error: 'Please enter a valid email',\n              fieldId: 'email',\n              label: 'Email',\n              required: 'yes',\n              type: 'email',\n            },\n          },\n          heading: 'Chat with Us',\n          mainbgColor: '#68699A',\n          maintxColor: '#fff',\n          textBanner:\n            \"We can't wait to talk to you. But first, please take a couple of moments to tell us a bit about yourself.\",\n        };\n\n        // Freshchat 设置\n        window.fcSettings = {\n          onInit: function () {\n            if (window.fcPreChatform && window.fcPreChatform.fcWidgetInit) {\n              window.fcPreChatform.fcWidgetInit(window.prechatTemplate);\n            }\n          },\n        };\n\n        // Freshchat Widget 配置\n        window.fcWidgetMessengerConfig = {\n          config: {\n            content: {\n              actions: {\n                tab_chat: 'Chat',\n              },\n              headers: {\n                chat: 'Chat With Us',\n              },\n            },\n            cssNames: {\n              expanded: 'custom_fc_expanded',\n              widget: 'custom_fc_frame',\n            },\n          },\n        };\n\n        // 懒加载脚本函数\n        function lazyLoadScript(src, delay) {\n          return new Promise(function (resolve) {\n            setTimeout(function () {\n              var script = document.createElement('script');\n              script.src = src;\n              script.async = true;\n              script.defer = true;\n              script.onload = resolve;\n              script.onerror = resolve;\n              document.head.appendChild(script);\n            }, delay || 0);\n          });\n        }\n\n        // 用户交互检测\n        var hasInteracted = false;\n        var interactionEvents = ['scroll', 'click', 'touchstart', 'mousemove', 'keydown'];\n\n        function handleUserInteraction() {\n          if (hasInteracted) return;\n          hasInteracted = true;\n\n          // 移除所有事件监听器\n          interactionEvents.forEach(function (event) {\n            window.removeEventListener(event, debouncedHandler);\n          });\n\n          // 加载 Freshchat 脚本\n          lazyLoadScript('https://snippets.freshchat.com/js/fc-pre-chat-form-v2.js', 500).then(function () {\n            return lazyLoadScript('https://fw-cdn.com/14369747/6119774.js', 1000);\n          });\n        }\n\n        // 防抖处理\n        var debounceTimer;\n        function debouncedHandler() {\n          clearTimeout(debounceTimer);\n          debounceTimer = setTimeout(handleUserInteraction, 300);\n        }\n\n        // 添加事件监听器\n        interactionEvents.forEach(function (event) {\n          window.addEventListener(event, debouncedHandler, { passive: true });\n        });\n      })();\n    </script>"
+          }
+        }
+      },
+      "block_order": [
+        "html_NB6cJY"
+      ],
+      "name": "[gy] Custom HTML Content",
+      "settings": {
+        "section_title": "",
+        "title_size": 32,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_margin": 40,
+        "container_type": "container",
+        "container_width": 1180,
+        "container_padding": 15,
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "use_shadow_dom": false,
+        "custom_css": "",
+        "custom_js": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_html_content_wbG9CR"
+  ]
+}

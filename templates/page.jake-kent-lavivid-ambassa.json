@@ -1,0 +1,495 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_banner_4cKAJn": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/Jake_web_1.webp",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/Jake_m_1.webp",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "standard",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "image_gallery_slider_HfG6DW": {
+      "type": "image-gallery-slider",
+      "blocks": {
+        "image_F8piVX": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_N6apz7": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_4CYBNK": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_iMWraX": {
+          "type": "image",
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_F8piVX",
+        "image_N6apz7",
+        "image_4CYBNK",
+        "image_iMWraX"
+      ],
+      "disabled": true,
+      "name": "[gy] Image Gallery Slider",
+      "settings": {
+        "use_cdn": true,
+        "section_title": "Gallery",
+        "title_size": 32,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_margin_bottom": 40,
+        "slides_per_view_desktop": 2,
+        "slides_per_view_tablet": 2,
+        "slides_per_view_mobile": 1,
+        "space_between": 20,
+        "enable_loop": true,
+        "enable_autoplay": false,
+        "autoplay_delay": 3000,
+        "transition_effect": "slide",
+        "transition_speed": 300,
+        "enable_drag": true,
+        "pause_on_hover": true,
+        "show_navigation": true,
+        "navigation_size": 44,
+        "navigation_color": "#ffffff",
+        "navigation_hover_color": "#ffffff",
+        "navigation_bg_color": "",
+        "navigation_bg_hover_color": "",
+        "navigation_border_radius": 0,
+        "navigation_position": "inside",
+        "show_pagination": true,
+        "pagination_type": "bullets",
+        "pagination_style": "circle",
+        "pagination_size": 8,
+        "pagination_gap": 8,
+        "pagination_color": "#ffffff",
+        "pagination_active_color": "#ffffff",
+        "image_border_width": 5,
+        "image_border_color": "#ffffff",
+        "image_border_radius": 0,
+        "container_width": 1400,
+        "container_padding": 40,
+        "background_color": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "custom_content_Ng4KEz": {
+      "type": "custom-content",
+      "blocks": {
+        "text_dpA87f": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "left",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "<strong>Who is Jake Kent?</strong>",
+            "title_size": 28,
+            "title_size_mobile": 24,
+            "text": "<p>Jake Kent isn’t just a hair systems expert—he’s lived the journey. With over 5 years of firsthand experience wearing and mastering non-surgical hair systems, Jake combines personal insight with professional expertise to help men reclaim their confidence. With both his YouTube channel and Building the  Hair Systems Reddit community,  he’s guided thousands through the nuances of hair restoration, skincare, and self-improvement with empathy and actionable advice.</p><p></p><p>“I'm on one mission: Create Better Men.“</p><p></p><p>— Jake Kent</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "image_pcEeWj": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/Jake02.webp",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "text_dpA87f",
+        "image_pcEeWj"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "common_heading_YqJUd8": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "Top Recommendation From Jake",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "halloween_with_swiper_XLjf3y": {
+      "type": "halloween-with-swiper",
+      "blocks": {
+        "product_item_cBpY87": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_4yiQii": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_y8dAE9": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_fHx8p9": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_8gbxVE": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_9QA4NL": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_x9rwUM": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        },
+        "product_item_ngW9LN": {
+          "type": "product_item",
+          "settings": {
+            "product": "lavivid-v-looped-mirage-toupee-for-men-0-04-0-06mm-full-super-thin-skin-base-celebrities-choice-1",
+            "button_text": "Shop Now",
+            "custom_title": "",
+            "custom_description": "",
+            "custom_compare_price": "",
+            "custom_discount_percent": 0,
+            "category_discount_percent": 0
+          }
+        }
+      },
+      "block_order": [
+        "product_item_cBpY87",
+        "product_item_4yiQii",
+        "product_item_y8dAE9",
+        "product_item_fHx8p9",
+        "product_item_8gbxVE",
+        "product_item_9QA4NL",
+        "product_item_x9rwUM",
+        "product_item_ngW9LN"
+      ],
+      "name": "[gy] Product Swiper",
+      "settings": {
+        "max_width": 1400,
+        "background_color": "",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "padding_left": "medium",
+        "padding_right": "medium",
+        "show_reviews": false
+      }
+    },
+    "image_text_grid_gxNECg": {
+      "type": "image-text-grid",
+      "blocks": {
+        "image_text_item_Eixgnw": {
+          "type": "image_text_item",
+          "settings": {
+            "image": "shopify://shop_images/icon07.webp",
+            "title": "Real-World Knowledge",
+            "text": "<p>Learn from someone who’s navigated the challenges of hair systems firsthand.</p>",
+            "link_url": "",
+            "button_text": ""
+          }
+        },
+        "image_text_item_MNgBHN": {
+          "type": "image_text_item",
+          "settings": {
+            "image": "shopify://shop_images/icon08.webp",
+            "title": "Reddit Community Leader",
+            "text": "<p>Trusted by over [27K] members for honest, no-nonsense guidance.</p>",
+            "link_url": "",
+            "button_text": ""
+          }
+        },
+        "image_text_item_nQByTP": {
+          "type": "image_text_item",
+          "settings": {
+            "image": "shopify://shop_images/icon09.webp",
+            "title": "aHolistic Support",
+            "text": "<p>Beyond hair, Jake helps you tackle skincare, confidence, and emotional resilience.</p>",
+            "link_url": "",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_text_item_Eixgnw",
+        "image_text_item_MNgBHN",
+        "image_text_item_nQByTP"
+      ],
+      "name": "[gy] Image Text Grid",
+      "settings": {
+        "title": "Jake is LaVivid 1 on 1 Consultant",
+        "max_width": 1400,
+        "columns_desktop": 3,
+        "columns_tablet": 2,
+        "columns_mobile": 1,
+        "gap_size": 60,
+        "text_alignment": "left",
+        "background_color": "#f3f5f9",
+        "padding_top": "medium",
+        "padding_bottom": "medium"
+      }
+    },
+    "common_heading_WjkBGE": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "Watch Jake's E-Course Videos",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "medium",
+        "background_color": ""
+      }
+    },
+    "video_tips_list_dnxkf8": {
+      "type": "video-tips-list",
+      "name": "[gy] Video Tips List",
+      "settings": {
+        "videos_per_row": 2,
+        "video_1_title": "",
+        "video_1_cover": "shopify://shop_images/Jake02.webp",
+        "video_1_url": "https://www.youtube.com/embed/WyvqSEXyGyQ?si=-S6lFlgCk9rMvF0c",
+        "video_2_title": "",
+        "video_2_cover": "shopify://shop_images/Jake24.webp",
+        "video_2_url": "https://www.youtube.com/embed/LexeX6NxR90?si=oi2Xz0xB9yw_jy4K"
+      }
+    },
+    "custom_content_j9nHGG": {
+      "type": "custom-content",
+      "blocks": {
+        "html_BWqLkL": {
+          "type": "html",
+          "settings": {
+            "width": "half",
+            "code": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Document</title>\n</head>\n<body>\n  <div style=\"font-size: 28px;text-align: center;margin-bottom: 20px;\">Subscribe to Jake's channels</div>\n  <div style=\"display: flex; gap: 10px;justify-content: center;color:#000;\">\n    <a style=\"color: #000;\" href=\"https://www.youtube.com/@JakeKent\" target=\"_blank\">\n      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\" viewBox=\"0 0 100 100\"><g fill=\"currentColor\"><path d=\"M45.19 70.391c-.696.984-1.355 1.469-1.985 1.469c-.42 0-.659-.246-.735-.734c-.03-.101-.03-.484-.03-1.22v-12.76h-3.138V70.85c0 1.225.104 2.051.277 2.576c.313.878 1.011 1.289 2.023 1.289c1.154 0 2.34-.697 3.587-2.129v1.891h3.143v-17.33H45.19zM27.897 54.492h3.694v19.985h3.492V54.492h3.762v-3.274H27.897zM49.281 39.34c1.023 0 1.513-.81 1.513-2.431v-7.368c0-1.619-.49-2.426-1.513-2.426c-1.024 0-1.515.807-1.515 2.426v7.368c.001 1.62.491 2.431 1.515 2.431m8.153 17.595c-1.154 0-2.23.632-3.243 1.88v-7.597H51.05v23.259h3.141v-1.682c1.048 1.299 2.127 1.92 3.243 1.92c1.251 0 2.091-.658 2.511-1.947c.209-.735.316-1.889.316-3.492v-6.901c0-1.64-.107-2.786-.316-3.483c-.421-1.299-1.26-1.957-2.511-1.957m-.313 12.587c0 1.565-.461 2.337-1.366 2.337c-.516 0-1.04-.246-1.565-.771V60.524c.525-.517 1.048-.763 1.565-.763c.906 0 1.366.802 1.366 2.365zm10.314-12.587q-2.402-.001-3.76 1.778c-.668.875-.971 2.229-.971 4.08v6.072c0 1.84.342 3.209 1.009 4.074c.907 1.183 2.157 1.775 3.801 1.775c1.64 0 2.927-.621 3.797-1.877a4.5 4.5 0 0 0 .733-1.883c.028-.315.067-1.013.067-2.023v-.46h-3.205c0 1.26-.039 1.957-.068 2.128c-.179.839-.631 1.259-1.403 1.259c-1.078 0-1.602-.8-1.602-2.404v-3.072h6.279v-3.59c0-1.852-.315-3.205-.972-4.08c-.879-1.187-2.129-1.777-3.705-1.777m1.537 6.834h-3.139v-1.603q0-2.404 1.574-2.404c1.039 0 1.565.802 1.565 2.404z\"/><path d=\"M79 14H21c-3.85 0-7 3.15-7 7v58c0 3.85 3.15 7 7 7h58c3.85 0 7-3.15 7-7V21c0-3.85-3.15-7-7-7M56.58 24.47h3.163v12.892c0 .746 0 1.133.039 1.235c.07.492.318.743.744.743c.634 0 1.301-.492 2.004-1.486V24.47h3.174v17.51H62.53v-1.91c-1.263 1.449-2.468 2.153-3.625 2.153c-1.022 0-1.727-.415-2.044-1.303c-.175-.529-.281-1.368-.281-2.604zm-11.987 5.708c0-1.871.319-3.24.994-4.125c.878-1.196 2.114-1.795 3.694-1.795q2.385 0 3.703 1.795c.664.885.985 2.254.985 4.125v6.135c0 1.86-.32 3.24-.985 4.119q-1.318 1.79-3.703 1.792c-1.581 0-2.817-.599-3.694-1.792c-.675-.879-.994-2.259-.994-4.119zm-8.486-11.696l2.499 9.227l2.399-9.227h3.558l-4.232 13.982v9.516h-3.52v-9.516c-.318-1.688-1.022-4.158-2.15-7.435c-.742-2.18-1.515-4.37-2.256-6.547zm38.966 57.036c-.634 2.763-2.896 4.801-5.616 5.104c-6.444.72-12.965.724-19.457.72c-6.493.004-13.014 0-19.457-.72c-2.721-.304-4.979-2.342-5.614-5.104c-.905-3.936-.905-8.232-.905-12.282c0-4.054.01-8.347.916-12.284c.634-2.762 2.893-4.799 5.614-5.103c6.443-.722 12.964-.724 19.457-.722c6.492-.002 13.013 0 19.457.722c2.719.304 4.98 2.341 5.615 5.103c.905 3.938.9 8.23.9 12.284c.001 4.05-.004 8.346-.91 12.282\"/></g></svg>\n  </a>\n  <a style=\"color: #000;\" href=\"https://www.instagram.com/jacob_t_kent/\" target=\"_blank\">\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\" viewBox=\"0 0 24 24\"><g fill=\"none\"><path d=\"m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\"/><path fill=\"currentColor\" d=\"M16 3a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm-4 5a4 4 0 1 0 0 8a4 4 0 0 0 0-8m0 2a2 2 0 1 1 0 4a2 2 0 0 1 0-4m4.5-3.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2\"/></g></svg>\n</a>\n<a style=\"color: #000;\" href=\"https://www.reddit.com/r/HairSystem/\" target=\"_blank\">\n  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\" viewBox=\"0 0 24 24\"><path fill=\"currentColor\" d=\"M10.75 13.04c0-.57-.47-1.04-1.04-1.04s-1.04.47-1.04 1.04a1.04 1.04 0 1 0 2.08 0m3.34 2.37c-.45.45-1.41.61-2.09.61s-1.64-.16-2.09-.61a.26.26 0 0 0-.38 0a.26.26 0 0 0 0 .38c.71.71 2.07.77 2.47.77s1.76-.06 2.47-.77a.26.26 0 0 0 0-.38c-.1-.1-.27-.1-.38 0m.2-3.41c-.57 0-1.04.47-1.04 1.04s.47 1.04 1.04 1.04s1.04-.47 1.04-1.04S14.87 12 14.29 12\"/><path fill=\"currentColor\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m5.8 11.33c.02.14.03.29.03.44c0 2.24-2.61 4.06-5.83 4.06s-5.83-1.82-5.83-4.06c0-.15.01-.3.03-.44c-.51-.23-.86-.74-.86-1.33a1.455 1.455 0 0 1 2.47-1.05c1.01-.73 2.41-1.19 3.96-1.24l.74-3.49c.01-.07.05-.13.11-.16c.06-.04.13-.05.2-.04l2.42.52a1.04 1.04 0 1 1 .93 1.5c-.56 0-1.01-.44-1.04-.99l-2.17-.46l-.66 3.12c1.53.05 2.9.52 3.9 1.24a1.455 1.455 0 1 1 1.6 2.38\"/></svg>\n</a>\n  </div>\n</body>\n</html>"
+          }
+        },
+        "image_7H4htR": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/Jake24.webp",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "html_BWqLkL",
+        "image_7H4htR"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "faq_X6Rq66": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_8MR6b6": {
+          "type": "faq_item",
+          "settings": {
+            "question": " 1.⁠ ⁠What motivated you to try a hair system for the first time?",
+            "answer": "I lost my hair when I was about 18 years old. I consistently felt self-conscious about my hair loss. Through most of my 20s, I became more introverted and felt self-conscious about how I looked. it affect world, dating, and everything else.",
+            "is_html": false
+          }
+        },
+        "faq_item_mRVbbV": {
+          "type": "faq_item",
+          "settings": {
+            "question": "2.⁠ ⁠When did you first start using LaVivid’s hair systems, and which product did you choose",
+            "answer": "I first started using LaVivid almost immediately after starting with hair systems, almost 5 years ago. I went with skin base Mirage, and it completely changed the game for me.",
+            "is_html": false
+          }
+        },
+        "faq_item_hE4mnq": {
+          "type": "faq_item",
+          "settings": {
+            "question": " What has inspired your long-term partnership with LaVivid over the past years, and why did you decide to become their Exclusive Ambassador?",
+            "answer": "I think the value is the best in the industry, and its consistent quality, in my opinion. LaVivid delivers premium quality without the insane markup you see elsewhere. After years of relying on their products and seeing how they’ve helped not just me but thousands in the Reddit community I moderate, becoming their Ambassador was a no-brainer. I want everyone to know there’s a trustworthy, affordable option out there.",
+            "is_html": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_8MR6b6",
+        "faq_item_mRVbbV",
+        "faq_item_hE4mnq"
+      ],
+      "name": "[gy] FAQ",
+      "settings": {
+        "faq_title": "Q & A for Jake Kent",
+        "faq_subtitle": "",
+        "enable_schema": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_4cKAJn",
+    "image_gallery_slider_HfG6DW",
+    "custom_content_Ng4KEz",
+    "common_heading_YqJUd8",
+    "halloween_with_swiper_XLjf3y",
+    "image_text_grid_gxNECg",
+    "common_heading_WjkBGE",
+    "video_tips_list_dnxkf8",
+    "custom_content_j9nHGG",
+    "faq_X6Rq66"
+  ]
+}

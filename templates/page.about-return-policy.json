@@ -1,0 +1,300 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_heading_q4NHXh": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "LaVivid Hair Return & Exchange Policy",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "Updated for a smoother, worry-free shopping experience.",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "medium",
+        "background_color": ""
+      }
+    },
+    "rich_text_mgL4g4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_69hJm6": {
+          "type": "heading",
+          "settings": {
+            "title": "Quality Assurance &amp; Our Commitment to YOU",
+            "use_h1": false
+          }
+        },
+        "text_y4eBkw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At LaVivid Hair, <strong>quality</strong> is at the heart of everything we do.</p><p>Each piece is carefully inspected before it leaves our warehouse — from reviewing base materials and hair texture to confirming the exact color, length, density, and hairstyle.</p><p>If a quality concern ever arises, you can count on us to:</p><ul><li>Respond quickly and courteously.</li><li>Look into the matter with care and attention.</li><li>Work together with you to find the best solution — whether that means a replacement, adjustment, or refund.</li></ul><p>We stand behind our products and will always take responsibility for confirmed quality issues. Your trust means a great deal to us, and we are dedicated to ensuring you’re completely satisfied. If you have any questions or concerns, please <span style=\"text-decoration:underline\"><strong>contact us </strong></span>anytime.<br/><br/></p>",
+            "enlarge_text": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_69hJm6",
+        "text_y4eBkw"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "height": "medium",
+        "text_alignment": "left",
+        "full_width": true,
+        "color_scheme": "default"
+      }
+    },
+    "faq_wwy6qa": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_LK4jjw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "1. First-Time Purchase Guarantee",
+            "answer": "We want you to shop with confidence. On your <b data-v-d9c63d48=\"\">first order</b>, you can enjoy <b data-v-d9c63d48=\"\">one free return or exchange</b>, including free return shipping. <br data-v-d9c63d48=\"\"><p data-v-d9c63d48=\"\" class=\"mt-2 font-semibold\">Applies if:</p><ul data-v-d9c63d48=\"\" class=\"list-inside list-disc pl-4\">\n<li data-v-d9c63d48=\"\">The item is unused, unaltered, and in original condition</li>\n<li data-v-d9c63d48=\"\">Tags are attached, and the original packaging is intact</li>\n</ul><p data-v-d9c63d48=\"\" class=\"mt-2 font-semibold\">Does not apply to:</p><ul data-v-d9c63d48=\"\" class=\"list-inside list-disc pl-4\">\n<li data-v-d9c63d48=\"\">Are custom orders, clearance items, final sale items.</li>\n<li data-v-d9c63d48=\"\">Items showing signs of wear, damage, odor, or product residue</li>\n<li data-v-d9c63d48=\"\">Include added custom hair services, which are classified as custom orders.</li>\n</ul>",
+            "is_html": true
+          }
+        },
+        "faq_item_myYCY9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "2. Order Cancellation Policy",
+            "answer": "<li data-v-d9c63d48=\"\">Orders can only be cancelled <b data-v-d9c63d48=\"\">before shipment</b>.</li><li data-v-d9c63d48=\"\"> Please <span data-v-d9c63d48=\"\" class=\"cursor-pointer font-semibold underline\">contact our Customer Service</span> before shipment to request a cancellation and provide the reason. We will respond within 24 hours to process your request. </li><p data-v-d9c63d48=\"\" class=\"mt-2 font-semibold\">Stock Items</p><ul data-v-d9c63d48=\"\" class=\"list-inside list-disc pl-4\">\n<li data-v-d9c63d48=\"\">No services added → <b data-v-d9c63d48=\"\">Full refund</b>.</li>\n<li data-v-d9c63d48=\"\">With added services (e.g., precut, perm, clips) → <b data-v-d9c63d48=\"\">Partial refund</b> with <b data-v-d9c63d48=\"\">50% restocking fee</b>\n</li>\n</ul><p data-v-d9c63d48=\"\" class=\"mt-2 font-semibold\">Custom Items</p><ul data-v-d9c63d48=\"\" class=\"list-inside list-disc pl-4\"><li data-v-d9c63d48=\"\">Before shipment → <b data-v-d9c63d48=\"\">Partial refund</b> with <b data-v-d9c63d48=\"\">50% restocking fee</b>.</li></ul>",
+            "is_html": true
+          }
+        },
+        "faq_item_EC9QC3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "3. Return Window & Conditions",
+            "answer": "Returns and exchanges are accepted <strong data-v-d9c63d48=\"\">within 45 days</strong> from the delivery date.<p data-v-d9c63d48=\"\">We offer three return options for you to choose from.</p><p data-v-d9c63d48=\"\" class=\"mb-2\"><b data-v-d9c63d48=\"\" class=\"mr-1 cursor-pointer font-semibold underline\">Monetary Refund /</b><b data-v-d9c63d48=\"\" class=\"mr-1 cursor-pointer font-semibold underline\">Store Credit Refund /</b><b data-v-d9c63d48=\"\" class=\"mr-1 cursor-pointer font-semibold underline\">Exchange</b></p><h3 data-v-d9c63d48=\"\" class=\"mb-2 font-semibold\">Items must:</h3><ul data-v-d9c63d48=\"\" class=\"mb-4 list-inside list-disc space-y-2 pl-4\">\n<li data-v-d9c63d48=\"\">Be unused, unaltered, and undamaged.</li>\n<li data-v-d9c63d48=\"\">Have no odor, product residue, or styling marks.</li>\n<li data-v-d9c63d48=\"\">Include all tags and original packaging.</li>\n</ul><div data-v-d9c63d48=\"\" class=\"mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4\">\n<h3 data-v-d9c63d48=\"\" class=\"mb-2 font-semibold text-yellow-800\">Ineligible for return:</h3>\n<ul data-v-d9c63d48=\"\" class=\"ml-4! list-inside list-disc space-y-1 text-yellow-700\">\n<li data-v-d9c63d48=\"\">Items not meeting the above conditions (will be returned to you at your cost)</li>\n<li data-v-d9c63d48=\"\">Are custom orders, clearance items, final sale items.</li>\n<li data-v-d9c63d48=\"\">Passes the return window.</li>\n<li data-v-d9c63d48=\"\">Include added custom hair services, which are classified as custom orders.</li>\n<li data-v-d9c63d48=\"\">Are purchased at wholesale pricing.</li>\n</ul>\n</div>",
+            "is_html": true
+          }
+        },
+        "faq_item_aCh8CG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "4. Refund Policy – Stock Hair Systems (Unused)",
+            "answer": "<h3 data-v-d9c63d48=\"\" class=\"monetary-refund text-lg font-semibold\">Monetary Refund:</h3><ul data-v-d9c63d48=\"\" class=\"list-inside list-disc pl-4\">\n<li data-v-d9c63d48=\"\">First order → Full refund</li>\n<li data-v-d9c63d48=\"\">Item value ≤ $150 → $10 restocking fee</li>\n<li data-v-d9c63d48=\"\">$150–$500 → $15 restocking fee</li>\n<li data-v-d9c63d48=\"\">Over $500 → $30 restocking fee</li>\n</ul><div data-v-d9c63d48=\"\" class=\"mt-2\">\n<h3 data-v-d9c63d48=\"\" class=\"store-credit-refund text-lg font-semibold\">Store Credit Refund:</h3>\n<ul data-v-d9c63d48=\"\" class=\"list-inside list-disc pl-4\">\n<li data-v-d9c63d48=\"\">No restocking fee is applied.</li>\n<li data-v-d9c63d48=\"\">Store credits are issued within 3 business days of return delivery.</li>\n<li data-v-d9c63d48=\"\">Store credits do not expire and can be combined with coupons and rewards.</li>\n<li data-v-d9c63d48=\"\">You will receive an email notification once the store credits have been issued.</li>\n</ul>\n</div><div data-v-d9c63d48=\"\" class=\"mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4\">\n<h3 data-v-d9c63d48=\"\" class=\"mb-2 font-semibold text-yellow-800\">Please kindly note:</h3>\n<ul data-v-d9c63d48=\"\" class=\"ml-4! list-inside list-disc space-y-1 text-yellow-700\">\n<li data-v-d9c63d48=\"\">Express shipping costs, international shipping costs, and any other third-party fees are non-refundable.</li>\n<li data-v-d9c63d48=\"\"> Any refused international packages and international automatic returns (including Canada) will incur a 30% restocking fee of the total order amount. </li>\n</ul>\n</div>",
+            "is_html": true
+          }
+        },
+        "faq_item_FPmY4U": {
+          "type": "faq_item",
+          "settings": {
+            "question": "5. How to Return?",
+            "answer": "<li data-v-d9c63d48=\"\">Find the order you would like to return in \"My Orders\" after signing in.</li><li data-v-d9c63d48=\"\"> Click on \"<b data-v-d9c63d48=\"\">RETURN ITEMS</b>\". Please be aware that if you cannot find the “RETURN ITEMS” button, that means your order might have exceeded 45 days after receipt. </li><li data-v-d9c63d48=\"\">Fill out all the information needed for the return and submit.</li><li data-v-d9c63d48=\"\"> When your return request has been approved, you will see the RAM number and the return address on the website and in the email sent to you. </li><li data-v-d9c63d48=\"\">Return the product to the return address and update the tracking number online.</li><p data-v-d9c63d48=\"\" class=\"mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4\"><strong data-v-d9c63d48=\"\">Important:</strong> Please <span data-v-d9c63d48=\"\" class=\"cursor-pointer font-semibold underline\">contact us</span> before sending any package back, so we can assist you with the return process and ensure everything goes smoothly. </p>",
+            "is_html": true
+          }
+        },
+        "faq_item_eHLrAb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "6. Who Pays for Return Shipping Fee?",
+            "answer": "<ul data-v-d9c63d48=\"\" class=\"list-inside list-disc space-y-2 pl-4\">\n<li data-v-d9c63d48=\"\">If the return is due to a <b data-v-d9c63d48=\"\">confirmed LaVivid quality issue</b> → We cover the return shipping cost</li>\n<li data-v-d9c63d48=\"\">For <b data-v-d9c63d48=\"\">personal reasons</b> (e.g., color/size preference, change of mind) → Customer covers the return shipping cost</li>\n<li data-v-d9c63d48=\"\">Any customs duties or third-party fees are the customer’s responsibility</li>\n</ul>",
+            "is_html": true
+          }
+        },
+        "faq_item_aPAnbY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "7. Exchange Policy – Stock Hair Systems (Unused)",
+            "answer": "<p data-v-d9c63d48=\"\">We offer <b data-v-d9c63d48=\"\">one free exchange</b> for stock item orders (custom orders excluded) within 45 days from the date of delivery.</p><ul data-v-d9c63d48=\"\" class=\"mt-2 list-inside list-disc space-y-2 pl-4\">\n<li data-v-d9c63d48=\"\">If you wish to exchange the same order a second time, a <b data-v-d9c63d48=\"\">5% restocking fee</b> will apply.</li>\n<li data-v-d9c63d48=\"\">If the exchange item costs more than your original order, we will contact you to arrange payment for the difference.</li>\n<li data-v-d9c63d48=\"\">If the exchange item costs less, the balance will be refunded to your original payment method.</li>\n</ul><p data-v-d9c63d48=\"\"> You may change your order at any time <b data-v-d9c63d48=\"\">before it has been shipped</b>. Once it has shipped and is on its way to you, it can no longer be changed or canceled. </p><p data-v-d9c63d48=\"\"> If you are not satisfied with your exchange, you may either return it for a refund or request another exchange (restocking fee may apply). </p>",
+            "is_html": true
+          }
+        },
+        "faq_item_xTBqxL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "8. Custom Orders & Customized Stock Items",
+            "answer": "<p data-v-d9c63d48=\"\" class=\"mb-2\">We make each custom piece especially for YOU, with carefully selected materials and craftsmanship that cannot be reused.</p><p data-v-d9c63d48=\"\">For this reason, a portion of the order value is non-refundable once production begins.</p><p data-v-d9c63d48=\"\" class=\"mb-2\"> Once you place your order, we kindly ask you to double-check and confirm all specifications (color, base size, hair length, density, cutting service, etc.) before production begins so we can create exactly what you’re looking for. </p><ul data-v-d9c63d48=\"\" class=\"list-inside list-disc space-y-2 pl-4\">\n<li data-v-d9c63d48=\"\">\n<b data-v-d9c63d48=\"\">Before Shipment</b> <br data-v-d9c63d48=\"\"> If you wish to cancel your order <b data-v-d9c63d48=\"\">before shipment → Partial refund</b> with a <b data-v-d9c63d48=\"\">50% restocking fee</b>. </li>\n<li data-v-d9c63d48=\"\"> If your order has already been shipped and you notice any issues, please reach out to our <span data-v-d9c63d48=\"\" class=\"cursor-pointer font-semibold underline\">Customer Service team</span> as soon as possible. We’ll work closely with you to find the best solution and make sure you (or your client) are happy with the final product. </li>\n<li data-v-d9c63d48=\"\">\n<b data-v-d9c63d48=\"\">Not Eligible for Return</b><br data-v-d9c63d48=\"\"> Custom items that have been used or altered. <br data-v-d9c63d48=\"\"> Custom items returned after the 45-day return window. </li>\n</ul>",
+            "is_html": true
+          }
+        },
+        "faq_item_MPHckD": {
+          "type": "faq_item",
+          "settings": {
+            "question": "9. Wholesale Orders Return Policy",
+            "answer": "<li data-v-d9c63d48=\"\">Returns are only accepted for significant quality issues.</li><li data-v-d9c63d48=\"\">Please inspect items before making alterations (using tape or glue, cutting lace or base, dyeing hair, etc.)</li><li data-v-d9c63d48=\"\">Issues reported more than 14 days after delivery will not be addressed</li><li data-v-d9c63d48=\"\">Due to lower profit margins, we cannot accept returns for non-quality reasons.</li>",
+            "is_html": true
+          }
+        },
+        "faq_item_bRkjbb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "10. Monetary Refund Process",
+            "answer": "<ul data-v-d9c63d48=\"\" class=\"list-inside list-disc space-y-2 pl-4\">\n<li data-v-d9c63d48=\"\">Refunds are processed within <b data-v-d9c63d48=\"\">5–7 business days</b> after we receive your return</li>\n<li data-v-d9c63d48=\"\">Refunds are issued to your original payment method</li>\n<li data-v-d9c63d48=\"\">Bank processing time may take an additional 3–7 business days</li>\n<li data-v-d9c63d48=\"\">If you haven’t received your refund after we process it, please kindly request proof of refund from us and contact your bank</li>\n</ul>",
+            "is_html": true
+          }
+        },
+        "faq_item_Uzw64k": {
+          "type": "faq_item",
+          "settings": {
+            "question": "11. Final Interpretation & Effective Date",
+            "answer": "<p data-v-d9c63d48=\"\"> This policy is effective starting on <strong data-v-d9c63d48=\"\">August 20, 2025</strong>. <br data-v-d9c63d48=\"\"> LaVivid Hair reserves the right to the final interpretation of this policy and may amend it from time to time. Any changes will be posted on our website and will take effect immediately, unless otherwise specified. </p>",
+            "is_html": true
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_LK4jjw",
+        "faq_item_myYCY9",
+        "faq_item_EC9QC3",
+        "faq_item_aCh8CG",
+        "faq_item_FPmY4U",
+        "faq_item_eHLrAb",
+        "faq_item_aPAnbY",
+        "faq_item_xTBqxL",
+        "faq_item_MPHckD",
+        "faq_item_bRkjbb",
+        "faq_item_Uzw64k"
+      ],
+      "name": "[gy] FAQ",
+      "settings": {
+        "faq_title": "",
+        "faq_subtitle": "",
+        "enable_schema": true
+      }
+    },
+    "common_heading_jqip8G": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "Contact Us",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "medium",
+        "spacing_bottom": "none",
+        "background_color": ""
+      }
+    },
+    "custom_content_BkXhiE": {
+      "type": "custom-content",
+      "blocks": {
+        "text_RFKe9P": {
+          "type": "text",
+          "settings": {
+            "width": "quarter",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "（9:00AM – 3:00PM PST, Monday-Friday）",
+            "title": "Phone",
+            "title_size": 24,
+            "title_size_mobile": 20,
+            "text": "<p><a href=\"tel:833-879-0279\">+1 833-879-0279</a></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "text_WnmrWa": {
+          "type": "text",
+          "settings": {
+            "width": "quarter",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Email",
+            "title_size": 24,
+            "title_size_mobile": 20,
+            "text": "<p><a href=\"mailto:support@lavividhair.com\">support@lavividhair.com</a></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "text_xGBjGe": {
+          "type": "text",
+          "settings": {
+            "width": "quarter",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "WhatsApp",
+            "title_size": 24,
+            "title_size_mobile": 20,
+            "text": "<p><a href=\"mailto:support@lavividhair.com\">a</a><a href=\"https://wa.me/14845505149\" target=\"_blank\">+1 484-550-5149</a></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "text_aLQR6F": {
+          "type": "text",
+          "settings": {
+            "width": "quarter",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Wholesale",
+            "title_size": 24,
+            "title_size_mobile": 20,
+            "text": "<p><a href=\"mailto:salon@lavividhair.com\">salon@lavividhair.com</a></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "text_RFKe9P",
+        "text_WnmrWa",
+        "text_xGBjGe",
+        "text_aLQR6F"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_heading_q4NHXh",
+    "rich_text_mgL4g4",
+    "faq_wwy6qa",
+    "common_heading_jqip8G",
+    "custom_content_BkXhiE"
+  ]
+}

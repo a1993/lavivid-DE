@@ -1,0 +1,963 @@
+{% comment %}
+  锚链接导航分区
+  Anchor Navigation Section
+  
+  支持多个锚链接按钮，Grid布局，每个按钮可以自定义样式
+  点击按钮后平滑滚动到页面上对应的锚点分区
+{% endcomment %}
+
+{%- liquid
+  assign columns_mobile = section.settings.columns_mobile | default: 1
+  assign columns_tablet = section.settings.columns_tablet | default: 2
+  assign columns_desktop = section.settings.columns_desktop | default: 3
+  assign gap_size = section.settings.gap_size | default: 20
+-%}
+
+<div 
+  id="anchor-nav-{{ section.id }}" 
+  class="anchor-navigation-section anchor-navigation-section--spacing-top-{{ section.settings.spacing_top }} anchor-navigation-section--spacing-bottom-{{ section.settings.spacing_bottom }}" 
+  {{ section.shopify_attributes }}
+  {% if section.settings.background_color != blank or section.settings.background_gradient != blank %} 
+    style="{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% elsif section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}"
+  {% endif %}
+>
+  <div class="anchor-navigation-container anchor-navigation-container--width-{{ section.settings.container_width }}">
+    
+    {% if section.settings.show_title and section.settings.title != blank %}
+      <div class="anchor-navigation-header" style="text-align: {{ section.settings.title_alignment }}; margin-bottom: {{ section.settings.title_spacing }}px;">
+        <h2 class="anchor-navigation-title" style="font-size: {{ section.settings.title_size }}px; color: {{ section.settings.title_color }};">
+          {{ section.settings.title }}
+        </h2>
+        {% if section.settings.subtitle != blank %}
+          <p class="anchor-navigation-subtitle" style="color: {{ section.settings.subtitle_color }}; font-size: {{ section.settings.subtitle_size }}px;">
+            {{ section.settings.subtitle }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div 
+      class="anchor-navigation-grid"
+      style="--columns-mobile: {{ columns_mobile }}; --columns-tablet: {{ columns_tablet }}; --columns-desktop: {{ columns_desktop }}; --gap-size: {{ gap_size }}px;"
+    >
+      {% for block in section.blocks %}
+        {% if block.type == 'anchor_link' %}
+          {%- liquid
+            assign anchor_target = block.settings.anchor_target
+            assign button_text = block.settings.button_text
+            assign text_color = block.settings.text_color | default: '#000000'
+            assign bg_color = block.settings.bg_color | default: '#ffffff'
+            assign border_color = block.settings.border_color | default: '#e0e0e0'
+            assign border_width = block.settings.border_width | default: 1
+            assign border_radius = block.settings.border_radius | default: 8
+            assign padding_top = block.settings.padding_top | default: 12
+            assign padding_bottom = block.settings.padding_bottom | default: 12
+            assign padding_left = block.settings.padding_left | default: 24
+            assign padding_right = block.settings.padding_right | default: 24
+            assign bg_image = block.settings.bg_image
+            assign hover_text_color = block.settings.hover_text_color
+            assign hover_bg_color = block.settings.hover_bg_color
+            assign hover_border_color = block.settings.hover_border_color
+          -%}
+          
+          <a 
+            href="#{{ anchor_target }}" 
+            class="anchor-navigation-button"
+            {{ block.shopify_attributes }}
+            style="
+              color: {{ text_color }};
+              background-color: {{ bg_color }};
+              border: {{ border_width }}px solid {{ border_color }};
+              border-radius: {{ border_radius }}px;
+              padding: {{ padding_top }}px {{ padding_right }}px {{ padding_bottom }}px {{ padding_left }}px;
+              {% if bg_image != blank %}background-image: url('{{ bg_image | image_url: width: 1200 }}'); background-size: cover; background-position: center;{% endif %}
+            "
+            data-anchor-target="{{ anchor_target }}"
+            data-hover-text-color="{{ hover_text_color }}"
+            data-hover-bg-color="{{ hover_bg_color }}"
+            data-hover-border-color="{{ hover_border_color }}"
+          >
+            {% if block.settings.icon != blank %}
+              <span class="anchor-navigation-button__icon">
+                <img 
+                  src="{{ block.settings.icon | image_url: width: 40 }}" 
+                  alt="{{ button_text | escape }}"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                >
+              </span>
+            {% endif %}
+            <span class="anchor-navigation-button__text">{{ button_text }}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* 全局平滑滚动 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 锚链接导航分区 */
+  .anchor-navigation-section {
+    width: 100%;
+  }
+
+  /* 容器 */
+  .anchor-navigation-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  
+  .anchor-navigation-container--width-standard { max-width: 85.5rem; }
+  .anchor-navigation-container--width-wide { max-width: 100rem; }
+  .anchor-navigation-container--width-narrow { max-width: 64rem; }
+  .anchor-navigation-container--width-full { max-width: 100%; padding-left: 0; padding-right: 0; }
+
+  /* 标题区域 */
+  .anchor-navigation-header {
+    width: 100%;
+  }
+
+  .anchor-navigation-title {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .anchor-navigation-subtitle {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Grid 布局 */
+  .anchor-navigation-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
+    gap: var(--gap-size);
+    width: 100%;
+  }
+
+  /* 锚链接按钮 */
+  .anchor-navigation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+
+  /* 背景图覆盖层（如果有背景图） */
+  .anchor-navigation-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: inherit;
+    opacity: 0.9;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .anchor-navigation-button:hover::before {
+    opacity: 0.8;
+  }
+
+  .anchor-navigation-button__text,
+  .anchor-navigation-button__icon {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 按钮内容 */
+  .anchor-navigation-button__text {
+    flex: 1;
+  }
+
+  .anchor-navigation-button__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .anchor-navigation-button__icon img {
+    width: auto;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  /* 悬停效果 - 通过 JavaScript 应用 */
+  .anchor-navigation-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* 间距 */
+  .anchor-navigation-section--spacing-top-none { padding-top: 0; }
+  .anchor-navigation-section--spacing-top-small { padding-top: 2rem; }
+  .anchor-navigation-section--spacing-top-medium { padding-top: 4rem; }
+  .anchor-navigation-section--spacing-top-large { padding-top: 6rem; }
+  
+  .anchor-navigation-section--spacing-bottom-none { padding-bottom: 0; }
+  .anchor-navigation-section--spacing-bottom-small { padding-bottom: 2rem; }
+  .anchor-navigation-section--spacing-bottom-medium { padding-bottom: 4rem; }
+  .anchor-navigation-section--spacing-bottom-large { padding-bottom: 6rem; }
+
+  /* 响应式设计 - 平板 */
+  @media screen and (min-width: 768px) {
+    .anchor-navigation-grid {
+      grid-template-columns: repeat(var(--columns-tablet), 1fr);
+    }
+  }
+
+  /* 响应式设计 - 桌面 */
+  @media screen and (min-width: 1024px) {
+    .anchor-navigation-grid {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
+    }
+  }
+
+  /* 响应式设计 - 移动端 */
+  @media screen and (max-width: 767px) {
+    .anchor-navigation-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .anchor-navigation-section--spacing-top-medium { padding-top: 2.5rem; }
+    .anchor-navigation-section--spacing-top-large { padding-top: 3rem; }
+    .anchor-navigation-section--spacing-bottom-medium { padding-bottom: 2.5rem; }
+    .anchor-navigation-section--spacing-bottom-large { padding-bottom: 3rem; }
+
+    .anchor-navigation-button {
+      font-size: 0.9375rem;
+      min-height: 44px;
+    }
+  }
+</style>
+
+<script>
+  // 降级复制方法（辅助函数）
+  function fallbackCopyAnchorId(anchorId) {
+    const textArea = document.createElement('textarea');
+    textArea.value = anchorId;
+    textArea.style.position = 'fixed';
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.width = '2em';
+    textArea.style.height = '2em';
+    textArea.style.padding = '0';
+    textArea.style.border = 'none';
+    textArea.style.outline = 'none';
+    textArea.style.boxShadow = 'none';
+    textArea.style.background = 'transparent';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        // 显示成功提示
+        const buttons = document.querySelectorAll('.anchor-section__label-copy, button[onclick*="copyAnchorId"], .anchor-nav-helper button');
+        buttons.forEach(function(btn) {
+          const onclickAttr = btn.getAttribute('onclick') || '';
+          const dataAnchorId = btn.getAttribute('data-anchor-id') || '';
+          if (onclickAttr.includes(anchorId) || dataAnchorId === anchorId || (btn.onclick && btn.onclick.toString().includes(anchorId))) {
+            const originalText = btn.textContent || btn.innerHTML;
+            const originalBg = btn.style ? btn.style.backgroundColor : '';
+            btn.textContent = '已复制!';
+            btn.innerHTML = '已复制!';
+            btn.classList.add('copied');
+            if (btn.style) {
+              btn.setAttribute('data-original-bg', originalBg);
+              btn.style.backgroundColor = '#28a745';
+            }
+            setTimeout(function() {
+              btn.textContent = originalText;
+              btn.innerHTML = originalText;
+              btn.classList.remove('copied');
+              if (btn.style && btn.getAttribute('data-original-bg')) {
+                btn.style.backgroundColor = btn.getAttribute('data-original-bg');
+              }
+            }, 2000);
+          }
+        });
+        
+        if (window.Shopify && window.Shopify.designMode) {
+          console.log('已复制锚点ID: ' + anchorId);
+        } else {
+          alert('已复制锚点ID: ' + anchorId);
+        }
+        document.body.removeChild(textArea);
+        return true;
+      } else {
+        throw new Error('execCommand copy 失败');
+      }
+    } catch (err) {
+      console.error('复制失败:', err);
+      if (document.body.contains(textArea)) {
+        document.body.removeChild(textArea);
+      }
+      alert('复制失败，请手动复制: ' + anchorId);
+      return false;
+    }
+  }
+
+  // 确保 copyAnchorId 函数可用（如果在 anchor-section 中已定义则使用，否则创建）
+  if (typeof window.copyAnchorId !== 'function') {
+    window.copyAnchorId = function(anchorId) {
+      if (!anchorId) {
+        console.warn('复制锚点ID失败：锚点ID为空');
+        return;
+      }
+
+      // 使用现代 Clipboard API
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(anchorId).then(function() {
+          // 显示复制成功提示 - 更新所有相关的复制按钮
+          const buttons = document.querySelectorAll('.anchor-section__label-copy, button[onclick*="copyAnchorId"], .anchor-nav-helper button');
+          buttons.forEach(function(btn) {
+            const onclickAttr = btn.getAttribute('onclick') || '';
+            const dataAnchorId = btn.getAttribute('data-anchor-id') || '';
+            if (onclickAttr.includes(anchorId) || dataAnchorId === anchorId || (btn.onclick && btn.onclick.toString().includes(anchorId))) {
+              const originalText = btn.textContent || btn.innerHTML;
+              const originalBg = btn.style ? btn.style.backgroundColor : '';
+              btn.textContent = '已复制!';
+              btn.innerHTML = '已复制!';
+              btn.classList.add('copied');
+              if (btn.style) {
+                btn.setAttribute('data-original-bg', originalBg);
+                btn.style.backgroundColor = '#28a745';
+              }
+              setTimeout(function() {
+                btn.textContent = originalText;
+                btn.innerHTML = originalText;
+                btn.classList.remove('copied');
+                if (btn.style && btn.getAttribute('data-original-bg')) {
+                  btn.style.backgroundColor = btn.getAttribute('data-original-bg');
+                }
+              }, 2000);
+            }
+          });
+
+          // 在主题编辑器模式下，显示提示
+          if (window.Shopify && window.Shopify.designMode) {
+            console.log('已复制锚点ID: ' + anchorId);
+          }
+        }).catch(function(err) {
+          console.error('复制失败:', err);
+          // 降级到传统方法
+          fallbackCopyAnchorId(anchorId);
+        });
+      } else {
+        // 降级方案：使用传统方法
+        fallbackCopyAnchorId(anchorId);
+      }
+    };
+  }
+
+  // 检测页面上所有可用的锚点ID（用于辅助配置）
+  function detectAllAnchors() {
+    const anchors = [];
+    
+    // 查找所有有ID的元素（包括锚链接跳转分区）
+    const elementsWithId = document.querySelectorAll('[id]');
+    elementsWithId.forEach(function(el) {
+      const id = el.getAttribute('id');
+      // 过滤掉一些常见的系统ID
+      if (id && 
+          !id.startsWith('shopify-section-') && 
+          !id.startsWith('shopify-section-header') &&
+          !id.startsWith('shopify-section-footer') &&
+          id !== 'shopify-section-theme' &&
+          id.length > 0) {
+        const label = el.getAttribute('data-anchor-id') || 
+                      el.querySelector('[data-anchor-label] code')?.textContent ||
+                      el.classList.contains('anchor-section') ? '锚链接跳转分区' : 
+                      el.tagName.toLowerCase() + ' 元素';
+        anchors.push({
+          id: id,
+          label: label,
+          element: el
+        });
+      }
+    });
+
+    // 特别查找锚链接跳转分区
+    const anchorSections = document.querySelectorAll('[data-anchor-id]');
+    anchorSections.forEach(function(section) {
+      const id = section.getAttribute('data-anchor-id');
+      if (id && !anchors.find(a => a.id === id)) {
+        anchors.push({
+          id: id,
+          label: '锚链接跳转分区',
+          element: section
+        });
+      }
+    });
+
+    return anchors;
+  }
+
+  // 在主题编辑器模式下显示锚点检测提示
+  function showAnchorDetectionHelper() {
+    if (!window.Shopify || !window.Shopify.designMode) return;
+
+    const navSection = document.querySelector('#anchor-nav-{{ section.id }}');
+    if (!navSection) return;
+
+    const anchors = detectAllAnchors();
+    if (anchors.length === 0) {
+      const helper = document.createElement('div');
+      helper.className = 'anchor-nav-helper';
+      helper.style.cssText = 'background: #fff3cd; border: 2px solid #ffc107; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; font-size: 0.875rem; color: #856404;';
+      helper.innerHTML = '<strong>💡 提示：</strong>未检测到页面上的锚点。请先在页面上添加「锚链接跳转分区」并设置锚点ID。';
+      navSection.insertBefore(helper, navSection.querySelector('.anchor-navigation-grid'));
+    } else {
+      const helper = document.createElement('div');
+      helper.className = 'anchor-nav-helper';
+      helper.style.cssText = 'background: #d1ecf1; border: 2px solid #0c5460; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; font-size: 0.875rem; color: #0c5460;';
+      
+      let html = '<strong>📋 页面上可用的锚点ID：</strong><br><ul style="margin: 0.5rem 0 0 0; padding-left: 1.5rem;">';
+      anchors.forEach(function(anchor) {
+        // 转义 anchor.id 中的特殊字符，防止XSS和JavaScript错误
+        const escapedAnchorId = anchor.id.replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '').replace(/\r/g, '');
+        html += '<li style="margin: 0.25rem 0; display: flex; align-items: center; gap: 0.5rem;">' +
+                '<code style="background: #fff; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-family: monospace; flex: 1;">' + 
+                anchor.id + '</code> ' + 
+                '<button onclick="window.copyAnchorId(\'' + escapedAnchorId + '\')" ' +
+                'style="padding: 0.125rem 0.5rem; background: #0c5460; color: #fff; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; transition: background-color 0.2s ease;" ' +
+                'data-anchor-id="' + escapedAnchorId + '" ' +
+                'onmouseover="this.style.backgroundColor=\'#0a4650\'" ' +
+                'onmouseout="if(!this.classList.contains(\'copied\')) this.style.backgroundColor=\'#0c5460\'">复制</button></li>';
+      });
+      html += '</ul><div style="margin-top: 0.5rem; font-size: 0.8125rem; color: #0c5460;">💡 提示：复制锚点ID后，在按钮设置中粘贴到「锚点ID」字段。</div>';
+      helper.innerHTML = html;
+      
+      // 确保 helper 插入到正确位置
+      const gridElement = navSection.querySelector('.anchor-navigation-grid');
+      if (gridElement) {
+        navSection.insertBefore(helper, gridElement);
+      } else {
+        const container = navSection.querySelector('.anchor-navigation-container');
+        if (container) {
+          container.insertBefore(helper, container.firstChild);
+        }
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.anchor-navigation-button[data-anchor-target]');
+    const scrollOffset = {{ section.settings.scroll_offset | default: 0 }};
+
+    // 在主题编辑器模式下显示锚点检测辅助工具
+    if (window.Shopify && window.Shopify.designMode) {
+      setTimeout(showAnchorDetectionHelper, 500);
+    }
+
+    buttons.forEach(function(button) {
+      // 保存原始样式（从内联样式或计算样式获取）
+      const computedStyle = window.getComputedStyle(button);
+      const originalStyles = {
+        color: button.style.color || computedStyle.color,
+        backgroundColor: button.style.backgroundColor || computedStyle.backgroundColor,
+        borderColor: button.style.borderColor || computedStyle.borderColor
+      };
+
+      // 悬停效果
+      const hoverTextColor = button.getAttribute('data-hover-text-color');
+      const hoverBgColor = button.getAttribute('data-hover-bg-color');
+      const hoverBorderColor = button.getAttribute('data-hover-border-color');
+
+      if (hoverTextColor || hoverBgColor || hoverBorderColor) {
+        button.addEventListener('mouseenter', function() {
+          if (hoverTextColor && hoverTextColor.trim() !== '') {
+            this.style.color = hoverTextColor;
+          }
+          if (hoverBgColor && hoverBgColor.trim() !== '') {
+            this.style.backgroundColor = hoverBgColor;
+          }
+          if (hoverBorderColor && hoverBorderColor.trim() !== '') {
+            this.style.borderColor = hoverBorderColor;
+          }
+        });
+
+        button.addEventListener('mouseleave', function() {
+          // 恢复原始样式
+          if (hoverTextColor && hoverTextColor.trim() !== '') {
+            this.style.color = originalStyles.color || '';
+          }
+          if (hoverBgColor && hoverBgColor.trim() !== '') {
+            this.style.backgroundColor = originalStyles.backgroundColor || '';
+          }
+          if (hoverBorderColor && hoverBorderColor.trim() !== '') {
+            this.style.borderColor = originalStyles.borderColor || '';
+          }
+        });
+      }
+
+      // 锚链接点击处理
+      button.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('data-anchor-target');
+        if (!targetId) return;
+
+        // 如果锚点ID不包含 #，则添加
+        const anchorId = targetId.startsWith('#') ? targetId : '#' + targetId;
+        const targetElement = document.querySelector(anchorId);
+
+        if (targetElement) {
+          e.preventDefault();
+          
+          // 计算目标位置（考虑滚动偏移）
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - scrollOffset;
+
+          // 平滑滚动
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          // 更新URL（不刷新页面）
+          if (history.pushState) {
+            history.pushState(null, null, anchorId);
+          }
+        }
+      });
+    });
+
+    // 页面加载时，如果URL中有锚链接，自动滚动
+    if (window.location.hash) {
+      const anchorId = window.location.hash;
+      const targetElement = document.querySelector(anchorId);
+      
+      if (targetElement) {
+        setTimeout(function() {
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - scrollOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    }
+
+    // 检查按钮链接的目标锚点是否存在，并在主题编辑器模式下提示
+    if (window.Shopify && window.Shopify.designMode) {
+      buttons.forEach(function(button) {
+        const targetId = button.getAttribute('data-anchor-target');
+        if (targetId) {
+          const anchorId = targetId.startsWith('#') ? targetId : '#' + targetId;
+          const targetElement = document.querySelector(anchorId);
+          
+          if (!targetElement) {
+            button.style.borderColor = '#dc3545';
+            button.style.borderWidth = '2px';
+            button.title = '警告：找不到锚点ID为 "' + targetId + '" 的目标分区！请检查锚点ID是否正确。';
+            console.warn('锚链接导航：找不到锚点ID为 "' + targetId + '" 的目标分区');
+          }
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "锚链接导航",
+  "tag": "section",
+  "class": "section-anchor-navigation",
+  "settings": [
+    {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "显示标题",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "副标题"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "标题字体大小",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "副标题字体大小",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "副标题颜色",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "标题对齐方式",
+      "options": [
+        { "value": "left", "label": "左对齐" },
+        { "value": "center", "label": "居中" },
+        { "value": "right", "label": "右对齐" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "标题下方间距",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Grid布局设置"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "移动端列数",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 1,
+      "unit": "列"
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "平板列数",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "unit": "列"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "桌面端列数",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 3,
+      "unit": "列"
+    },
+    {
+      "type": "range",
+      "id": "gap_size",
+      "label": "按钮间距",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "容器设置"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "容器宽度",
+      "options": [
+        { "value": "standard", "label": "标准 (1368px)" },
+        { "value": "wide", "label": "宽屏 (1600px)" },
+        { "value": "narrow", "label": "窄屏 (1024px)" },
+        { "value": "full", "label": "全宽" }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "header",
+      "content": "间距设置"
+    },
+    {
+      "type": "select",
+      "id": "spacing_top",
+      "label": "上间距",
+      "options": [
+        { "value": "none", "label": "无" },
+        { "value": "small", "label": "小" },
+        { "value": "medium", "label": "中" },
+        { "value": "large", "label": "大" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "spacing_bottom",
+      "label": "下间距",
+      "options": [
+        { "value": "none", "label": "无" },
+        { "value": "small", "label": "小" },
+        { "value": "medium", "label": "中" },
+        { "value": "large", "label": "大" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "header",
+      "content": "滚动设置"
+    },
+    {
+      "type": "range",
+      "id": "scroll_offset",
+      "label": "滚动偏移量（像素）",
+      "info": "当页面有固定头部导航时，设置此值以调整滚动位置",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "背景设置"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "背景渐变",
+      "info": "如设置渐变，将覆盖背景颜色"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "anchor_link",
+      "name": "锚链接按钮",
+      "settings": [
+        {
+          "type": "header",
+          "content": "链接设置"
+        },
+        {
+          "type": "text",
+          "id": "anchor_target",
+          "label": "锚点ID",
+          "info": "💡 提示：目标锚点的ID（不需要包含 # 号）。\n\n如何获取锚点ID？\n1. 在页面上找到目标分区（锚链接跳转分区）\n2. 查看分区顶部显示的锚点ID标签（🔗 锚点ID: xxx）\n3. 点击标签上的「复制」按钮，或手动复制ID\n4. 在此处粘贴ID\n\n例如：about-us、product-features、section-anchor-123456\n\n如果没有设置锚点ID标签，可以：\n- 在主题编辑器中编辑目标分区\n- 查看并复制「锚点ID」设置中的值\n- 如果留空，会使用自动生成的ID：section-anchor-{分区ID}",
+          "default": "anchor-section"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文字",
+          "default": "跳转到分区"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "图标（可选）",
+          "info": "可选：在按钮文字前添加图标"
+        },
+        {
+          "type": "header",
+          "content": "样式设置"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "文字颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "背景颜色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "边框颜色",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "label": "边框大小",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "圆角（角标）",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "default": 8,
+          "unit": "px"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "背景图片（可选）",
+          "info": "可选：设置按钮背景图片"
+        },
+        {
+          "type": "header",
+          "content": "内边距设置"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上内边距",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "default": 12,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下内边距",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "default": 12,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_left",
+          "label": "左内边距",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "padding_right",
+          "label": "右内边距",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "header",
+          "content": "悬停效果（可选）"
+        },
+        {
+          "type": "color",
+          "id": "hover_text_color",
+          "label": "悬停时文字颜色",
+          "info": "留空则保持原色"
+        },
+        {
+          "type": "color",
+          "id": "hover_bg_color",
+          "label": "悬停时背景颜色",
+          "info": "留空则保持原色"
+        },
+        {
+          "type": "color",
+          "id": "hover_border_color",
+          "label": "悬停时边框颜色",
+          "info": "留空则保持原色"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[gy] Anchor Navigation",
+      "blocks": [
+        {
+          "type": "anchor_link",
+          "settings": {
+            "anchor_target": "section-1",
+            "button_text": "分区一"
+          }
+        },
+        {
+          "type": "anchor_link",
+          "settings": {
+            "anchor_target": "section-2",
+            "button_text": "分区二"
+          }
+        },
+        {
+          "type": "anchor_link",
+          "settings": {
+            "anchor_target": "section-3",
+            "button_text": "分区三"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

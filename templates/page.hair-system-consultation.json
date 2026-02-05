@@ -1,0 +1,225 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "common_banner_Kz4h9Q": {
+      "type": "common-banner",
+      "name": "[gy] Banner",
+      "settings": {
+        "banner_desktop": "shopify://shop_images/banner_3.webp",
+        "show_desktop": true,
+        "banner_mobile": "shopify://shop_images/banner_m_1_56596f48-79a7-47ff-ae73-88e2f40a4e70.webp",
+        "show_mobile": true,
+        "alt_text": "Banner",
+        "link_url": "",
+        "width_mode": "full",
+        "spacing_top": "none",
+        "spacing_bottom": "none",
+        "lazy_load": false
+      }
+    },
+    "custom_content_KdYpTQ": {
+      "type": "custom-content",
+      "blocks": {
+        "text_wHDRGp": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "left",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Consultation Details",
+            "title_size": 38,
+            "title_size_mobile": 26,
+            "text": "<p><strong>Duration:</strong> 15 minutes</p><p><strong>How It Works:</strong>Video call via Zoom (Zoom.com)</p><p><strong>Cost: </strong>Free ( $20 Deposit applied to your purchase)</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        },
+        "image_CUNd3w": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/consultation_details.webp",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "button_label": "",
+            "button_style": "primary",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "text_wHDRGp",
+        "image_CUNd3w"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "common_heading_pkE8EC": {
+      "type": "common-heading",
+      "name": "[gy] Title Heading",
+      "settings": {
+        "title": "Book Your Consultation Now",
+        "title_tag": "h2",
+        "title_size": "medium",
+        "title_color": "",
+        "subtitle": "",
+        "subtitle_tag": "p",
+        "subtitle_size": "medium",
+        "subtitle_color": "",
+        "align": "center",
+        "container_width": "standard",
+        "container_padding": "medium",
+        "spacing_top": "none",
+        "spacing_bottom": "medium",
+        "background_color": ""
+      }
+    },
+    "custom_html_content_y7beyW": {
+      "type": "custom-html-content",
+      "blocks": {
+        "html_KgQyb9": {
+          "type": "html",
+          "settings": {
+            "html_content": "<!-- Calendly Widget Script -->\n<script src=\"https://assets.calendly.com/assets/external/widget.js\" async=\"\" defer></script>\n<script src=\"https://cdn.tailwindcss.com\"></script>\n\n\n<!-- Login prompt for non-logged-in users -->\n<div class=\"lv-container text-center\" id=\"login-prompt\" onload=\"this.style.display = (window.ShopifyAnalytics?.meta?.page?.customerId || window.__st?.cid) ? 'none' : 'block'\">\n  <script>\n    (function(){\n      var el = document.currentScript.parentElement;\n      var isLoggedIn = (window.ShopifyAnalytics?.meta?.page?.customerId || window.__st?.cid);\n      el.style.display = isLoggedIn ? 'none' : 'block';\n    })();\n  </script>\n  Ready to get started?\n  <span class=\"text-primary mx-2 cursor-pointer font-bold\" onclick=\"window.location.href='/account/login'\">log in</span> to book your 1-on-1 consultation.\n</div>\n\n<!-- Calendly Widget Container -->\n<div id=\"calendly-inline-widget-lv\">\n  <!-- Show Calendly widget when logged in -->\n  <div id=\"calendly-widget\" class=\"calendly-inline-widget\" data-url=\"https://calendly.com/lavividhair/15min?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=2a8e9e\" style=\"min-width: 320px; height: 700px;\">\n    <script>\n      (function(){\n        var el = document.currentScript.parentElement;\n        var isLoggedIn = (window.ShopifyAnalytics?.meta?.page?.customerId || window.__st?.cid);\n        el.style.display = isLoggedIn ? 'block' : 'none';\n      })();\n    </script>\n  </div>\n  \n  <!-- Show placeholder image when not logged in -->\n  <img id=\"calendly-placeholder\" width=\"749\" height=\"841\" style=\"min-width: 320px;\" src=\"https://d23tttlodvxe00.cloudfront.net/img/cms/service/consultation/data_can.webp\" alt=\"consultation details\" class=\"mx-auto block h-auto! cursor-pointer md:max-w-150!\" onclick=\"window.location.href='/account/login'\">\n  <script>\n    (function(){\n      var el = document.getElementById('calendly-placeholder');\n      var isLoggedIn = (window.ShopifyAnalytics?.meta?.page?.customerId || window.__st?.cid);\n      el.style.display = isLoggedIn ? 'none' : 'block';\n    })();\n  </script>\n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "html_KgQyb9"
+      ],
+      "name": "[gy] Custom HTML Content",
+      "settings": {
+        "section_title": "",
+        "title_size": 32,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_margin": 40,
+        "container_type": "container",
+        "container_width": 1180,
+        "container_padding": 15,
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "use_shadow_dom": false,
+        "custom_css": "",
+        "custom_js": ""
+      }
+    },
+    "faq_RLFKAi": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_hdQRff": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the consultation process work?",
+            "answer": "Book a time online and make a $20 deposit.\nPrepare for the Zoom meeting and log in to your account.\nMeet with our expert via online video consultation.",
+            "is_html": false
+          }
+        },
+        "faq_item_4PtdnH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens during the consultation?",
+            "answer": "Our specialists will discuss your hair goals, lifestyle, and preferences to recommend the best hair system for you. We’ll also answer questions about maintenance, styling, and customization—all in a relaxed, no-pressure chat!",
+            "is_html": false
+          }
+        },
+        "faq_item_bGHHYT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who is the 1 on 1 consultant?",
+            "answer": "Meet Jake Kent: Your Trusted Expert in Non-Surgical Hair Systems\nJake Kent isn’t just a hair systems expert—he’s lived the journey. With over 10 years of firsthand experience wearing and mastering non-surgical hair systems, Jake combines personal insight with professional expertise to help men reclaim their confidence. As a moderator of the Hair Systems Reddit community, he’s guided thousands through the nuances of hair restoration, skincare, and self-improvement with empathy and actionable advice.\n\nWhy Choose Jake?\n\nReal-World Knowledge: Learn from someone who’s navigated the challenges of hair systems firsthand.\n\nReddit Community Leader: Trusted by over [X] members for honest, no-nonsense guidance.\n\nReady to start your transformation?\n\nBook a 1-on-1 session with Jake today and take control of your journey.",
+            "is_html": false
+          }
+        },
+        "faq_item_7tEQDw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I prepare for the session?",
+            "answer": "Just bring yourself! For the best results, consider your ideal hair length, style, and color preferences. A well-lit room and stable internet connection will help us see you clearly.",
+            "is_html": false
+          }
+        },
+        "faq_item_FDcRMq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Stress-Free Rescheduling Policy",
+            "answer": "Flexible Booking & Changes\n\nFirst Reschedule: Need to adjust? Notify us at least 1 hour before your appointment to reschedule once for free.\n\nAdditional Changes: Rescheduling a second time requires purchasing a new session.\n\nWe’ve Got Your Back – Even If Life Happens!\n\nMissed Appointments: If you miss your session or exceed rescheduling or canceling limits, you’ll still receive a $20 coupon for your first hair system order.\n\nCoupon Terms: Redeemable on any product (excludes consultation fees).",
+            "is_html": false
+          }
+        },
+        "faq_item_dpyU4h": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Cancellation Policy",
+            "answer": "Fair & Flexible Cancellations\n\nFree Cancellation: Notify us at least 1 hour before your appointment to cancel once at no cost.\n\nDaily Limit: To ensure fairness, each account is allowed one free cancellation per day.\n\nNeed to Cancel Again?\n\nAdditional same-day cancellations or late notifications (within 1 hour of your slot) will require a new booking (including deposit).\n\nRest assured, your original $20 deposit will still be credited as a coupon for future use!.\n\nWhy We Do This:\n\nWe want your journey to confidence to be seamless. While we encourage timely adjustments to respect our specialists’ schedules, we ensure you never lose out on your discount—no matter what!",
+            "is_html": false
+          }
+        },
+        "faq_item_78cryM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Privacy Protection",
+            "answer": "At LaVivid, your privacy is our priority. We are committed to safeguarding your personal information with the highest standards of security and transparency.\n\nHow We Protect Your Data:\n\nSecure Collection:\nWe only collect essential details (e.g., name, contact info, preferences) to personalize your consultation and service.\nAll data is encrypted during transmission using SSL technology.\n\nStrict Confidentiality:\nYour information is never shared with third parties without your explicit consent.\nConsultation video calls are conducted via secure platforms (e.g., Zoom) and are never publish your information.\n\nMinimal Data Retention:\nWe retain your data only as long as necessary to fulfill your request or comply with legal obligations.\nYou can request deletion of your data at any time by contacting support@lavividhair.com.\nTransparent Practices:\nWe do not sell, trade, or monetize your personal information.\nFor payments, we use trusted gateways (e.g., Stripe, PayPal) that adhere to global security standards.\n\nYour Rights:\nAccess: Request a copy of the data we hold about you.\nCorrection: Update or correct inaccuracies in your information.\nOpt-Out: Unsubscribe from communications at any time.\n\nQuestions?\nContact our Privacy Team at [support@lavividhair.com] for concerns or requests.",
+            "is_html": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_hdQRff",
+        "faq_item_4PtdnH",
+        "faq_item_bGHHYT",
+        "faq_item_7tEQDw",
+        "faq_item_FDcRMq",
+        "faq_item_dpyU4h",
+        "faq_item_78cryM"
+      ],
+      "name": "[gy] FAQ",
+      "settings": {
+        "faq_title": "Frequently Asked Questions",
+        "faq_subtitle": "Have some questions we can answer them as well.",
+        "enable_schema": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "common_banner_Kz4h9Q",
+    "custom_content_KdYpTQ",
+    "common_heading_pkE8EC",
+    "custom_html_content_y7beyW",
+    "faq_RLFKAi"
+  ]
+}

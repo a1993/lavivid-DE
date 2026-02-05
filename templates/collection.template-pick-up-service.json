@@ -1,0 +1,301 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_title": false,
+        "show_image_behind_heading": false,
+        "heading_image_height": "huge",
+        "overlay_style": "full",
+        "coll_desc_pos": "above",
+        "show_description": false,
+        "coll_num_per_page_int": 24,
+        "grid": 4,
+        "show_vendor": true,
+        "show_total": true,
+        "show_custom_banner": false,
+        "custom_banner_heading": "🎃 Halloween Treat 20% OFF!",
+        "custom_banner_image": "shopify://shop_images/a-person-with-halloween-pumpkin-on-hand.png",
+        "custom_banner_code": "CODE: TREAT20",
+        "custom_banner_meta": "UNTIL OCT 31, 2025",
+        "custom_banner_description": "",
+        "custom_banner_link_label": "Shop Now",
+        "custom_banner_link": "",
+        "enable_filtering": false,
+        "collapse_tag_sidebar_by_default": false,
+        "collapse_filters_method": "over-6",
+        "show_filter_counts": true,
+        "filter_two_columns": true,
+        "button_grid_filter_name": "Size,Taille,Größe",
+        "auto_apply_hide_unavailable": false,
+        "enable_sticky_filter": true,
+        "show_sort": true,
+        "sort_show_featured": true,
+        "sort_show_best": true,
+        "sort_show_alpha": true,
+        "sort_show_price": true,
+        "sort_show_date": true,
+        "related_collections": [],
+        "related_collections_style": "buttons",
+        "rel_coll_gall_aspect_ratio": "1",
+        "image_position": "center center",
+        "rel_coll_gall_enable_margin": true,
+        "rel_coll_gall_full_width": false,
+        "rel_coll_gall_overlay_style": "shadow",
+        "rel_coll_gall_text_alignment": "center center",
+        "rel_coll_grid_mobile": "2"
+      }
+    },
+    "image_text_grid_T4KjTN": {
+      "type": "image-text-grid",
+      "blocks": {
+        "image_text_item_RyKPFk": {
+          "type": "image_text_item",
+          "settings": {
+            "title": "Send Template to our California Office",
+            "text": "<p><strong>Step 1 – Order Placed</strong><br/>You purchase the service.<br/>We email you a USPS shipping label.</p><p><strong>Step 2 – Package Prepared</strong><br/>Print the label.<br/>Put your template, hair sample, and instructions in an envelope.</p><p><strong>Step 3 – Package Shipped</strong><br/>Drop it off at your local USPS office.</p><p><strong>Step 4 – In Transit</strong><br/>Arrives at our California office → then forwarded to our factory (3-4 weeks).</p><p></p><p><strong>Step 5 – Factory Review</strong><br/>Experts review contents and contact you to confirm details.</p>",
+            "link_url": "",
+            "button_text": ""
+          }
+        },
+        "image_text_item_BcVeti": {
+          "type": "image_text_item",
+          "settings": {
+            "title": "Send Template to our Factory",
+            "text": "<p><strong>Step 1 – Purchase</strong><br/>Order the service — we’ll email you a FedEx shipping label.</p><p><strong>Step 2 – Package Prepared</strong><br/>Print the label.<br/>Put your template, hair sample, and instructions in an envelope.</p><p><strong>Step 3 – Package Shipped</strong><br/>FedEx will contact you and pick it up from you.</p><p><strong>Step 4 – Factory Review</strong><br/>Package goes directly to our factory (5-7 days).<br/>Experts review contents and contact you to confirm details.</p>",
+            "link_url": "",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_text_item_RyKPFk",
+        "image_text_item_BcVeti"
+      ],
+      "name": "Image Text Grid",
+      "settings": {
+        "title": "",
+        "max_width": 1400,
+        "columns_desktop": 2,
+        "columns_tablet": 2,
+        "columns_mobile": 1,
+        "gap_size": 24,
+        "text_alignment": "left",
+        "background_color": "",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "image_padding": 0
+      }
+    },
+    "image_with_text_zMzTfh": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NECjjN": {
+          "type": "heading",
+          "settings": {
+            "heading_text_1": "Crafted For",
+            "title": "<span>Not Sure</span> Where To Begin?",
+            "use_h1": false
+          }
+        },
+        "text_3bpiPC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Starting your hair system journey can feel overwhelming but we’re here to make it simple. Get the basics or personalized guidance from our expert.</p>",
+            "enlarge_text": false
+          }
+        },
+        "button_N7C8qd": {
+          "type": "button",
+          "settings": {
+            "button_label": "HELP ME CHOOSE",
+            "button_link": "/pages/hair-systems-for-beginners",
+            "button_style": "primary"
+          }
+        },
+        "button_eXQpnD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Book Free Consultation",
+            "button_link": "/pages/hair-system-consultation",
+            "button_style": "secondary"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NECjjN",
+        "text_3bpiPC",
+        "button_N7C8qd",
+        "button_eXQpnD"
+      ],
+      "settings": {
+        "class-name": "",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "image": "shopify://shop_images/Not_Sure_Where_To_Begin__-_image_1.png",
+        "image_2": "shopify://shop_images/Not_Sure_Where_To_Begin__-_image_2.png",
+        "image_width": 670,
+        "image_link": "",
+        "image_position": "right",
+        "text_alignment": "left",
+        "color_scheme": "2"
+      }
+    },
+    "multi_column_rk3kbJ": {
+      "type": "multi-column",
+      "blocks": {
+        "text_block_yNbHL3": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-free-shipping.svg",
+            "title": "Free Shipping",
+            "text": "<p>Free Worldwide Shipping on Orders Over $249</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_7MWzFy": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-secure-payment.svg",
+            "title": "Secure Payment",
+            "text": "<p>Shop confidently with encrypted checkout.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_w4AfVm": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-quality-guaranteed.svg",
+            "title": "Quality Guaranteed",
+            "text": "<p>Expertly crafted for natural look and lasting wear.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "text_block_gCjaci": {
+          "type": "text_block",
+          "settings": {
+            "text_style": "body-3",
+            "mobile_text_style": "mobile-body-3",
+            "enable_media": true,
+            "image": "shopify://shop_images/icon-45-day-money-back.svg",
+            "title": "45-Day Return Guarantee",
+            "text": "<p>Try risk-free with our hassle-free return policy.</p>",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_yNbHL3",
+        "text_block_7MWzFy",
+        "text_block_w4AfVm",
+        "text_block_gCjaci"
+      ],
+      "settings": {
+        "class-name": "usp-icon-section",
+        "user_type": "all",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "columns": "2",
+        "title": "",
+        "media_aspect_ratio": "1",
+        "media_width": 60,
+        "text_alignment": "center",
+        "button_style": "primary",
+        "color_scheme": "1"
+      }
+    },
+    "collapsible_tabs_amtjNH": {
+      "type": "collapsible-tabs",
+      "blocks": {
+        "question_Afk6FR": {
+          "type": "question",
+          "settings": {
+            "title": "What is a hair system?",
+            "answer": "<p>Answer</p>"
+          }
+        },
+        "question_9bQCeB": {
+          "type": "question",
+          "settings": {
+            "title": "What’s the difference between a wig and a hair system?",
+            "answer": "<p>Answer</p>"
+          }
+        },
+        "question_dd89Fc": {
+          "type": "question",
+          "settings": {
+            "title": "How long will my hair system last?",
+            "answer": "<p>Answer</p>"
+          }
+        },
+        "question_iWcVmN": {
+          "type": "question",
+          "settings": {
+            "title": "Can I swim, shower, or exercise while wearing a hair system?",
+            "answer": "<p>Answer</p>"
+          }
+        },
+        "question_bgtzcK": {
+          "type": "question",
+          "settings": {
+            "title": "How often do I need to remove and reapply a hair system?",
+            "answer": "<p>Answer</p>"
+          }
+        },
+        "question_FLq7F7": {
+          "type": "question",
+          "settings": {
+            "title": "Will the hair system look natural and undetectable?",
+            "answer": "<p>Answer</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_Afk6FR",
+        "question_9bQCeB",
+        "question_dd89Fc",
+        "question_iWcVmN",
+        "question_bgtzcK",
+        "question_FLq7F7"
+      ],
+      "disabled": true,
+      "name": "Collapsible tabs",
+      "settings": {
+        "title": "<span>Frequently</span> Asked Questions"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_text_grid_T4KjTN",
+    "image_with_text_zMzTfh",
+    "multi_column_rk3kbJ",
+    "collapsible_tabs_amtjNH"
+  ]
+}

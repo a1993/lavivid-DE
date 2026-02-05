@@ -1,0 +1,207 @@
+{%- liquid
+  if product.template_suffix contains 'preorder'
+    assign add_to_cart_text = 'products.product.preorder' | t
+  else
+    assign add_to_cart_text = 'products.product.add_to_cart' | t
+  endif
+
+  if section.settings.sticky_atc_behavior == 'scroll' or current_variant == false
+    assign button_text = 'products.product.view_details' | t
+  elsif current_variant.available
+    assign button_text = add_to_cart_text
+  else
+    assign button_text = 'products.variant.no_stock' | t
+  endif
+
+  assign anchor = '#product-info'
+  assign product_form_id = 'product-form-' | append: section.id | append: '-' | append: product.id | append: '-sticky'
+-%}
+
+<link rel="stylesheet" href="{{ 'sticky-atc.css' | asset_url }}" media="print" onload="this.media='all'">
+<script src="{{ 'sticky-atc.js' | asset_url }}" defer="defer"></script>
+{% comment %}
+<sticky-atc class="sticky-atc sticky-atc--out sticky-atc--{{ section.settings.sticky_atc_position }}{% if section.settings.sticky_atc_mobile == false %} sticky-atc--hide-on-mobile{% endif %} invisible" data-current-variant="{{ current_variant.id }}">
+  <div class="sticky-atc__image img-ar img-ar--contain"></div>
+  <div class="sticky-atc__details">
+    <div class="sticky-atc__details__title">
+      {{- product.title | escape -}}
+    </div>
+    <div class="sticky-atc__details__variant small-text"{% unless current_variant %} hidden{% endunless %}>
+      {%- unless product.has_only_default_variant -%}
+        <span class="sticky-atc__details__variant__title">
+          {{- current_variant.title | escape -}}
+        </span>
+        {%- if section.settings.sticky_atc_behavior == 'add_to_cart' -%}
+          <span class="sticky-atc__details__variant__sep">
+            &ndash;
+          </span>
+          <a class="sticky-atc__details__variant__change underline" href="{{ anchor }}">
+            {{- 'products.variant.change' | t -}}
+          </a>
+        {%- endif -%}
+      {%- endunless -%}
+    </div>
+  </div>
+  <div class="sticky-atc__buttons">
+    {%- if section.settings.sticky_atc_behavior == 'add_to_cart' -%}
+      {% form 'product', product, id: product_form_id, class: 'form js-product-form', data-product-id: product.id %}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <button
+            class="btn btn--{{ section.settings.sticky_atc_button_style }} btn--compact add-to-cart"
+            type="submit"
+            name="add"
+            data-unavailable-text="{{ 'products.product.view_details' | t }}"
+            data-add-to-cart-text="{{ add_to_cart_text | escape }}">
+          {{- button_text -}}
+        </button>
+      {% endform %}
+    {%- else -%}
+      <a class="btn btn--{{ section.settings.sticky_atc_button_style }} btn--compact add-to-cart" href="{{ anchor }}">
+        {{- button_text -}}
+      </a>
+    {%- endif -%}
+  </div>
+  <div class="sticky-atc__error js-form-error" role="alert" hidden></div>
+</sticky-atc>
+{% endcomment %}
+<sticky-atc  class="sticky-atc sticky-atc--out sticky-atc--{{ section.settings.sticky_atc_position }}{% if section.settings.sticky_atc_mobile == false %} sticky-atc--hide-on-mobile{% endif %} invisible" data-current-variant="{{ current_variant.id }}">
+<div class="container">
+  <div class="sticky-atc-content-wrapper">
+    <div class="sticky-atc-info">
+  <div class="sticky-atc__image img-ar img-ar--contain"></div>
+    <div class="sticky-atc__details">
+    <div class="sticky-atc__details__title">
+      {{- product.title | escape -}}
+    </div>
+    <div class="sticky-price">
+      {%render 'price' %}
+    </div>
+  </div>
+   
+  </div>
+
+  <div class="sticky-atc__buttons">
+   <div class="atc-details">
+            <buy-buttons class='buy-buttons-row block' {{ block.shopify_attributes }}>
+              {% form 'product',
+                product,
+                id: product_form_id,
+                class: 'form js-product-form',
+                data-product-id: product.id
+              %}
+                <input type='hidden' name='id' value='{{ current_variant.id }}'>
+
+                {% if product.available %}
+                  {%- liquid
+                    assign gift_card_recipient_feature_active = false
+                    if block.settings.show_gift_card_recipient and product.gift_card?
+                      assign gift_card_recipient_feature_active = true
+                    endif
+
+                    assign enable_dynamic_payment_button = false
+                    if block.settings.enable_payment_button and product.selling_plan_groups == empty and gift_card_recipient_feature_active == false
+                      unless product.template_suffix contains 'preorder'
+                        assign enable_dynamic_payment_button = true
+                      endunless
+                    endif
+                  -%}
+
+                  {% if gift_card_recipient_feature_active %}
+                    {% render 'gift-card-recipient', section: section %}
+                  {% endif %}
+
+                  <div class='quantity-submit-row input-row {% if enable_dynamic_payment_button %}has-spb{% endif %}'>
+                   
+                     {% comment %}
+                      <label class='label' for='quantity'>
+                        {{- 'products.product.quantity' | t -}}
+                      </label>
+                      {% endcomment %}
+                      <quantity-wrapper class='buttoned-input'>
+                        <a
+                          href='#'
+                          data-quantity='down'
+                          aria-label='{{ 'cart.items.decrease_quantity' | t }}'
+                        >
+                          {%- render 'icon-minus' -%}
+                        </a>
+                        <input
+                          aria-label='{{ 'products.product.quantity' | t }}'
+                          id='quantity'
+                          type='number'
+                          name='quantity'
+                          value='1'
+                        >
+                        <a
+                          href='#'
+                          data-quantity='up'
+                          aria-label='{{ 'cart.items.increase_quantity' | t }}'
+                        >
+                          {%- render 'icon-plus' -%}
+                        </a>
+                      </quantity-wrapper>
+                  
+
+                    <div class='quantity-submit-row__submit input-row'>
+                      <div class='js-form-error lightly-spaced-row' role='alert' hidden></div>
+
+                      {%- capture add_to_cart_text -%}
+                        {%- if product.template_suffix contains 'preorder' -%}
+                          {{- 'products.product.preorder' | t -}}
+                        {%- else -%}
+                          {{- 'products.product.add_to_cart' | t -}}
+                        {%- endif -%}
+                      {%- endcapture -%}
+                      <button
+                        class='btn btn--large add-to-cart '
+                        type='submit'
+                        name='add'
+                        data-add-to-cart-text='{{ add_to_cart_text | escape }}'
+                        {% if product.available == false %}
+                          disabled
+                        {% endif %}
+                      >
+                        {%- if current_variant.available or current_variant == false -%}
+                          {{- add_to_cart_text -}}
+                        {%- else -%}
+                          {{- 'products.variant.no_stock' | t -}}
+                        {%- endif -%}
+                      </button>
+                    </div>
+                    {% if enable_dynamic_payment_button %}
+                      <div class='product-dynamic-payment-button'>
+                        <script class='dynamic-payment-button-template' type='text/template'>
+                          {
+                            {
+                              form | payment_button;
+                            }
+                          }
+                        </script>
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.show_backorder_text %}
+                      {% render 'backorder', product: product, variant: current_variant %}
+                    {% endif %}
+                  </div>
+
+                {% else %}
+                  <div class='quantity-submit-row input-row'>
+                    <div class='quantity-submit-row__submit'>
+                      <button class='btn btn--large' name='add' type='submit' disabled>
+                        {{- 'products.variant.no_stock' | t -}}
+                      </button>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endform %}
+
+              {%- if product.available and block.settings.show_pickup_availability -%}
+                {% render 'pickup-availability', current_variant: current_variant %}
+              {%- endif -%}
+            </buy-buttons>
+  </div>
+</div>
+</div>
+</div>
+</sticky-atc>
