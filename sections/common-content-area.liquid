@@ -5,8 +5,13 @@
   可放置任何内容的通用容器，支持 Blocks
 {% endcomment %}
 
-{% assign has_style = section.settings.background_color != blank or section.settings.background_gradient != blank or section.settings.border_width > 0 %}
-<div class="common-content-area common-content-area--spacing-top-{{ section.settings.spacing_top }} common-content-area--spacing-bottom-{{ section.settings.spacing_bottom }}{% if section.settings.border_radius > 0 %} common-content-area--radius{% endif %}"{% if has_style %} style="{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% elsif section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}{% if section.settings.border_width > 0 %}border: {{ section.settings.border_width }}px solid {{ section.settings.border_color | default: '#e5e5e5' }};{% endif %}{% if section.settings.border_radius > 0 %}border-radius: {{ section.settings.border_radius }}px;{% endif %}"{% endif %}>
+{% assign border_w = section.settings.border_width | default: 0 %}
+{% assign radius_w = section.settings.border_radius | default: 0 %}
+{% assign has_style = false %}
+{% if section.settings.background_color != blank %}{% assign has_style = true %}{% endif %}
+{% if section.settings.background_gradient != blank %}{% assign has_style = true %}{% endif %}
+{% if border_w %}{% assign has_style = true %}{% endif %}
+<div class="common-content-area common-content-area--spacing-top-{{ section.settings.spacing_top }} common-content-area--spacing-bottom-{{ section.settings.spacing_bottom }}{% if radius_w %} common-content-area--radius{% endif %}"{% if has_style %} style="{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% elsif section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}{% if border_w %}border: {{ border_w }}px solid {{ section.settings.border_color | default: '#e5e5e5' }};{% endif %}{% if radius_w %}border-radius: {{ radius_w }}px;{% endif %}"{% endif %}>
   <div class="common-container common-container--width-{{ section.settings.container_width }} common-container--padding-{{ section.settings.container_padding }}">
     <div class="common-content-area__blocks">
       {% for block in section.blocks %}
