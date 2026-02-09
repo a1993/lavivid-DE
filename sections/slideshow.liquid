@@ -72,6 +72,27 @@
         }
         {%- endfor -%}
       }
+
+      {%- for block in section.blocks -%}
+        {%- if block.settings.enable_overlay_bg and block.settings.overlay_bg_color != blank -%}
+          {%- assign overlay_opacity = block.settings.overlay_bg_opacity | divided_by: 100.0 -%}
+          {%- assign overlay_bg_rgba = block.settings.overlay_bg_color | color_modify: 'alpha', overlay_opacity -%}
+          #section-id-{{ section.id }} .slide-{{ forloop.index }} .text-overlay__text {
+            background-color: {{ overlay_bg_rgba }};
+            padding: {{ block.settings.overlay_bg_padding_mobile }}px;
+            border-radius: {{ block.settings.overlay_bg_radius }}px;
+            {%- assign bg_max = block.settings.overlay_bg_max_width | default: 0 -%}
+            {%- if bg_max > 0 -%}
+            max-width: {{ bg_max }}%;
+            {%- endif -%}
+          }
+          @media (min-width: 768px) {
+            #section-id-{{ section.id }} .slide-{{ forloop.index }} .text-overlay__text {
+              padding: {{ block.settings.overlay_bg_padding }}px;
+            }
+          }
+        {%- endif -%}
+      {%- endfor -%}
     {% endstyle %}
 
   {%- unless section.settings.full_width -%}<div class="container container--not-mobile fully-spaced-row--medium fully-spaced-row--not-mobile">{%- endunless -%}
@@ -545,6 +566,73 @@
         {
           "type": "header",
           "content": "Overlay"
+        },
+        {
+          "type": "header",
+          "content": "Text overlay background"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_overlay_bg",
+          "label": "Enable overlay background",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "overlay_bg_color",
+          "label": "Background color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_bg_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Background opacity",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "overlay_bg_padding",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Desktop padding",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "overlay_bg_padding_mobile",
+          "min": 0,
+          "max": 60,
+          "step": 4,
+          "unit": "px",
+          "label": "Mobile padding",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "overlay_bg_radius",
+          "min": 0,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "label": "Corner radius",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "overlay_bg_max_width",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Max width",
+          "info": "0 = no limit",
+          "default": 0
         },
         {
           "type": "text",
