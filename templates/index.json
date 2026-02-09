@@ -23,8 +23,8 @@
             "subheading": "Tell your story",
             "heading_text_1": "Crafted For",
             "heading_text_2": "Your Lifestyle",
-            "heading_color_1": "#5b5be5",
-            "heading_color_2": "#000000",
+            "heading_color_1": "#fbfbfb",
+            "heading_color_2": "#ffffff",
             "title": "Kein Bock auf Haartransplantation?",
             "heading_max_width": 15,
             "title_size": 48,
@@ -116,11 +116,30 @@
         "custom_css": "",
         "custom_js": ""
       }
+    },
+    "product_list_RMaVRi": {
+      "type": "product-list",
+      "name": "Product list",
+      "settings": {
+        "title": "Product list",
+        "product_list": [
+          "achilles-men-s-hair-unit-full-skin-base-men-s-hairstyle-for-thin-hair",
+          "adam-men-curly-hair-toupee-20mm-rod-size-curl-high-end-hair-look",
+          "adhesive-remover-pads",
+          "apollo-men-s-toupee-trendy-mono-base-with-scallop-front"
+        ],
+        "show_vendor": false,
+        "enable_carousel": true,
+        "grid": 4,
+        "color_scheme": "default",
+        "full_width": true
+      }
     }
   },
   "order": [
     "slideshow_TJ9XJ7",
     "rich_text_LG8chM",
-    "custom_html_content_drgYnL"
+    "custom_html_content_drgYnL",
+    "product_list_RMaVRi"
   ]
 }
