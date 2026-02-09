@@ -5,7 +5,8 @@
   可放置任何内容的通用容器，支持 Blocks
 {% endcomment %}
 
-<div class="common-content-area common-content-area--spacing-top-{{ section.settings.spacing_top }} common-content-area--spacing-bottom-{{ section.settings.spacing_bottom }}"{% if section.settings.background_color != blank or section.settings.background_gradient != blank %} style="{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% elsif section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}"{% endif %}>
+{% assign has_style = section.settings.background_color != blank or section.settings.background_gradient != blank or section.settings.border_width > 0 %}
+<div class="common-content-area common-content-area--spacing-top-{{ section.settings.spacing_top }} common-content-area--spacing-bottom-{{ section.settings.spacing_bottom }}{% if section.settings.border_radius > 0 %} common-content-area--radius{% endif %}"{% if has_style %} style="{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% elsif section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}{% if section.settings.border_width > 0 %}border: {{ section.settings.border_width }}px solid {{ section.settings.border_color | default: '#e5e5e5' }};{% endif %}{% if section.settings.border_radius > 0 %}border-radius: {{ section.settings.border_radius }}px;{% endif %}"{% endif %}>
   <div class="common-container common-container--width-{{ section.settings.container_width }} common-container--padding-{{ section.settings.container_padding }}">
     <div class="common-content-area__blocks">
       {% for block in section.blocks %}
@@ -102,6 +103,7 @@
   /* Content Area */
   .common-content-area {
     width: 100%;
+    box-sizing: border-box;
   }
   
   .common-content-area__blocks {
@@ -312,6 +314,37 @@
       "id": "background_gradient",
       "label": "背景渐变",
       "info": "如设置渐变，将覆盖背景颜色"
+    },
+    {
+      "type": "header",
+      "content": "边框设置"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "边框宽度",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "default": 0,
+      "unit": "px",
+      "info": "0 表示无边框"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "边框颜色",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "圆角",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
     }
   ],
   "blocks": [
