@@ -73,6 +73,48 @@
         {%- endfor -%}
       }
 
+      #section-id-{{ section.id }} .slideshow-rating .star { fill: var(--star-filled); }
+      #section-id-{{ section.id }} .slideshow-rating .star--empty,
+      #section-id-{{ section.id }} .slideshow-rating .star-back { fill: var(--star-empty); }
+      #section-id-{{ section.id }} .slideshow-rating .review-text { color: var(--review-text-color); }
+
+      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon { display: inline-flex; align-items: center; gap: 0.5em; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon.btn--icon-right { flex-direction: row; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon.btn--icon-left { flex-direction: row-reverse; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon { display: inline-flex; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon { color: inherit; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon svg,
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon path { stroke: currentColor; fill: currentColor; }
+
+      {%- for block in section.blocks -%}
+        {%- if block.settings.rating_star_color_mobile != blank or block.settings.rating_review_text_color_mobile != blank or block.settings.subheading_color_mobile != blank or block.settings.text_color_mobile != blank or block.settings.primary_button_bg_color_mobile != blank or block.settings.primary_button_text_color_mobile != blank or block.settings.secondary_button_bg_color_mobile != blank or block.settings.secondary_button_text_color_mobile != blank -%}
+        @media (max-width: 767px) {
+          #section-id-{{ section.id }} .slide-{{ forloop.index }} .slideshow-rating {
+            {%- if block.settings.rating_star_color_mobile != blank -%}--star-filled: {{ block.settings.rating_star_color_mobile }};{%- endif -%}
+            {%- if block.settings.rating_review_text_color_mobile != blank -%}--review-text-color: {{ block.settings.rating_review_text_color_mobile }};{%- endif -%}
+          }
+          {%- if block.settings.subheading_color_mobile != blank -%}
+          #section-id-{{ section.id }} .slide-{{ forloop.index }} .text-overlay__subheading { color: {{ block.settings.subheading_color_mobile }} !important; }
+          {%- endif -%}
+          {%- if block.settings.text_color_mobile != blank -%}
+          #section-id-{{ section.id }} .slide-{{ forloop.index }} .text-overlay__rte { color: {{ block.settings.text_color_mobile }} !important; }
+          {%- endif -%}
+          {%- if block.settings.primary_button_bg_color_mobile != blank or block.settings.primary_button_text_color_mobile != blank -%}
+          #section-id-{{ section.id }} .slide-{{ forloop.index }} .btn--primary {
+            {%- if block.settings.primary_button_bg_color_mobile != blank -%}background-color: {{ block.settings.primary_button_bg_color_mobile }} !important;{%- endif -%}
+            {%- if block.settings.primary_button_text_color_mobile != blank -%}color: {{ block.settings.primary_button_text_color_mobile }} !important;{%- endif -%}
+          }
+          {%- endif -%}
+          {%- if block.settings.secondary_button_bg_color_mobile != blank or block.settings.secondary_button_text_color_mobile != blank -%}
+          #section-id-{{ section.id }} .slide-{{ forloop.index }} .btn--secondary {
+            {%- if block.settings.secondary_button_bg_color_mobile != blank -%}background-color: {{ block.settings.secondary_button_bg_color_mobile }} !important;{%- endif -%}
+            {%- if block.settings.secondary_button_text_color_mobile != blank -%}color: {{ block.settings.secondary_button_text_color_mobile }} !important;{%- endif -%}
+          }
+          {%- endif -%}
+        }
+        {%- endif -%}
+      {%- endfor -%}
+
       {%- for block in section.blocks -%}
         {%- if block.settings.enable_overlay_bg and block.settings.overlay_bg_color != blank -%}
           {%- assign overlay_opacity = block.settings.overlay_bg_opacity | divided_by: 100.0 -%}
@@ -163,7 +205,7 @@
                 
                 <div class="text-overlay__text slideshow__motion-overlay has-motion">
                    {% if block.settings.enable_rating %}
-  <div class="star-container sld-shw">
+  <div class="star-container sld-shw slideshow-rating" style="--star-filled: {{ block.settings.rating_star_color | default: '#FFB800' }}; --star-empty: {{ block.settings.rating_star_empty_color | default: '#DDDDDD' }}; --review-text-color: {{ block.settings.rating_review_text_color | default: '#000000' }};">
     {%- assign rating = block.settings.rating_value | times: 1 -%}
     {%- assign full_stars = rating | floor -%}
     {%- assign fractional_part = rating | modulo: 1 -%}
@@ -174,19 +216,13 @@
     {% assign total_stars = 5 %}
 
     {%- for i in (1..full_stars) -%}
-      <svg class="star" viewBox="0 0 20 20">
-        <path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/>
-      </svg>
+      <svg class="star" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/></svg>
     {%- endfor -%}
 
     {% if has_half_star %}
       <div class="star-half">
-        <svg class="star star-back" viewBox="0 0 20 20">
-          <path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/>
-        </svg>
-        <svg class="star star-front" viewBox="0 0 20 20">
-          <path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/>
-        </svg>
+        <svg class="star star-back star--empty" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/></svg>
+        <svg class="star star-front" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/></svg>
       </div>
     {% endif %}
 
@@ -196,9 +232,7 @@
     {% endif %}
 
     {%- for i in (1..remaining) -%}
-      <svg class="star" viewBox="0 0 20 20" style="fill: #ddd;">
-        <path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/>
-      </svg>
+      <svg class="star star--empty" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09L5.5 12.18.122 7.91l6.09-.89L10 1.5l3.788 5.52 6.09.89-4.878 4.27 1.378 5.91z"/></svg>
     {%- endfor -%}
     <span class="review-text">{{ block.settings.review_text }}</span>
   </div>
@@ -248,7 +282,7 @@
                     </div>
                   {%- endif -%} {% endcomment %}
                   {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
-  <div class="text-overlay__button-row">
+  <div class="text-overlay__button-row slideshow-buttons">
 
     {%- assign btn1_type = block.settings.button_1_type -%}
     {%- assign btn2_type = block.settings.button_2_type -%}
@@ -259,41 +293,56 @@
     {%- assign btn2_bg_key = btn2_type | append: "_button_bg_color" -%}
     {%- assign btn2_text_key = btn2_type | append: "_button_text_color" -%}
 
+    {%- capture btn1_icon_html -%}
+      {%- if block.settings.button_1_icon != 'none' -%}
+        <span class="btn__icon">{%- if block.settings.button_1_icon == 'chevron_right' -%}{% render 'icon-chevron-right' %}{%- else -%}{% render 'icon', icon: block.settings.button_1_icon, size: 'small' %}{%- endif -%}</span>
+      {%- endif -%}
+    {%- endcapture -%}
+    {%- capture btn2_icon_html -%}
+      {%- if block.settings.button_2_icon != 'none' -%}
+        <span class="btn__icon">{%- if block.settings.button_2_icon == 'chevron_right' -%}{% render 'icon-chevron-right' %}{%- else -%}{% render 'icon', icon: block.settings.button_2_icon, size: 'small' %}{%- endif -%}</span>
+      {%- endif -%}
+    {%- endcapture -%}
+
     {%- if wrap_slide_with_link -%}
 
       {%- if block.settings.button_label_1 != blank -%}
-        <span class="text-overlay__button btn btn--{{ btn1_type }}"
-              style="background-color: {{ block.settings[btn1_bg_key] }}; 
-                     color: {{ block.settings[btn1_text_key] }};">
-          {{ block.settings.button_label_1 | escape }}
+        <span class="text-overlay__button btn btn--{{ btn1_type }}{% if block.settings.button_1_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_1_icon_position }}{% endif %}"
+              style="background-color: {{ block.settings[btn1_bg_key] }}; color: {{ block.settings[btn1_text_key] }};">
+          {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'left' -%}{{ btn1_icon_html }}{%- endif -%}
+          <span class="btn__text">{{ block.settings.button_label_1 | escape }}</span>
+          {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'right' -%}{{ btn1_icon_html }}{%- endif -%}
         </span>
       {%- endif -%}
 
       {%- if block.settings.button_label_2 != blank -%}
-        <span class="text-overlay__button btn btn--{{ btn2_type }}"
-              style="background-color: {{ block.settings[btn2_bg_key] }}; 
-                     color: {{ block.settings[btn2_text_key] }};">
-          {{ block.settings.button_label_2 | escape }}
+        <span class="text-overlay__button btn btn--{{ btn2_type }}{% if block.settings.button_2_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_2_icon_position }}{% endif %}"
+              style="background-color: {{ block.settings[btn2_bg_key] }}; color: {{ block.settings[btn2_text_key] }};">
+          {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'left' -%}{{ btn2_icon_html }}{%- endif -%}
+          <span class="btn__text">{{ block.settings.button_label_2 | escape }}</span>
+          {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'right' -%}{{ btn2_icon_html }}{%- endif -%}
         </span>
       {%- endif -%}
 
     {%- else -%}
 
       {%- if block.settings.button_label_1 != blank -%}
-        <a class="text-overlay__button btn btn--{{ btn1_type }}"
+        <a class="text-overlay__button btn btn--{{ btn1_type }}{% if block.settings.button_1_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_1_icon_position }}{% endif %}"
            href="{{ block.settings.button_url_1 }}"
-           style="background-color: {{ block.settings[btn1_bg_key] }}; 
-                  color: {{ block.settings[btn1_text_key] }};">
-          {{ block.settings.button_label_1 | escape }}
+           style="background-color: {{ block.settings[btn1_bg_key] }}; color: {{ block.settings[btn1_text_key] }};">
+          {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'left' -%}{{ btn1_icon_html }}{%- endif -%}
+          <span class="btn__text">{{ block.settings.button_label_1 | escape }}</span>
+          {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'right' -%}{{ btn1_icon_html }}{%- endif -%}
         </a>
       {%- endif -%}
 
       {%- if block.settings.button_label_2 != blank -%}
-        <a class="text-overlay__button btn btn--{{ btn2_type }}"
+        <a class="text-overlay__button btn btn--{{ btn2_type }}{% if block.settings.button_2_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_2_icon_position }}{% endif %}"
            href="{{ block.settings.button_url_2 }}"
-           style="background-color: {{ block.settings[btn2_bg_key] }}; 
-                  color: {{ block.settings[btn2_text_key] }};">
-          {{ block.settings.button_label_2 | escape }}
+           style="background-color: {{ block.settings[btn2_bg_key] }}; color: {{ block.settings[btn2_text_key] }};">
+          {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'left' -%}{{ btn2_icon_html }}{%- endif -%}
+          <span class="btn__text">{{ block.settings.button_label_2 | escape }}</span>
+          {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'right' -%}{{ btn2_icon_html }}{%- endif -%}
         </a>
       {%- endif -%}
 
@@ -564,6 +613,68 @@
           "default": 5
         },
         {
+          "type": "color",
+          "id": "rating_star_color",
+          "label": "Star color (filled)",
+          "default": "#FFB800"
+        },
+        {
+          "type": "color",
+          "id": "rating_star_empty_color",
+          "label": "Star color (empty)",
+          "default": "#DDDDDD"
+        },
+        {
+          "type": "color",
+          "id": "rating_review_text_color",
+          "label": "Review text color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Mobile styling"
+        },
+        {
+          "type": "color",
+          "id": "rating_star_color_mobile",
+          "label": "Star color (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "rating_review_text_color_mobile",
+          "label": "Review text color (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "subheading_color_mobile",
+          "label": "Subheading color (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "text_color_mobile",
+          "label": "Body text color (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "primary_button_bg_color_mobile",
+          "label": "Primary button background (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "primary_button_text_color_mobile",
+          "label": "Primary button text (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "secondary_button_bg_color_mobile",
+          "label": "Secondary button background (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "secondary_button_text_color_mobile",
+          "label": "Secondary button text (mobile)"
+        },
+        {
           "type": "header",
           "content": "Overlay"
         },
@@ -736,6 +847,31 @@
           "label": "Button 1 link"
         },
         {
+          "type": "select",
+          "id": "button_1_icon",
+          "label": "Button 1 icon",
+          "default": "none",
+            "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_1_icon_position",
+          "label": "Button 1 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
           "type": "text",
           "id": "button_label_2",
           "label": "Button 2 label",
@@ -745,6 +881,31 @@
           "type": "url",
           "id": "button_url_2",
           "label": "Button 2 link"
+        },
+        {
+          "type": "select",
+          "id": "button_2_icon",
+          "label": "Button 2 icon",
+          "default": "none",
+            "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_2_icon_position",
+          "label": "Button 2 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
             "type": "select",
