@@ -36,15 +36,104 @@
         "email",
         "message"
       ],
+      "disabled": true,
       "settings": {
         "show_page_title": false,
         "use_columns": true,
         "contact_title": "Contact us",
         "contact_text": ""
       }
+    },
+    "image_text_grid_qKHQKq": {
+      "type": "image-text-grid",
+      "blocks": {
+        "image_text_item_RrneVc": {
+          "type": "image_text_item",
+          "settings": {
+            "image": "shopify://shop_images/download.svg",
+            "title": "Max Mustermann",
+            "text": "<p>Haarsystem Experte</p><p>Spezialisiert auf moderne Haarsysteme für Männer. Fokus auf Natürlichkeit, perfekten Sitz und ehrliche Beratung – diskret, präzise und individuell.</p><p>Haarsysteme Beratung Herrenschnitt Einschneiden<br/><br/></p>",
+            "link_url": "shopify://policies/privacy-policy",
+            "button_text": "Termin buchen"
+          }
+        },
+        "image_text_item_KaNe7a": {
+          "type": "image_text_item",
+          "settings": {
+            "image": "shopify://shop_images/download.svg",
+            "title": "Max Mustermann",
+            "text": "<p>Haarsystem Experte</p><p>Spezialisiert auf moderne Haarsysteme für Männer. Fokus auf Natürlichkeit, perfekten Sitz und ehrliche Beratung – diskret, präzise und individuell.</p><p>Haarsysteme Beratung Herrenschnitt Einschneiden<br/><br/></p>",
+            "link_url": "shopify://policies/privacy-policy",
+            "button_text": "Termin buchen"
+          }
+        },
+        "image_text_item_yqwG6h": {
+          "type": "image_text_item",
+          "settings": {
+            "image": "shopify://shop_images/download.svg",
+            "title": "Max Mustermann",
+            "text": "<p>Haarsystem Experte</p><p>Spezialisiert auf moderne Haarsysteme für Männer. Fokus auf Natürlichkeit, perfekten Sitz und ehrliche Beratung – diskret, präzise und individuell.</p><p>Haarsysteme Beratung Herrenschnitt Einschneiden<br/><br/></p>",
+            "link_url": "shopify://policies/privacy-policy",
+            "button_text": "Termin buchen"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_item_RrneVc",
+        "image_text_item_KaNe7a",
+        "image_text_item_yqwG6h"
+      ],
+      "name": "[gy] Image Text Grid",
+      "settings": {
+        "title": "",
+        "max_width": 1400,
+        "columns_desktop": 3,
+        "columns_tablet": 2,
+        "columns_mobile": 1,
+        "gap_size": 24,
+        "text_alignment": "left",
+        "background_color": "",
+        "padding_top": "medium",
+        "padding_bottom": "medium",
+        "image_padding": 0
+      }
+    },
+    "custom_content_bbiyXA": {
+      "type": "custom-content",
+      "blocks": {
+        "text_i6LHV3": {
+          "type": "text",
+          "settings": {
+            "width": "full",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Bereit für dein neues Haargefühl?",
+            "title_size": 58,
+            "title_size_mobile": 28,
+            "text": "<p>Persönliche Beratung, ehrliche Empfehlungen und Ergebnisse, die man nicht erkennt – außer am Selbstbewusstsein.</p>",
+            "button_label": "Beratung vereinbaren",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "text_i6LHV3"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_text_grid_qKHQKq",
+    "custom_content_bbiyXA"
   ]
 }
