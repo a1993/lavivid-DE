@@ -1,0 +1,234 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": false,
+        "full_width": false
+      }
+    },
+    "custom_content_xth7BD": {
+      "type": "custom-content",
+      "blocks": {
+        "text_edj4YR": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "left",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "Geschäftspartner",
+            "title": "Zusammenarbeit auf Augenhöhe.",
+            "title_size": 60,
+            "title_size_mobile": 46,
+            "text": "<p>Ob als langfristiger Geschäftspartner oder durch gezielte</p><p> Schulungen – wir arbeiten mit Menschen, nicht</p><p> mit Massenkonzepten.<br/><br/></p>",
+            "subheading_color": "",
+            "title_color": "",
+            "text_color": "",
+            "button_label_1": "Gespräch anfragen",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "WHATSAPP",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "#25d366",
+            "button_text_color_2": ""
+          }
+        },
+        "image_8Khjpy": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/5_3682ba70-ae12-4d4e-95f7-8d042b68f82b.jpg",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "overlay_subheading_color": "",
+            "overlay_title_color": "",
+            "overlay_text_color": "",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        }
+      },
+      "block_order": [
+        "text_edj4YR",
+        "image_8Khjpy"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_hJDhKN": {
+      "type": "custom-content",
+      "blocks": {
+        "text_cPFiNj": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "left",
+            "center_on_mobile": true,
+            "icon": "feather",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Geschäftspartner werden",
+            "title_size": 48,
+            "title_size_mobile": 36,
+            "text": "<p>Du hast ein Studio oder möchtest Haarsysteme professionell anbieten? Wir unterstützen dich mit Erfahrung, Produkten und ehrlichem Austausch.<br/></p><ul><li>Hochwertige Haarsysteme</li><li>Technischer & fachlicher Support</li><li>Langfristige Zusammenarbeit</li></ul>",
+            "subheading_color": "",
+            "title_color": "",
+            "text_color": "",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "#25d366",
+            "button_text_color_2": ""
+          }
+        },
+        "text_UbNnKk": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "left",
+            "center_on_mobile": true,
+            "icon": "award",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Schulungen & Know-how",
+            "title_size": 48,
+            "title_size_mobile": 36,
+            "text": "<p>Du willst dich erst fachlich weiterentwickeln? Unsere Schulungen sind praxisnah, ehrlich und individuell aufgebaut.</p><p></p><ul><li>Anpassung & Befestigung</li><li>Pflege & Haltbarkeit</li><li>Beratung & Verkauf<br/><br/></li></ul>",
+            "subheading_color": "",
+            "title_color": "",
+            "text_color": "",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "#25d366",
+            "button_text_color_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_cPFiNj",
+        "text_UbNnKk"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    },
+    "custom_content_ayMtqc": {
+      "type": "custom-content",
+      "blocks": {
+        "text_P84a4V": {
+          "type": "text",
+          "settings": {
+            "width": "full",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Interesse an einer Zusammenarbeit?",
+            "title_size": 48,
+            "title_size_mobile": 42,
+            "text": "<p>Schreib uns direkt oder vereinbare ein unverbindliches Gespräch.</p>",
+            "subheading_color": "",
+            "title_color": "",
+            "text_color": "",
+            "button_label_1": "Termin buchen",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "WhatsApp schreiben",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "#25d366",
+            "button_text_color_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_P84a4V"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_content_xth7BD",
+    "custom_content_hJDhKN",
+    "custom_content_ayMtqc"
+  ]
+}
