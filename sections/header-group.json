@@ -1,1 +1,239 @@
-{"type":"header","name":"Header Group","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"announcement-1":{"type":"announcement","settings":{"text":"Best Base, Perfect Hold — <a href=\"\/pages\/best-hair-system-base-adhesive-combos\" title=\"Best Base with Perfect Hold\">Enjoy 15% OFF Now ><\/a>","show_countdown":true,"hide_on_end":false,"end_date":"2026-02-05","end_time":"00:00","number_font":"base","countdown_separator":"box","use_custom_colors":false,"bg_color":"#202020","bg_gradient":"","text_color":"#ffffff"}},"announcement_Qe3VXt":{"type":"announcement","settings":{"text":"🔔 <strong>Existing Customers<\/strong>: <a href=\"\/account\/login\" title=\"\/account\/login\">Activate your account to access your order history.  <\/a>","show_countdown":false,"hide_on_end":false,"end_date":"","end_time":"","number_font":"base","countdown_separator":"box","use_custom_colors":false,"bg_color":"#4a4a4a","bg_gradient":"","text_color":"#ffffff"}},"announcement-2":{"type":"announcement","disabled":true,"settings":{"text":"Our favorite Zeo-Guard is back. <a href=\"#\" title=\"Recycled Bomber Jacket\">Shop now.<\/a>","show_countdown":false,"hide_on_end":false,"end_date":"","end_time":"","number_font":"base","countdown_separator":"box","use_custom_colors":false,"bg_color":"#202020","bg_gradient":"","text_color":"#ffffff"}},"10a25077-3fc8-40d4-8f01-e898f98f6f78":{"type":"announcement","disabled":true,"settings":{"text":"Free shipping on all orders over $179","show_countdown":false,"hide_on_end":false,"end_date":"","end_time":"","number_font":"base","countdown_separator":"box","use_custom_colors":false,"bg_color":"#202020","bg_gradient":"","text_color":"#ffffff"}}},"block_order":["announcement-1","announcement_Qe3VXt","announcement-2","10a25077-3fc8-40d4-8f01-e898f98f6f78"],"disabled":true,"settings":{"message_font_size":12,"announcement_bar_col":"#202020","announcement_bar_gradient":"","announcement_text_col":"#ffffff","show_social_icons":true,"menu":"","enable_country_selector":true,"enable_language_selector":true}},"header":{"type":"header","blocks":{"menu_promotion_small_GqdA7q":{"type":"menu-promotion-small","disabled":true,"settings":{"dropdown_link_title":"Shop All Hair Systems","image":"shopify:\/\/shop_images\/accessories_eacc4cd9-682b-4257-bbfa-62eccf0950d3.jpg","title":"Shop Accessories","link_url":"shopify:\/\/collections\/accessories"}},"menu_promotion_small_DPxtNy":{"type":"menu-promotion-small","disabled":true,"settings":{"dropdown_link_title":"Shop All Hair Systems","image":"shopify:\/\/shop_images\/Shop_Hair_Care.png","title":"Shop Hair Care","link_url":"shopify:\/\/collections\/maintenance-accessories"}},"menu_promotion_large_YpxJKK":{"type":"menu-promotion-large","disabled":true,"settings":{"dropdown_link_title":"Place a Custom Order","desktop_image":"shopify:\/\/shop_images\/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year.jpg","mobile_image":"shopify:\/\/shop_images\/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year.jpg","enable_fade":true,"image_position":"right","subheading":"","title":"Custom Hair Systems","text":"<p>Take control of your style with our custom order service. Checkout <a href=\"#\" title=\"#\">how to customize <\/a><\/p>","button_1_label":"Place a Custom Order","button_1_link":"shopify:\/\/collections\/professional-customization","button_1_style":"secondary","button_2_label":"Send us Your Template","button_2_link":"shopify:\/\/collections\/template-pick-up-service","button_2_style":"primary","text_alignment":"left","show_countdown":false,"countdown_position":"under-heading","end_date":"","end_time":"","end_text":"","hide_on_end":false,"number_size":40,"number_font":"base","divider_type":"colon","show_timer_labels":true}}},"block_order":["menu_promotion_small_GqdA7q","menu_promotion_small_DPxtNy","menu_promotion_large_YpxJKK"],"settings":{"logo":"shopify:\/\/shop_images\/logo-menu.webp","logo_img_width_int":100,"mobile_logo_img_width_int":80,"logo_h1":true,"enable_sticky":true,"enable_transparent":false,"transparent_logo":"shopify:\/\/shop_images\/logo-menu.webp","transparent_color":"#ffffff","transparent_fade":"#000000","transparent_fade_strength":55,"menu_linklist":"main-menu","menu_layout":"inline-menu-center","nav_featured_link":"Shop Accessories, Shop Hair Care","menu_linklist_mobile":"","mobile_expand_with_entire_link":true,"enable_mobile_promo_carousel":true,"enable_nav_mob_products":true,"nav_mob_products_title":"Best Sellers","nav_mob_products_collection":"men-hair-system","enable_search":true,"search_recommendations_title":"Lavivid is where you find confidence","search_recommendations_menu":"","icon_strategy":"icons_only","cart_icon":"bag"}},"store-messages":{"type":"store-messages","blocks":{"1601308104445":{"type":"message","settings":{"heading":"","subheading":"Free shipping on orders over $179","link_url":""}},"1601308125690":{"type":"message","settings":{"heading":"","subheading":"Free Click & Collect to US stores*","link_url":""}},"1601308127822":{"type":"message","settings":{"heading":"","subheading":"Free and easy domestic returns","link_url":""}}},"block_order":["1601308104445","1601308125690","1601308127822"],"disabled":true,"settings":{"head_not_home_only":false,"head_not_col_bg":"#f7f7f8","head_not_col_txt1":"#171717","head_not_col_txt2":"#4c4c4b","head_not_mob_show":true,"head_not_mob_text":"Free shipping on orders over $100","head_not_mob_url":""}}},"order":["announcement-bar","header","store-messages"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-1": {
+          "type": "announcement",
+          "settings": {
+            "text": "Best Base, Perfect Hold — <a href=\"/pages/best-hair-system-base-adhesive-combos\" title=\"Best Base with Perfect Hold\">Enjoy 15% OFF Now ></a>",
+            "show_countdown": true,
+            "hide_on_end": false,
+            "end_date": "2026-02-05",
+            "end_time": "00:00",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": false,
+            "bg_color": "#202020",
+            "bg_gradient": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "announcement_Qe3VXt": {
+          "type": "announcement",
+          "settings": {
+            "text": "🔔 <strong>Existing Customers</strong>: <a href=\"/account/login\" title=\"/account/login\">Activate your account to access your order history.  </a>",
+            "show_countdown": false,
+            "hide_on_end": false,
+            "end_date": "",
+            "end_time": "",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": false,
+            "bg_color": "#4a4a4a",
+            "bg_gradient": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "announcement-2": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Our favorite Zeo-Guard is back. <a href=\"#\" title=\"Recycled Bomber Jacket\">Shop now.</a>",
+            "show_countdown": false,
+            "hide_on_end": false,
+            "end_date": "",
+            "end_time": "",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": false,
+            "bg_color": "#202020",
+            "bg_gradient": "",
+            "text_color": "#ffffff"
+          }
+        },
+        "10a25077-3fc8-40d4-8f01-e898f98f6f78": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Free shipping on all orders over $179",
+            "show_countdown": false,
+            "hide_on_end": false,
+            "end_date": "",
+            "end_time": "",
+            "number_font": "base",
+            "countdown_separator": "box",
+            "use_custom_colors": false,
+            "bg_color": "#202020",
+            "bg_gradient": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-1",
+        "announcement_Qe3VXt",
+        "announcement-2",
+        "10a25077-3fc8-40d4-8f01-e898f98f6f78"
+      ],
+      "disabled": true,
+      "settings": {
+        "message_font_size": 12,
+        "announcement_bar_col": "#202020",
+        "announcement_bar_gradient": "",
+        "announcement_text_col": "#ffffff",
+        "show_social_icons": true,
+        "menu": "",
+        "enable_country_selector": true,
+        "enable_language_selector": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_promotion_small_GqdA7q": {
+          "type": "menu-promotion-small",
+          "disabled": true,
+          "settings": {
+            "dropdown_link_title": "Shop All Hair Systems",
+            "image": "shopify://shop_images/accessories_eacc4cd9-682b-4257-bbfa-62eccf0950d3.jpg",
+            "title": "Shop Accessories",
+            "link_url": "shopify://collections/accessories"
+          }
+        },
+        "menu_promotion_small_DPxtNy": {
+          "type": "menu-promotion-small",
+          "disabled": true,
+          "settings": {
+            "dropdown_link_title": "Shop All Hair Systems",
+            "image": "shopify://shop_images/Shop_Hair_Care.png",
+            "title": "Shop Hair Care",
+            "link_url": "shopify://collections/maintenance-accessories"
+          }
+        },
+        "menu_promotion_large_YpxJKK": {
+          "type": "menu-promotion-large",
+          "disabled": true,
+          "settings": {
+            "dropdown_link_title": "Place a Custom Order",
+            "desktop_image": "shopify://shop_images/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year.jpg",
+            "mobile_image": "shopify://shop_images/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year.jpg",
+            "enable_fade": true,
+            "image_position": "right",
+            "subheading": "",
+            "title": "Custom Hair Systems",
+            "text": "<p>Take control of your style with our custom order service. Checkout <a href=\"#\" title=\"#\">how to customize </a></p>",
+            "button_1_label": "Place a Custom Order",
+            "button_1_link": "shopify://collections/professional-customization",
+            "button_1_style": "secondary",
+            "button_2_label": "Send us Your Template",
+            "button_2_link": "shopify://collections/template-pick-up-service",
+            "button_2_style": "primary",
+            "text_alignment": "left",
+            "show_countdown": false,
+            "countdown_position": "under-heading",
+            "end_date": "",
+            "end_time": "",
+            "end_text": "",
+            "hide_on_end": false,
+            "number_size": 40,
+            "number_font": "base",
+            "divider_type": "colon",
+            "show_timer_labels": true
+          }
+        }
+      },
+      "block_order": [
+        "menu_promotion_small_GqdA7q",
+        "menu_promotion_small_DPxtNy",
+        "menu_promotion_large_YpxJKK"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/b3c625fc42eb471f88dfe826efd499de.png",
+        "logo_img_width_int": 100,
+        "mobile_logo_img_width_int": 80,
+        "logo_h1": true,
+        "enable_sticky": true,
+        "enable_transparent": false,
+        "transparent_logo": "shopify://shop_images/logo-menu.webp",
+        "transparent_color": "#ffffff",
+        "transparent_fade": "#000000",
+        "transparent_fade_strength": 55,
+        "menu_linklist": "main-menu",
+        "menu_layout": "inline-menu-center",
+        "nav_featured_link": "Shop Accessories, Shop Hair Care",
+        "menu_linklist_mobile": "",
+        "mobile_expand_with_entire_link": true,
+        "enable_mobile_promo_carousel": true,
+        "enable_nav_mob_products": true,
+        "nav_mob_products_title": "Best Sellers",
+        "nav_mob_products_collection": "men-hair-system",
+        "enable_search": true,
+        "search_recommendations_title": "Lavivid is where you find confidence",
+        "search_recommendations_menu": "",
+        "icon_strategy": "icons_only",
+        "cart_icon": "bag"
+      }
+    },
+    "store-messages": {
+      "type": "store-messages",
+      "blocks": {
+        "1601308104445": {
+          "type": "message",
+          "settings": {
+            "heading": "",
+            "subheading": "Free shipping on orders over $179",
+            "link_url": ""
+          }
+        },
+        "1601308125690": {
+          "type": "message",
+          "settings": {
+            "heading": "",
+            "subheading": "Free Click & Collect to US stores*",
+            "link_url": ""
+          }
+        },
+        "1601308127822": {
+          "type": "message",
+          "settings": {
+            "heading": "",
+            "subheading": "Free and easy domestic returns",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "1601308104445",
+        "1601308125690",
+        "1601308127822"
+      ],
+      "disabled": true,
+      "settings": {
+        "head_not_home_only": false,
+        "head_not_col_bg": "#f7f7f8",
+        "head_not_col_txt1": "#171717",
+        "head_not_col_txt2": "#4c4c4b",
+        "head_not_mob_show": true,
+        "head_not_mob_text": "Free shipping on orders over $100",
+        "head_not_mob_url": ""
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "store-messages"
+  ]
+}

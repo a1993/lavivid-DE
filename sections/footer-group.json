@@ -34,7 +34,8 @@
           "type": "text",
           "settings": {
             "title": "",
-            "text": "<h1><strong>Lavivid</strong></h1><p>LaVivid Germany ist spezialisiert auf hochwertige Haarsysteme für Männer. Natürlich, diskret und alltagstauglich – mit persönlicher Beratung und ausgewählten Partnersalons.<br/></p>",
+            "text": "<p>LaVivid Germany ist spezialisiert auf hochwertige Haarsysteme für Männer. Natürlich, diskret und alltagstauglich – mit persönlicher Beratung und ausgewählten Partnersalons.<br/></p>",
+            "image": "shopify://shop_images/b3c625fc42eb471f88dfe826efd499de.png",
             "image_width": 140,
             "show_social_icons": true,
             "soc_icons_large": true,
