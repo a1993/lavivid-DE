@@ -1,6 +1,15 @@
 <div id="section-id-{{ section.id }}" class="{% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row--{{ section.settings.spacing }}{% else %}fully-spaced-row--{{ section.settings.spacing }}{% endif %} section-id-{{ section.id }}">
   {% style %}
     #section-id-{{ section.id }} .custom-content-buttons { display: flex; flex-wrap: wrap; gap: 0.75em; align-items: center; }
+    #section-id-{{ section.id }} .align-ltr-left .custom-content-buttons,
+    #section-id-{{ section.id }} .custom-content-buttons--left { justify-content: flex-start; }
+    #section-id-{{ section.id }} .align-ltr-center .custom-content-buttons,
+    #section-id-{{ section.id }} .custom-content-buttons--center { justify-content: center; }
+    #section-id-{{ section.id }} .align-ltr-right .custom-content-buttons,
+    #section-id-{{ section.id }} .custom-content-buttons--right { justify-content: flex-end; }
+    @media (max-width: 767px) {
+      #section-id-{{ section.id }} .mobile-align-center .custom-content-buttons { justify-content: center; }
+    }
     #section-id-{{ section.id }} .custom-content-buttons .btn--has-icon { display: inline-flex !important; align-items: center; gap: 0.5em; flex-direction: row; }
     #section-id-{{ section.id }} .custom-content-buttons .btn__icon { display: inline-flex; align-items: center; flex-shrink: 0; color: inherit; }
     #section-id-{{ section.id }} .custom-content-buttons .btn__icon svg { width: 1em; height: 1em; min-width: 14px; min-height: 14px; flex-shrink: 0; color: inherit; stroke: currentColor; fill: none; }
@@ -101,7 +110,7 @@
                     {%- endif -%}
                     {%- assign img_has_btn_1 = block.settings.button_label_1 | default: block.settings.button_label -%}
                     {%- if img_has_btn_1 != blank or block.settings.button_label_2 != blank -%}
-                      <div class="text-overlay__button-row text-overlay__button-row--secondary custom-content-buttons">
+                      <div class="text-overlay__button-row text-overlay__button-row--secondary custom-content-buttons custom-content-buttons--{{ block.settings.text_alignment | split: ' ' | last }}">
                         {%- for i in (1..2) -%}
                           {%- assign btn_label_key = 'button_label_' | append: i -%}
                           {%- assign btn_link_key = 'button_link_' | append: i -%}
