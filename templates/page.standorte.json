@@ -128,43 +128,34 @@
             "text_align": "left",
             "text_color": ""
           }
-        }
-      },
-      "block_order": [
-        "richtext_xLjCwa"
-      ],
-      "custom_css": [],
-      "name": "[gy] Content Area",
-      "settings": {
-        "container_width": "standard",
-        "container_padding": "medium",
-        "spacing_top": "medium",
-        "spacing_bottom": "medium",
-        "background_color": "#e4e4e4",
-        "background_gradient": ""
-      }
-    },
-    "common_content_area_DJDFy4": {
-      "type": "common-content-area",
-      "blocks": {
-        "richtext_XYbye9": {
+        },
+        "spacer_rHwQcr": {
+          "type": "spacer",
+          "settings": {
+            "height": 10
+          }
+        },
+        "richtext_wRBicR": {
           "type": "richtext",
           "settings": {
-            "content": "<h3>Partnerstudio Süd</h3><p>Musterstraße 12, 70173 Stuttgart</p>",
+            "content": "<h3>Partnerstudio Süd</h3><p>Beispielweg 8,20095 Hamburg</p>",
             "text_align": "left",
             "text_color": ""
           }
         }
       },
       "block_order": [
-        "richtext_XYbye9"
+        "richtext_xLjCwa",
+        "spacer_rHwQcr",
+        "richtext_wRBicR"
       ],
+      "custom_css": [],
       "name": "[gy] Content Area",
       "settings": {
         "container_width": "standard",
-        "container_padding": "medium",
-        "spacing_top": "medium",
-        "spacing_bottom": "medium",
+        "container_padding": "large",
+        "spacing_top": "small",
+        "spacing_bottom": "small",
         "background_color": "#e4e4e4",
         "background_gradient": ""
       }
@@ -179,7 +170,6 @@
     "map_UxXtR9",
     "custom_liquid_B4j8hL",
     "common_heading_yJeJhK",
-    "common_content_area_LqFRfC",
-    "common_content_area_DJDFy4"
+    "common_content_area_LqFRfC"
   ]
 }
