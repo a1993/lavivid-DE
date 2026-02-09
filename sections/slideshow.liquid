@@ -78,13 +78,13 @@
       #section-id-{{ section.id }} .slideshow-rating .star-back { fill: var(--star-empty); }
       #section-id-{{ section.id }} .slideshow-rating .review-text { color: var(--review-text-color); }
 
-      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon { display: inline-flex; align-items: center; gap: 0.5em; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon { display: inline-flex !important; align-items: center; gap: 0.5em; flex-direction: row; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon.btn--icon-left { flex-direction: row; }
       #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon.btn--icon-right { flex-direction: row; }
-      #section-id-{{ section.id }} .slideshow-buttons .btn--has-icon.btn--icon-left { flex-direction: row-reverse; }
-      #section-id-{{ section.id }} .slideshow-buttons .btn__icon { display: inline-flex; }
-      #section-id-{{ section.id }} .slideshow-buttons .btn__icon { color: inherit; }
-      #section-id-{{ section.id }} .slideshow-buttons .btn__icon svg,
-      #section-id-{{ section.id }} .slideshow-buttons .btn__icon path { stroke: currentColor; fill: currentColor; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon { display: inline-flex; align-items: center; flex-shrink: 0; color: inherit; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon svg { width: 1em; height: 1em; min-width: 14px; min-height: 14px; flex-shrink: 0; color: inherit; stroke: currentColor; fill: none; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon path { stroke: currentColor; fill: none; }
+      #section-id-{{ section.id }} .slideshow-buttons .btn__icon path[stroke="none"]:not(:first-of-type) { stroke: none; fill: currentColor; }
 
       {%- for block in section.blocks -%}
         {%- if block.settings.rating_star_color_mobile != blank or block.settings.rating_review_text_color_mobile != blank or block.settings.subheading_color_mobile != blank or block.settings.text_color_mobile != blank or block.settings.primary_button_bg_color_mobile != blank or block.settings.primary_button_text_color_mobile != blank or block.settings.secondary_button_bg_color_mobile != blank or block.settings.secondary_button_text_color_mobile != blank -%}
@@ -304,11 +304,13 @@
       {%- endif -%}
     {%- endcapture -%}
 
+    {%- capture btn1_style -%}{% if block.settings[btn1_bg_key] != blank %}background-color: {{ block.settings[btn1_bg_key] }};{% endif %}{% if block.settings[btn1_text_key] != blank %}color: {{ block.settings[btn1_text_key] }};{% endif %}{%- endcapture -%}
+    {%- capture btn2_style -%}{% if block.settings[btn2_bg_key] != blank %}background-color: {{ block.settings[btn2_bg_key] }};{% endif %}{% if block.settings[btn2_text_key] != blank %}color: {{ block.settings[btn2_text_key] }};{% endif %}{%- endcapture -%}
+
     {%- if wrap_slide_with_link -%}
 
       {%- if block.settings.button_label_1 != blank -%}
-        <span class="text-overlay__button btn btn--{{ btn1_type }}{% if block.settings.button_1_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_1_icon_position }}{% endif %}"
-              style="background-color: {{ block.settings[btn1_bg_key] }}; color: {{ block.settings[btn1_text_key] }};">
+        <span class="text-overlay__button btn btn--{{ btn1_type }}{% if block.settings.button_1_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_1_icon_position }}{% endif %}"{% if btn1_style != blank %} style="{{ btn1_style }}"{% endif %}>
           {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'left' -%}{{ btn1_icon_html }}{%- endif -%}
           <span class="btn__text">{{ block.settings.button_label_1 | escape }}</span>
           {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'right' -%}{{ btn1_icon_html }}{%- endif -%}
@@ -316,8 +318,7 @@
       {%- endif -%}
 
       {%- if block.settings.button_label_2 != blank -%}
-        <span class="text-overlay__button btn btn--{{ btn2_type }}{% if block.settings.button_2_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_2_icon_position }}{% endif %}"
-              style="background-color: {{ block.settings[btn2_bg_key] }}; color: {{ block.settings[btn2_text_key] }};">
+        <span class="text-overlay__button btn btn--{{ btn2_type }}{% if block.settings.button_2_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_2_icon_position }}{% endif %}"{% if btn2_style != blank %} style="{{ btn2_style }}"{% endif %}>
           {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'left' -%}{{ btn2_icon_html }}{%- endif -%}
           <span class="btn__text">{{ block.settings.button_label_2 | escape }}</span>
           {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'right' -%}{{ btn2_icon_html }}{%- endif -%}
@@ -328,8 +329,7 @@
 
       {%- if block.settings.button_label_1 != blank -%}
         <a class="text-overlay__button btn btn--{{ btn1_type }}{% if block.settings.button_1_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_1_icon_position }}{% endif %}"
-           href="{{ block.settings.button_url_1 }}"
-           style="background-color: {{ block.settings[btn1_bg_key] }}; color: {{ block.settings[btn1_text_key] }};">
+           href="{{ block.settings.button_url_1 }}"{% if btn1_style != blank %} style="{{ btn1_style }}"{% endif %}>
           {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'left' -%}{{ btn1_icon_html }}{%- endif -%}
           <span class="btn__text">{{ block.settings.button_label_1 | escape }}</span>
           {%- if block.settings.button_1_icon != 'none' and block.settings.button_1_icon_position == 'right' -%}{{ btn1_icon_html }}{%- endif -%}
@@ -338,8 +338,7 @@
 
       {%- if block.settings.button_label_2 != blank -%}
         <a class="text-overlay__button btn btn--{{ btn2_type }}{% if block.settings.button_2_icon != 'none' %} btn--has-icon btn--icon-{{ block.settings.button_2_icon_position }}{% endif %}"
-           href="{{ block.settings.button_url_2 }}"
-           style="background-color: {{ block.settings[btn2_bg_key] }}; color: {{ block.settings[btn2_text_key] }};">
+           href="{{ block.settings.button_url_2 }}"{% if btn2_style != blank %} style="{{ btn2_style }}"{% endif %}>
           {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'left' -%}{{ btn2_icon_html }}{%- endif -%}
           <span class="btn__text">{{ block.settings.button_label_2 | escape }}</span>
           {%- if block.settings.button_2_icon != 'none' and block.settings.button_2_icon_position == 'right' -%}{{ btn2_icon_html }}{%- endif -%}

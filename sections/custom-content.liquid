@@ -1,4 +1,12 @@
 <div id="section-id-{{ section.id }}" class="{% if section.settings.color_scheme != 'default' %}use-color-scheme use-color-scheme--{{ section.settings.color_scheme }} fully-padded-row--{{ section.settings.spacing }}{% else %}fully-spaced-row--{{ section.settings.spacing }}{% endif %} section-id-{{ section.id }}">
+  {% style %}
+    #section-id-{{ section.id }} .custom-content-buttons { display: flex; flex-wrap: wrap; gap: 0.75em; align-items: center; }
+    #section-id-{{ section.id }} .custom-content-buttons .btn--has-icon { display: inline-flex !important; align-items: center; gap: 0.5em; flex-direction: row; }
+    #section-id-{{ section.id }} .custom-content-buttons .btn__icon { display: inline-flex; align-items: center; flex-shrink: 0; color: inherit; }
+    #section-id-{{ section.id }} .custom-content-buttons .btn__icon svg { width: 1em; height: 1em; min-width: 14px; min-height: 14px; flex-shrink: 0; color: inherit; stroke: currentColor; fill: none; }
+    #section-id-{{ section.id }} .custom-content-buttons .btn__icon path { stroke: currentColor; fill: none; }
+    #section-id-{{ section.id }} .custom-content-buttons .btn__icon path[stroke="none"]:not(:first-of-type) { stroke: none; fill: currentColor; }
+  {% endstyle %}
   <div class="container">
     <div class="flexible-layout flexible-layout--align-center valign-{{ section.settings.alignment }}">
       {% for block in section.blocks %}
@@ -36,7 +44,7 @@
             {% endstyle %}
 
             {%- assign show_overlay_text = false -%}
-            {%- if block.settings.title != blank or block.settings.subheading != blank or block.settings.text != blank or block.settings.button_label != blank -%}
+            {%- if block.settings.title != blank or block.settings.subheading != blank or block.settings.text != blank or block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
               {%- assign show_overlay_text = true -%}
             {%- endif -%}
             <div class="height--{{ block.settings.height }} image-overlay image-overlay--bg-{{ block.settings.overlay_style }} {% if block.settings.mobile_overlay_under %}text-overlay-parent--mobile-stack{% endif %}">
@@ -74,25 +82,62 @@
               {%- endif -%}
 
               {%- if show_overlay_text -%}
+              {% style %}
+                #block-id-{{ block.id }} .custom-content-overlay__subheading{% if block.settings.overlay_subheading_color != blank %} { color: {{ block.settings.overlay_subheading_color }}; }{% endif %}
+                #block-id-{{ block.id }} .custom-content-overlay__title{% if block.settings.overlay_title_color != blank %} { color: {{ block.settings.overlay_title_color }}; }{% endif %}
+                #block-id-{{ block.id }} .custom-content-overlay__body{% if block.settings.overlay_text_color != blank %} { color: {{ block.settings.overlay_text_color }}; }{% endif %}
+              {% endstyle %}
               <div class="text-overlay text-overlay--v-{{ block.settings.text_alignment | split: ' ' | first }} text-overlay--h-{{ block.settings.text_alignment | split: ' ' | last }} image-overlay__over">
                 <div class="text-overlay__inner">
                   <div class="text-overlay__text">
                     {%- if block.settings.subheading != blank -%}
-                      <div class="text-overlay__subheading subheading subheading--over">{{ block.settings.subheading | escape }}</div>
+                      <div class="text-overlay__subheading subheading subheading--over custom-content-overlay__subheading">{{ block.settings.subheading | escape }}</div>
                     {%- endif -%}
                     {%- if block.settings.title != blank -%}
-                      <h2 class="text-overlay__title h4">{% render 'multiline-text' with block.settings.title %}</h2>
+                      <h2 class="text-overlay__title h4 custom-content-overlay__title">{% render 'multiline-text' with block.settings.title %}</h2>
                     {%- endif -%}
                     {%- if block.settings.text != blank -%}
-                      <div class="text-overlay__rte rte {% if block.settings.enlarge_text %}large-text{% endif %}">{{ block.settings.text }}</div>
+                      <div class="text-overlay__rte rte {% if block.settings.enlarge_text %}large-text{% endif %} custom-content-overlay__body">{{ block.settings.text }}</div>
                     {%- endif -%}
-                    {%- if block.settings.button_label != blank -%}
-                      <div class="text-overlay__button-row text-overlay__button-row--secondary">
-                        {%- if block.settings.text contains '</a>' -%}
-                        <a class="text-overlay__button {% if block.settings.button_style != 'link' %}btn btn--{{ block.settings.button_style }}{% else %}small-feature-link{% endif %}" href="{{ block.settings.image_link }}">{{ block.settings.button_label | escape }}</a>
-                        {%- else -%}
-                        <span class="text-overlay__button {% if block.settings.button_style != 'link' %}btn btn--{{ block.settings.button_style }}{% else %}small-feature-link{% endif %}">{{ block.settings.button_label | escape }}</span>
-                        {%- endif -%}
+                    {%- assign img_has_btn_1 = block.settings.button_label_1 | default: block.settings.button_label -%}
+                    {%- if img_has_btn_1 != blank or block.settings.button_label_2 != blank -%}
+                      <div class="text-overlay__button-row text-overlay__button-row--secondary custom-content-buttons">
+                        {%- for i in (1..2) -%}
+                          {%- assign btn_label_key = 'button_label_' | append: i -%}
+                          {%- assign btn_link_key = 'button_link_' | append: i -%}
+                          {%- assign btn_style_key = 'button_style_' | append: i -%}
+                          {%- assign btn_icon_key = 'button_icon_' | append: i -%}
+                          {%- assign btn_icon_pos_key = 'button_icon_position_' | append: i -%}
+                          {%- assign btn_bg_key = 'button_bg_color_' | append: i -%}
+                          {%- assign btn_text_key = 'button_text_color_' | append: i -%}
+                          {%- assign btn_label = block.settings[btn_label_key] -%}
+                          {%- if i == 1 and btn_label == blank -%}{%- assign btn_label = block.settings.button_label -%}{%- endif -%}
+                          {%- assign btn_link_val = block.settings[btn_link_key] -%}
+                          {%- if i == 1 and btn_link_val == blank -%}{%- assign btn_link_val = block.settings.image_link -%}{%- endif -%}
+                          {%- if btn_label != blank -%}
+                            {%- assign btn_style = block.settings[btn_style_key] -%}
+                            {%- if i == 1 and btn_style == blank -%}{%- assign btn_style = block.settings.button_style | default: 'primary' -%}{%- elsif btn_style == blank -%}{%- assign btn_style = 'secondary' -%}{%- endif -%}
+                            {%- assign btn_bg = block.settings[btn_bg_key] -%}
+                            {%- assign btn_text_col = block.settings[btn_text_key] -%}
+                            {%- assign btn_icon = block.settings[btn_icon_key] -%}
+                            {%- assign btn_icon_pos = block.settings[btn_icon_pos_key] | default: 'right' -%}
+                            {%- capture btn_style_attr -%}{% if btn_bg != blank %}background-color: {{ btn_bg }};{% endif %}{% if btn_text_col != blank %}color: {{ btn_text_col }};{% endif %}{%- endcapture -%}
+                            {%- capture icon_html -%}
+                              {%- if btn_icon != blank and btn_icon != 'none' -%}
+                                <span class="btn__icon">{%- if btn_icon == 'chevron_right' -%}{% render 'icon-chevron-right' %}{%- else -%}{% render 'icon', icon: btn_icon, size: 'small' %}{%- endif -%}</span>
+                              {%- endif -%}
+                            {%- endcapture -%}
+                            {%- if btn_link_val != blank -%}
+                              <a class="text-overlay__button btn btn--{{ btn_style }}{% if btn_icon != blank and btn_icon != 'none' %} btn--has-icon btn--icon-{{ btn_icon_pos }}{% endif %}" href="{{ btn_link_val }}"{% if btn_style_attr != blank %} style="{{ btn_style_attr }}"{% endif %}>
+                            {%- else -%}
+                              <span class="text-overlay__button btn btn--{{ btn_style }}{% if btn_icon != blank and btn_icon != 'none' %} btn--has-icon btn--icon-{{ btn_icon_pos }}{% endif %}"{% if btn_style_attr != blank %} style="{{ btn_style_attr }}"{% endif %}>
+                            {%- endif -%}
+                              {%- if btn_icon != blank and btn_icon != 'none' and btn_icon_pos == 'left' -%}{{ icon_html }}{%- endif -%}
+                              <span class="btn__text">{{ btn_label | escape }}</span>
+                              {%- if btn_icon != blank and btn_icon != 'none' and btn_icon_pos == 'right' -%}{{ icon_html }}{%- endif -%}
+                            {%- if btn_link_val != blank -%}</a>{%- else -%}</span>{%- endif -%}
+                          {%- endif -%}
+                        {%- endfor -%}
                       </div>
                     {%- endif -%}
                   </div>
@@ -107,6 +152,12 @@
 
           {% elsif block.type == 'text' %}
 
+            {% style %}
+              #block-id-{{ block.id }} .custom-content-text__subheading{% if block.settings.subheading_color != blank %} { color: {{ block.settings.subheading_color }}; }{% endif %}
+              #block-id-{{ block.id }} .custom-content-text__title{% if block.settings.title_color != blank %} { color: {{ block.settings.title_color }}; }{% endif %}
+              #block-id-{{ block.id }} .custom-content-text__body{% if block.settings.text_color != blank %} { color: {{ block.settings.text_color }}; }{% endif %}
+            {% endstyle %}
+
             <div class="align-ltr-{{ block.settings.text_alignment }}{% if block.settings.center_on_mobile %} mobile-align-center{% endif %} content-trim-my">
               {%- if block.settings.icon != blank -%}
                 <div class="lightly-spaced-row">
@@ -117,7 +168,7 @@
               {%- endif -%}
 
               {%- if block.settings.subheading != blank -%}
-                <div class="subheading subheading--over">{{ block.settings.subheading | escape }}</div>
+                <div class="subheading subheading--over custom-content-text__subheading">{{ block.settings.subheading | escape }}</div>
               {%- endif -%}
 
               {%- if block.settings.title != blank -%}
@@ -139,16 +190,51 @@
                     }
                   }
                 {% endstyle %}
-                <h2 class="majortitle h1 in-content">{{ block.settings.title }}</h2>
+                <h2 class="majortitle h1 in-content custom-content-text__title">{{ block.settings.title }}</h2>
               {%- endif -%}
 
               {%- if block.settings.text != blank -%}
-                <div class="rte {% if block.settings.enlarge_text %}large-text{% endif %}">{{ block.settings.text }}</div>
+                <div class="rte {% if block.settings.enlarge_text %}large-text{% endif %} custom-content-text__body">{{ block.settings.text }}</div>
               {%- endif -%}
 
-              {%- if block.settings.button_label != blank -%}
-                <div class="{% if block.settings.button_style == 'link' and block.settings.text == blank %}tiny-preceding-margin{% else %}lightish-spaced-row-above{% endif %}">
-                  <a class="{% if block.settings.button_style != 'link' %}btn btn--{{ block.settings.button_style }}{% else %}small-feature-link{% endif %}" href="{{ block.settings.button_link }}">{{ block.settings.button_label | escape }}</a>
+              {%- assign has_btn_1 = block.settings.button_label_1 | default: block.settings.button_label -%}
+              {%- assign has_btn_2 = block.settings.button_label_2 -%}
+              {%- if has_btn_1 != blank or has_btn_2 != blank -%}
+                <div class="lightish-spaced-row-above">
+                  <div class="text-overlay__button-row custom-content-buttons">
+                    {%- for i in (1..2) -%}
+                      {%- assign btn_label_key = 'button_label_' | append: i -%}
+                      {%- assign btn_link_key = 'button_link_' | append: i -%}
+                      {%- assign btn_style_key = 'button_style_' | append: i -%}
+                      {%- assign btn_icon_key = 'button_icon_' | append: i -%}
+                      {%- assign btn_icon_pos_key = 'button_icon_position_' | append: i -%}
+                      {%- assign btn_bg_key = 'button_bg_color_' | append: i -%}
+                      {%- assign btn_text_key = 'button_text_color_' | append: i -%}
+                      {%- assign btn_label = block.settings[btn_label_key] -%}
+                      {%- if i == 1 and btn_label == blank -%}{%- assign btn_label = block.settings.button_label -%}{%- endif -%}
+                      {%- assign btn_link_val = block.settings[btn_link_key] -%}
+                      {%- if i == 1 and btn_link_val == blank -%}{%- assign btn_link_val = block.settings.button_link -%}{%- endif -%}
+                      {%- if btn_label != blank -%}
+                        {%- assign btn_style = block.settings[btn_style_key] -%}
+                        {%- if i == 1 and btn_style == blank -%}{%- assign btn_style = block.settings.button_style | default: 'primary' -%}{%- elsif btn_style == blank -%}{%- assign btn_style = 'secondary' -%}{%- endif -%}
+                        {%- assign btn_bg = block.settings[btn_bg_key] -%}
+                        {%- assign btn_text_col = block.settings[btn_text_key] -%}
+                        {%- assign btn_icon = block.settings[btn_icon_key] -%}
+                        {%- assign btn_icon_pos = block.settings[btn_icon_pos_key] | default: 'right' -%}
+                        {%- capture btn_style_attr -%}{% if btn_bg != blank %}background-color: {{ btn_bg }};{% endif %}{% if btn_text_col != blank %}color: {{ btn_text_col }};{% endif %}{%- endcapture -%}
+                        {%- capture icon_html -%}
+                          {%- if btn_icon != blank and btn_icon != 'none' -%}
+                            <span class="btn__icon">{%- if btn_icon == 'chevron_right' -%}{% render 'icon-chevron-right' %}{%- else -%}{% render 'icon', icon: btn_icon, size: 'small' %}{%- endif -%}</span>
+                          {%- endif -%}
+                        {%- endcapture -%}
+                        <a class="btn btn--{{ btn_style }}{% if btn_icon != blank and btn_icon != 'none' %} btn--has-icon btn--icon-{{ btn_icon_pos }}{% endif %}" href="{{ btn_link_val | default: '#' }}"{% if btn_style_attr != blank %} style="{{ btn_style_attr }}"{% endif %}>
+                          {%- if btn_icon != blank and btn_icon != 'none' and btn_icon_pos == 'left' -%}{{ icon_html }}{%- endif -%}
+                          <span class="btn__text">{{ btn_label | escape }}</span>
+                          {%- if btn_icon != blank and btn_icon != 'none' and btn_icon_pos == 'right' -%}{{ icon_html }}{%- endif -%}
+                        </a>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
                 </div>
               {%- endif -%}
             </div>
@@ -473,29 +559,143 @@
           "default": false
         },
         {
+          "type": "header",
+          "content": "Overlay text colors"
+        },
+        {
+          "type": "color",
+          "id": "overlay_subheading_color",
+          "label": "Subheading color"
+        },
+        {
+          "type": "color",
+          "id": "overlay_title_color",
+          "label": "Heading color"
+        },
+        {
+          "type": "color",
+          "id": "overlay_text_color",
+          "label": "Body text color"
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
           "type": "text",
-          "id": "button_label",
-          "label": "Button"
+          "id": "button_label_1",
+          "label": "Button 1 label"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button 1 link"
         },
         {
           "type": "select",
-          "id": "button_style",
-          "label": "Button style",
+          "id": "button_style_1",
+          "label": "Button 1 style",
           "default": "primary",
           "options": [
-            {
-              "label": "Primary",
-              "value": "primary"
-            },
-            {
-              "label": "Secondary",
-              "value": "secondary"
-            },
-            {
-              "label": "Link",
-              "value": "link"
-            }
+            { "label": "Primary", "value": "primary" },
+            { "label": "Secondary", "value": "secondary" },
+            { "label": "Link", "value": "link" }
           ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_1",
+          "label": "Button 1 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_position_1",
+          "label": "Button 1 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color_1",
+          "label": "Button 1 background"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color_1",
+          "label": "Button 1 text color"
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button 2 label"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button 2 link"
+        },
+        {
+          "type": "select",
+          "id": "button_style_2",
+          "label": "Button 2 style",
+          "default": "secondary",
+          "options": [
+            { "label": "Primary", "value": "primary" },
+            { "label": "Secondary", "value": "secondary" },
+            { "label": "Link", "value": "link" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_2",
+          "label": "Button 2 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_position_2",
+          "label": "Button 2 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color_2",
+          "label": "Button 2 background"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color_2",
+          "label": "Button 2 text color"
         },
         {
           "type": "url",
@@ -846,34 +1046,143 @@
           "default": "<p>Use this text to share information about your store with your customers.</p>"
         },
         {
+          "type": "header",
+          "content": "Text colors"
+        },
+        {
+          "type": "color",
+          "id": "subheading_color",
+          "label": "Subheading color"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Heading color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Body text color"
+        },
+        {
+          "type": "header",
+          "content": "Button 1"
+        },
+        {
           "type": "text",
-          "id": "button_label",
-          "label": "Button"
+          "id": "button_label_1",
+          "label": "Button 1 label"
         },
         {
           "type": "url",
-          "id": "button_link",
-          "label": "Button link"
+          "id": "button_link_1",
+          "label": "Button 1 link"
         },
         {
           "type": "select",
-          "id": "button_style",
-          "label": "Button style",
+          "id": "button_style_1",
+          "label": "Button 1 style",
           "default": "primary",
           "options": [
-            {
-              "label": "Primary",
-              "value": "primary"
-            },
-            {
-              "label": "Secondary",
-              "value": "secondary"
-            },
-            {
-              "label": "Link",
-              "value": "link"
-            }
+            { "label": "Primary", "value": "primary" },
+            { "label": "Secondary", "value": "secondary" },
+            { "label": "Link", "value": "link" }
           ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_1",
+          "label": "Button 1 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_position_1",
+          "label": "Button 1 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color_1",
+          "label": "Button 1 background"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color_1",
+          "label": "Button 1 text color"
+        },
+        {
+          "type": "header",
+          "content": "Button 2"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button 2 label"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button 2 link"
+        },
+        {
+          "type": "select",
+          "id": "button_style_2",
+          "label": "Button 2 style",
+          "default": "secondary",
+          "options": [
+            { "label": "Primary", "value": "primary" },
+            { "label": "Secondary", "value": "secondary" },
+            { "label": "Link", "value": "link" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_2",
+          "label": "Button 2 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_icon_position_2",
+          "label": "Button 2 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color_2",
+          "label": "Button 2 background"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color_2",
+          "label": "Button 2 text color"
         }
       ]
     },
