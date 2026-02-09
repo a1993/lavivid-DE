@@ -15,6 +15,7 @@
         "image_DwXmec": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/7.jpg",
             "slide_link": "",
             "enable_rating": true,
             "review_text": "4.75/5    ECHTE KUNDENBEWERTUNGEN",
@@ -41,7 +42,7 @@
             "primary_button_text_color": "",
             "secondary_button_bg_color": "",
             "secondary_button_text_color": "",
-            "text_alignment": "bottom left"
+            "text_alignment": "center left"
           }
         }
       },
