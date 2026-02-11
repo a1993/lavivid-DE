@@ -540,6 +540,7 @@
                     value='{% if current_variant %}{{ current_variant.id }}{% endif %}'
                   >
                   {{ form | payment_terms }}
+<!-- Booking snippet-->{% if product.tags contains 'wk_booking' %}{% include 'bc-widget' %}{% endif %}<!-- End of booking snippet -->
                 {%- endform -%}
     {% endcomment %}
                 {%- if block.settings.show_tax_and_shipping -%}
@@ -881,7 +882,8 @@
                     </div>
                   </div>
                 {% endif %}
-              {% endform %}
+              <!-- Booking snippet-->{% if product.tags contains 'wk_booking' %}{% include 'bc-widget' %}{% endif %}<!-- End of booking snippet -->
+{% endform %}
 
               {%- if product.available and block.settings.show_pickup_availability -%}
                 {% render 'pickup-availability', current_variant: current_variant %}
