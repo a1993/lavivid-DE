@@ -11,6 +11,15 @@
   "type": "header",
   "name": "Header Group",
   "sections": {
+    "custom_liquid_yeKmne": {
+      "type": "custom-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "full_width": true,
+        "show_space": false,
+        "code": "<a href=\"https://lavividhair-de.sp-seller.webkul.com\">Join as Seller</a>"
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -232,6 +241,7 @@
     }
   },
   "order": [
+    "custom_liquid_yeKmne",
     "announcement-bar",
     "header",
     "store-messages"
