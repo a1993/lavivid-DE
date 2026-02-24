@@ -50,8 +50,8 @@
             "use_h1": false,
             "text": "",
             "enlarge_text": true,
-            "button_label_1": "立即预约",
-            "button_url_1": "#",
+            "button_label_1": "Beratung buchen",
+            "button_url_1": "#appointment-modal",
             "button_1_icon": "none",
             "button_1_icon_position": "right",
             "button_label_2": "WHATSAPP KONTAKTIEREN",
@@ -108,16 +108,6 @@
         "color_scheme": "default"
       }
     },
-    "custom_liquid_teJYCq": {
-      "type": "custom-liquid",
-      "disabled": true,
-      "name": "Custom Liquid",
-      "settings": {
-        "full_width": true,
-        "show_space": true,
-        "code": "<style>\n  .appointment-section {\n    text-align: center;\n    padding: 40px 20px;\n    background: linear-gradient(135deg, #171717 0%, #68699a 100%);\n  }\n\n  .appointment-button {\n    display: inline-block;\n    padding: 16px 40px;\n    background-color: #ffffff;\n    color: #171717;\n    font-size: 16px;\n    font-weight: 600;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n  }\n\n  .appointment-button:hover {\n    background-color: #68699a;\n    color: #ffffff;\n    transform: translateY(-2px);\n    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);\n  }\n\n  .appointment-modal {\n    display: none;\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.6);\n    z-index: 9999;\n    justify-content: center;\n    align-items: center;\n    padding: 20px;\n  }\n\n  .appointment-modal.active {\n    display: flex;\n  }\n\n  .appointment-modal-content {\n    position: relative;\n    width: 100%;\n    height: 90vh;\n    max-width: 1200px;\n    background-color: white;\n    border-radius: 8px;\n    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);\n    overflow: hidden;\n  }\n\n  .appointment-modal-close {\n    position: absolute;\n    top: 15px;\n    right: 15px;\n    width: 40px;\n    height: 40px;\n    background-color: #171717;\n    color: white;\n    border: none;\n    border-radius: 50%;\n    font-size: 24px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 10000;\n    transition: background-color 0.3s ease;\n  }\n\n  .appointment-modal-close:hover {\n    background-color: #68699a;\n  }\n\n  .appointment-modal-iframe {\n    width: 100%;\n    height: 100%;\n    border: none;\n  }\n\n  @media (max-width: 768px) {\n    .appointment-section {\n      padding: 30px 15px;\n    }\n\n    .appointment-button {\n      padding: 14px 30px;\n      font-size: 14px;\n    }\n\n    .appointment-modal-content {\n      height: 95vh;\n      max-width: 100%;\n    }\n\n    .appointment-modal-close {\n      width: 35px;\n      height: 35px;\n      font-size: 20px;\n    }\n  }\n</style>\n\n<div class=\"appointment-section\">\n  <h2 style=\"color: #ffffff; margin-bottom: 20px; font-size: 28px;\">预约您的专业咨询</h2>\n  <p style=\"color: #ffffff; margin-bottom: 30px; font-size: 16;\">点击下方按钮在线预约，我们的专业团队将为您服务</p>\n  <button class=\"appointment-button\" id=\"appointmentTrigger\">在线预约</button>\n</div>\n\n<div id=\"appointmentModal\" class=\"appointment-modal\">\n  <div class=\"appointment-modal-content\">\n    <button class=\"appointment-modal-close\" aria-label=\"关闭模态框\">×</button>\n    <iframe class=\"appointment-modal-iframe\" src=\"https://lavividhair-gmbh.salonized.com/\" title=\"预约预订\"></iframe>\n  </div>\n</div>\n\n<script>\n  (function() {\n    const modal = document.getElementById('appointmentModal');\n    const closeBtn = document.querySelector('.appointment-modal-close');\n    const appointmentButton = document.getElementById('appointmentTrigger');\n\n    // 点击按钮打开模态框\n    appointmentButton.addEventListener('click', function(e) {\n      e.preventDefault();\n      modal.classList.add('active');\n      document.body.style.overflow = 'hidden';\n    });\n\n    // 点击关闭按钮关闭模态框\n    closeBtn.addEventListener('click', function() {\n      modal.classList.remove('active');\n      document.body.style.overflow = 'auto';\n    });\n\n    // 点击背景关闭模态框\n    modal.addEventListener('click', function(e) {\n      if (e.target === modal) {\n        modal.classList.remove('active');\n        document.body.style.overflow = 'auto';\n      }\n    });\n\n    // 按 Escape 键关闭模态框\n    document.addEventListener('keydown', function(e) {\n      if (e.key === 'Escape' && modal.classList.contains('active')) {\n        modal.classList.remove('active');\n        document.body.style.overflow = 'auto';\n      }\n    });\n  })();\n</script>"
-      }
-    },
     "custom_html_content_drgYnL": {
       "type": "custom-html-content",
       "blocks": {
@@ -167,37 +157,6 @@
         "full_width": true
       }
     },
-    "custom_html_content_jbxCbx": {
-      "type": "custom-html-content",
-      "blocks": {
-        "html_xDqqHR": {
-          "type": "html",
-          "settings": {
-            "html_content": "<script>\n// 立即定义全局函数 - 在HTML加载前执行\nwindow.openAppointmentModal = function() {\n  console.log('openAppointmentModal 被调用');\n  const modal = document.getElementById('appointmentModal');\n  if (modal) {\n    modal.classList.add('active');\n    document.body.style.overflow = 'hidden';\n    console.log('✓ 弹框已打开');\n  } else {\n    console.error('✗ 找不到弹框元素 #appointmentModal');\n  }\n};\n\nwindow.closeAppointmentModal = function() {\n  console.log('closeAppointmentModal 被调用');\n  const modal = document.getElementById('appointmentModal');\n  if (modal) {\n    modal.classList.remove('active');\n    document.body.style.overflow = 'auto';\n    console.log('✓ 弹框已关闭');\n  }\n};\n\nconsole.log('✓ 全局函数已定义');\nconsole.log('✓ window.openAppointmentModal:', typeof window.openAppointmentModal);\nconsole.log('✓ window.closeAppointmentModal:', typeof window.closeAppointmentModal);\n</script>\n\n<!-- 弹框HTML结构 -->\n<div id=\"appointmentModal\" class=\"appointment-modal\">\n  <div class=\"appointment-modal-content\">\n    <button class=\"appointment-modal-close\" aria-label=\"关闭弹框\" type=\"button\" onclick=\"window.closeAppointmentModal(); return false;\">×</button>\n    <iframe class=\"appointment-modal-iframe\" src=\"https://lavividhair-gmbh.salonized.com/\" title=\"预约系统\" allow=\"camera; microphone\"></iframe>\n  </div>\n</div>\n\n<script>\n// 初始化事件监听器 - 在HTML加载后执行\nfunction initAppointmentModal() {\n  const modal = document.getElementById('appointmentModal');\n  const closeBtn = document.querySelector('.appointment-modal-close');\n  const appointmentButtons = document.querySelectorAll('[data-appointment-trigger]');\n  \n  console.log('=== 预约系统初始化 ===');\n  console.log('✓ 弹框元素:', !!modal);\n  console.log('✓ 关闭按钮:', !!closeBtn);\n  console.log('✓ 预约按钮数量:', appointmentButtons.length);\n  \n  if (!modal) {\n    console.error('✗ 错误: 找不到弹框元素 #appointmentModal');\n    return;\n  }\n  \n  // 绑定预约按钮点击事件（备用方案）\n  appointmentButtons.forEach((btn, index) => {\n    btn.addEventListener('click', function(e) {\n      e.preventDefault();\n      e.stopPropagation();\n      console.log('✓ 预约按钮 #' + (index + 1) + ' 被点击（事件监听器）');\n      window.openAppointmentModal();\n    });\n    console.log('✓ 已绑定预约按钮 #' + (index + 1) + ' 的点击事件');\n  });\n  \n  // 绑定关闭按钮点击事件（备用方案）\n  if (closeBtn) {\n    closeBtn.addEventListener('click', function(e) {\n      e.preventDefault();\n      e.stopPropagation();\n      console.log('✓ 关闭按钮被点击（事件监听器）');\n      window.closeAppointmentModal();\n    });\n    console.log('✓ 已绑定关闭按钮的点击事件');\n  }\n  \n  // 绑定背景点击事件\n  modal.addEventListener('click', function(e) {\n    if (e.target === modal) {\n      console.log('✓ 背景被点击');\n      window.closeAppointmentModal();\n    }\n  });\n  console.log('✓ 已绑定背景点击事件');\n  \n  // 绑定ESC键事件\n  document.addEventListener('keydown', function(e) {\n    if (e.key === 'Escape' && modal.classList.contains('active')) {\n      console.log('✓ ESC键被按下');\n      window.closeAppointmentModal();\n    }\n  });\n  console.log('✓ 已绑定ESC键事件');\n  \n  console.log('=== 初始化完成 ===');\n}\n\n// 等待DOM加载完成后初始化\nif (document.readyState === 'loading') {\n  document.addEventListener('DOMContentLoaded', initAppointmentModal);\n  console.log('⏳ 等待DOMContentLoaded事件...');\n} else {\n  initAppointmentModal();\n  console.log('✓ DOM已加载,直接初始化');\n}\n\n// 延迟检查\nsetTimeout(function() {\n  if (typeof window.openAppointmentModal !== 'function') {\n    console.error('✗ 错误: openAppointmentModal 函数未定义');\n  } else {\n    console.log('✓ 延迟检查: openAppointmentModal 函数已正确定义');\n  }\n}, 500);\n</script>"
-          }
-        }
-      },
-      "block_order": [
-        "html_xDqqHR"
-      ],
-      "name": "[gy] Custom HTML Content",
-      "settings": {
-        "section_title": "预约系统",
-        "title_size": 32,
-        "title_color": "#171717",
-        "title_alignment": "center",
-        "title_margin": 40,
-        "container_type": "container",
-        "container_width": 1180,
-        "container_padding": 15,
-        "background_color": "#ffffff",
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "use_shadow_dom": false,
-        "custom_css": ".appointment-modal {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 9999;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n}\n\n.appointment-modal.active {\n  display: flex;\n}\n\n.appointment-modal-content {\n  position: relative;\n  width: 100%;\n  height: 90vh;\n  max-width: 1200px;\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);\n  overflow: hidden;\n}\n\n.appointment-modal-close {\n  position: absolute;\n  top: 15px;\n  right: 15px;\n  width: 40px;\n  height: 40px;\n  background-color: #171717;\n  color: white;\n  border: none;\n  border-radius: 50%;\n  font-size: 24px;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 10000;\n  transition: background-color 0.3s ease;\n}\n\n.appointment-modal-close:hover {\n  background-color: #68699a;\n}\n\n.appointment-modal-iframe {\n  width: 100%;\n  height: 100%;\n  border: none;\n}\n\n/* 预约按钮样式 - 可配置 */\n.appointment-btn {\n  display: inline-block;\n  padding: 12px 32px;\n  background-color: #171717;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  font-size: 14px;\n  font-weight: 600;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  text-decoration: none;\n}\n\n.appointment-btn:hover {\n  background-color: #68699a;\n  transform: translateY(-2px);\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n}\n\n.appointment-btn:active {\n  transform: translateY(0);\n}\n\n/* 按钮大小变体 */\n.appointment-btn.btn-small {\n  padding: 8px 20px;\n  font-size: 12px;\n}\n\n.appointment-btn.btn-large {\n  padding: 16px 48px;\n  font-size: 16px;\n}\n\n/* 按钮样式变体 */\n.appointment-btn.btn-outline {\n  background-color: transparent;\n  border: 2px solid #171717;\n  color: #171717;\n}\n\n.appointment-btn.btn-outline:hover {\n  background-color: #171717;\n  color: white;\n}\n\n.appointment-btn.btn-text {\n  background-color: transparent;\n  color: #171717;\n  padding: 8px 16px;\n}\n\n.appointment-btn.btn-text:hover {\n  background-color: transparent;\n  color: #68699a;\n  text-decoration: underline;\n}\n\n/* 按钮圆角变体 */\n.appointment-btn.btn-rounded {\n  border-radius: 25px;\n}\n\n.appointment-btn.btn-pill {\n  border-radius: 50px;\n}\n\n@media (max-width: 768px) {\n  .appointment-modal-content {\n    height: 95vh;\n    max-width: 100%;\n  }\n\n  .appointment-modal-close {\n    width: 35px;\n    height: 35px;\n    font-size: 20px;\n  }\n\n  .appointment-btn {\n    padding: 10px 24px;\n    font-size: 13px;\n  }\n\n  .appointment-btn.btn-small {\n    padding: 6px 16px;\n    font-size: 11px;\n  }\n\n  .appointment-btn.btn-large {\n    padding: 14px 40px;\n    font-size: 14px;\n  }\n}",
-        "custom_js": "// 立即执行的初始化函数\n(function() {\n  'use strict';\n  \n  // 定义全局函数供HTML调用\n  window.openAppointmentModal = function() {\n    const modal = document.getElementById('appointmentModal');\n    if (modal) {\n      modal.classList.add('active');\n      document.body.style.overflow = 'hidden';\n      console.log('✓ 弹框已打开');\n    } else {\n      console.error('✗ 找不到弹框元素');\n    }\n  };\n  \n  window.closeAppointmentModal = function() {\n    const modal = document.getElementById('appointmentModal');\n    if (modal) {\n      modal.classList.remove('active');\n      document.body.style.overflow = 'auto';\n      console.log('✓ 弹框已关闭');\n    }\n  };\n  \n  // 初始化函数\n  function initAppointmentModal() {\n    const modal = document.getElementById('appointmentModal');\n    const closeBtn = document.querySelector('.appointment-modal-close');\n    const appointmentButtons = document.querySelectorAll('[data-appointment-trigger]');\n    \n    console.log('=== 预约系统初始化 ===');\n    console.log('✓ 弹框元素:', !!modal);\n    console.log('✓ 关闭按钮:', !!closeBtn);\n    console.log('✓ 预约按钮数量:', appointmentButtons.length);\n    \n    if (!modal) {\n      console.error('✗ 错误: 找不到弹框元素 #appointmentModal');\n      return;\n    }\n    \n    // 绑定预约按钮点击事件\n    appointmentButtons.forEach((btn, index) =&gt; {\n      btn.addEventListener('click', function(e) {\n        e.preventDefault();\n        e.stopPropagation();\n        console.log('✓ 预约按钮 #' + (index + 1) + ' 被点击');\n        window.openAppointmentModal();\n      });\n      console.log('✓ 已绑定预约按钮 #' + (index + 1) + ' 的点击事件');\n    });\n    \n    // 绑定关闭按钮点击事件\n    if (closeBtn) {\n      closeBtn.addEventListener('click', function(e) {\n        e.preventDefault();\n        e.stopPropagation();\n        console.log('✓ 关闭按钮被点击');\n        window.closeAppointmentModal();\n      });\n      console.log('✓ 已绑定关闭按钮的点击事件');\n    }\n    \n    // 绑定背景点击事件\n    modal.addEventListener('click', function(e) {\n      if (e.target === modal) {\n        console.log('✓ 背景被点击');\n        window.closeAppointmentModal();\n      }\n    });\n    console.log('✓ 已绑定背景点击事件');\n    \n    // 绑定ESC键事件\n    document.addEventListener('keydown', function(e) {\n      if (e.key === 'Escape' &amp;&amp; modal.classList.contains('active')) {\n        console.log('✓ ESC键被按下');\n        window.closeAppointmentModal();\n      }\n    });\n    console.log('✓ 已绑定ESC键事件');\n    \n    console.log('=== 初始化完成 ===');\n  }\n  \n  // 等待DOM加载完成\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', initAppointmentModal);\n    console.log('⏳ 等待DOMContentLoaded事件...');\n  } else {\n    // DOM已经加载\n    initAppointmentModal();\n    console.log('✓ DOM已加载,直接初始化');\n  }\n  \n  // 额外的安全检查 - 延迟初始化\n  setTimeout(function() {\n    if (!document.getElementById('appointmentModal')) {\n      console.warn('⚠ 延迟检查: 弹框元素仍未找到,尝试重新初始化...');\n      initAppointmentModal();\n    }\n  }, 1000);\n})();"
-      }
-    },
     "rich_text_Tx4gj7": {
       "type": "rich-text",
       "blocks": {
@@ -229,6 +188,7 @@
         "heading_qcnrUk",
         "text_gHKrAg"
       ],
+      "disabled": true,
       "name": "Rich text",
       "settings": {
         "height": "medium",
@@ -269,6 +229,7 @@
         "text_kppHWP",
         "button_hYCUHf"
       ],
+      "disabled": true,
       "name": "Image with text",
       "settings": {
         "class-name": "",
@@ -287,10 +248,8 @@
   "order": [
     "slideshow_TJ9XJ7",
     "rich_text_LG8chM",
-    "custom_liquid_teJYCq",
     "custom_html_content_drgYnL",
     "product_list_RMaVRi",
-    "custom_html_content_jbxCbx",
     "rich_text_Tx4gj7",
     "image_with_text_6EyppA"
   ]
