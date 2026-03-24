@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "liquid-learning-playground",
+      "settings": {
+        "title": "Liquid 从入门到熟悉：互动示例页面",
+        "intro": "这个页面专门给前端开发者练习 Liquid。每个卡片都包含可运行结果和对应代码。你可以一边改设置，一边观察输出变化。",
+        "sample_product": "",
+        "show_debug": false
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
