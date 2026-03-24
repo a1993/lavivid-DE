@@ -1,0 +1,229 @@
+<section class="liquid-learning page-width section-{{ section.id }}-padding">
+  <div class="liquid-learning__inner">
+    <header class="liquid-learning__header">
+      <p class="liquid-learning__eyebrow">Shopify Liquid Learning Lab</p>
+      <h1>{{ section.settings.title }}</h1>
+      <p>{{ section.settings.intro }}</p>
+    </header>
+
+    <article class="liquid-learning__card">
+      <h2>第 1 步：认识输出与注释</h2>
+      <p>
+        Liquid 最常见的是输出变量：<code>{% raw %}{{ ... }}{% endraw %}</code>。
+        下面直接读取当前页面对象 <code>page</code>。
+      </p>
+      <div class="liquid-learning__result">
+        <strong>当前页面标题：</strong> {{ page.title }}
+      </div>
+      <pre><code>{% raw %}{{ page.title }}{% endraw %}</code></pre>
+      <p class="liquid-learning__hint">
+        注释语法：<code>{% raw %}{% comment %} ... {% endcomment %}{% endraw %}</code>
+      </p>
+    </article>
+
+    <article class="liquid-learning__card">
+      <h2>第 2 步：变量与过滤器（filters）</h2>
+      {% assign greeting = 'hello liquid world' %}
+      <div class="liquid-learning__result">
+        <strong>原始值：</strong> {{ greeting }}<br>
+        <strong>经过过滤器：</strong> {{ greeting | upcase | replace: 'WORLD', 'SHOPIFY' }}
+      </div>
+      <pre><code>{% raw %}
+{% assign greeting = 'hello liquid world' %}
+{{ greeting | upcase | replace: 'WORLD', 'SHOPIFY' }}
+{% endraw %}</code></pre>
+      <p class="liquid-learning__hint">常用过滤器：<code>upcase</code>、<code>downcase</code>、<code>default</code>、<code>money</code>、<code>date</code>。</p>
+    </article>
+
+    <article class="liquid-learning__card">
+      <h2>第 3 步：条件判断（if / elsif / else）</h2>
+      {% if section.settings.sample_product != blank %}
+        {% assign selected_product = all_products[section.settings.sample_product] %}
+      {% endif %}
+      <div class="liquid-learning__result">
+        {% if selected_product %}
+          已选择示例商品：<strong>{{ selected_product.title }}</strong>
+        {% else %}
+          还未选择示例商品，请在 Theme Editor 右侧选择 <strong>Sample product</strong>。
+        {% endif %}
+      </div>
+      <pre><code>{% raw %}
+{% if selected_product %}
+  {{ selected_product.title }}
+{% else %}
+  No product selected
+{% endif %}
+{% endraw %}</code></pre>
+    </article>
+
+    <article class="liquid-learning__card">
+      <h2>第 4 步：循环（for）</h2>
+      <p>循环输出一个数组，并演示 <code>forloop.index</code>。</p>
+      {% assign topics = '对象,标签,过滤器,循环,section schema' | split: ',' %}
+      <ol class="liquid-learning__list">
+        {% for topic in topics %}
+          <li>第 {{ forloop.index }} 个主题：{{ topic }}</li>
+        {% endfor %}
+      </ol>
+      <pre><code>{% raw %}
+{% assign topics = '对象,标签,过滤器' | split: ',' %}
+{% for topic in topics %}
+  {{ forloop.index }} - {{ topic }}
+{% endfor %}
+{% endraw %}</code></pre>
+    </article>
+
+    <article class="liquid-learning__card">
+      <h2>第 5 步：和商品对象联动（最实战）</h2>
+      {% if selected_product %}
+        <div class="liquid-learning__result">
+          <p><strong>商品：</strong>{{ selected_product.title }}</p>
+          <p><strong>价格：</strong>{{ selected_product.price | money }}</p>
+          <p><strong>可售状态：</strong>{% if selected_product.available %}在售{% else %}售罄{% endif %}</p>
+          {% if selected_product.variants.size > 0 %}
+            <p><strong>前 3 个变体：</strong></p>
+            <ul class="liquid-learning__list">
+              {% for variant in selected_product.variants limit: 3 %}
+                <li>{{ variant.title }} - {{ variant.price | money }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <pre><code>{% raw %}
+{{ product.title }}
+{{ product.price | money }}
+{% for variant in product.variants limit: 3 %}
+  {{ variant.title }}
+{% endfor %}
+{% endraw %}</code></pre>
+      {% else %}
+        <div class="liquid-learning__result">请选择 Sample product 后再看这一节输出。</div>
+      {% endif %}
+    </article>
+
+    <article class="liquid-learning__card">
+      <h2>第 6 步：读懂 section schema</h2>
+      <p>
+        你在 Theme Editor 里看到的配置项，来源就是文件底部的
+        <code>{% raw %}{% schema %}{% endraw %}</code> JSON。你可以修改标题、简介、示例商品，观察页面实时变化。
+      </p>
+      {% if section.settings.show_debug %}
+        <div class="liquid-learning__result">
+          <strong>Debug:</strong> template = {{ template.name }}, section id = {{ section.id }}
+        </div>
+      {% endif %}
+    </article>
+
+    <article class="liquid-learning__card liquid-learning__roadmap">
+      <h2>建议学习路径（7 天）</h2>
+      <ul class="liquid-learning__list">
+        <li>D1：变量输出 + 过滤器（先会读页面上的 Liquid）</li>
+        <li>D2：if / case / for + forloop 对象</li>
+        <li>D3：核心对象（product / collection / cart / customer）</li>
+        <li>D4：section + snippet + schema（开始改主题）</li>
+        <li>D5：表单（contact / cart）与国际化（t 过滤器）</li>
+        <li>D6：结合 JS（data-* + JSON 输出）</li>
+        <li>D7：独立完成一个可配置 section（有 settings + blocks）</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+{% style %}
+  .liquid-learning {
+    --ll-border: #d9dce3;
+    --ll-bg: #f8f9fc;
+    --ll-text: #1f2937;
+    margin: 24px 0;
+  }
+
+  .liquid-learning__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    color: var(--ll-text);
+  }
+
+  .liquid-learning__header {
+    margin-bottom: 20px;
+  }
+
+  .liquid-learning__eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 8px;
+  }
+
+  .liquid-learning__card {
+    border: 1px solid var(--ll-border);
+    border-radius: 12px;
+    background: #fff;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+
+  .liquid-learning__card h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+  }
+
+  .liquid-learning__result {
+    border-left: 4px solid #4f46e5;
+    background: var(--ll-bg);
+    padding: 10px 12px;
+    margin: 12px 0;
+  }
+
+  .liquid-learning pre {
+    overflow-x: auto;
+    white-space: pre;
+    background: #111827;
+    color: #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0 0;
+  }
+
+  .liquid-learning__hint {
+    color: #475569;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .liquid-learning__list {
+    margin: 8px 0 0 18px;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Liquid Lab",
+  "class": "page-section-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Liquid 从入门到熟悉：互动示例页面"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "这个页面专门给前端开发者练习 Liquid。每个卡片都包含“可运行结果 + 代码示例”。先看结果，再看代码，再改设置。"
+    },
+    {
+      "type": "product",
+      "id": "sample_product",
+      "label": "Sample product"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_debug",
+      "label": "Show debug info",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
