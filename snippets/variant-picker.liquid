@@ -24,6 +24,7 @@
         data-availability-mode="down">
       {%- for option in product.options_with_values -%}
         {%- capture option_id %}{{ product_form_id }}-{{ forloop.index }}{% endcapture -%}
+        {%- assign option_position = forloop.index0 -%}
         {%- liquid
           assign is_color_selector = false
           assign is_variant_image_style = false
@@ -162,9 +163,109 @@
                 {% endif %}
               </legend>
             {%- endif -%}
-            <div class="option-selector__btns flex flex-wrap lv-detail-color-list">
+            {%- if is_color_selector -%}
+              {%- liquid
+                assign hair_group_tokens = '|all|'
+                capture hair_tab_markup
+                  echo '<button type="button" class="lv-hair-tab is-active" data-hair-tab="all" aria-pressed="true">All</button>'
+                endcapture
+                for variant in product.variants
+                  assign variant_hair_color = blank
+                  assign hair_mf = variant.metafields.custom.hair_color
+                  if hair_mf == blank
+                    assign hair_mf = variant.metafields.custom.haircolor
+                  endif
+                  if hair_mf != blank
+                    if hair_mf.type contains 'list'
+                      assign variant_hair_color = hair_mf.value | first
+                    else
+                      assign variant_hair_color = hair_mf.value
+                    endif
+                  endif
+                  if variant_hair_color != blank
+                    assign variant_hair_color_key = variant_hair_color | handleize
+                    capture group_token
+                      echo '|'
+                      echo variant_hair_color_key
+                      echo '|'
+                    endcapture
+                    unless hair_group_tokens contains group_token
+                      assign hair_group_tokens = hair_group_tokens | append: variant_hair_color_key | append: '|'
+                      capture hair_tab_markup
+                        echo hair_tab_markup
+                        echo '<button type="button" class="lv-hair-tab" data-hair-tab="'
+                        echo variant_hair_color_key
+                        echo '" aria-pressed="false">'
+                        echo variant_hair_color | escape
+                        echo '</button>'
+                      endcapture
+                    endunless
+                  endif
+                endfor
+              -%}
+              <div class="lv-hair-tabs" data-hair-tabs>
+                {{- hair_tab_markup -}}
+              </div>
+            {%- endif -%}
+            <div class="option-selector__btns flex flex-wrap lv-detail-color-list" data-hair-list>
+
               {%- for value in option.values -%}
                 {%- assign value_index0 = forloop.index0 -%}
+                {%- liquid
+                  assign hair_color_group = ''
+                  assign hair_color_subgroup = '__default__'
+                  assign hair_color_subgroup_label = 'Default group'
+                  if is_color_selector
+                    assign hair_color_group_value = blank
+                    assign hair_color_subgroup_value = blank
+                    for variant in product.variants
+                      if variant.options[option_position] == value
+                        assign variant_hair_color = blank
+                        assign hair_mf = variant.metafields.custom.hair_color
+                        if hair_mf == blank
+                          assign hair_mf = variant.metafields.custom.haircolor
+                        endif
+                        if hair_mf != blank
+                          if hair_mf.type contains 'list'
+                            assign variant_hair_color = hair_mf.value | first
+                          else
+                            assign variant_hair_color = hair_mf.value
+                          endif
+                        endif
+
+                        assign variant_hair_subgroup = blank
+                        assign hair_group_mf = variant.metafields.custom.hair_color_group
+                        if hair_group_mf != blank
+                          if hair_group_mf.type contains 'list'
+                            assign variant_hair_subgroup = hair_group_mf.value | first
+                          else
+                            assign variant_hair_subgroup = hair_group_mf.value
+                          endif
+                        endif
+
+                        if variant_hair_color != blank
+                          assign hair_color_group_value = variant_hair_color
+                        endif
+                        if variant_hair_subgroup != blank
+                          assign hair_color_subgroup_value = variant_hair_subgroup
+                        endif
+                        if variant_hair_color != blank and variant_hair_subgroup != blank
+                          break
+                        endif
+                      endif
+                    endfor
+                    if hair_color_group_value != blank
+                      assign hair_color_group = hair_color_group_value | handleize
+                    endif
+                    if hair_color_subgroup_value != blank
+                      assign hair_color_subgroup_label = hair_color_subgroup_value
+                      assign hair_color_subgroup = hair_color_subgroup_label | handleize
+                    else
+                      assign hair_color_subgroup_label = 'Default group'
+                      assign hair_color_subgroup = '__default__'
+                    endif
+                  endif
+                -%}
                 {%- if is_variant_image_style -%}
                   {% liquid
                     if value.product_url != blank
@@ -172,7 +273,7 @@
                       assign value_image = all_products[product_handle].featured_media
                     else
                       for variant in product.variants
-                        if variant.options[option_index0] == value
+                        if variant.options[option_position] == value
                           assign value_image = variant.featured_media
                           break
                         endif
@@ -246,6 +347,7 @@
                   id="{{ option_id }}-opt-{{ value_index0 }}"
                   value="{{ value | escape }}"
                   data-value-id="{{ value.id }}"
+                  {%- if is_color_selector %} data-hair-group="{{ hair_color_group }}" data-hair-subgroup="{{ hair_color_subgroup }}" data-hair-subgroup-label="{{ hair_color_subgroup_label | escape }}"{% endif %}
                   {%- if value.product_url != blank %}
                     data-product-url="{{ value.product_url }}"
                   {% endif %}
@@ -257,7 +359,7 @@
                     {%- if value.selected %} checked{% endif %}
                   {%- endif %}
                 >
-                <label for="{{ option_id }}-opt-{{ value_index0 }}" {{ label_attrs }}>
+                <label for="{{ option_id }}-opt-{{ value_index0 }}" {{ label_attrs }}{% if is_color_selector %} data-hair-group="{{ hair_color_group }}" data-hair-subgroup="{{ hair_color_subgroup }}" data-hair-subgroup-label="{{ hair_color_subgroup_label | escape }}"{% endif %}>
                   {{- label_content -}}
                 </label>
               {%- endfor -%}
