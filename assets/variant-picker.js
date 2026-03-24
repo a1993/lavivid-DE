@@ -29,8 +29,104 @@ if (!customElements.get("variant-picker")) {
       this.updateAddToCartButton();
       this.addEventListener("change", this.handleVariantChange.bind(this));
       this.applySearchParams();
+      this.initHairColorTabs();
 
       this.setAttribute("loaded", "");
+    }
+
+    /**
+     * Initialize hair color group tabs.
+     */
+    initHairColorTabs() {
+      this.hairTabsContainer = this.querySelector("[data-hair-tabs]");
+      if (!this.hairTabsContainer) return;
+      this.hairListContainer = this.querySelector("[data-hair-list]");
+
+      this.hairColorInputs = Array.from(
+        this.querySelectorAll('.js-option[data-hair-group]')
+      );
+      if (!this.hairColorInputs.length) return;
+
+      this.activeHairGroup = "all";
+      this.hairTabsContainer.addEventListener("click", (evt) => {
+        const tab = evt.target.closest("[data-hair-tab]");
+        if (!tab) return;
+        this.setHairColorGroup(tab.dataset.hairTab || "all");
+      });
+
+      this.setHairColorGroup("all");
+    }
+
+    /**
+     * Set active hair color group and toggle color option visibility.
+     * @param {string} groupKey - Group key from hair color tab.
+     */
+    setHairColorGroup(groupKey) {
+      if (!this.hairTabsContainer || !this.hairColorInputs?.length) return;
+      this.activeHairGroup = groupKey || "all";
+
+      const tabs = this.hairTabsContainer.querySelectorAll("[data-hair-tab]");
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.hairTab === this.activeHairGroup;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      if (this.hairListContainer) {
+        this.hairListContainer
+          .querySelectorAll(".lv-hair-subgroup-title")
+          .forEach((el) => el.remove());
+      }
+
+      const groupedEntries = new Map();
+      const hiddenEntries = [];
+
+      this.hairColorInputs.forEach((input) => {
+        const label = input.nextElementSibling;
+        if (!label) return;
+
+        const matchesGroup =
+          this.activeHairGroup === "all" ||
+          input.dataset.hairGroup === this.activeHairGroup;
+        if (!matchesGroup) {
+          label.hidden = true;
+          hiddenEntries.push({ input, label });
+          return;
+        }
+        label.hidden = false;
+
+        const subgroupKey = input.dataset.hairSubgroup || "default";
+        const subgroupLabel = input.dataset.hairSubgroupLabel || "Default group";
+        if (!groupedEntries.has(subgroupKey)) {
+          groupedEntries.set(subgroupKey, {
+            title: subgroupLabel,
+            items: [],
+          });
+        }
+        groupedEntries.get(subgroupKey).items.push({ input, label });
+      });
+
+      if (!this.hairListContainer) return;
+
+      const fragment = document.createDocumentFragment();
+      groupedEntries.forEach((group) => {
+        const title = document.createElement("div");
+        title.className = "lv-hair-subgroup-title";
+        title.textContent = group.title;
+        fragment.appendChild(title);
+
+        group.items.forEach(({ input, label }) => {
+          fragment.appendChild(input);
+          fragment.appendChild(label);
+        });
+      });
+
+      hiddenEntries.forEach(({ input, label }) => {
+        fragment.appendChild(input);
+        fragment.appendChild(label);
+      });
+
+      this.hairListContainer.appendChild(fragment);
     }
 
     /**
@@ -71,6 +167,9 @@ if (!customElements.get("variant-picker")) {
       this.updateSku();
       this.updateBarcode();
       VariantPicker.updateLabelText(evt);
+      if (this.activeHairGroup && this.activeHairGroup !== "all") {
+        this.setHairColorGroup(this.activeHairGroup);
+      }
 
       this.dispatchEvent(
         new CustomEvent("on:variant:change", {
