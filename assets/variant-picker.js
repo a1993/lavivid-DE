@@ -95,7 +95,7 @@ if (!customElements.get("variant-picker")) {
         }
         label.hidden = false;
 
-        const subgroupKey = input.dataset.hairSubgroup || "default";
+        const subgroupKey = input.dataset.hairSubgroup || "__default__";
         const subgroupLabel = input.dataset.hairSubgroupLabel || "Default group";
         if (!groupedEntries.has(subgroupKey)) {
           groupedEntries.set(subgroupKey, {
@@ -109,7 +109,15 @@ if (!customElements.get("variant-picker")) {
       if (!this.hairListContainer) return;
 
       const fragment = document.createDocumentFragment();
-      groupedEntries.forEach((group) => {
+      const subgroupKeys = Array.from(groupedEntries.keys()).filter(
+        (key) => key !== "__default__"
+      );
+      if (groupedEntries.has("__default__")) {
+        subgroupKeys.push("__default__");
+      }
+
+      subgroupKeys.forEach((key) => {
+        const group = groupedEntries.get(key);
         const title = document.createElement("div");
         title.className = "lv-hair-subgroup-title";
         title.textContent = group.title;
