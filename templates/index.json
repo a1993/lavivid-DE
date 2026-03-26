@@ -14,8 +14,10 @@
       "blocks": {
         "video_8n6ANe": {
           "type": "video",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/pc-h-banners.mp4",
+            "video_ratio_mode": "auto",
             "video_loop": true,
             "video_controls": false,
             "subheading": "Tell your story",
