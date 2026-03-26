@@ -12,10 +12,40 @@
     "slideshow_TJ9XJ7": {
       "type": "slideshow",
       "blocks": {
+        "video_8n6ANe": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/pc-h-banners.mp4",
+            "video_loop": true,
+            "video_controls": false,
+            "subheading": "Tell your story",
+            "title": "Slide heading",
+            "heading_max_width": 15,
+            "title_size": 84,
+            "title_size_mobile": 46,
+            "use_h1": false,
+            "text": "<p>And optional subtext</p>",
+            "enlarge_text": true,
+            "button_label_1": "Shop this",
+            "button_url_1": "",
+            "button_1_icon": "none",
+            "button_1_icon_position": "right",
+            "button_label_2": "Shop all",
+            "button_url_2": "",
+            "button_2_icon": "none",
+            "button_2_icon_position": "right",
+            "button_1_type": "secondary",
+            "button_2_type": "secondary",
+            "primary_button_bg_color": "",
+            "primary_button_text_color": "",
+            "secondary_button_bg_color": "",
+            "secondary_button_text_color": "",
+            "text_alignment": "center center"
+          }
+        },
         "image_DwXmec": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/7.jpg",
             "slide_link": "",
             "enable_rating": true,
             "review_text": "4.75/5    ECHTE KUNDENBEWERTUNGEN",
@@ -69,6 +99,7 @@
         }
       },
       "block_order": [
+        "video_8n6ANe",
         "image_DwXmec"
       ],
       "name": "Slideshow",
