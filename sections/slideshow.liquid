@@ -25,18 +25,27 @@
       {%- endif -%}
 
       {%- if section.settings.height == 'adapt' %}
+        {%- assign first_block = section.blocks.first -%}
+        {%- if first_block.type == 'video' and first_block.settings.video != blank -%}
         #section-id-{{ section.id }} .height--adapt {
-          {%- if section.blocks.first.settings.mobile_image -%}
-            --aspect-ratio: {{ section.blocks.first.settings.mobile_image.aspect_ratio }};
-          {%- else -%}
-            --aspect-ratio: {{ section.blocks.first.settings.image.aspect_ratio | default: 2.0 }};
-          {%- endif -%}
+          --aspect-ratio: {{ first_block.settings.video.preview_image.aspect_ratio | default: 1.78 }};
         }
-        {%- if section.blocks.first.settings.mobile_image -%}
+        {%- elsif first_block.type == 'video' -%}
+        #section-id-{{ section.id }} .height--adapt {
+          --aspect-ratio: 1.78;
+        }
+        {%- elsif first_block.settings.mobile_image != blank -%}
+        #section-id-{{ section.id }} .height--adapt {
+          --aspect-ratio: {{ first_block.settings.mobile_image.aspect_ratio }};
+        }
         @media (min-width: 768px) {
           #section-id-{{ section.id }} .height--adapt {
-            --aspect-ratio: {{ section.blocks.first.settings.image.aspect_ratio | default: 2.0 }};
+            --aspect-ratio: {{ first_block.settings.image.aspect_ratio | default: 2.0 }};
           }
+        }
+        {%- else -%}
+        #section-id-{{ section.id }} .height--adapt {
+          --aspect-ratio: {{ first_block.settings.image.aspect_ratio | default: 2.0 }};
         }
         {%- endif -%}
       {%- endif -%}
@@ -85,6 +94,13 @@
       #section-id-{{ section.id }} .slideshow-buttons .btn__icon svg { width: 1em; height: 1em; min-width: 14px; min-height: 14px; flex-shrink: 0; color: inherit; stroke: currentColor; fill: none; }
       #section-id-{{ section.id }} .slideshow-buttons .btn__icon path { stroke: currentColor; fill: none; }
       #section-id-{{ section.id }} .slideshow-buttons .btn__icon path[stroke="none"]:not(:first-of-type) { stroke: none; fill: currentColor; }
+
+      #section-id-{{ section.id }} .slideshow__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
 
       {%- for block in section.blocks -%}
         {%- if block.settings.rating_star_color_mobile != blank or block.settings.rating_review_text_color_mobile != blank or block.settings.subheading_color_mobile != blank or block.settings.text_color_mobile != blank or block.settings.primary_button_bg_color_mobile != blank or block.settings.primary_button_text_color_mobile != blank or block.settings.secondary_button_bg_color_mobile != blank or block.settings.secondary_button_text_color_mobile != blank -%}
@@ -144,7 +160,12 @@
       {%- for block in section.blocks -%}
         {%- liquid
           assign show_overlay_text = false
-          if block.settings.title != blank or block.settings.subheading != blank or block.settings.text != blank or block.settings.button_label_1 != blank or block.settings.button_label_2 != blank
+          assign wrap_slide_with_link = false
+          if block.type == 'video'
+            if block.settings.title != blank or block.settings.subheading != blank or block.settings.text != blank or block.settings.button_label_1 != blank or block.settings.button_label_2 != blank
+              assign show_overlay_text = true
+            endif
+          elsif block.settings.title != blank or block.settings.subheading != blank or block.settings.text != blank or block.settings.button_label_1 != blank or block.settings.button_label_2 != blank
             assign show_overlay_text = true
             assign wrap_slide_with_link = true
             if block.settings.slide_link == blank or block.settings.text contains '</a>' or block.settings.button_url_1 != blank or block.settings.button_url_2 != blank
@@ -166,7 +187,26 @@
             <a class="image-overlay__image-link" href="{{ block.settings.slide_link }}">
           {%- endif -%}
 
-          {%- if block.settings.image == blank -%}
+          {%- if block.type == 'video' -%}
+            {%- if block.settings.video != blank -%}
+              {%- liquid
+                assign vid_html_autoplay = false
+                if section.blocks.size == 1
+                  assign vid_html_autoplay = true
+                endif
+              -%}
+              <div class="height__image image-overlay__image overflow-hidden">
+                {{ block.settings.video | video_tag: class: 'slideshow__motion-media has-motion slideshow__video', autoplay: vid_html_autoplay, muted: true, loop: block.settings.video_loop, playsinline: true, controls: block.settings.video_controls }}
+              </div>
+            {%- else -%}
+              <div class="height__image image-overlay__image overflow-hidden">
+                <div class="slideshow__motion-media has-motion placeholder-image{% if show_overlay_text %} dark{% endif %}">
+                  {%- capture current %}{% cycle 1, 2 %}{% endcapture -%}
+                  {{- 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' -}}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- elsif block.settings.image == blank -%}
             <div class="height__image image-overlay__image overflow-hidden">
               <div class="slideshow__motion-media has-motion placeholder-image{% if show_overlay_text %} dark{% endif %}">
                 {%- capture current %}{% cycle 1, 2 %}{% endcapture -%}
@@ -987,6 +1027,228 @@
               "value": "bottom right",
               "label": "Bottom right"
             }
+          ],
+          "default": "center center"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video slide",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "paragraph",
+          "content": "Maximum one video slide per slideshow. Autoplay is muted (required by browsers). Use overlay buttons for links."
+        },
+        {
+          "type": "checkbox",
+          "id": "video_loop",
+          "label": "Loop video",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "video_controls",
+          "label": "Show video controls",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Overlay"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Tell your story"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "info": "Enter <br> for a line-break",
+          "default": "Slide heading"
+        },
+        {
+          "type": "range",
+          "id": "heading_max_width",
+          "min": 4,
+          "max": 40,
+          "step": 1,
+          "unit": "em",
+          "label": "Maximum heading width",
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 20,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Desktop heading text size",
+          "default": 84
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "min": 20,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Mobile heading text size",
+          "default": 46
+        },
+        {
+          "type": "checkbox",
+          "id": "use_h1",
+          "label": "Set as primary page heading",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>And optional subtext</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "enlarge_text",
+          "label": "Enlarge text",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button 1 label",
+          "default": "Shop this"
+        },
+        {
+          "type": "url",
+          "id": "button_url_1",
+          "label": "Button 1 link"
+        },
+        {
+          "type": "select",
+          "id": "button_1_icon",
+          "label": "Button 1 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_1_icon_position",
+          "label": "Button 1 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button 2 label",
+          "default": "Shop all"
+        },
+        {
+          "type": "url",
+          "id": "button_url_2",
+          "label": "Button 2 link"
+        },
+        {
+          "type": "select",
+          "id": "button_2_icon",
+          "label": "Button 2 icon",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "chevron_right", "label": "Chevron right" },
+            { "value": "return", "label": "Arrow" },
+            { "value": "star", "label": "Star" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "box", "label": "Box" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_2_icon_position",
+          "label": "Button 2 icon position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_1_type",
+          "label": "Button 1 Type",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "secondary"
+        },
+        {
+          "type": "select",
+          "id": "button_2_type",
+          "label": "Button 2 Type",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "secondary"
+        },
+        {
+          "type": "color",
+          "id": "primary_button_bg_color",
+          "label": "Primary Button Background Color"
+        },
+        {
+          "type": "color",
+          "id": "primary_button_text_color",
+          "label": "Primary Button Text Color"
+        },
+        {
+          "type": "color",
+          "id": "secondary_button_bg_color",
+          "label": "Secondary Button Background Color"
+        },
+        {
+          "type": "color",
+          "id": "secondary_button_text_color",
+          "label": "Secondary Button Text Color"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text overlay position",
+          "options": [
+            { "value": "top left", "label": "Top left" },
+            { "value": "top center", "label": "Top center" },
+            { "value": "top right", "label": "Top right" },
+            { "value": "center left", "label": "Middle left" },
+            { "value": "center center", "label": "Middle center" },
+            { "value": "center right", "label": "Middle right" },
+            { "value": "bottom left", "label": "Bottom left" },
+            { "value": "bottom center", "label": "Bottom center" },
+            { "value": "bottom right", "label": "Bottom right" }
           ],
           "default": "center center"
         }

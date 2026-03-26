@@ -51,7 +51,30 @@ if (!customElements.get('slide-show')) {
 
       this.saveSlideVisibility();
       this.setSlideVisibility();
+      this.syncSlideshowVideos();
       if (this.dataset.autoplay === 'true') this.initAutoPlay();
+    }
+
+    /**
+     * Plays the video on the active slide (if any) and pauses/resets others.
+     * Muted playback is required for autoplay without user gesture.
+     */
+    syncSlideshowVideos() {
+      this.slides.forEach((slide, index) => {
+        const video = slide.querySelector('video.slideshow__video');
+        if (!video) return;
+        if (index === this.currentIndex) {
+          video.muted = true;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+          try {
+            video.currentTime = 0;
+          } catch (e) {
+            /* ignore */
+          }
+        }
+      });
     }
 
     initAutoPlay() {
@@ -209,6 +232,7 @@ if (!customElements.get('slide-show')) {
         this.currentIndex = slideIndex;
         this.setSlideVisibility();
         this.updatePagination();
+        this.syncSlideshowVideos();
       }, this.transitionOutDelay);
     }
 
@@ -242,6 +266,7 @@ if (!customElements.get('slide-show')) {
     pauseAutoplay() {
       if (!this.autoplayEnabled || this.autoplayPaused) return;
       this.stopAutoplay();
+      this.querySelectorAll('video.slideshow__video').forEach((v) => v.pause());
 
       if (this.autoplayTimeLeft) {
         this.autoplayTimeLeft -= (Date.now() - this.resumedTime);
@@ -260,6 +285,7 @@ if (!customElements.get('slide-show')) {
       }, this.autoplayTimeLeft);
 
       this.setSlideshowState('running');
+      this.syncSlideshowVideos();
     }
 
     /**
@@ -272,8 +298,10 @@ if (!customElements.get('slide-show')) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             this.resumeAutoplay();
+            this.syncSlideshowVideos();
           } else {
             this.pauseAutoplay();
+            this.querySelectorAll('video.slideshow__video').forEach((v) => v.pause());
           }
         });
       });
