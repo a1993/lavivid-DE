@@ -26,13 +26,39 @@
 
       {%- if section.settings.height == 'adapt' %}
         {%- assign first_block = section.blocks.first -%}
-        {%- if first_block.type == 'video' and first_block.settings.video != blank -%}
+        {%- if first_block.type == 'video' -%}
+        {%- liquid
+          assign first_video_desktop = first_block.settings.video
+          assign first_video_mobile = first_block.settings.mobile_video
+          assign first_video_ratio_desktop = 1.78
+          assign first_video_ratio_mobile = 1.78
+          assign first_video_ratio_mode = first_block.settings.video_ratio_mode | default: 'auto'
+          if first_video_desktop != blank
+            assign first_video_ratio_desktop = first_video_desktop.preview_image.aspect_ratio | default: 1.78
+          elsif first_video_mobile != blank
+            assign first_video_ratio_desktop = first_video_mobile.preview_image.aspect_ratio | default: 1.78
+          endif
+          if first_video_mobile != blank
+            assign first_video_ratio_mobile = first_video_mobile.preview_image.aspect_ratio | default: first_video_ratio_desktop
+          else
+            assign first_video_ratio_mobile = first_video_ratio_desktop
+          endif
+          case first_video_ratio_mode
+            when 'ratio_2_1'
+              assign first_video_ratio_desktop = 2.0
+              assign first_video_ratio_mobile = 2.0
+            when 'ratio_16_9'
+              assign first_video_ratio_desktop = 1.78
+              assign first_video_ratio_mobile = 1.78
+          endcase
+        -%}
         #section-id-{{ section.id }} .height--adapt {
-          --aspect-ratio: {{ first_block.settings.video.preview_image.aspect_ratio | default: 1.78 }};
+          --aspect-ratio: {{ first_video_ratio_mobile }};
         }
-        {%- elsif first_block.type == 'video' -%}
-        #section-id-{{ section.id }} .height--adapt {
-          --aspect-ratio: 1.78;
+        @media (min-width: 768px) {
+          #section-id-{{ section.id }} .height--adapt {
+            --aspect-ratio: {{ first_video_ratio_desktop }};
+          }
         }
         {%- elsif first_block.settings.mobile_image != blank -%}
         #section-id-{{ section.id }} .height--adapt {
@@ -100,6 +126,11 @@
         height: 100%;
         object-fit: cover;
         display: block;
+      }
+      #section-id-{{ section.id }} .slideshow__video--mobile { display: none; }
+      @media (max-width: 767px) {
+        #section-id-{{ section.id }} .slideshow__video--desktop { display: none; }
+        #section-id-{{ section.id }} .slideshow__video--mobile { display: block; }
       }
 
       {%- for block in section.blocks -%}
@@ -188,7 +219,7 @@
           {%- endif -%}
 
           {%- if block.type == 'video' -%}
-            {%- if block.settings.video != blank -%}
+            {%- if block.settings.video != blank or block.settings.mobile_video != blank -%}
               {%- liquid
                 assign vid_html_autoplay = false
                 if section.blocks.size == 1
@@ -196,7 +227,20 @@
                 endif
               -%}
               <div class="height__image image-overlay__image overflow-hidden">
-                {{ block.settings.video | video_tag: class: 'slideshow__motion-media has-motion slideshow__video', autoplay: vid_html_autoplay, muted: true, loop: block.settings.video_loop, playsinline: true, controls: block.settings.video_controls }}
+                {%- if block.settings.video != blank -%}
+                  {%- assign desktop_video_class = 'slideshow__motion-media has-motion slideshow__video' -%}
+                  {%- if block.settings.mobile_video != blank -%}
+                    {%- assign desktop_video_class = desktop_video_class | append: ' slideshow__video--desktop' -%}
+                  {%- endif -%}
+                  {{ block.settings.video | video_tag: class: desktop_video_class, autoplay: vid_html_autoplay, muted: true, loop: block.settings.video_loop, playsinline: true, controls: block.settings.video_controls }}
+                {%- endif -%}
+                {%- if block.settings.mobile_video != blank -%}
+                  {%- assign mobile_video_class = 'slideshow__motion-media has-motion slideshow__video' -%}
+                  {%- if block.settings.video != blank -%}
+                    {%- assign mobile_video_class = mobile_video_class | append: ' slideshow__video--mobile' -%}
+                  {%- endif -%}
+                  {{ block.settings.mobile_video | video_tag: class: mobile_video_class, autoplay: vid_html_autoplay, muted: true, loop: block.settings.video_loop, playsinline: true, controls: block.settings.video_controls }}
+                {%- endif -%}
               </div>
             {%- else -%}
               <div class="height__image image-overlay__image overflow-hidden">
@@ -1040,11 +1084,36 @@
         {
           "type": "video",
           "id": "video",
-          "label": "Video"
+          "label": "Desktop video"
+        },
+        {
+          "type": "video",
+          "id": "mobile_video",
+          "label": "Mobile video"
         },
         {
           "type": "paragraph",
-          "content": "Maximum one video slide per slideshow. Autoplay is muted (required by browsers). Use overlay buttons for links."
+          "content": "Maximum one video slide per slideshow. You can upload desktop and mobile videos. If only one is uploaded, it is used on all devices."
+        },
+        {
+          "type": "select",
+          "id": "video_ratio_mode",
+          "label": "Video adapt mode",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Auto (follow uploaded video)"
+            },
+            {
+              "value": "ratio_16_9",
+              "label": "16:9"
+            },
+            {
+              "value": "ratio_2_1",
+              "label": "2:1 banner"
+            }
+          ],
+          "default": "auto"
         },
         {
           "type": "checkbox",

@@ -46,6 +46,7 @@ if (!customElements.get('slide-show')) {
       }
 
       this.slideshow.addEventListener('wheel', this.handleWheel.bind(this));
+      window.addEventListener('resize', debounce(() => this.syncSlideshowVideos(), 200));
 
       this.slideshow.addEventListener('transitionend', SlideShow.handleTransitionend);
 
@@ -61,20 +62,41 @@ if (!customElements.get('slide-show')) {
      */
     syncSlideshowVideos() {
       this.slides.forEach((slide, index) => {
-        const video = slide.querySelector('video.slideshow__video');
-        if (!video) return;
+        const videos = slide.querySelectorAll('video.slideshow__video');
+        if (!videos.length) return;
+        const activeVideo = this.getSlideActiveVideo(slide);
         if (index === this.currentIndex) {
-          video.muted = true;
-          video.play().catch(() => {});
+          videos.forEach((video) => {
+            if (video !== activeVideo) {
+              video.pause();
+              return;
+            }
+            video.muted = true;
+            video.play().catch(() => {});
+          });
         } else {
-          video.pause();
-          try {
-            video.currentTime = 0;
-          } catch (e) {
-            /* ignore */
-          }
+          videos.forEach((video) => {
+            video.pause();
+            try {
+              video.currentTime = 0;
+            } catch (e) {
+              /* ignore */
+            }
+          });
         }
       });
+    }
+
+    getSlideActiveVideo(slide) {
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      if (isMobile) {
+        return slide.querySelector('video.slideshow__video--mobile')
+          || slide.querySelector('video.slideshow__video--desktop')
+          || slide.querySelector('video.slideshow__video');
+      }
+      return slide.querySelector('video.slideshow__video--desktop')
+        || slide.querySelector('video.slideshow__video--mobile')
+        || slide.querySelector('video.slideshow__video');
     }
 
     initAutoPlay() {
