@@ -1084,21 +1084,24 @@
         {
           "type": "video",
           "id": "video",
-          "label": "Desktop video"
+          "label": "Desktop video",
+          "info": "推荐比例 2:1（如 2560×1280 或 2048×1024），适合宽幅轮播主视觉。视频为 cover 铺满，重要内容请放在画面中央安全区。"
         },
         {
           "type": "video",
           "id": "mobile_video",
-          "label": "Mobile video"
+          "label": "Mobile video",
+          "info": "推荐 1:1 正方形（如 1024×1024），与移动端幻灯片习惯一致；竖屏短视频可用 9:16。视频为 cover 铺满，主体请避开边缘裁切。"
         },
         {
           "type": "paragraph",
-          "content": "Maximum one video slide per slideshow. You can upload desktop and mobile videos. If only one is uploaded, it is used on all devices."
+          "content": "每个轮播最多 1 个视频区块。可同时上传桌面与移动视频；只上传一个时全端共用。配合下方「视频适配模式」统一容器比例。"
         },
         {
           "type": "select",
           "id": "video_ratio_mode",
           "label": "Video adapt mode",
+          "info": "Auto：按各上传视频的预览比例。16:9：常见横屏。2:1：宽幅横幅，适合桌面首屏。",
           "options": [
             {
               "value": "auto",
