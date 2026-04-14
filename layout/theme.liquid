@@ -295,6 +295,8 @@
         });
       })();
     </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
 
   <body
@@ -399,5 +401,16 @@ window.addEventListener('load', function () {
 });
 </script>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        once: true,           // 核心：设置 true，每次刷新页面只执行一次，避免上下滚动时反复闪烁，显得廉价
+        duration: 800,        // 动画持续时间（毫秒），800ms 比较丝滑高级
+        easing: 'ease-out-cubic', // 缓动函数，平滑减速，看起来更自然
+        offset: 80            // 距离屏幕底部 80px 时触发动画
+      });
+    });
+  </script>
   </body>
 </html>
