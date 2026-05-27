@@ -1,0 +1,30 @@
+{{ 'crowncustom-customizer.css' | asset_url | stylesheet_tag }}
+
+<div
+  id="crowncustom-customizer-{{ section.id }}"
+  class="crowncustom-customizer-section"
+  data-crowncustom-customizer
+  data-api-base="{{ section.settings.api_base | escape }}"
+  data-shop="{{ shop.permanent_domain | escape }}"
+></div>
+
+<script src="{{ 'crowncustom-customizer.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "CrownCustom customizer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_base",
+      "label": "API base path",
+      "default": "/apps/crowncustom/api"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CrownCustom customizer"
+    }
+  ]
+}
+{% endschema %}
