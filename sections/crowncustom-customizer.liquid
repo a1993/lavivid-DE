@@ -1,14 +1,13 @@
-{{ 'crowncustom-customizer.css' | asset_url | stylesheet_tag }}
-
 <div
-  id="crowncustom-customizer-{{ section.id }}"
-  class="crowncustom-customizer-section"
-  data-crowncustom-customizer
-  data-api-base="{{ section.settings.api_base | escape }}"
-  data-shop="{{ shop.permanent_domain | escape }}"
-></div>
+    id="crowncustom-customizer-{{ section.id }}"
+    data-crowncustom-customizer
+    data-api-base="{{ section.settings.api_base | escape }}"
+    data-stylesheet-url="{{ 'crowncustom-customizer.css' | asset_url }}"
+    data-shop="{{ shop.permanent_domain | escape }}"
+  ></div>
 
-<script src="{{ 'crowncustom-customizer.js' | asset_url }}" defer></script>
+  
+  <script src="{{ 'crowncustom-customizer.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
