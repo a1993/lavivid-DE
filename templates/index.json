@@ -119,6 +119,13 @@
         "accessibility_info": ""
       }
     },
+    "crowncustom_customizer_TantMz": {
+      "type": "crowncustom-customizer",
+      "name": "CrownCustom customizer",
+      "settings": {
+        "api_base": "/apps/crowncustom/api"
+      }
+    },
     "rich_text_LG8chM": {
       "type": "rich-text",
       "blocks": {
@@ -281,6 +288,7 @@
   },
   "order": [
     "slideshow_TJ9XJ7",
+    "crowncustom_customizer_TantMz",
     "rich_text_LG8chM",
     "custom_html_content_drgYnL",
     "product_list_RMaVRi",
