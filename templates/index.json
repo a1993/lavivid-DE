@@ -123,7 +123,8 @@
       "type": "crowncustom-customizer",
       "name": "CrownCustom customizer",
       "settings": {
-        "api_base": "/apps/crowncustom/api"
+        "api_base": "/apps/crowncustom/api",
+        "full_width": true
       }
     },
     "rich_text_LG8chM": {
