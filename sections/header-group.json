@@ -107,7 +107,6 @@
           "disabled": true,
           "settings": {
             "dropdown_link_title": "Shop All Hair Systems",
-            "image": "shopify://shop_images/accessories_eacc4cd9-682b-4257-bbfa-62eccf0950d3.jpg",
             "title": "Shop Accessories",
             "link_url": "shopify://collections/accessories"
           }
@@ -117,7 +116,6 @@
           "disabled": true,
           "settings": {
             "dropdown_link_title": "Shop All Hair Systems",
-            "image": "shopify://shop_images/Shop_Hair_Care.png",
             "title": "Shop Hair Care",
             "link_url": "shopify://collections/maintenance-accessories"
           }
@@ -127,8 +125,6 @@
           "disabled": true,
           "settings": {
             "dropdown_link_title": "Place a Custom Order",
-            "desktop_image": "shopify://shop_images/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year.jpg",
-            "mobile_image": "shopify://shop_images/tyler-hair-system-for-men-unmatched-natural-scalp-appearance-long-lasting-for-up-to-a-year.jpg",
             "enable_fade": true,
             "image_position": "right",
             "subheading": "",
@@ -160,13 +156,11 @@
         "menu_promotion_large_YpxJKK"
       ],
       "settings": {
-        "logo": "shopify://shop_images/b3c625fc42eb471f88dfe826efd499de.png",
         "logo_img_width_int": 100,
         "mobile_logo_img_width_int": 80,
         "logo_h1": true,
-        "enable_sticky": true,
+        "enable_sticky": false,
         "enable_transparent": false,
-        "transparent_logo": "shopify://shop_images/logo-menu.webp",
         "transparent_color": "#ffffff",
         "transparent_fade": "#000000",
         "transparent_fade_strength": 55,

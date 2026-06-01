@@ -104,6 +104,7 @@
         "video_8n6ANe",
         "image_DwXmec"
       ],
+      "disabled": true,
       "name": "Slideshow",
       "settings": {
         "height": "fixed",
@@ -124,7 +125,8 @@
       "name": "CrownCustom customizer",
       "settings": {
         "api_base": "/apps/crowncustom/api",
-        "full_width": false
+        "full_width": false,
+        "background_color": "#fbfbfc"
       }
     },
     "rich_text_LG8chM": {
@@ -141,6 +143,7 @@
       "block_order": [
         "text_qgUrcx"
       ],
+      "disabled": true,
       "name": "Rich text",
       "settings": {
         "height": "small",
@@ -162,6 +165,7 @@
       "block_order": [
         "html_zVegTQ"
       ],
+      "disabled": true,
       "name": "[gy] Custom HTML Content",
       "settings": {
         "section_title": "",
@@ -182,6 +186,7 @@
     },
     "product_list_RMaVRi": {
       "type": "product-list",
+      "disabled": true,
       "name": "Product list",
       "settings": {
         "title": "Product list",
@@ -270,6 +275,7 @@
         "text_kppHWP",
         "button_hYCUHf"
       ],
+      "disabled": true,
       "name": "Image with text",
       "settings": {
         "class-name": "",
