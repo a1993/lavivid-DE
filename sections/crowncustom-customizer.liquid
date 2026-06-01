@@ -1,15 +1,23 @@
-{%- unless section.settings.full_width -%}
-  <div class="container container--not-mobile fully-spaced-row--medium fully-spaced-row--not-mobile">
-{%- endunless -%}
-  <div
-    id="crowncustom-customizer-{{ section.id }}"
-    data-crowncustom-customizer
-    data-api-base="{{ section.settings.api_base | escape }}"
-    data-shop="{{ shop.permanent_domain | escape }}"
-  ></div>
-{%- unless section.settings.full_width -%}
-  </div>
-{%- endunless -%}
+<div
+  class="crowncustom-customizer-section"
+  {% if section.settings.background_color != blank %}
+    style="background-color: {{ section.settings.background_color }};"
+  {% endif %}
+  {{ section.shopify_attributes }}
+>
+  {%- unless section.settings.full_width -%}
+    <div class="container container--not-mobile fully-spaced-row--medium fully-spaced-row--not-mobile">
+  {%- endunless -%}
+    <div
+      id="crowncustom-customizer-{{ section.id }}"
+      data-crowncustom-customizer
+      data-api-base="{{ section.settings.api_base | escape }}"
+      data-shop="{{ shop.permanent_domain | escape }}"
+    ></div>
+  {%- unless section.settings.full_width -%}
+    </div>
+  {%- endunless -%}
+</div>
 
 <script src="{{ 'crowncustom-customizer.js' | asset_url }}" defer></script>
 
@@ -28,6 +36,12 @@
       "id": "full_width",
       "label": "Full page width",
       "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "info": "Leave blank for transparent"
     }
   ],
   "presets": [
