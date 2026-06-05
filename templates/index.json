@@ -291,6 +291,18 @@
         "text_alignment": "center",
         "color_scheme": "default"
       }
+    },
+    "crowncustom_norwood_88aMFf": {
+      "type": "crowncustom-norwood",
+      "disabled": true,
+      "name": "CrownCustom Norwood scan",
+      "settings": {
+        "api_base": "/apps/crowncustom/api",
+        "cta_page": "liquid-learning",
+        "cta_url": "/pages/custom-hair-system",
+        "full_width": false,
+        "background_color": ""
+      }
     }
   },
   "order": [
@@ -300,6 +312,7 @@
     "custom_html_content_drgYnL",
     "product_list_RMaVRi",
     "rich_text_Tx4gj7",
-    "image_with_text_6EyppA"
+    "image_with_text_6EyppA",
+    "crowncustom_norwood_88aMFf"
   ]
 }
