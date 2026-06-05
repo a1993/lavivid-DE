@@ -122,6 +122,7 @@
     },
     "crowncustom_customizer_TantMz": {
       "type": "crowncustom-customizer",
+      "disabled": true,
       "name": "CrownCustom customizer",
       "settings": {
         "api_base": "/apps/crowncustom/api",
@@ -294,11 +295,10 @@
     },
     "crowncustom_norwood_88aMFf": {
       "type": "crowncustom-norwood",
-      "disabled": true,
       "name": "CrownCustom Norwood scan",
       "settings": {
         "api_base": "/apps/crowncustom/api",
-        "cta_page": "liquid-learning",
+        "cta_page": "customizer",
         "cta_url": "/pages/custom-hair-system",
         "full_width": false,
         "background_color": ""
