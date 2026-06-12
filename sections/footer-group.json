@@ -15,6 +15,7 @@
       "type": "crowncustom-norwood",
       "name": "CrownCustom Norwood scan",
       "settings": {
+        "display_mode": "trigger",
         "api_base": "/apps/crowncustom/api",
         "cta_page": "customizer",
         "cta_url": "/pages/customizer",
