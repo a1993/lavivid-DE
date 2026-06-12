@@ -1,41 +1,80 @@
-<div
-  class="crowncustom-norwood-section"
-  {% if section.settings.background_color != blank %}
-    style="background-color: {{ section.settings.background_color }};"
-  {% endif %}
-  {{ section.shopify_attributes }}
->
-  {%- unless section.settings.full_width -%}
-    <div class="container container--not-mobile fully-spaced-row--medium fully-spaced-row--not-mobile">
-  {%- endunless -%}
-    {%- liquid
-      assign cta_url = section.settings.cta_url | strip
-      if section.settings.cta_page != blank
-        assign cta_page = pages[section.settings.cta_page]
-        if cta_page.url != blank
-          assign cta_url = cta_page.url
-        endif
-      endif
-      if cta_url == blank
-        assign cta_url = '/pages/custom-hair-system'
-      endif
-    -%}
+{%- liquid
+  assign cta_url = section.settings.cta_url | strip
+  if section.settings.cta_page != blank
+    assign cta_page = pages[section.settings.cta_page]
+    if cta_page.url != blank
+      assign cta_url = cta_page.url
+    endif
+  endif
+  if cta_url == blank
+    assign cta_url = '/pages/custom-hair-system'
+  endif
+
+  assign norwood_mode = section.settings.display_mode
+  if norwood_mode == blank
+    assign norwood_mode = 'inline'
+  endif
+-%}
+
+{%- if norwood_mode == 'trigger' -%}
+  <div class="crowncustom-norwood-trigger-host" hidden aria-hidden="true">
     <div
       id="crowncustom-norwood-{{ section.id }}"
       data-crowncustom-norwood
+      data-mode="trigger"
       data-api-base="{{ section.settings.api_base | escape }}"
       data-shop="{{ shop.permanent_domain | escape }}"
       data-cta-url="{{ cta_url | escape }}"
     ></div>
-  {%- unless section.settings.full_width -%}
-    </div>
-  {%- endunless -%}
-</div>
+  </div>
+{%- else -%}
+  <div
+    class="crowncustom-norwood-section"
+    {% if section.settings.background_color != blank %}
+      style="background-color: {{ section.settings.background_color }};"
+    {% endif %}
+    {{ section.shopify_attributes }}
+  >
+    {%- unless section.settings.full_width -%}
+      <div class="container container--not-mobile fully-spaced-row--medium fully-spaced-row--not-mobile">
+    {%- endunless -%}
+      <div
+        id="crowncustom-norwood-{{ section.id }}"
+        data-crowncustom-norwood
+        data-mode="inline"
+        data-api-base="{{ section.settings.api_base | escape }}"
+        data-shop="{{ shop.permanent_domain | escape }}"
+        data-cta-url="{{ cta_url | escape }}"
+      ></div>
+    {%- unless section.settings.full_width -%}
+      </div>
+    {%- endunless -%}
+  </div>
+{%- endif -%}
+
+<script src="{{ 'crowncustom-norwood.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
   "name": "CrownCustom Norwood scan",
   "settings": [
+    {
+      "type": "select",
+      "id": "display_mode",
+      "label": "Display mode",
+      "default": "trigger",
+      "options": [
+        {
+          "value": "inline",
+          "label": "Inline scan block (dedicated page / homepage section)"
+        },
+        {
+          "value": "trigger",
+          "label": "Hash modal only (#norwood-scan) — hide UI, use in footer"
+        }
+      ],
+      "info": "Trigger mode: add to footer to configure CTA URL. Header: <a href=\"#norwood-scan\">…</a>"
+    },
     {
       "type": "text",
       "id": "api_base",
@@ -46,7 +85,7 @@
       "type": "page",
       "id": "cta_page",
       "label": "Custom order page (CTA destination)",
-      "info": "After the scan, users go here with ?norwood=…&from=norwood-scan. Prefer this over manual URL."
+      "info": "After the scan, users go here with saved analysis data. Prefer this over manual URL."
     },
     {
       "type": "text",
@@ -59,13 +98,14 @@
       "type": "checkbox",
       "id": "full_width",
       "label": "Full page width",
-      "default": false
+      "default": false,
+      "info": "Inline mode only"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background color",
-      "info": "Leave blank for transparent"
+      "info": "Inline mode only. Leave blank for transparent."
     }
   ],
   "presets": [
