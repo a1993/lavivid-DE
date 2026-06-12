@@ -11,6 +11,17 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "crowncustom_norwood_Ng6X4Y": {
+      "type": "crowncustom-norwood",
+      "name": "CrownCustom Norwood scan",
+      "settings": {
+        "api_base": "/apps/crowncustom/api",
+        "cta_page": "customizer",
+        "cta_url": "/pages/customizer",
+        "full_width": false,
+        "background_color": ""
+      }
+    },
     "176794681438624558": {
       "type": "apps",
       "custom_css": [],
@@ -35,7 +46,6 @@
           "settings": {
             "title": "",
             "text": "<p>LaVivid Germany ist spezialisiert auf hochwertige Haarsysteme für Männer. Natürlich, diskret und alltagstauglich – mit persönlicher Beratung und ausgewählten Partnersalons.<br/></p>",
-            "image": "shopify://shop_images/b3c625fc42eb471f88dfe826efd499de.png",
             "image_width": 140,
             "show_social_icons": true,
             "soc_icons_large": true,
@@ -88,6 +98,7 @@
     }
   },
   "order": [
+    "crowncustom_norwood_Ng6X4Y",
     "176794681438624558",
     "cross-page-promos",
     "footer"
