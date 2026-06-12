@@ -294,6 +294,7 @@
     },
     "crowncustom_norwood_88aMFf": {
       "type": "crowncustom-norwood",
+      "disabled": true,
       "name": "CrownCustom Norwood scan",
       "settings": {
         "api_base": "/apps/crowncustom/api",
