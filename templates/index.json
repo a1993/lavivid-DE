@@ -303,6 +303,87 @@
         "full_width": false,
         "background_color": ""
       }
+    },
+    "custom_content_ehX6qb": {
+      "type": "custom-content",
+      "blocks": {
+        "image_kQW6HF": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "Subheading",
+            "title": "Tell your story",
+            "text": "<p>Pair text with an image to tell a story</p>",
+            "enlarge_text": false,
+            "overlay_subheading_color": "",
+            "overlay_title_color": "",
+            "overlay_text_color": "",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_L9fT6k": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "Welcome",
+            "title_size": 84,
+            "title_size_mobile": 46,
+            "text": "<p>Use this text to share information about your store with your customers.</p><p>Describe products, share announcements, or welcome customers to your store.</p>",
+            "subheading_color": "",
+            "title_color": "",
+            "text_color": "",
+            "button_label_1": "button",
+            "button_link_1": "#norwood-scan",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "",
+            "button_text_color_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_kQW6HF",
+        "text_L9fT6k"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
     }
   },
   "order": [
@@ -313,6 +394,7 @@
     "product_list_RMaVRi",
     "rich_text_Tx4gj7",
     "image_with_text_6EyppA",
-    "crowncustom_norwood_88aMFf"
+    "crowncustom_norwood_88aMFf",
+    "custom_content_ehX6qb"
   ]
 }
