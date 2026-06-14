@@ -11,13 +11,97 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "show_page_title": false,
         "full_width": false
       }
+    },
+    "custom_content_TUTjrh": {
+      "type": "custom-content",
+      "blocks": {
+        "image_HyHEjp": {
+          "type": "image",
+          "settings": {
+            "width": "half",
+            "image": "shopify://shop_images/banner.png",
+            "height": "adapt",
+            "height_desktop": 600,
+            "height_mobile": 500,
+            "subheading": "",
+            "title": "",
+            "text": "",
+            "enlarge_text": false,
+            "overlay_subheading_color": "",
+            "overlay_title_color": "",
+            "overlay_text_color": "",
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "image_link": "",
+            "text_alignment": "center center",
+            "mobile_overlay_under": false,
+            "overlay_style": "shadow"
+          }
+        },
+        "text_EHMmpp": {
+          "type": "text",
+          "settings": {
+            "width": "half",
+            "text_alignment": "center",
+            "center_on_mobile": true,
+            "icon": "",
+            "icon_color": "rgba(0,0,0,0)",
+            "subheading": "",
+            "title": "<strong>Get Your Personalized Hair Loss Plan — Free</strong>",
+            "title_size": 46,
+            "title_size_mobile": 24,
+            "text": "<p>Take our 30-second hair loss assessment and discover your thinning stage — based on the Hamilton-Norwood Scale. Get a personalized product recommendation tailored to your hair goals.</p><p>✓ Free  ·  ✓ 1 Minute  ·  ✓ Personalized Results</p>",
+            "subheading_color": "",
+            "title_color": "",
+            "text_color": "",
+            "button_label_1": "Check My Hair Loss Level →",
+            "button_link_1": "#norwood-scan",
+            "button_style_1": "primary",
+            "button_icon_1": "none",
+            "button_icon_position_1": "right",
+            "button_bg_color_1": "",
+            "button_text_color_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_2": "secondary",
+            "button_icon_2": "none",
+            "button_icon_position_2": "right",
+            "button_bg_color_2": "",
+            "button_text_color_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_HyHEjp",
+        "text_EHMmpp"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "spacing": "medium",
+        "alignment": "middle",
+        "color_scheme": "default"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_content_TUTjrh"
   ]
 }
