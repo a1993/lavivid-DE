@@ -20,16 +20,26 @@
     "1768010999c5551e6e": {
       "type": "apps",
       "blocks": {
+        "ai_try_on_single_store_ai_try_on_embed_U6xVm9": {
+          "type": "shopify://apps/ai-try-on-single-store/blocks/ai-try-on-embed/019f7f98-a659-760f-bd4e-e15f97ed85c5",
+          "settings": {
+            "app_origin": "https://tryon.lavividhair.com",
+            "product_handle": "",
+            "variant_id": "",
+            "return_url": ""
+          }
+        },
         "ai_try_on_single_store_ai_try_on_preselect_f9X6Lr": {
           "type": "shopify://apps/ai-try-on-single-store/blocks/ai-try-on-preselect/019f7f98-a659-760f-bd4e-e15f97ed85c5",
           "settings": {}
         }
       },
       "block_order": [
+        "ai_try_on_single_store_ai_try_on_embed_U6xVm9",
         "ai_try_on_single_store_ai_try_on_preselect_f9X6Lr"
       ],
       "settings": {
-        "full_width": false,
+        "full_width": true,
         "show_space": true
       }
     }
