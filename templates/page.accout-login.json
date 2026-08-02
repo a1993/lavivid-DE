@@ -24,6 +24,7 @@
           "type": "shopify://apps/ai-try-on-single-store/blocks/ai-try-on-embed/019f7f98-a659-760f-bd4e-e15f97ed85c5",
           "settings": {
             "app_origin": "https://tryon.lavividhair.com",
+            "widget_version": "20260802a",
             "product_handle": "",
             "variant_id": "",
             "return_url": ""
@@ -40,7 +41,7 @@
       ],
       "settings": {
         "full_width": true,
-        "show_space": true
+        "show_space": false
       }
     }
   },
